@@ -19,6 +19,7 @@
 <link rel="alternate" type="application/atom+xml" title="0-1 幻想" href="https://haust-kevin.github.io/blog/atom.xml" />
 <link rel="alternate" type="application/json" title="0-1 幻想" href="https://haust-kevin.github.io/blog/feed.json" />
 
+
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CHarmonyOS_Sans:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="/blog/css/app.css?v=0.2.5">
@@ -89,12 +90,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646849.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646841.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646842.jpg"></li>
           <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646857.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646864.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646854.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646845.jpg"></li>
           <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646859.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646863.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646843.jpg"></li>
         </ul>
       </div>
     </header>
@@ -121,7 +122,7 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/blog/2023/08/19/docker-container-2-image/" itemprop="url" title="docker容器打包成镜像上传至其它服务器"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646859.jpg"></a>
+    <a href="/blog/2023/08/19/docker-container-2-image/" itemprop="url" title="Docker：容器备份"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646850.jpg"></a>
   </div>
   <div class="info">
     
@@ -136,7 +137,7 @@
     <span class="icon">
       <i class="ic i-pen"></i>
     </span>
-    <span>32</span>
+    <span>706</span>
     <span class="text">字</span>
   </span>
   <span class="item" title="阅读时长">
@@ -147,18 +148,28 @@
   </span>
 </div>
 
-    <h3><a href="/blog/2023/08/19/docker-container-2-image/" itemprop="url" title="docker容器打包成镜像上传至其它服务器">docker容器打包成镜像上传至其它服务器</a></h3>
+    <h3><a href="/blog/2023/08/19/docker-container-2-image/" itemprop="url" title="Docker：容器备份">Docker：容器备份</a></h3>
     <div class="excerpt">
-        balabalabalabalabalabalabalabala
+        将 docker 容器打包成镜像并在另一台服务器上运行
+
+1️⃣ 将容器打包成镜像
+docker commit &amp;lt;container-name&gt; &amp;lt;image-name&gt;[:tag]# example: docker commit myblog hexo-blog会在本地生成一个新的 docker 镜像，可以通过 docker images 命令查看生成的镜像。
+
+打包时，容器挂的目录 / 文件不会被打包进镜像。解决方案：① 在打包前为挂载的目录生成一份 copy，在另一台机器运行时你需要挂载这份 copy。② 将挂载的目录 copy...
     </div>
-    <a href="/blog/2023/08/19/docker-container-2-image/" itemprop="url" title="docker容器打包成镜像上传至其它服务器" class="btn">more...</a>
+    <div class="meta footer">
+      <span>
+        <a href="/blog/categories/Linux/" itemprop="url" title="Linux"><i class="ic i-flag"></i>Linux</a>
+      </span>
+    </div>
+    <a href="/blog/2023/08/19/docker-container-2-image/" itemprop="url" title="Docker：容器备份" class="btn">more...</a>
   </div>
 </article>
 
         
 <article class="item">
   <div class="cover">
-    <a href="/blog/2023/08/17/brew-replace-download-source/" itemprop="url" title="brew更换下载源"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static/images/202308181801295.png"></a>
+    <a href="/blog/2023/08/17/brew-replace-download-source/" itemprop="url" title="HomeBrew：brew更换下载源"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static/images/202308181801295.png"></a>
   </div>
   <div class="info">
     
@@ -173,7 +184,7 @@
     <span class="icon">
       <i class="ic i-pen"></i>
     </span>
-    <span>945</span>
+    <span>1k</span>
     <span class="text">字</span>
   </span>
   <span class="item" title="阅读时长">
@@ -184,25 +195,26 @@
   </span>
 </div>
 
-    <h3><a href="/blog/2023/08/17/brew-replace-download-source/" itemprop="url" title="brew更换下载源">brew更换下载源</a></h3>
+    <h3><a href="/blog/2023/08/17/brew-replace-download-source/" itemprop="url" title="HomeBrew：brew更换下载源">HomeBrew：brew更换下载源</a></h3>
     <div class="excerpt">
-        # brew 更换下载源
-1️⃣ 更换下载源更换成中国科学技术大学镜像站
-# 更新 Homebrewcd &quot;$(brew --repo)&quot;git config --global --add safe.directory &quot;$(brew --repo)&quot;git remote set-url origin https://mirrors.ustc.edu.cn/brew.git# 更新 Homebrew-corecd &quot;$(brew --repo)/Library/Taps/homebrew/homebrew-core&quot;git...
+        brew 更换下载镜像以提升下载速度
+
+1️⃣ 更换下载源为中国科学技术大学镜像站
+# 新建 homebrew-cask 文件夹，若已经存在则无需新建mkdir &quot;$(brew --repo)/Library/Taps/homebrew/homebrew-cask&quot;# 将三个目录作为安全目录目录添加到全局的 Git 配置中git config --global --add safe.directory &quot;$(brew --repo)&quot;git config --global --add safe.directory &quot;$(brew...
     </div>
     <div class="meta footer">
       <span>
         <a href="/blog/categories/Linux/" itemprop="url" title="Linux"><i class="ic i-flag"></i>Linux</a>
       </span>
     </div>
-    <a href="/blog/2023/08/17/brew-replace-download-source/" itemprop="url" title="brew更换下载源" class="btn">more...</a>
+    <a href="/blog/2023/08/17/brew-replace-download-source/" itemprop="url" title="HomeBrew：brew更换下载源" class="btn">more...</a>
   </div>
 </article>
 
         
 <article class="item">
   <div class="cover">
-    <a href="/blog/2023/08/15/hello-world/" itemprop="url" title="Hello World"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646854.jpg"></a>
+    <a href="/blog/2023/08/15/hello-world/" itemprop="url" title="Hello World"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646851.jpg"></a>
   </div>
   <div class="info">
     
@@ -217,7 +229,7 @@
     <span class="icon">
       <i class="ic i-pen"></i>
     </span>
-    <span>362</span>
+    <span>639</span>
     <span class="text">字</span>
   </span>
   <span class="item" title="阅读时长">
@@ -230,12 +242,11 @@
 
     <h3><a href="/blog/2023/08/15/hello-world/" itemprop="url" title="Hello World">Hello World</a></h3>
     <div class="excerpt">
-        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-# Quick Start
-# Create a new post
-h$ hexo new &quot;My New Post&quot;More info: Writing
-# Run server
-h$...
+        # 欢迎
+大家好，欢迎来到我的个人博客欲揽星河の小屋！我是王定邦，一个热爱编程、追求技术创新的技术爱好者。通过这个博客，我希望能够与大家分享我的编程旅程、探索过程以及在技术领域的所见所闻。
+# 追寻编程的脚步
+编程是一门既充满挑战又充满乐趣的艺术。从最初的 &amp;quot;Hello World&amp;quot; 到构建复杂的应用程序，每一行代码都是一次思考和创造的过程。我依然记得我第一次编写的程序，那种由错误到正确的过程，那种实现想法的成就感，都深深地吸引着我。
+#...
     </div>
     <a href="/blog/2023/08/15/hello-world/" itemprop="url" title="Hello World" class="btn">more...</a>
   </div>
@@ -401,9 +412,10 @@ h$...
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/blog/2023/08/19/docker-container-2-image/" title="docker容器打包成镜像上传至其它服务器">docker容器打包成镜像上传至其它服务器</a></span>
+    <span><a href="/blog/2023/08/19/docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
   </li>
 
       
@@ -422,7 +434,7 @@ h$...
 <a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/blog/2023/08/17/brew-replace-download-source/" title="brew更换下载源">brew更换下载源</a></span>
+    <span><a href="/blog/2023/08/17/brew-replace-download-source/" title="HomeBrew：brew更换下载源">HomeBrew：brew更换下载源</a></span>
   </li>
 
   </ul>
@@ -439,7 +451,7 @@ h$...
     &copy; 
     <span itemprop="copyrightYear">2023</span>
     <span class="with-love">
-      <i class="ic i-Dingbang's blog"></i>
+      <i class="ic i-欲揽星河の小屋"></i>
     </span>
     <span class="author" itemprop="copyrightHolder">Bug猎人 @ 欲揽星河の小屋</span>
   </div>
@@ -447,13 +459,13 @@ h$...
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="站点总字数">1k 字</span>
+    <span title="站点总字数">2k 字</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="站点阅读时长">1 分钟</span>
+    <span title="站点阅读时长">2 分钟</span>
   </div>
   <div class="powered-by">
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

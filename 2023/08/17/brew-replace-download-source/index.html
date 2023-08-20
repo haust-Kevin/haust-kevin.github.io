@@ -19,6 +19,7 @@
 <link rel="alternate" type="application/atom+xml" title="0-1 幻想" href="https://haust-kevin.github.io/blog/atom.xml" />
 <link rel="alternate" type="application/json" title="0-1 幻想" href="https://haust-kevin.github.io/blog/feed.json" />
 
+
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CHarmonyOS_Sans:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="/blog/css/app.css?v=0.2.5">
@@ -32,7 +33,7 @@
 
 
   <title>
-brew更换下载源 - Linux |
+HomeBrew：brew更换下载源 - Linux |
 欲揽星河の小屋 = 0-1 幻想 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志 —— 苏轼</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,7 +61,7 @@ brew更换下载源 - Linux |
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">brew更换下载源
+  <h1 itemprop="name headline">HomeBrew：brew更换下载源
   </h1>
   
 <div class="meta">
@@ -76,7 +77,7 @@ brew更换下载源 - Linux |
       <i class="ic i-pen"></i>
     </span>
     <span class="text">本文字数</span>
-    <span>945</span>
+    <span>1k</span>
     <span class="text">字</span>
   </span>
   <span class="item" title="阅读时长">
@@ -161,15 +162,20 @@ brew更换下载源 - Linux |
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="brew更换下载源"><a class="anchor" href="#brew更换下载源">#</a> brew 更换下载源</h1>
-<p>1️⃣ 更换下载源更换成<span class="exturl" data-url="aHR0cHM6Ly9taXJyb3JzLnVzdGMuZWR1LmNuLw==">中国科学技术大学镜像站</span></p>
-<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 更新 Homebrew</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token builtin class-name">cd</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>"</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token function">git</span> config <span class="token parameter variable">--global</span> <span class="token parameter variable">--add</span> safe.directory <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>"</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">git</span> remote set-url origin https://mirrors.ustc.edu.cn/brew.git</pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment"># 更新 Homebrew-core</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token builtin class-name">cd</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>/Library/Taps/homebrew/homebrew-core"</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token function">git</span> config <span class="token parameter variable">--global</span> <span class="token parameter variable">--add</span> safe.directory <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>/Library/Taps/homebrew/homebrew-core"</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token function">git</span> remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git</pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token comment"># 更新 Homebrew-cask</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token function">mkdir</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>/Library/Taps/homebrew/homebrew-cask"</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token builtin class-name">cd</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>/Library/Taps/homebrew/homebrew-cask"</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token function">git</span> config <span class="token parameter variable">--global</span> <span class="token parameter variable">--add</span> safe.directory <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>/Library/Taps/homebrew/homebrew-cask"</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token function">git</span> remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</pre></td></tr></table></figure><p>2️⃣ 选择 zsh 或 bash 用户，执行即可</p>
+    <div class="note primary">
+<p>brew 更换下载镜像以提升下载速度</p>
+</div>
+<p>1️⃣ 更换下载源为<span class="exturl" data-url="aHR0cHM6Ly9taXJyb3JzLnVzdGMuZWR1LmNuLw==">中国科学技术大学镜像站</span></p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 新建 homebrew-cask 文件夹，若已经存在则无需新建</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">mkdir</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>/Library/Taps/homebrew/homebrew-cask"</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 将三个目录作为安全目录目录添加到全局的 Git 配置中</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token function">git</span> config <span class="token parameter variable">--global</span> <span class="token parameter variable">--add</span> safe.directory <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>"</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">git</span> config <span class="token parameter variable">--global</span> <span class="token parameter variable">--add</span> safe.directory <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>/Library/Taps/homebrew/homebrew-core"</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token function">git</span> config <span class="token parameter variable">--global</span> <span class="token parameter variable">--add</span> safe.directory <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>/Library/Taps/homebrew/homebrew-cask"</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment"># 更新 Homebrew</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token builtin class-name">cd</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>"</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token function">git</span> remote set-url origin https://mirrors.ustc.edu.cn/brew.git</pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token comment"># 更新 Homebrew-core</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token builtin class-name">cd</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>/Library/Taps/homebrew/homebrew-core"</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token function">git</span> remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git</pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token comment"># 更新 Homebrew-cask</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token builtin class-name">cd</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>/Library/Taps/homebrew/homebrew-cask"</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token function">git</span> remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</pre></td></tr></table></figure><p>2️⃣ 选择 zsh 或 bash 用户，执行即可</p>
 <ul>
 <li>bash 用户<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token builtin class-name">echo</span> <span class="token string">'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/'</span> <span class="token operator">>></span> ~/.bash_profile</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token builtin class-name">source</span> ~/.bash_profile</pre></td></tr></table></figure></li>
 <li>zsh 用户<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token builtin class-name">echo</span> <span class="token string">'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/'</span> <span class="token operator">>></span> ~/.zshrc</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token builtin class-name">source</span> ~/.zshrc</pre></td></tr></table></figure></li>
 </ul>
 <p>3️⃣ 更新 brew</p>
-<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre>brew update <span class="token parameter variable">-v</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre>brew update <span class="token parameter variable">-v</span></pre></td></tr></table></figure><div class="note success">
+<p>配置完成</p>
+</div>
+
       <div class="tags">
           <a href="/blog/tags/brew/" rel="tag"><i class="ic i-tag"></i> brew</a>
           <a href="/blog/tags/linux/" rel="tag"><i class="ic i-tag"></i> linux</a>
@@ -184,9 +190,9 @@ brew更换下载源 - Linux |
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-08-20 02:33:46" itemprop="dateModified" datetime="2023-08-20T02:33:46+08:00">2023-08-20</time>
+    <time title="修改时间：2023-08-20 16:54:38" itemprop="dateModified" datetime="2023-08-20T16:54:38+08:00">2023-08-20</time>
   </span>
-  <span id="2023/08/17/brew-replace-download-source/" class="item leancloud_visitors" data-flag-title="brew更换下载源" title="阅读次数">
+  <span id="2023/08/17/brew-replace-download-source/" class="item leancloud_visitors" data-flag-title="HomeBrew：brew更换下载源" title="阅读次数">
       <span class="icon">
         <i class="ic i-eye"></i>
       </span>
@@ -228,7 +234,7 @@ brew更换下载源 - Linux |
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="https://haust-kevin.github.io/blog/2023/08/17/brew-replace-download-source/" title="brew更换下载源">https://haust-kevin.github.io/blog/2023/08/17/brew-replace-download-source/</a>
+    <a href="https://haust-kevin.github.io/blog/2023/08/17/brew-replace-download-source/" title="HomeBrew：brew更换下载源">https://haust-kevin.github.io/blog/2023/08/17/brew-replace-download-source/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -247,7 +253,7 @@ brew更换下载源 - Linux |
     <div class="item left">
       
 
-  <a href="/blog/2023/08/15/hello-world/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646845.jpg" title="Hello World">
+  <a href="/blog/2023/08/15/hello-world/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646862.jpg" title="Hello World">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>Hello World</h3>
@@ -257,10 +263,10 @@ brew更换下载源 - Linux |
     <div class="item right">
       
 
-  <a href="/blog/2023/08/19/docker-container-2-image/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646841.jpg" title="docker容器打包成镜像上传至其它服务器">
+  <a href="/blog/2023/08/19/docker-container-2-image/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646854.jpg" title="Docker：容器备份">
   <span class="type">下一篇</span>
-  <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>docker容器打包成镜像上传至其它服务器</h3>
+  <span class="category"><i class="ic i-flag"></i> Linux</span>
+  <h3>Docker：容器备份</h3>
   </a>
 
     </div>
@@ -279,11 +285,10 @@ brew更换下载源 - Linux |
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#brew%E6%9B%B4%E6%8D%A2%E4%B8%8B%E8%BD%BD%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text"> brew 更换下载源</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li class="active"><a href="/blog/2023/08/17/brew-replace-download-source/" rel="bookmark" title="brew更换下载源">brew更换下载源</a></li>
+          <li class="active"><a href="/blog/2023/08/17/brew-replace-download-source/" rel="bookmark" title="HomeBrew：brew更换下载源">HomeBrew：brew更换下载源</a></li><li><a href="/blog/2023/08/19/docker-container-2-image/" rel="bookmark" title="Docker：容器备份">Docker：容器备份</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -430,18 +435,10 @@ brew更换下载源 - Linux |
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/blog/2023/08/19/docker-container-2-image/" title="docker容器打包成镜像上传至其它服务器">docker容器打包成镜像上传至其它服务器</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/blog/2023/08/15/hello-world/" title="Hello World">Hello World</a></span>
+    <span><a href="/blog/2023/08/19/docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
   </li>
 
       
@@ -451,7 +448,16 @@ brew更换下载源 - Linux |
 <a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/blog/2023/08/17/brew-replace-download-source/" title="brew更换下载源">brew更换下载源</a></span>
+    <span><a href="/blog/2023/08/17/brew-replace-download-source/" title="HomeBrew：brew更换下载源">HomeBrew：brew更换下载源</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/blog/2023/08/15/hello-world/" title="Hello World">Hello World</a></span>
   </li>
 
   </ul>
@@ -468,7 +474,7 @@ brew更换下载源 - Linux |
     &copy; 
     <span itemprop="copyrightYear">2023</span>
     <span class="with-love">
-      <i class="ic i-Dingbang's blog"></i>
+      <i class="ic i-欲揽星河の小屋"></i>
     </span>
     <span class="author" itemprop="copyrightHolder">Bug猎人 @ 欲揽星河の小屋</span>
   </div>
@@ -476,13 +482,13 @@ brew更换下载源 - Linux |
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="站点总字数">1k 字</span>
+    <span title="站点总字数">2k 字</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="站点阅读时长">1 分钟</span>
+    <span title="站点阅读时长">2 分钟</span>
   </div>
   <div class="powered-by">
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

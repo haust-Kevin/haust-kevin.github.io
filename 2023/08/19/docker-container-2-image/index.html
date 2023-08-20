@@ -19,6 +19,7 @@
 <link rel="alternate" type="application/atom+xml" title="0-1 幻想" href="https://haust-kevin.github.io/blog/atom.xml" />
 <link rel="alternate" type="application/json" title="0-1 幻想" href="https://haust-kevin.github.io/blog/feed.json" />
 
+
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CHarmonyOS_Sans:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="/blog/css/app.css?v=0.2.5">
@@ -32,7 +33,7 @@
 
 
   <title>
-docker容器打包成镜像上传至其它服务器 |
+Docker：容器备份 - Linux |
 欲揽星河の小屋 = 0-1 幻想 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志 —— 苏轼</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,7 +61,7 @@ docker容器打包成镜像上传至其它服务器 |
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">docker容器打包成镜像上传至其它服务器
+  <h1 itemprop="name headline">Docker：容器备份
   </h1>
   
 <div class="meta">
@@ -76,7 +77,7 @@ docker容器打包成镜像上传至其它服务器 |
       <i class="ic i-pen"></i>
     </span>
     <span class="text">本文字数</span>
-    <span>32</span>
+    <span>706</span>
     <span class="text">字</span>
   </span>
   <span class="item" title="阅读时长">
@@ -117,12 +118,12 @@ docker容器打包成镜像上传至其它服务器 |
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646843.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646853.jpg"></li>
           <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646863.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646860.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646857.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646852.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646839.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646859.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646843.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646845.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646854.jpg"></li>
         </ul>
       </div>
     </header>
@@ -147,7 +148,9 @@ docker容器打包成镜像上传至其它服务器 |
     
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
-<span><a href="/blog/">首页</a></span>
+<span><a href="/blog/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/blog/categories/Linux/" itemprop="item" rel="index" title="分类于 Linux"><span itemprop="name">Linux</span></a>
+<meta itemprop="position" content="1" /></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
@@ -166,7 +169,25 @@ docker容器打包成镜像上传至其它服务器 |
   <div class="body md" itemprop="articleBody">
     
 
-    <p>balabalabalabalabalabalabalabala</p>
+    <div class="note primary">
+<p>将 docker 容器打包成镜像并在另一台服务器上运行</p>
+</div>
+<p>1️⃣ 将容器打包成镜像</p>
+<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">docker</span> commit <span class="token operator">&lt;</span>container-name<span class="token operator">></span> <span class="token operator">&lt;</span>image-name<span class="token operator">></span><span class="token punctuation">[</span>:tag<span class="token punctuation">]</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment"># example: docker commit myblog hexo-blog</span></pre></td></tr></table></figure><p>会在本地生成一个新的 docker 镜像，可以通过 <code>docker images</code>  命令查看生成的镜像。</p>
+<div class="note warning">
+<p>打包时，容器挂的目录 / 文件不会被打包进镜像。解决方案：① 在打包前为挂载的目录生成一份 copy，在另一台机器运行时你需要挂载这份 copy。② 将挂载的目录 copy 至新机器。如果打包后的镜像只需在当前服务器运行，则不需要考虑这个问题。</p>
+</div>
+<p>2️⃣ 将镜像打包成文件</p>
+<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">docker</span> save <span class="token parameter variable">-o</span> <span class="token operator">&lt;</span>outfile<span class="token operator">></span> <span class="token operator">&lt;</span>image-name<span class="token operator">></span><span class="token punctuation">[</span>:tag<span class="token punctuation">]</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment"># example: docker save -o blog.jar hexo-blog</span></pre></td></tr></table></figure><p>会在当前目录生成 <code>blog.jar</code>  文件。</p>
+<p>3️⃣ 将打包生成的文件上传至另一台服务器<br />
+使用 scp 命令或者 ssh 工具将 <code>blog.jar</code>  复制到另一台服务器。</p>
+<p>4️⃣ 新机器载入镜像</p>
+<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">docker</span> load <span class="token parameter variable">--input</span> <span class="token operator">&lt;</span>file<span class="token operator">></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment"># example: docker load --input blog.jar</span></pre></td></tr></table></figure><p>会在新机器生成一个新的 docker 镜像，可以通过 <code>docker images</code>  命令查看生成的镜像。</p>
+<p>5️⃣ 运行容器<br />
+导入镜像后就可以进行正常 <code>docker run</code>  命令了。</p>
+<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">docker</span> run <span class="token parameter variable">-itd</span> <span class="token parameter variable">--name</span> <span class="token operator">&lt;</span>container-name<span class="token operator">></span> <span class="token operator">&lt;</span>image-name<span class="token operator">></span><span class="token punctuation">[</span>:tag<span class="token punctuation">]</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment"># example: docker run -itd --name myblog hexo-blog</span></pre></td></tr></table></figure><div class="note success">
+<p>备份并导入完成</p>
+</div>
 
       <div class="tags">
           <a href="/blog/tags/linux/" rel="tag"><i class="ic i-tag"></i> linux</a>
@@ -182,9 +203,9 @@ docker容器打包成镜像上传至其它服务器 |
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-08-19 20:14:37" itemprop="dateModified" datetime="2023-08-19T20:14:37+08:00">2023-08-19</time>
+    <time title="修改时间：2023-08-20 18:59:12" itemprop="dateModified" datetime="2023-08-20T18:59:12+08:00">2023-08-20</time>
   </span>
-  <span id="2023/08/19/docker-container-2-image/" class="item leancloud_visitors" data-flag-title="docker容器打包成镜像上传至其它服务器" title="阅读次数">
+  <span id="2023/08/19/docker-container-2-image/" class="item leancloud_visitors" data-flag-title="Docker：容器备份" title="阅读次数">
       <span class="icon">
         <i class="ic i-eye"></i>
       </span>
@@ -226,7 +247,7 @@ docker容器打包成镜像上传至其它服务器 |
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="https://haust-kevin.github.io/blog/2023/08/19/docker-container-2-image/" title="docker容器打包成镜像上传至其它服务器">https://haust-kevin.github.io/blog/2023/08/19/docker-container-2-image/</a>
+    <a href="https://haust-kevin.github.io/blog/2023/08/19/docker-container-2-image/" title="Docker：容器备份">https://haust-kevin.github.io/blog/2023/08/19/docker-container-2-image/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -245,10 +266,10 @@ docker容器打包成镜像上传至其它服务器 |
     <div class="item left">
       
 
-  <a href="/blog/2023/08/17/brew-replace-download-source/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static&#x2F;images&#x2F;202308181801295.png" title="brew更换下载源">
+  <a href="/blog/2023/08/17/brew-replace-download-source/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static&#x2F;images&#x2F;202308181801295.png" title="HomeBrew：brew更换下载源">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> Linux</span>
-  <h3>brew更换下载源</h3>
+  <h3>HomeBrew：brew更换下载源</h3>
   </a>
 
     </div>
@@ -271,6 +292,9 @@ docker容器打包成镜像上传至其它服务器 |
       <div class="contents panel pjax" data-title="文章目录">
       </div>
       <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/blog/2023/08/17/brew-replace-download-source/" rel="bookmark" title="HomeBrew：brew更换下载源">HomeBrew：brew更换下载源</a></li><li class="active"><a href="/blog/2023/08/19/docker-container-2-image/" rel="bookmark" title="Docker：容器备份">Docker：容器备份</a></li>
+        </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
         <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -423,9 +447,10 @@ docker容器打包成镜像上传至其它服务器 |
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/blog/2023/08/19/docker-container-2-image/" title="docker容器打包成镜像上传至其它服务器">docker容器打包成镜像上传至其它服务器</a></span>
+    <span><a href="/blog/2023/08/19/docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
   </li>
 
       
@@ -435,7 +460,7 @@ docker容器打包成镜像上传至其它服务器 |
 <a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/blog/2023/08/17/brew-replace-download-source/" title="brew更换下载源">brew更换下载源</a></span>
+    <span><a href="/blog/2023/08/17/brew-replace-download-source/" title="HomeBrew：brew更换下载源">HomeBrew：brew更换下载源</a></span>
   </li>
 
   </ul>
@@ -452,7 +477,7 @@ docker容器打包成镜像上传至其它服务器 |
     &copy; 
     <span itemprop="copyrightYear">2023</span>
     <span class="with-love">
-      <i class="ic i-Dingbang's blog"></i>
+      <i class="ic i-欲揽星河の小屋"></i>
     </span>
     <span class="author" itemprop="copyrightHolder">Bug猎人 @ 欲揽星河の小屋</span>
   </div>
@@ -460,13 +485,13 @@ docker容器打包成镜像上传至其它服务器 |
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="站点总字数">1k 字</span>
+    <span title="站点总字数">2k 字</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="站点阅读时长">1 分钟</span>
+    <span title="站点阅读时长">2 分钟</span>
   </div>
   <div class="powered-by">
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

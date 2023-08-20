@@ -2239,6 +2239,12 @@ main >.inner {
 .social .item.zhihu i {
   color: #1e88e5;
 }
+.social .item.about::before {
+  background-color: #3b5998;
+}
+.social .item.about i {
+  color: #3b5998;
+}
 .social .item.email::before {
   background-color: #f2c314;
 }

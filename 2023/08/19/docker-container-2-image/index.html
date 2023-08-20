@@ -15,16 +15,16 @@
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
 
-<link rel="alternate" type="application/rss+xml" title="见微知著" href="https://haust-kevin.github.io/blog/rss.xml" />
-<link rel="alternate" type="application/atom+xml" title="见微知著" href="https://haust-kevin.github.io/blog/atom.xml" />
-<link rel="alternate" type="application/json" title="见微知著" href="https://haust-kevin.github.io/blog/feed.json" />
+<link rel="alternate" type="application/rss+xml" title="0-1 幻想" href="https://haust-kevin.github.io/blog/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="0-1 幻想" href="https://haust-kevin.github.io/blog/atom.xml" />
+<link rel="alternate" type="application/json" title="0-1 幻想" href="https://haust-kevin.github.io/blog/feed.json" />
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=HarmonyOS_Sans:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CHarmonyOS_Sans:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="/blog/css/app.css?v=0.2.5">
 
   
-  <meta name="keywords" content="linux,docker" />
+  <meta name="keywords" content="docker,linux" />
 
 
 <link rel="canonical" href="https://haust-kevin.github.io/blog/2023/08/19/docker-container-2-image/">
@@ -33,7 +33,7 @@
 
   <title>
 docker容器打包成镜像上传至其它服务器 |
-小饼干の小窝 = 见微知著 =  古之立大事者，不惟有超世之才，亦必有坚忍不拔之志 —— 苏轼 </title>
+欲揽星河の小屋 = 0-1 幻想 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志 —— 苏轼</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
   <div id="loading">
@@ -101,7 +101,7 @@ docker容器打包成镜像上传至其它服务器 |
       </div>
     </div>
     <ul class="menu">
-      <li class="item title"><a href="/blog/" rel="start">小饼干の小窝</a></li>
+      <li class="item title"><a href="/blog/" rel="start">欲揽星河の小屋</a></li>
     </ul>
     <ul class="right">
       <li class="item theme">
@@ -117,12 +117,12 @@ docker容器打包成镜像上传至其它服务器 |
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646846.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646849.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646856.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646860.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646839.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646857.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646851.jpg"></li>
           <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646855.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646863.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646853.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646852.jpg"></li>
         </ul>
       </div>
     </header>
@@ -155,12 +155,12 @@ docker容器打包成镜像上传至其它服务器 |
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/blog/images/avatar.jpg">
-    <meta itemprop="name" content="小饼干">
-    <meta itemprop="description" content=" 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志 —— 苏轼 , 分享所见、所想、所为">
+    <meta itemprop="name" content="Bug猎人">
+    <meta itemprop="description" content="古之立大事者，不惟有超世之才，亦必有坚忍不拔之志 —— 苏轼, 思考未知，追求卓越">
   </span>
 
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="见微知著">
+    <meta itemprop="name" content="0-1 幻想">
   </span>
 
   <div class="body md" itemprop="articleBody">
@@ -169,8 +169,8 @@ docker容器打包成镜像上传至其它服务器 |
     <p>balabalabalabalabalabalabalabala</p>
 
       <div class="tags">
-          <a href="/blog/tags/linux/" rel="tag"><i class="ic i-tag"></i> linux</a>
           <a href="/blog/tags/docker/" rel="tag"><i class="ic i-tag"></i> docker</a>
+          <a href="/blog/tags/linux/" rel="tag"><i class="ic i-tag"></i> linux</a>
       </div>
   </div>
 
@@ -201,17 +201,17 @@ docker容器打包成镜像上传至其它服务器 |
   <div id="qr">
       
       <div>
-        <img data-src="/blog/images/wechatpay.png" alt="小饼干 微信支付">
+        <img data-src="/blog/images/wechatpay.png" alt="Bug猎人 微信支付">
         <p>微信支付</p>
       </div>
       
       <div>
-        <img data-src="/blog/images/alipay.png" alt="小饼干 支付宝">
+        <img data-src="/blog/images/alipay.png" alt="Bug猎人 支付宝">
         <p>支付宝</p>
       </div>
       
       <div>
-        <img data-src="/blog/images/tenpay.png" alt="小饼干 QQ支付">
+        <img data-src="/blog/images/tenpay.png" alt="Bug猎人 QQ支付">
         <p>QQ支付</p>
       </div>
   </div>
@@ -222,7 +222,7 @@ docker容器打包成镜像上传至其它服务器 |
 <div id="copyright">
 <ul>
   <li class="author">
-    <strong>本文作者： </strong>小饼干 <i class="ic i-at"><em>@</em></i>见微知著
+    <strong>本文作者： </strong>Bug猎人 <i class="ic i-at"><em>@</em></i>0-1 幻想
   </li>
   <li class="link">
     <strong>本文链接：</strong>
@@ -274,10 +274,10 @@ docker容器打包成镜像上传至其它服务器 |
       </div>
       <div class="overview panel" data-title="站点概览">
         <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="image" itemprop="image" alt="小饼干"
+  <img class="image" itemprop="image" alt="Bug猎人"
       data-src="/blog/images/avatar.jpg">
-  <p class="name" itemprop="name">小饼干</p>
-  <div class="description" itemprop="description">分享所见、所想、所为</div>
+  <p class="name" itemprop="name">Bug猎人</p>
+  <div class="description" itemprop="description">思考未知，追求卓越</div>
 </div>
 
 <nav class="state">
@@ -403,6 +403,16 @@ docker容器打包成镜像上传至其它服务器 |
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/blog/2023/08/17/brew-replace-download-source/" title="brew更换下载源">brew更换下载源</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 </div>
 
     <span><a href="/blog/2023/08/15/hello-world/" title="Hello World">Hello World</a></span>
@@ -415,16 +425,6 @@ docker容器打包成镜像上传至其它服务器 |
 </div>
 
     <span><a href="/blog/2023/08/19/docker-container-2-image/" title="docker容器打包成镜像上传至其它服务器">docker容器打包成镜像上传至其它服务器</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/blog/2023/08/17/brew-replace-download-source/" title="brew更换下载源">brew更换下载源</a></span>
   </li>
 
   </ul>
@@ -443,7 +443,7 @@ docker容器打包成镜像上传至其它服务器 |
     <span class="with-love">
       <i class="ic i-Dingbang's blog"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">小饼干 @ 小饼干の小窝</span>
+    <span class="author" itemprop="copyrightHolder">Bug猎人 @ 欲揽星河の小屋</span>
   </div>
   <div class="count">
     <span class="post-meta-item-icon">

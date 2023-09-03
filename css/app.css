@@ -1556,7 +1556,7 @@ main >.inner {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 70vh;
   min-height: 25rem;
   z-index: -9;
   background-color: #363636;
@@ -1814,7 +1814,7 @@ main >.inner {
   padding: 3rem 5rem 0;
   text-align: center;
   width: 100%;
-  height: 80vh;
+  height: 50vh;
   min-height: 10rem;
 }
 #brand.affix {
@@ -1880,7 +1880,7 @@ main >.inner {
 #tool {
   position: fixed;
   right: 1rem;
-  top: 90vh;
+  top: 50vh;
   z-index: 9;
 }
 @media (max-width: 991px) {
@@ -2020,11 +2020,10 @@ main >.inner {
 .waves {
   width: 100%;
   height: 15vh;
+  margin-bottom: -0.6875rem;
   min-height: 3.125rem;
   max-height: 9.375rem;
-  position: absolute;
-  z-index: 4;
-  bottom: 0;
+  position: relative;
 }
 @media (max-width: 767px) {
   .waves {

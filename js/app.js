@@ -1,4 +1,4 @@
-var CONFIG = {"version":"0.2.5","hostname":"https://haust-Kevin.github.io/blog","root":"/blog/","statics":"/","favicon":{"normal":"images/favicon.ico","hidden":"images/failure.ico"},"darkmode":false,"auto_scroll":false,"js":{"valine":"gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js","chart":"npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js","copy_tex":"npm/katex@0.12.0/dist/contrib/copy-tex.min.js","fancybox":"combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"},"css":{"valine":"css/comment.css","katex":"npm/katex@0.12.0/dist/katex.min.css","mermaid":"css/mermaid.css","fancybox":"combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"},"loader":{"start":false,"switch":false},"search":{"appID":"ES6SSHV8UQ","apiKey":"b3880fbe140d73ffc27e3775497d77f9","indexName":"blog","hits":{"per_page":10}},"valine":{"appId":"QtLr6x2GYJSH5Cs4yOMqf7Xc-gzGzoHsz","appKey":"8zMaBu0e9Zd0f6VGxINhvqJN","placeholder":"ヽ(○´∀`)ﾉ♪","avatar":"mp","pageSize":10,"lang":"zh-CN","visitor":true,"NoRecordIP":false,"serverURLs":null,"powerMode":true,"tagMeta":{"visitor":"新朋友","master":"主人","friend":"小伙伴","investor":"金主粑粑"},"tagColor":{"master":"var(--color-orange)","friend":"var(--color-aqua)","investor":"var(--color-pink)"},"tagMember":{"master":["46cef1b53ca82375c8c2a722c9dd67f6"],"friend":["890a7974d49b7d59d6221ebbffcea55c"],"investor":null}},"quicklink":{"timeout":3000,"priority":true},"audio":[{"title":"1.常驻歌单","list":["https://y.qq.com/n/ryqq/playlist/8996571551.html"]},{"title":"2.热歌榜","list":["https://y.music.163.com/#/playlist?id=3778678"]},{"title":"3.新歌榜","list":["https://y.music.163.com/#/playlist?id=3779629"]}],"fireworks":["rgba(255,182,185,.9)","rgba(250,227,217,.9)","rgba(187,222,214,.9)","rgba(138,198,209,.9)"]};const getRndInteger = function (min, max) {
+var CONFIG = {"version":"0.2.5","hostname":"https://haust-Kevin.github.io/blog","root":"/blog/","statics":"/","favicon":{"normal":"images/favicon.ico","hidden":"images/failure.ico"},"darkmode":false,"auto_scroll":true,"js":{"valine":"gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js","chart":"npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js","copy_tex":"npm/katex@0.12.0/dist/contrib/copy-tex.min.js","fancybox":"combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"},"css":{"valine":"css/comment.css","katex":"npm/katex@0.12.0/dist/katex.min.css","mermaid":"css/mermaid.css","fancybox":"combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"},"loader":{"start":false,"switch":false},"search":{"appID":"ES6SSHV8UQ","apiKey":"b3880fbe140d73ffc27e3775497d77f9","indexName":"blog","hits":{"per_page":10}},"valine":{"appId":"QtLr6x2GYJSH5Cs4yOMqf7Xc-gzGzoHsz","appKey":"8zMaBu0e9Zd0f6VGxINhvqJN","placeholder":"ヽ(○´∀`)ﾉ♪","avatar":"mp","pageSize":10,"lang":"zh-CN","visitor":true,"NoRecordIP":false,"serverURLs":null,"powerMode":true,"tagMeta":{"visitor":"新朋友","master":"主人","friend":"小伙伴","investor":"金主粑粑"},"tagColor":{"master":"var(--color-orange)","friend":"var(--color-aqua)","investor":"var(--color-pink)"},"tagMember":{"master":["46cef1b53ca82375c8c2a722c9dd67f6"],"friend":["890a7974d49b7d59d6221ebbffcea55c"],"investor":null}},"quicklink":{"timeout":3000,"priority":true},"audio":[{"title":"1.常驻歌单","list":["https://y.qq.com/n/ryqq/playlist/8996571551.html"]},{"title":"2.热歌榜","list":["https://y.music.163.com/#/playlist?id=3778678"]},{"title":"3.新歌榜","list":["https://y.music.163.com/#/playlist?id=3779629"]}],"fireworks":["rgba(255,182,185,.9)","rgba(250,227,217,.9)","rgba(187,222,214,.9)","rgba(138,198,209,.9)"]};const getRndInteger = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -1357,7 +1357,7 @@ const positionInit = function(comment) {
     target = $(decodeURI(anchor))
   else {
     // 首页wave初始位置设定
-    target = CONFIG.auto_scroll ? parseInt(store.get(LOCAL_URL)) : parseInt( window.innerHeight*0.3)
+    target = CONFIG.auto_scroll ? parseInt(store.get(LOCAL_URL)) : parseInt( window.innerHeight * 0.3)
   }
 
   if(target) {
@@ -1616,10 +1616,6 @@ const goToBottomHandle = function () {
 
 const goToCommentHandle = function () {
   pageScroll($('#comments'));
-}
-
-const goToContentHandle = function () {
-  pageScroll($('#main'));
 }
 
 const menuActive = function () {
@@ -2214,14 +2210,7 @@ const domInit = function() {
       innerHTML: '<div class="item player"></div><div class="item contents"><i class="ic i-list-ol"></i></div><div class="item chat"><i class="ic i-comments"></i></div><div class="item back-to-top"><i class="ic i-arrow-up"></i><span>0%</span></div>'
     });
   }
-  // 下拉箭头
-  if(!angleBtn) {
-      angleBtn = siteHeader.createChild('div', {
-        id: 'angle',
-        innerHTML: '<span><i class="ic i-angle-down" aria-hidden="true"></i></span>'
-      });
-    angleBtn.addEventListener('click', goToContentHandle);
-  }
+
   toolPlayer = toolBtn.child('.player');
   backToTop = toolBtn.child('.back-to-top');
   goToComment = toolBtn.child('.chat');

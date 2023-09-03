@@ -19,6 +19,8 @@
 <link rel="alternate" type="application/atom+xml" title="" href="https://haust-kevin.github.io/blog/atom.xml" />
 <link rel="alternate" type="application/json" title="" href="https://haust-kevin.github.io/blog/feed.json" />
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/artitalk"></script>
+
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=HarmonyOS%20Sans:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="/blog/css/app.css?v=0.2.5">
@@ -88,28 +90,29 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040023.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646863.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646854.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040021.png"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423790.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040037.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040034.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646857.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646846.jpg"></li>
           <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040026.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040041.jpg"></li>
         </ul>
       </div>
+      
+      <div id="waves">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" />
+            <use xlink:href="#gentle-wave" x="48" y="3" />
+            <use xlink:href="#gentle-wave" x="48" y="5" />
+            <use xlink:href="#gentle-wave" x="48" y="7" />
+          </g>
+        </svg>
+      </div>
     </header>
-    <div id="waves">
-      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" />
-          <use xlink:href="#gentle-wave" x="48" y="3" />
-          <use xlink:href="#gentle-wave" x="48" y="5" />
-          <use xlink:href="#gentle-wave" x="48" y="7" />
-        </g>
-      </svg>
-    </div>
     <main>
       <div class="inner">
         <div id="main" class="pjax">
@@ -185,27 +188,6 @@
 </div>
 
       
-<div class="reward">
-  <button><i class="ic i-heartbeat"></i> 赞赏</button>
-  <p>请我喝[茶]~(￣▽￣)~*</p>
-  <div id="qr">
-      
-      <div>
-        <img data-src="/blog/imageshttps:/cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/special/wechatpay.png" alt="Bug猎人 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div>
-        <img data-src="/blog/imageshttps:/cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/special/alipay.png" alt="Bug猎人 支付宝">
-        <p>支付宝</p>
-      </div>
-      
-      <div>
-        <img data-src="/blog/imageshttps:/cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/special/tenpay.png" alt="Bug猎人 QQ支付">
-        <p>QQ支付</p>
-      </div>
-  </div>
-</div>
 
       
 
@@ -373,19 +355,29 @@
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/blog/2023/08/17/brew-replace-download-source/" title="HomeBrew：brew更换下载源">HomeBrew：brew更换下载源</a></span>
+    <span><a href="/blog/2023/08/15/hello-world/" title="Hello World">Hello World</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/blog/2023/08/15/hello-world/" title="Hello World">Hello World</a></span>
+    <span><a href="/blog/2023/08/19/docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/blog/2023/08/17/brew-replace-download-source/" title="HomeBrew：brew更换下载源">HomeBrew：brew更换下载源</a></span>
   </li>
 
       
@@ -398,16 +390,6 @@
 </div>
 
     <span><a href="/blog/2023/08/20/%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/blog/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/blog/2023/08/19/docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
   </li>
 
       

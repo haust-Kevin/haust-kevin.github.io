@@ -1,2 +1,2 @@
 
-[click this to my home](https://haust-kevin.github.io/blog/)
+[click this to my home](https://haust-kevin.github.io/)

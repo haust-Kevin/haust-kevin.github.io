@@ -2292,12 +2292,6 @@ main >.inner {
 .social .item.qq i {
   color: #2ca6de;
 }
-.social .item.rss::before {
-  background-color: ubscrib;
-}
-.social .item.rss i {
-  color: ubscrib;
-}
 .social .item:focus i,
 .social .item:hover i {
   color: var(--grey-0);

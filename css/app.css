@@ -2293,10 +2293,10 @@ main >.inner {
   color: #2ca6de;
 }
 .social .item.rss::before {
-  background-color: #D45E1EF5;
+  background-color: ubscrib;
 }
 .social .item.rss i {
-  color: #D45E1EF5;
+  color: ubscrib;
 }
 .social .item:focus i,
 .social .item:hover i {

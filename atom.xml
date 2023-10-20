@@ -1,0 +1,572 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://haust-kevin.github.io</id>
+    <title>沉思录</title>
+    <subtitle>古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</subtitle>
+    <icon>https://haust-kevin.github.io/images/favicon.ico</icon>
+    <link href="https://haust-kevin.github.io" />
+    <author>
+      <name>小王学长</name>
+    </author>
+    <updated>2023-10-17T01:40:45.000Z</updated>
+    <category term="开发" />
+    <category term="技术" />
+    <category term="后端" />
+    <category term="Java" />
+    <entry>
+        <id>https://haust-kevin.github.io/2023/10/17/bubble-sort/</id>
+        <title>冒泡排序、鸡尾酒排序、梳子排序</title>
+        <link rel="alternate" href="https://haust-kevin.github.io/2023/10/17/bubble-sort/"/>
+        <content type="html">&lt;div class=&#34;note primary&#34;&gt;
+&lt;p&gt;冒泡排序及其变种&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;冒泡排序&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#冒泡排序&#34;&gt;#&lt;/a&gt; 冒泡排序&lt;/h1&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#介绍&#34;&gt;#&lt;/a&gt; 介绍&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;冒泡排序&lt;/strong&gt;，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。每次冒泡，都会将最大的数移动到最末端，并缩小冒泡范围。&lt;/p&gt;
+&lt;h2 id=&#34;动画&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#动画&#34;&gt;#&lt;/a&gt; 动画&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310171010738.gif&#34; alt=&#34;冒泡排序&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;代码示例&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#代码示例&#34;&gt;#&lt;/a&gt; 代码示例&lt;/h2&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;bubbleSort&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;token operator&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;bool&lt;/span&gt; swapFlag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token boolean&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; j &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; j &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; i&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; j&lt;span class=&#34;token operator&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token function&#34;&gt;swap&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;j &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                swapFlag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token boolean&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;swapFlag&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;鸡尾酒排序&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#鸡尾酒排序&#34;&gt;#&lt;/a&gt; 鸡尾酒排序&lt;/h1&gt;
+&lt;h2 id=&#34;介绍-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#介绍-2&#34;&gt;#&lt;/a&gt; 介绍&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;鸡尾酒排序&lt;/strong&gt;，是冒泡排序的轻微变形。不同的地方在于从低到高然后从高到低，而冒泡排序则仅从低到高去比较序列里的每个元素。他可以得到比冒泡排序稍微好一点的性能，原因是冒泡排序只从一个方向进行比对（由低到高），每次循环只移动一个项目。鸡尾酒排序，对于乌龟（序列末端较小的数）比较多的情况，相对于原始冒泡排序有更好的性能。&lt;br /&gt;
+以序列（2,3,4,5,1）为例，鸡尾酒排序只需要访问一次（来回两趟）序列就可以完成排序，但如果使用冒泡排序则需要四次。&lt;/p&gt;
+&lt;h2 id=&#34;动画-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#动画-2&#34;&gt;#&lt;/a&gt; 动画&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310171008464.gif&#34; alt=&#34;鸡尾酒排序&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;代码示例-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#代码示例-2&#34;&gt;#&lt;/a&gt; 代码示例&lt;/h2&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;cocktailSort&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; left &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; right &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;left &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; right&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;bool&lt;/span&gt; swapFlag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token boolean&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; left&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; right&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;token operator&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token function&#34;&gt;swap&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                swapFlag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token boolean&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        right&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; right&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; left&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token function&#34;&gt;swap&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                swapFlag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token boolean&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        left&lt;span class=&#34;token operator&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;swapFlag&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;梳子排序&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#梳子排序&#34;&gt;#&lt;/a&gt; 梳子排序&lt;/h1&gt;
+&lt;h2 id=&#34;介绍-3&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#介绍-3&#34;&gt;#&lt;/a&gt; 介绍&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;梳子排序&lt;/strong&gt;，改良自冒泡排序和快速排序，其要旨在于消除乌龟，亦即在数组尾部的小数值，这些数值是造成冒泡排序缓慢的主因。相对地，兔子，亦即在数组前端的大数值，不影响冒泡排序的性能。&lt;br /&gt;
+在冒泡排序中，只比较数组中相邻的二项，即比较的二项的间距（Gap）是 1，梳排序提出此间距其实可大于 1，改自插入排序的希尔排序同样提出相同观点。梳排序中，开始时的间距设置为数组长度，并在循环中以固定比率递减，通常递减率设置为 1.3（约为原 gap 的 1/8）。在一次循环中，梳排序如同冒泡排序一样把数组从首到尾扫描一次，比较及交换两项，不同的是两项的间距不固定于 1。如果间距递减至 1，梳排序假定输入数组大致排序好，并以冒泡排序作最后检查及修正。&lt;br /&gt;
+在 gap 大于 1 时，每次将 gap 递减并执行一次冒泡过程，在 gap 变到 1 时，执行正常的冒泡排序，但是由于前面的梳理，只需要极少量的冒泡就能得到有序的数组。&lt;/p&gt;
+&lt;h2 id=&#34;动画-3&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#动画-3&#34;&gt;#&lt;/a&gt; 动画&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310171022862.gif&#34; alt=&#34;梳排序&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;代码示例-3&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#代码示例-3&#34;&gt;#&lt;/a&gt; 代码示例&lt;/h2&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;combSort&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; gap &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;bool&lt;/span&gt; swapFlag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token boolean&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;gap &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;||&lt;/span&gt; swapFlag&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;gap &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            gap &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;gap &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0.8&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        swapFlag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token boolean&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; gap &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;token operator&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; gap&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token function&#34;&gt;swap&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; gap&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                swapFlag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token boolean&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;递减率&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#递减率&#34;&gt;#&lt;/a&gt; 递减率&lt;/h2&gt;
+&lt;p&gt;递减率的设置影响着梳排序的效率，原作者以随机数作实验，得到最有效递减率为 1.3 的。如果此比率太小，则导致一循环中有过多的比较，如果比率太大，则未能有效消除数组中的乌龟。&lt;br /&gt;
+亦有人提议用&lt;img data-src=&#34;https://wikimedia.org/api/rest_v1/media/math/render/svg/5a690af8744dedfc8e5c7c5031c6b4cac1ad68a3&#34; alt=&#34;&#34; /&gt;作递减率，同时增加换算表协助于每一循环开始时计算新间距。&lt;br /&gt;
+因为编程语言中乘法比除法快，故会取递减率倒数与间距相乘，&lt;img data-src=&#34;https://wikimedia.org/api/rest_v1/media/math/render/svg/cf95dfe8165efadd4f406a92b6874f423f9a84c4&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;其它优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#其它优化&#34;&gt;#&lt;/a&gt; 其它优化&lt;/h2&gt;
+&lt;p&gt;设置递减率为 1.3 时，最后只会有三种不同的间距组合：(9, 6, 4, 3, 2, 1)、(10, 7, 5, 3, 2, 1)、或 (11, 8, 6, 4, 3, 2, 1)。实验证明，如果间距变成 9 或 10 时一律改作 11，则对效率有明显改善，原因是如果间距曾经是 9 或 10，则到间距变成 1 时，数值通常不是递增序列，故此要进行几次冒泡排序循环修正。加入此指定间距的变异形式称为&lt;strong&gt;梳排序 - 11&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;bilibili视频分享&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#bilibili视频分享&#34;&gt;#&lt;/a&gt; bilibili 视频分享&lt;/h2&gt;
+&lt;p&gt;
+&lt;div style=&#34;position: relative; width: 100%; height: 0; padding-bottom: 75%;&#34;&gt;
+&lt;iframe src=&#34;//player.bilibili.com/player.html?aid=990702293&amp;bvid=BV1Fx4y1M7UZ&amp;cid=974799135&amp;p=1&#34; scrolling=&#34;no&#34; border=&#34;0&#34; frameborder=&#34;no&#34; framespacing=&#34;0&#34; allowfullscreen=&#34;true&#34; style=&#34;position: absolute; width: 100%; height: 100%; left: 0; top: 0;&#34;&gt; &lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
+&lt;p&gt;冒泡排序、鸡尾酒排序、梳排序都是优美的算法，后两种属于第一种的优化，但是冒泡排序只适合处理序列大致有序的情况，对于绝大多数的一般序列远不如归并排序、快速排序等算法。也不会有任何语言将冒泡排序作为默认的排序算法，他们大都选择快速排序 + 插入排序的组合算法。&lt;/p&gt;
+</content>
+        <category term="数据结构与算法" scheme="https://haust-kevin.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" />
+        <category term="算法基础" scheme="https://haust-kevin.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" />
+        <category term="排序算法" scheme="https://haust-kevin.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" />
+        <updated>2023-10-17T01:40:45.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://haust-kevin.github.io/2023/09/04/sgs-wallpaper/</id>
+        <title>三国杀官方原画</title>
+        <link rel="alternate" href="https://haust-kevin.github.io/2023/09/04/sgs-wallpaper/"/>
+        <content type="html">&lt;div class=&#34;note primary&#34;&gt;
+&lt;p&gt;官方公开的原画。&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;最近在找 DIY 三国杀武将制图的资料，发现三国杀官方有公开的部分原画，我通过 Python 提取出来给大家分享一下。&lt;/p&gt;
+&lt;h1 id=&#34;二十四节气&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二十四节气&#34;&gt;#&lt;/a&gt; 二十四节气&lt;/h1&gt;
+&lt;h2 id=&#34;处暑&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#处暑&#34;&gt;#&lt;/a&gt; 处暑&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/K30Wdy1ApCF4lv5QEaU4dW2mUUlrMGAb6GAfui4n.jpeg&#34; alt=&#34;处暑&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;立秋&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#立秋&#34;&gt;#&lt;/a&gt; 立秋&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/YsCiKuMeW3YFL0qIsvXd83RK2e7Q8sfwyVaySOpM.jpeg&#34; alt=&#34;立秋&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;大暑&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#大暑&#34;&gt;#&lt;/a&gt; 大暑&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/6l6qW7xf9JOX1Epbt2Jl2echk8WBBN5Km4O1DXu9.jpeg&#34; alt=&#34;大暑&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小暑&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小暑&#34;&gt;#&lt;/a&gt; 小暑&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/OIHSRVQq9qMwqHfapVW9fYCkfAn4EdS0d3Sc1uHt.jpeg&#34; alt=&#34;小暑&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;夏至&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#夏至&#34;&gt;#&lt;/a&gt; 夏至&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/QT4SbPC8ahaR4K4YQe5IJl20fVyF5hEgA18YsbF1.jpeg&#34; alt=&#34;夏至&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;芒种&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#芒种&#34;&gt;#&lt;/a&gt; 芒种&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/yfzhEPpe7XR9qdi7kAEPG9PYGkayHY0ZO50sOPGd.jpeg&#34; alt=&#34;芒种&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小满&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小满&#34;&gt;#&lt;/a&gt; 小满&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/JUtT7BNyLNBXuYVF5zMRoMjbOnSS7TpVID2mG4XM.jpeg&#34; alt=&#34;小满&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;立夏&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#立夏&#34;&gt;#&lt;/a&gt; 立夏&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/NxSSX3l6fXHgmSoBJ3rjLf5fVrqPZX97UK7sR5tO.jpeg&#34; alt=&#34;立夏&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;谷雨&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#谷雨&#34;&gt;#&lt;/a&gt; 谷雨&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/AAeaiENBOa3DIdXIUr9YMD0Jb69IPWA0qm9yQawi.jpeg&#34; alt=&#34;谷雨&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;清明&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#清明&#34;&gt;#&lt;/a&gt; 清明&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/EXWshTCXLobNtegeCbCUrs1qB1Do1x120s1K8lPv.jpeg&#34; alt=&#34;清明&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;春分&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#春分&#34;&gt;#&lt;/a&gt; 春分&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/URX7WOFGoKE2eTkrX7XBGx43qemQiixqWsxw8bKy.jpeg&#34; alt=&#34;春分&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;惊蛰&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#惊蛰&#34;&gt;#&lt;/a&gt; 惊蛰&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/C6oeBaGMxPXnp6hCqoUhQfNHw9XCesCqJj4B18wU.jpeg&#34; alt=&#34;惊蛰&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;雨水&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#雨水&#34;&gt;#&lt;/a&gt; 雨水&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/SxfAs41sLug4Hjn62jS4HpymRSmwClo2KwyoqATJ.jpeg&#34; alt=&#34;雨水&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;立春&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#立春&#34;&gt;#&lt;/a&gt; 立春&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/CXVpDNndOnquHeltGSuYEVk4qxZuDlzpJxzp31cZ.jpeg&#34; alt=&#34;立春&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;大寒&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#大寒&#34;&gt;#&lt;/a&gt; 大寒&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/XZkwkQkIALrWgyGOG2sSh1X9qlgiNoXan64qepCA.jpeg&#34; alt=&#34;大寒&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小寒&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小寒&#34;&gt;#&lt;/a&gt; 小寒&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/uk8pjnheZ3TOZJlCs48s6656KRVTyroszkN7izSu.jpeg&#34; alt=&#34;小寒&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;冬至&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#冬至&#34;&gt;#&lt;/a&gt; 冬至&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/dDRSORSJvwyK7JslxXhMZrBJHB1YFto5T5qfvOAU.jpeg&#34; alt=&#34;冬至&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;大雪&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#大雪&#34;&gt;#&lt;/a&gt; 大雪&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/JX3Dp9ca3cDkeNUak6X7W5AO66Ywc2XTfSsmjbx3.jpeg&#34; alt=&#34;大雪&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;霜降&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#霜降&#34;&gt;#&lt;/a&gt; 霜降&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/nDtqZ7PDhMGlkEu8t8fb8kEDyWU7YioE8D6Mi5cY.jpeg&#34; alt=&#34;霜降&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小雪&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小雪&#34;&gt;#&lt;/a&gt; 小雪&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/w3Nz1MLoiu3E84DC81vQpvnoYi2M5cKJV59x7U3z.jpeg&#34; alt=&#34;小雪&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小暑-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小暑-2&#34;&gt;#&lt;/a&gt; 小暑&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/Rt2IG88FWYskcTQR36EJDn8Io8cjQYqMftdiu9ip.jpeg&#34; alt=&#34;小暑&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;秋分&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#秋分&#34;&gt;#&lt;/a&gt; 秋分&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/0rABBF488yydCkoYjBoMSYnFQv8CjGkRnZRaUexK.jpeg&#34; alt=&#34;秋分&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;立秋-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#立秋-2&#34;&gt;#&lt;/a&gt; 立秋&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/QvirFR4gaNnSPTWegOwvPwaPZTAFPvIMRpXJGzGI.jpeg&#34; alt=&#34;立秋&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;立冬&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#立冬&#34;&gt;#&lt;/a&gt; 立冬&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/WEQ6Tm7I8PftgPSkXBQLugsfyGWorwlsEUMVcnN5.jpeg&#34; alt=&#34;立冬&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;寒露&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#寒露&#34;&gt;#&lt;/a&gt; 寒露&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/0ojelnJjtdrOvR0aLwIOu2ZMIFvsD1VFrf0G6NKm.jpeg&#34; alt=&#34;寒露&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;大暑-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#大暑-2&#34;&gt;#&lt;/a&gt; 大暑&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/G9HhmaUkiKmLWoshxADXkFfZYqtN1TF1Lv339e4A.jpeg&#34; alt=&#34;大暑&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;处暑-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#处暑-2&#34;&gt;#&lt;/a&gt; 处暑&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/G88qKGvPR9JWiRrBSnE5c8bg4BHsjFRJCDU5Ucpy.jpeg&#34; alt=&#34;处暑&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;白露&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#白露&#34;&gt;#&lt;/a&gt; 白露&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/p84hrkkwTTGS8stmA2YSHRY7aP4u1QXV1GoFbkcK.jpeg&#34; alt=&#34;白露&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;立秋-3&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#立秋-3&#34;&gt;#&lt;/a&gt; 立秋&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010045423c5e07ed4214486f3417dc81cb21ea23a.jpeg&#34; alt=&#34;立秋&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;寒露-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#寒露-2&#34;&gt;#&lt;/a&gt; 寒露&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010045409123cc3d787608ea2b28a9b5bc2eda06f.jpeg&#34; alt=&#34;寒露&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;大暑-3&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#大暑-3&#34;&gt;#&lt;/a&gt; 大暑&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/2022101004535804ebef8b059965c26a9141358e20ee3f.jpeg&#34; alt=&#34;大暑&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小暑-3&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小暑-3&#34;&gt;#&lt;/a&gt; 小暑&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010045344804109cf6cfa4c2af24809d1224ce975.jpeg&#34; alt=&#34;小暑&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;秋分-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#秋分-2&#34;&gt;#&lt;/a&gt; 秋分&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/202210100453310ba4b1c7cfdbbf5542f8a6f183af1cb1.jpeg&#34; alt=&#34;秋分&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;处暑-3&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#处暑-3&#34;&gt;#&lt;/a&gt; 处暑&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/202210100453196a4d1a12415b91f5387009df63f8a7f5.jpeg&#34; alt=&#34;处暑&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;白露-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#白露-2&#34;&gt;#&lt;/a&gt; 白露&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010045305747ee83d80d4d567e237a1a15b431036.jpeg&#34; alt=&#34;白露&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;雨水-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#雨水-2&#34;&gt;#&lt;/a&gt; 雨水&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010045253d55e387a56f50ca73ffe34a2073347c8.jpeg&#34; alt=&#34;雨水&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小雪-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小雪-2&#34;&gt;#&lt;/a&gt; 小雪&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010045241b701ca8392f071c586e706fd07ad4d5e.jpeg&#34; alt=&#34;小雪&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小满-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小满-2&#34;&gt;#&lt;/a&gt; 小满&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010045228bdeeab34890b66188b689adf33dfd7d8.jpeg&#34; alt=&#34;小满&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小寒-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小寒-2&#34;&gt;#&lt;/a&gt; 小寒&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010045220fc7b0b28fa4892320840707c60b44290.jpeg&#34; alt=&#34;小寒&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;夏至-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#夏至-2&#34;&gt;#&lt;/a&gt; 夏至&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010045106dbbaa5f93b6f5445be99f2d47e0e21e4.jpeg&#34; alt=&#34;夏至&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;霜降-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#霜降-2&#34;&gt;#&lt;/a&gt; 霜降&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010045056fe2d9728f870209539c43ffa633a214e.jpeg&#34; alt=&#34;霜降&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;芒种-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#芒种-2&#34;&gt;#&lt;/a&gt; 芒种&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010045042f993813aa3183ba51bdc12563d6bc4c5.jpeg&#34; alt=&#34;芒种&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;立夏-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#立夏-2&#34;&gt;#&lt;/a&gt; 立夏&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/2022101004501381a72e66b146e10d5f60ada7aaea968b.jpeg&#34; alt=&#34;立夏&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;立春-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#立春-2&#34;&gt;#&lt;/a&gt; 立春&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/202210100449567318cf603d9b32ba930a88a70d3a4444.jpeg&#34; alt=&#34;立春&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;惊蛰-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#惊蛰-2&#34;&gt;#&lt;/a&gt; 惊蛰&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010044941f15843d99be0d1b3ba0670fa651409f8.jpeg&#34; alt=&#34;惊蛰&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;谷雨-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#谷雨-2&#34;&gt;#&lt;/a&gt; 谷雨&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010044927974a79b4105e1db8ee467880302cb083.jpeg&#34; alt=&#34;谷雨&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;冬至-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#冬至-2&#34;&gt;#&lt;/a&gt; 冬至&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/202210100447241c8326f952a464301e4051375673f0ff.jpeg&#34; alt=&#34;冬至&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;大雪-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#大雪-2&#34;&gt;#&lt;/a&gt; 大雪&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010044711a26ac4777f8f886192488c0e26922f47.jpeg&#34; alt=&#34;大雪&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;大寒-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#大寒-2&#34;&gt;#&lt;/a&gt; 大寒&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/2022101004465648203934bdd7df0e0daa221e740eb072.jpeg&#34; alt=&#34;大寒&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;春分-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#春分-2&#34;&gt;#&lt;/a&gt; 春分&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/20221010040341f0cf9922b6ca9a51fdb88ee3e880e50d.jpeg&#34; alt=&#34;春分&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;原画皮肤&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#原画皮肤&#34;&gt;#&lt;/a&gt; 原画皮肤&lt;/h1&gt;
+&lt;h2 id=&#34;钟会-潜蛟觊天-终极形态&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#钟会-潜蛟觊天-终极形态&#34;&gt;#&lt;/a&gt; 钟会 - 潜蛟觊天 - 终极形态&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/D7TrosDX18Emcsgh0N5VS2npeSYTUl5qlijW815K.jpeg&#34; alt=&#34;钟会-潜蛟觊天-终极形态&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;钟会-潜蛟觊天&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#钟会-潜蛟觊天&#34;&gt;#&lt;/a&gt; 钟会 - 潜蛟觊天&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/CkjlwbTwtAL1VmWNs0nk2e7F6f8BpEv2Dp8a2EMU.jpeg&#34; alt=&#34;钟会-潜蛟觊天&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;貂蝉-舞惑群心&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#貂蝉-舞惑群心&#34;&gt;#&lt;/a&gt; 貂蝉 - 舞惑群心&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/jFRfaD6OGALMzUHw4bxO0kN4HN3vNpeaFU2YaTTy.jpeg&#34; alt=&#34;貂蝉-舞惑群心&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;刘协-困龙犹斗&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#刘协-困龙犹斗&#34;&gt;#&lt;/a&gt; 刘协 - 困龙犹斗&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/eMpeYXFvgqaI3AE96GT0wuqmMTVxS4W4Cvm329ty.jpeg&#34; alt=&#34;刘协-困龙犹斗&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;神张辽-威震江东&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#神张辽-威震江东&#34;&gt;#&lt;/a&gt; 神张辽 - 威震江东&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/YcVOpo7kZQBg8RyOZ2VB8EGFFzzcwm7cqmiEk70V.jpeg&#34; alt=&#34;神张辽-威震江东&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;神刘备-龙兴海内&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#神刘备-龙兴海内&#34;&gt;#&lt;/a&gt; 神刘备 - 龙兴海内&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/vx9DxmSHCTzXrfETQoKi2FZ2LVoqAvmMJxd76Kym.jpeg&#34; alt=&#34;神刘备-龙兴海内&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;神关羽-佑子伐吴&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#神关羽-佑子伐吴&#34;&gt;#&lt;/a&gt; 神关羽 - 佑子伐吴&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/fOD2tOaTnm67Y7YxV7rcKf1JRqs43s7LtqZsrTMF.jpeg&#34; alt=&#34;神关羽-佑子伐吴&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;卑弥呼-呼风唤雨&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#卑弥呼-呼风唤雨&#34;&gt;#&lt;/a&gt; 卑弥呼 - 呼风唤雨&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/QPvP8MP3HnzmRkIiSyZmzH1cHM9JunNmnYm0T6yQ.jpeg&#34; alt=&#34;卑弥呼-呼风唤雨&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;钟会-欲谋自立&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#钟会-欲谋自立&#34;&gt;#&lt;/a&gt; 钟会 - 欲谋自立&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/pZV3fY9x7R2AIodn6D82N78EIIq31noN68WDFNld.jpeg&#34; alt=&#34;钟会-欲谋自立&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;许攸-火烧乌巢&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#许攸-火烧乌巢&#34;&gt;#&lt;/a&gt; 许攸 - 火烧乌巢&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/8L2NDoxFZNbFRESjCsHt6FSCY6zhnKlI7uUOVIyE.jpeg&#34; alt=&#34;许攸-火烧乌巢&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;步练师-鸾飞凤舞&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#步练师-鸾飞凤舞&#34;&gt;#&lt;/a&gt; 步练师 - 鸾飞凤舞&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/OljZVmbHXPlMJDpC25FfVznGeeajkS8KmpxRi8JM.jpeg&#34; alt=&#34;步练师-鸾飞凤舞&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;大乔小乔-姐妹情深&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#大乔小乔-姐妹情深&#34;&gt;#&lt;/a&gt; 大乔小乔 - 姐妹情深&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/a8JpNERvdL5ZpFnj2Pc65zz0MadFHN0xuSsWEmys.jpeg&#34; alt=&#34;大乔小乔-姐妹情深&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;王元姬-谆谆教导&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#王元姬-谆谆教导&#34;&gt;#&lt;/a&gt; 王元姬 - 谆谆教导&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/JyeWpcFXiPJn8xxbF1J7pLTgc2gpmLy8fEB6PCsY.jpeg&#34; alt=&#34;王元姬-谆谆教导&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;周仓-青龙化力&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#周仓-青龙化力&#34;&gt;#&lt;/a&gt; 周仓 - 青龙化力&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/3J9gOIVWmOwNWuE2bPizDdJIWkJ16qETmpEpqh3r.jpeg&#34; alt=&#34;周仓-青龙化力&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;曹操-逐鹿天下&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#曹操-逐鹿天下&#34;&gt;#&lt;/a&gt; 曹操 - 逐鹿天下&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/aUeA9b40tMLmX3n5tIZi6sOrEC9brFqu0zCyHZtP.jpeg&#34; alt=&#34;曹操-逐鹿天下&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;神郭嘉-倚星折月-终极形态&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#神郭嘉-倚星折月-终极形态&#34;&gt;#&lt;/a&gt; 神郭嘉 - 倚星折月 - 终极形态&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/ky7OzRF3OHmSltrKlOvGVwZkALhmGKhtfkF9UEwh.jpeg&#34; alt=&#34;神郭嘉-倚星折月-终极形态&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;神郭嘉-倚星折月&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#神郭嘉-倚星折月&#34;&gt;#&lt;/a&gt; 神郭嘉 - 倚星折月&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/E4rhS2qUZFCQg6KpIsVkcsTOSlFjkwJvgazJTYD1.jpeg&#34; alt=&#34;神郭嘉-倚星折月&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;周泰-烈火冲杀&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#周泰-烈火冲杀&#34;&gt;#&lt;/a&gt; 周泰 - 烈火冲杀&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/XTDq5vMyGErjT5il3UtziXp31pTFtsMqhOT6gNTt.jpeg&#34; alt=&#34;周泰-烈火冲杀&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小乔-采莲江南&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小乔-采莲江南&#34;&gt;#&lt;/a&gt; 小乔 - 采莲江南&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/BJTKuvl2CiZJXhjN2fRpT7sqIuJj9Zow8Xkyv66m.jpeg&#34; alt=&#34;小乔-采莲江南&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;大乔-衣垂绿川-&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#大乔-衣垂绿川-&#34;&gt;#&lt;/a&gt; 大乔 - 衣垂绿川 -&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/UIWYW3QxaPoq5qe9oAMrPXW7eRjyuzqcbhIDR8pw.jpeg&#34; alt=&#34;大乔-衣垂绿川-&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;陆逊-烈火烛天&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#陆逊-烈火烛天&#34;&gt;#&lt;/a&gt; 陆逊 - 烈火烛天&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/o9BbZrdbPZ1pSMlZZr3A3nYuH296m0hDaoCRPEUX.jpeg&#34; alt=&#34;陆逊-烈火烛天&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;孙尚香-星流霆击&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#孙尚香-星流霆击&#34;&gt;#&lt;/a&gt; 孙尚香 - 星流霆击&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/GV01N2RLPYafpdCKzd5b5Loyz44476hhzeklz4f9.jpeg&#34; alt=&#34;孙尚香-星流霆击&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;关银屏-步步生花&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#关银屏-步步生花&#34;&gt;#&lt;/a&gt; 关银屏 - 步步生花&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/GX9UMBsFtZChnFngjPNNsVQuJuA3TRjxfzR3k8VE.jpeg&#34; alt=&#34;关银屏-步步生花&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;秦宓神吕布-冠绝天下&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#秦宓神吕布-冠绝天下&#34;&gt;#&lt;/a&gt; 秦宓 &amp;amp; 神吕布 - 冠绝天下&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/7zvbyqfX8sSPkeuwHUb8KgQ5izWHpqEA57WETMxO.jpeg&#34; alt=&#34;秦宓&amp;amp;神吕布-冠绝天下&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;刘赪黄忠-明良千古&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#刘赪黄忠-明良千古&#34;&gt;#&lt;/a&gt; 刘赪 &amp;amp; 黄忠 - 明良千古&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/6KsY6GsKFaZdY1WKsb1XJfAbyCCXpNVJdqfsATfB.jpeg&#34; alt=&#34;刘赪&amp;amp;黄忠-明良千古&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;李丰-太仓聚粟&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#李丰-太仓聚粟&#34;&gt;#&lt;/a&gt; 李丰 - 太仓聚粟&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/iZeZqJJANdmyb2IKGW1dywQtPSuEu8HAbcGj9uoh.jpeg&#34; alt=&#34;李丰-太仓聚粟&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;甘夫人-为君担忧&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#甘夫人-为君担忧&#34;&gt;#&lt;/a&gt; 甘夫人 - 为君担忧&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/Ep5DCfSDMRSNjZSnpAwYStLx5CIA3hZfKid4aHiF.jpeg&#34; alt=&#34;甘夫人-为君担忧&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;诸葛瞻-绵竹之殇&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#诸葛瞻-绵竹之殇&#34;&gt;#&lt;/a&gt; 诸葛瞻 - 绵竹之殇&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/3SPA2wJ5R3IL8nbaZncvtdzFL52XNRndGSIG8YP7.jpeg&#34; alt=&#34;诸葛瞻-绵竹之殇&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;曹婴-水清濯缨&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#曹婴-水清濯缨&#34;&gt;#&lt;/a&gt; 曹婴 - 水清濯缨&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/1xpoJxWaed8wcop0LMqiskbB4SmsYMohrKyapqSa.jpeg&#34; alt=&#34;曹婴-水清濯缨&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;张昌蒲-月下佳人&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#张昌蒲-月下佳人&#34;&gt;#&lt;/a&gt; 张昌蒲 - 月下佳人&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/pqhXT0XONQT6oniuPm6QKiMvYI9x1apEVZimwwrj.jpeg&#34; alt=&#34;张昌蒲-月下佳人&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;蔡贞姬-与蝶共舞&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#蔡贞姬-与蝶共舞&#34;&gt;#&lt;/a&gt; 蔡贞姬 - 与蝶共舞&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/4Ku8dzet4pub91dMLvuRbfc50TI1qdmlnjAPgMtg.jpeg&#34; alt=&#34;蔡贞姬-与蝶共舞&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;蔡文姬-冠绝天下&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#蔡文姬-冠绝天下&#34;&gt;#&lt;/a&gt; 蔡文姬 - 冠绝天下&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/XZkOkoM0YGoNsr21YjeGNl06hsz92NYZ1kEz67hR.jpeg&#34; alt=&#34;蔡文姬-冠绝天下&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;孙权-冠绝天下&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#孙权-冠绝天下&#34;&gt;#&lt;/a&gt; 孙权 - 冠绝天下&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/dPHHNYLAGyQEzHh8V8FodAW8Yx2GPmQxm3k5WYqO.jpeg&#34; alt=&#34;孙权-冠绝天下&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;张辽-登峰陷阵&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#张辽-登峰陷阵&#34;&gt;#&lt;/a&gt; 张辽 - 登峰陷阵&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/8jzgfkyzAOH7lY7QHHtfH3vIkzQ6cVmNuVCmNeEd.jpeg&#34; alt=&#34;张辽-登峰陷阵&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;曹昂-竭战鳞伤&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#曹昂-竭战鳞伤&#34;&gt;#&lt;/a&gt; 曹昂 - 竭战鳞伤&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/oPzlBK7O8sCfY5OoqRK8Utb7lBJtyMOKSxX70tXM.jpeg&#34; alt=&#34;曹昂-竭战鳞伤&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;钟会钟繇-偷酒不拜&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#钟会钟繇-偷酒不拜&#34;&gt;#&lt;/a&gt; 钟会 &amp;amp; 钟繇 - 偷酒不拜&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/i7U6YuBge8c2KiuT2lD9nxhiJQjSWK3UG1cl4nUb.jpeg&#34; alt=&#34;钟会&amp;amp;钟繇-偷酒不拜&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;留赞-灵魂歌王&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#留赞-灵魂歌王&#34;&gt;#&lt;/a&gt; 留赞 - 灵魂歌王&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/JEtSQUJyknSNvqKBp4XJ4IePmHrKFPpXG3NgeR9d.jpeg&#34; alt=&#34;留赞-灵魂歌王&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;荀彧-驱虎吞狼&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#荀彧-驱虎吞狼&#34;&gt;#&lt;/a&gt; 荀彧 - 驱虎吞狼&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/6kLHMKjP3jZWtp0t8cSlACioboZYBapA24br0Bb5.jpeg&#34; alt=&#34;荀彧-驱虎吞狼&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;张飞夏侯氏-明良千古&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#张飞夏侯氏-明良千古&#34;&gt;#&lt;/a&gt; 张飞 &amp;amp; 夏侯氏 - 明良千古&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/EXOMmWTDI57NmW1mRTAMCKUwai0YoDhCTGlYbvUb.jpeg&#34; alt=&#34;张飞&amp;amp;夏侯氏-明良千古&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;赵云马云禄-明良千古&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#赵云马云禄-明良千古&#34;&gt;#&lt;/a&gt; 赵云 &amp;amp; 马云禄 - 明良千古&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/Y2dhrrzHYd1v5ruMXG44Jkoq1vkac77uVXI1wJB6.jpeg&#34; alt=&#34;赵云&amp;amp;马云禄-明良千古&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;马超杨婉-明良千古&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#马超杨婉-明良千古&#34;&gt;#&lt;/a&gt; 马超 &amp;amp; 杨婉 - 明良千古&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/mlyzStnFX3bs7OgGlc4nam5kbQwBPUFp6nuZdZ8G.jpeg&#34; alt=&#34;马超&amp;amp;杨婉-明良千古&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;关羽胡金定-明良千古&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#关羽胡金定-明良千古&#34;&gt;#&lt;/a&gt; 关羽 &amp;amp; 胡金定 - 明良千古&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/99nRKFYANgV15cUiAmv9j6lmdwqiorIxMvLYgyNj.jpeg&#34; alt=&#34;关羽&amp;amp;胡金定-明良千古&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;戏志才-举棋若定&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#戏志才-举棋若定&#34;&gt;#&lt;/a&gt; 戏志才 - 举棋若定&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/6a7f64RfFq7WWoC8L7FUuC2SoZIOJKKu7oOGul58.jpeg&#34; alt=&#34;戏志才-举棋若定&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;郭嘉-梅香如故&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#郭嘉-梅香如故&#34;&gt;#&lt;/a&gt; 郭嘉 - 梅香如故&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/SedOsxJkHiKm7mxVjNXoTVX5cu9araUOeYI7L7xn.jpeg&#34; alt=&#34;郭嘉-梅香如故&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;张星彩-临军对阵&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#张星彩-临军对阵&#34;&gt;#&lt;/a&gt; 张星彩 - 临军对阵&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/bpklbPfzjASjVETYDIXPpilgBXTGKiYvaUJtN6Oy.jpeg&#34; alt=&#34;张星彩-临军对阵&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;曹冲-聪察岐嶷&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#曹冲-聪察岐嶷&#34;&gt;#&lt;/a&gt; 曹冲 - 聪察岐嶷&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/n8noE96tVcY0psl8gP8amk7ScxqCAKq49Ss2Dd8a.jpeg&#34; alt=&#34;曹冲-聪察岐嶷&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;张昭张纮-同心协力&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#张昭张纮-同心协力&#34;&gt;#&lt;/a&gt; 张昭张纮 - 同心协力&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/dVLRImpp0hE8Y5tmMtVuROQYilVNbvWmkUbcKPFr.jpeg&#34; alt=&#34;张昭张纮-同心协力&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;黄忠-明良千古&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#黄忠-明良千古&#34;&gt;#&lt;/a&gt; 黄忠 - 明良千古&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/KKU0VyRJGIPqsEeUFTzbQ3PEf4c27FN5qUpD2iNM.jpeg&#34; alt=&#34;黄忠-明良千古&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;刘赪-明良千古&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#刘赪-明良千古&#34;&gt;#&lt;/a&gt; 刘赪 - 明良千古&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/4FPdnmAFwU4C7iy1THlN4SQGnOjyhjjVZpifaxnd.jpeg&#34; alt=&#34;刘赪-明良千古&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;朱然-剑舞枫飞&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#朱然-剑舞枫飞&#34;&gt;#&lt;/a&gt; 朱然 - 剑舞枫飞&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/5xk36VyRR2St1AMecOn2YrrVqtReqPUEig5YmQMO.jpeg&#34; alt=&#34;朱然-剑舞枫飞&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;王元姬-莲池戏水&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#王元姬-莲池戏水&#34;&gt;#&lt;/a&gt; 王元姬 - 莲池戏水&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/fNEnD7QYnNH7mjDd5OybdpFaxo2965YXbgzwPdU9.jpeg&#34; alt=&#34;王元姬-莲池戏水&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;徐盛-破军杀将&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#徐盛-破军杀将&#34;&gt;#&lt;/a&gt; 徐盛 - 破军杀将&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/tLKYW5yN0Vl1HEcVlxm0CSCYIJPI6VTS6lSB3IgB.jpeg&#34; alt=&#34;徐盛-破军杀将&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;花鬘-南蛮公主&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#花鬘-南蛮公主&#34;&gt;#&lt;/a&gt; 花鬘 - 南蛮公主&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/At8ex0HLH9fASAAwOZ3wJnKStkYZupa5quDeFY6O.jpeg&#34; alt=&#34;花鬘-南蛮公主&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;曹操-雄吞天下&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#曹操-雄吞天下&#34;&gt;#&lt;/a&gt; 曹操 - 雄吞天下&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/S8M9z0qqSenSnaFEMQtspf2l3NZoIcp0S4zWimw5.jpeg&#34; alt=&#34;曹操-雄吞天下&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;张春华-雪中舞刃&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#张春华-雪中舞刃&#34;&gt;#&lt;/a&gt; 张春华 - 雪中舞刃&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/YYktjLbiDnQBUZDsW6cZkmHLuAhiW9h3dSvGqEuS.jpeg&#34; alt=&#34;张春华-雪中舞刃&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;佳节庆典&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#佳节庆典&#34;&gt;#&lt;/a&gt; 佳节庆典&lt;/h1&gt;
+&lt;h2 id=&#34;2023-兔年清明&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2023-兔年清明&#34;&gt;#&lt;/a&gt; 2023 - 兔年清明&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/lctjEaj2p01piHDg8OKd9tVtsOEHWwgDFYv0bhuV.jpeg&#34; alt=&#34;2023-兔年清明&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2023-兔年春节&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2023-兔年春节&#34;&gt;#&lt;/a&gt; 2023 - 兔年春节&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/ikkowUajAhK9Uk7rboKZJz1wpXa8TzoNKATs9CXJ.jpeg&#34; alt=&#34;2023-兔年春节&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2022-虎年端午&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2022-虎年端午&#34;&gt;#&lt;/a&gt; 2022 - 虎年端午&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/BrTa3wVd3dDFyQwH2S8kjVLboGvMnGnPw2Zlbvi1.jpeg&#34; alt=&#34;2022-虎年端午&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2022-虎年清明&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2022-虎年清明&#34;&gt;#&lt;/a&gt; 2022 - 虎年清明&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/wvS3skEXImOkSWQXWFRVzH0YYpRTrrpqXcr33qJG.jpeg&#34; alt=&#34;2022-虎年清明&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2022-虎年春节&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2022-虎年春节&#34;&gt;#&lt;/a&gt; 2022 - 虎年春节&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/fQKKAVnoJLZpwTnBltiOMxCv6hEO2gc6tWuBotew.jpeg&#34; alt=&#34;2022-虎年春节&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2022-虎年冬至&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2022-虎年冬至&#34;&gt;#&lt;/a&gt; 2022 - 虎年冬至&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/3sxttL3ALEJAYB2BfS0CyNMZMvpvFsoL9bUJQlHi.jpeg&#34; alt=&#34;2022-虎年冬至&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2022-虎年中秋&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2022-虎年中秋&#34;&gt;#&lt;/a&gt; 2022 - 虎年中秋&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/w4FZ46Tx3mXDzDyPkrss6LoK6HzFVuXZEfmJzQNO.jpeg&#34; alt=&#34;2022-虎年中秋&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2022-虎年七夕&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2022-虎年七夕&#34;&gt;#&lt;/a&gt; 2022 - 虎年七夕&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/Hgw8HNzW1a4nqrz4lw3eZwBJvEGD9y6NeQ8wIz5M.jpeg&#34; alt=&#34;2022-虎年七夕&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2021-牛年端午&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2021-牛年端午&#34;&gt;#&lt;/a&gt; 2021 - 牛年端午&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/P3rxF2qCTH6BPwpeJv8Ipg9bafKt1C1sNnq1JOg5.jpeg&#34; alt=&#34;2021-牛年端午&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2021-牛年立冬&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2021-牛年立冬&#34;&gt;#&lt;/a&gt; 2021 - 牛年立冬&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/ElhwfQp05kzpQsfufxNsiI9xbn5NFzHMymWNB6Um.jpeg&#34; alt=&#34;2021-牛年立冬&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2021-牛年清明&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2021-牛年清明&#34;&gt;#&lt;/a&gt; 2021 - 牛年清明&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/MaWTO2Lfg3AUQLFZATwf0ZRaK1GUVaWx6TG3TYeM.jpeg&#34; alt=&#34;2021-牛年清明&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2021-牛年春节&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2021-牛年春节&#34;&gt;#&lt;/a&gt; 2021 - 牛年春节&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/hNLj3eOgnNRduaiTaKB561xz4u2lheRLuBrzTe1a.jpeg&#34; alt=&#34;2021-牛年春节&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2021-牛年中秋&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2021-牛年中秋&#34;&gt;#&lt;/a&gt; 2021 - 牛年中秋&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/riIctvg39IAWHzMEl553CAUUoDSSeL6fisQGY00l.jpeg&#34; alt=&#34;2021-牛年中秋&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2021-牛年七夕&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2021-牛年七夕&#34;&gt;#&lt;/a&gt; 2021 - 牛年七夕&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/yvpkRrr1ObYVLnl4I5uf4Oi9pk235yQv9DJvcqSQ.jpeg&#34; alt=&#34;2021-牛年七夕&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2020-鼠年端午&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2020-鼠年端午&#34;&gt;#&lt;/a&gt; 2020 - 鼠年端午&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/NLiwLUOqSvdeA895OmP7hOUAywOQn2GAYAZEMj49.jpeg&#34; alt=&#34;2020-鼠年端午&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2020-鼠年春节&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2020-鼠年春节&#34;&gt;#&lt;/a&gt; 2020 - 鼠年春节&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/SC6Gff4kBUBYpRuJMZi6KZjBivyOWpHcNnDix3EL.jpeg&#34; alt=&#34;2020-鼠年春节&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2020-鼠年春分&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2020-鼠年春分&#34;&gt;#&lt;/a&gt; 2020 - 鼠年春分&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/worXkCcp5dphxpidUe1TIAiavQJDDhbObr0RNa7k.jpeg&#34; alt=&#34;2020-鼠年春分&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2020-鼠年冬至&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2020-鼠年冬至&#34;&gt;#&lt;/a&gt; 2020 - 鼠年冬至&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/fX1DeBOFD14MngMPvE149WZViVqu7e1HFWhuG0mv.jpeg&#34; alt=&#34;2020-鼠年冬至&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2020-鼠年中秋&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2020-鼠年中秋&#34;&gt;#&lt;/a&gt; 2020 - 鼠年中秋&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/a7IB2yjBkUmPnEwPODG4RFAx2LItbpaWDmtiAnia.jpeg&#34; alt=&#34;2020-鼠年中秋&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2020-鼠年七夕&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2020-鼠年七夕&#34;&gt;#&lt;/a&gt; 2020 - 鼠年七夕&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/kYUTaW3FXRE3Ym4HRYreua3ONOAJupM254dXQbpp.jpeg&#34; alt=&#34;2020-鼠年七夕&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2019-猪年端午&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2019-猪年端午&#34;&gt;#&lt;/a&gt; 2019 - 猪年端午&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/tSvH2ESL6b3PI9GqsJTsQeYvS3dmPotGEERyeI4o.jpeg&#34; alt=&#34;2019-猪年端午&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2019-猪年大雪&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2019-猪年大雪&#34;&gt;#&lt;/a&gt; 2019 - 猪年大雪&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/D8hjEs5pP5Fc87VaS4uni4xDTPZy32DUybyIVU92.jpeg&#34; alt=&#34;2019-猪年大雪&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2019-猪年圣诞&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2019-猪年圣诞&#34;&gt;#&lt;/a&gt; 2019 - 猪年圣诞&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/iIcKQO5lFSCI4wRdKQfbBs8TeWEU6iRYeCi6FPdM.jpeg&#34; alt=&#34;2019-猪年圣诞&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2019-猪年中秋&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2019-猪年中秋&#34;&gt;#&lt;/a&gt; 2019 - 猪年中秋&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/7fVIxnF8vuY974URODtLxMNdGGe1RuP4Q9GqO1iM.jpeg&#34; alt=&#34;2019-猪年中秋&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2019-猪年七夕&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2019-猪年七夕&#34;&gt;#&lt;/a&gt; 2019 - 猪年七夕&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.sanguosha.cn/storage/uploads/images/bRKj32LVpBD2hdpn1nLkFqNsmT8J7pnGU8OxbDhj.jpeg&#34; alt=&#34;2019-猪年七夕&#34; /&gt;&lt;/p&gt;
+</content>
+        <category term="三国杀原画" scheme="https://haust-kevin.github.io/tags/%E4%B8%89%E5%9B%BD%E6%9D%80%E5%8E%9F%E7%94%BB/" />
+        <updated>2023-09-04T10:13:39.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://haust-kevin.github.io/2023/08/22/%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/</id>
+        <title>罗翔说刑法：重刑主义</title>
+        <link rel="alternate" href="https://haust-kevin.github.io/2023/08/22/%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/"/>
+        <content type="html">&lt;div class=&#34;note primary&#34;&gt;
+&lt;p&gt;罗翔说刑法：《【罗翔】网络判案，人均死刑？聊聊重刑主义》的概要和观后总结&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;原视频&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#原视频&#34;&gt;#&lt;/a&gt; 原视频&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;视频名称: 【罗翔】网络判案，人均死刑？聊聊重刑主义&lt;/li&gt;
+&lt;li&gt;视频链接:  &lt;code&gt;https://www.bilibili.com/video/BV1Ep4y1J7mk&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;直达视频: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUVwNHkxSjdtaw==&#34;&gt;【罗翔】网络判案，人均死刑？聊聊重刑主义&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;视频精简&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#视频精简&#34;&gt;#&lt;/a&gt; 视频精简&lt;/h1&gt;
+&lt;h2 id=&#34;案例引出&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#案例引出&#34;&gt;#&lt;/a&gt; 案例引出&lt;/h2&gt;
+&lt;p&gt;夏某在汪某家进行施工，发现汪某家有两朵好看的花，便挖走种回了自己家，汪某发现后报了警，经价值认定中心认定，两朵花属于名贵花卉，价值 70,000。&lt;br /&gt;
+在该盗窃案中存在的数额问题上，由于夏某主观上认为两朵花只值几百甚至几十块钱，而客观上两朵花价值 70,000，其中存在了认知问题，而如何定该案件的盗窃数额属于刑法学需要讨论的问题。&lt;/p&gt;
+&lt;h2 id=&#34;重刑主义&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#重刑主义&#34;&gt;#&lt;/a&gt; 重刑主义&lt;/h2&gt;
+&lt;p&gt;很多人认为：“为什么老是为犯罪人说话呢？为犯罪人说话就是对被害人不公平！”。&lt;br /&gt;
+罗老师讲到：&lt;strong&gt;如果不加区分一律重刑。事后其实是可能会鼓励犯罪的&lt;/strong&gt;。犯罪者容易产生亡徒思想。如果盗窃一万元一律死刑，那么偷窃一万的罪犯可能盗窃更多，甚至杀人越货，杀 100 个人，反正是一死。&lt;br /&gt;
+刑法的三大原则：&lt;strong&gt;罪行法定&lt;/strong&gt;，&lt;strong&gt;刑法面前人人平等&lt;/strong&gt;、&lt;strong&gt;罪行相当&lt;/strong&gt;。&lt;br /&gt;
+“重罪者，人之所难犯也。而小过者，人之所易去也。使人去其所易，无离其所难。此治之道。夫小过不生，大罪不治，世人无罪而乱不生也。--《韩非子・内储说上七术》”&lt;br /&gt;
+ 韩非子认为：重罪人一般很难犯，轻罪人们容易犯，如果用严重的刑罚来惩罚犯轻罪的人，那么人们便不敢去试试犯罪，刑罚的目的是为了威慑，最终达到一个理想状态 —— 没有刑罚。&lt;br /&gt;
+韩非子也写道：“灰于公道者断其手”，很多人无法理解，为什么扔垃圾要剁手。孔子也只能勉强解释道：“无气灰所意者，断手所悟也行，所以不观所悟。古人以为矣，故行之。” 这段话很难翻成白话文，就是不乱扔垃圾是很容易做到的，但是断手会令人感到巨大的痛苦，那如果干了一件很容易的事情，就可以避免严重的惩罚，古人认为这是容易做到的，所以实施这种刑法。&lt;br /&gt;
+另有记载，把灰倒在大马路上，会让灰尘到处乱飞，人就会生气，一生气就可能斗殴，斗殴的结果就可能会让家族之间互相残杀。所以随便在马路上倒垃圾是残害家族的行为，那因此对其重刑，事后也是可以接受的。&lt;/p&gt;
+&lt;h3 id=&#34;支持重刑主义的观点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#支持重刑主义的观点&#34;&gt;#&lt;/a&gt; 支持重刑主义的观点&lt;/h3&gt;
+&lt;p&gt;支持者认为，严厉的刑罚能够有效地威慑潜在犯罪行为，保护社会的安全和秩序。他们强调刑罚的公平和正义，认为罪犯应当为其所犯下的罪行付出代价。他们可能认为，对严重犯罪采取重型刑罚能够有效阻止犯罪人的行为，从而减少社会的不安定因素。&lt;/p&gt;
+&lt;h3 id=&#34;反对重刑主义的观点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#反对重刑主义的观点&#34;&gt;#&lt;/a&gt; 反对重刑主义的观点&lt;/h3&gt;
+&lt;p&gt;反对者可能认为，过度的重型刑罚并不能真正解决问题，反而可能导致不公平和严重的人权侵害。他们强调人道主义，认为刑罚应当以人的尊严为前提，避免过度的痛苦和苦难。此外，他们也可能关注到刑罚的社会成本，认为长期监禁或死刑等刑罚在执行上需要大量资源，可能并不能达到预期的威慑效果。&lt;/p&gt;
+&lt;h2 id=&#34;刑罚正当化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#刑罚正当化&#34;&gt;#&lt;/a&gt; 刑罚正当化&lt;/h2&gt;
+&lt;p&gt;关于刑罚的正当化，根据一直有两种争论，一种观点认为因为有了犯罪，所以要有刑罚。&lt;br /&gt;
+另一种观点认为没有犯罪，所以需要刑罚。&lt;/p&gt;
+&lt;h3 id=&#34;报应主义&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#报应主义&#34;&gt;#&lt;/a&gt; 报应主义&lt;/h3&gt;
+&lt;p&gt;立足既往，认为罪犯实施犯罪本身就应该受到惩罚。有了犯罪，需要刑罚。&lt;br /&gt;
+善有善报，恶有恶报吗？惩罚具有道德上的正当性。如果严重的谋杀者不被判处死刑，那么被害人的家属也可能会走向复仇之路。&lt;br /&gt;
+报应主义还体现了对人的尊重，它既是对犯罪人的尊重，也是对被害人的尊重。犯罪人出于自由意志选择了犯罪，他也就预见了行为的后果，为了尊重他理性的选择，就要让他承担他所预见的后果。&lt;br /&gt;
+犯罪人亵渎了被害的人格和尊严，刑罚也必须纠正这种错误的思想，所以通过对犯罪的惩罚也可以恢复被害人被践踏的尊严。&lt;br /&gt;
+康德认为，重刑主义的过度威慑，把人当成纯粹的工具吓人，是对刑罚的滥用。&lt;br /&gt;
+黑格尔认为，重型主义也没有尊重犯罪人作为理性的存在，犯罪人理性上知道自己犯法会受到刑罚，所以处罚他正是尊重他是理性的存在。&lt;/p&gt;
+&lt;h3 id=&#34;功利主义&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#功利主义&#34;&gt;#&lt;/a&gt; 功利主义&lt;/h3&gt;
+&lt;p&gt;关注将来，惩罚是为了预防。&lt;br /&gt;
+人都有趋利避害的本能，在行为之前，人们会权衡利弊，比较犯罪带来的快乐，所遭受刑罚可能带来痛苦，如果结论是刑罚的痛苦大于犯罪的乐趣，他们就不会去实施犯罪。&lt;/p&gt;
+&lt;h4 id=&#34;一般预防&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一般预防&#34;&gt;#&lt;/a&gt; 一般预防&lt;/h4&gt;
+&lt;p&gt;一般预防就是所谓的杀鸡给猴看，对犯罪人施加惩罚，是为了&lt;strong&gt;威吓社会公众，让他们不要以身试法&lt;/strong&gt;，它把所有公民群体当做潜在的犯罪人。&lt;br /&gt;
+一般预防认为法律应该以最小的社会痛苦追求社会福利的最大化。犯罪和刑罚都会给社会带来痛苦。那如果刑罚的痛苦小于犯罪的痛苦，但却能防止更多的犯罪，那么刑罚就是正当的。刑罚之恶不能超过犯罪之恶，多余的刑罚就是多余的恶。&lt;/p&gt;
+&lt;h4 id=&#34;特殊预防&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#特殊预防&#34;&gt;#&lt;/a&gt; 特殊预防&lt;/h4&gt;
+&lt;p&gt;特殊预防那针对的是犯罪人本人，防止他们再次犯罪，比如说对他们进行教育改造，让犯罪人能够回归社会。&lt;br /&gt;
+特殊预防不再将社会公众视为潜在的犯罪人，把他们纯粹作为恐吓的对象，而是把他们作为守法的公民，每一次对罪犯的惩罚都是为了强化民众发自内心的守法意思。&lt;br /&gt;
+特殊预防&lt;strong&gt;强调剥夺罪犯的再犯能力，让其积极的回归社会&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;结尾&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#结尾&#34;&gt;#&lt;/a&gt; 结尾&lt;/h2&gt;
+&lt;p&gt;如果你弃灰于路，你或你的家人是否接受替罪羊的名义？或者你或你的家人是否依然为剁手法点赞？法律的生命是经验而非逻辑，没有人拥有完全的理性，因此也不可能在理性上被彻底说服。人类各个世代千千万万的人，从个人经验中所汇总的海量知识，那肯定大于我们这些自诩为法律专家的狭小知识。还是刚才所说的所有的专业知识，其实都是小众一见，但是我们依然有责任说出我们自己专业的小众意见。法律没有最优解，只能提供一个相对较好或者说不坏的解决方案。&lt;/p&gt;
+&lt;h1 id=&#34;个人总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#个人总结&#34;&gt;#&lt;/a&gt; 个人总结&lt;/h1&gt;
+&lt;p&gt;重刑主义在某些情况下可能会有一定的合理性，但需要在法律、伦理和社会效益之间进行权衡和取舍。刑罚政策应当充分考虑社会的多样性和复杂性，以建立更加公正、有效和平衡的刑法体系。&lt;br /&gt;
+回顾刑罚合理性与个体权益的平衡，我不禁思考法治的作用。法治并不会创造完美的社会，但它可以防止最坏的情况发生，我们需要在权衡中找到最为合适的折中方案。这引导我深入思考刑罚与人性、公正、社会秩序的关系，以及法律应如何在社会中发挥作用。&lt;/p&gt;
+</content>
+        <category term="人文社科" scheme="https://haust-kevin.github.io/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" />
+        <category term="罗翔说刑法" scheme="https://haust-kevin.github.io/tags/%E7%BD%97%E7%BF%94%E8%AF%B4%E5%88%91%E6%B3%95/" />
+        <updated>2023-08-21T16:00:01.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://haust-kevin.github.io/2023/08/20/%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/</id>
+        <title>狂人日记</title>
+        <link rel="alternate" href="https://haust-kevin.github.io/2023/08/20/%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/"/>
+        <content type="html">&lt;div class=&#34;note primary&#34;&gt;
+&lt;p&gt;重温《狂人日记》，就像是重新穿越时光回到了一个扑朔迷离的内心世界。每一段都是对人性深刻探索的旅程，通过主人公的独白，我们能感受到他内心的冲突、挣扎和反思。作品以幽默的笔触揭示了社会的荒谬，同时也展示了个体在困境中的无奈。在这片文字的海洋中，我们或许能找到一丝启示，一个更加清晰的思考角度，甚至是对现实的勇敢直面。《狂人日记》不仅仅是一部文学作品，更是一次对自我和社会的深刻审视，值得每个人在不同的生命阶段多次品味。无论是初读还是再读，它都能带给我们新的领悟和共鸣，让我们更加深刻地思考人性与世界，即使《狂人日记》的著作环境已是百年前，仍能带给我们无比的震撼。&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;全文&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#全文&#34;&gt;#&lt;/a&gt; 全文&lt;/h1&gt;
+&lt;h2 id=&#34;序言&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#序言&#34;&gt;#&lt;/a&gt; 序言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;某君昆仲，今隐其名，皆余昔日在中学时良友；分隔多年，消息渐阙。日前偶闻其一大病；适归故乡，迂道往访，则仅晤一人，言病者其弟也。劳君远道来视，然已早愈，赴某地候补矣。因大笑，出示日记二册，谓可见当日病状，不妨献诸旧友。持归阅一过，知所患盖 “迫害狂” 之类。语颇错杂无伦次，又多荒唐之言；亦不著月日，惟墨色字体不一，知非一时所书。间亦有略具联络者，今撮录一篇，以供医家研究。记中语误，一字不易；惟人名虽皆村人，不为世间所知，无关大体，然亦悉易去。至于书名，则本人愈后所题，不复改也。七年四月二日识。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;第一话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第一话&#34;&gt;#&lt;/a&gt; 第一话&lt;/h2&gt;
+&lt;p&gt;今天晚上，很好的月光。&lt;br /&gt;
+我不见他，已是三十多年；今天见了，精神分外爽快。才知道以前的三十多年，全是发昏；然而须十分小心。不然，那赵家的狗，何以看我两眼呢？&lt;br /&gt;
+我怕得有理。&lt;/p&gt;
+&lt;h2 id=&#34;第二话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第二话&#34;&gt;#&lt;/a&gt; 第二话&lt;/h2&gt;
+&lt;p&gt;今天全没月光，我知道不妙。早上小心出门，赵贵翁的眼色便怪：似乎怕我，似乎想害我。还有七八个人，交头接耳的议论我，张着嘴，对我笑了一笑；我便从头直冷到脚根，晓得他们布置，都已妥当了。&lt;br /&gt;
+我可不怕，仍旧走我的路。前面一伙小孩子，也在那里议论我；眼色也同赵贵翁一样，脸色也铁青。我想我同小孩子有什么仇，他也这样。忍不住大声说，“你告诉我！” 他们可就跑了。&lt;br /&gt;
+我想：我同赵贵翁有什么仇，同路上的人又有什么仇；只有廿年以前，把古久先生的陈年流水簿子，踹了一脚，古久先生很不高兴。赵贵翁虽然不认识他，一定也听到风声，代抱不平；约定路上的人，同我作冤对。但是小孩子呢？那时候，他们还没有出世，何以今天也睁着怪眼睛，似乎怕我，似乎想害我。这真教我怕，教我纳罕而且伤心。&lt;br /&gt;
+我明白了。这是他们娘老子教的！&lt;/p&gt;
+&lt;h2 id=&#34;第三话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第三话&#34;&gt;#&lt;/a&gt; 第三话&lt;/h2&gt;
+&lt;p&gt;晚上总是睡不着。凡事须得研究，才会明白。&lt;br /&gt;
+他们 —— 也有给知县打枷过的，也有给绅士掌过嘴的，也有衙役占了他妻子的，也有老子娘被债主逼死的；他们那时候的脸色，全没有昨天这么怕，也没有这么凶。&lt;br /&gt;
+最奇怪的是昨天街上的那个女人，打他儿子，嘴里说道，“老子呀！我要咬你几口才出气！” 他眼睛却看着我。我出了一惊，遮掩不住；那青面獠牙的一伙人，便都哄笑起来。陈老五赶上前，硬把我拖回家中了。&lt;br /&gt;
+拖我回家，家里的人都装作不认识我；他们的脸色，也全同别人一样。进了书房，便反扣上门，宛然是关了一只鸡鸭。这一件事，越教我猜不出底细。&lt;br /&gt;
+前几天，狼子村的佃户来告荒，对我大哥说，他们村里的一个大恶人，给大家打死了；几个人便挖出他的心肝来，用油煎炒了吃，可以壮壮胆子。我插了一句嘴，佃户和大哥便都看我几眼。今天才晓得他们的眼光，全同外面的那伙人一模一样。&lt;br /&gt;
+想起来，我从顶上直冷到脚跟。&lt;br /&gt;
+他们会吃人，就未必不会吃我。&lt;br /&gt;
+你看那女人 “咬你几口” 的话，和一伙青面獠牙人的笑，和前天佃户的话，明明是暗号。我看出他话中全是毒，笑中全是刀。他们的牙齿，全是白厉厉的排着，这就是吃人的家伙。&lt;br /&gt;
+照我自己想，虽然不是恶人，自从踹了古家的簿子，可就难说了。他们似乎别有心思，我全猜不出。况且他们一翻脸，便说人是恶人。我还记得大哥教我做论，无论怎样好人，翻他几句，他便打上几个圈；原谅坏人几句，他便说 “翻天妙手，与众不同”。我那里猜得到他们的心思，究竟怎样；况且是要吃的时候。&lt;br /&gt;
+凡事总须研究，才会明白。古来时常吃人，我也还记得，可是不甚清楚。我翻开历史一查，这历史没有年代，歪歪斜斜的每叶上都写着 “仁义道德” 几个字。我横竖睡不着，仔细看了半夜，才从字缝里看出字来，满本都写着两个字是 “吃人”！&lt;br /&gt;
+书上写着这许多字，佃户说了这许多话，却都笑吟吟的睁着怪眼看我。&lt;br /&gt;
+我也是人，他们想要吃我了！&lt;/p&gt;
+&lt;h2 id=&#34;第四话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第四话&#34;&gt;#&lt;/a&gt; 第四话&lt;/h2&gt;
+&lt;p&gt;早上，我静坐了一会儿。陈老五送进饭来，一碗菜，一碗蒸鱼；这鱼的眼睛，白而且硬，张着嘴，同那一伙想吃人的人一样。吃了几筷，滑溜溜的不知是鱼是人，便把他兜肚连肠的吐出。&lt;br /&gt;
+我说 “老五，对大哥说，我闷得慌，想到园里走走。” 老五不答应，走了；停一会，可就来开了门。&lt;br /&gt;
+我也不动，研究他们如何摆布我；知道他们一定不肯放松。果然！我大哥引了一个老头子，慢慢走来；他满眼凶光，怕我看出，只是低头向着地，从眼镜横边暗暗看我。大哥说，“今天你仿佛很好。” 我说 “是的。” 大哥说，“今天请何先生来，给你诊一诊。” 我说 “可以！” 其实我岂不知道这老头子是刽子手扮的！无非借了看脉这名目，揣一揣肥瘠：因这功劳，也分一片肉吃。我也不怕；虽然不吃人，胆子却比他们还壮。伸出两个拳头，看他如何下手。老头子坐着，闭了眼睛，摸了好一会，呆了好一会；便张开他鬼眼睛说，“不要乱想。静静的养几天，就好了。”&lt;br /&gt;
+ 不要乱想，静静的养！养肥了，他们是自然可以多吃；我有什么好处，怎么会 “好了”？他们这群人，又想吃人，又是鬼鬼祟祟，想法子遮掩，不敢直截下手，真要令我笑死。我忍不住，便放声大笑起来，十分快活。自己晓得这笑声里面，有的是义勇和正气。老头子和大哥，都失了色，被我这勇气正气镇压住了。&lt;br /&gt;
+但是我有勇气，他们便越想吃我，沾光一点这勇气。老头子跨出门，走不多远，便低声对大哥说道，“赶紧吃罢！” 大哥点点头。原来也有你！这一件大发见，虽似意外，也在意中：合伙吃我的人，便是我的哥哥！&lt;br /&gt;
+吃人的是我哥哥！&lt;br /&gt;
+我是吃人的人的兄弟！&lt;br /&gt;
+我自己被人吃了，可仍然是吃人的人的兄弟！&lt;/p&gt;
+&lt;h2 id=&#34;第五话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第五话&#34;&gt;#&lt;/a&gt; 第五话&lt;/h2&gt;
+&lt;p&gt;这几天是退一步想：假使那老头子不是刽子手扮的，真是医生，也仍然是吃人的人。他们的祖师李时珍做的 “本草什么” 上，明明写着人肉可以煎吃；他还能说自己不吃人么？&lt;br /&gt;
+至于我家大哥，也毫不冤枉他。他对我讲书的时候，亲口说过可以 “易子而食”；又一回偶然议论起一个不好的人，他便说不但该杀，还当 “食肉寝皮”。我那时年纪还小，心跳了好半天。前天狼子村佃户来说吃心肝的事，他也毫不奇怪，不住的点头。可见心思是同从前一样狠。既然可以 “易子而食”，便什么都易得，什么人都吃得。我从前单听他讲道理，也糊涂过去；现在晓得他讲道理的时候，不但唇边还抹着人油，而且心里满装着吃人的意思。&lt;/p&gt;
+&lt;h2 id=&#34;第六话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第六话&#34;&gt;#&lt;/a&gt; 第六话&lt;/h2&gt;
+&lt;p&gt;黑漆漆的，不知是日是夜。赵家的狗又叫起来了。&lt;br /&gt;
+狮子似的凶心，兔子的怯弱，狐狸的狡猾，……&lt;/p&gt;
+&lt;h2 id=&#34;第七话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第七话&#34;&gt;#&lt;/a&gt; 第七话&lt;/h2&gt;
+&lt;p&gt;我晓得他们的方法，直捷杀了，是不肯的，而且也不敢，怕有祸祟。所以他们大家连络，布满了罗网，逼我自戕。试看前几天街上男女的样子，和这几天我大哥的作为，便足可悟出八九分了。最好是解下腰带，挂在梁上，自己紧紧勒死；他们没有杀人的罪名，又偿了心愿，自然都欢天喜地的发出一种呜呜咽咽的笑声。否则惊吓忧愁死了，虽则略瘦，也还可以首肯几下。&lt;br /&gt;
+他们是只会吃死肉的！—— 记得什么书上说，有一种东西，叫 “海乙那” 的，眼光和样子都很难看；时常吃死肉，连极大的骨头，都细细嚼烂，咽下肚子去，想起来也教人害怕。“海乙那” 是狼的亲眷，狼是狗的本家。前天赵家的狗，看我几眼，可见他也同谋，早已接洽。老头子眼看着地，岂能瞒得我过。&lt;br /&gt;
+最可怜的是我的大哥，他也是人，何以毫不害怕；而且合伙吃我呢？还是历来惯了，不以为非呢？还是丧了良心，明知故犯呢？&lt;br /&gt;
+我诅咒吃人的人，先从他起头；要劝转吃人的人，也先从他下手。&lt;/p&gt;
+&lt;h2 id=&#34;第八话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第八话&#34;&gt;#&lt;/a&gt; 第八话&lt;/h2&gt;
+&lt;p&gt;其实这种道理，到了现在，他们也该早已懂得，……&lt;br /&gt;
+ 忽然来了一个人；年纪不过二十左右，相貌是不很看得清楚，满面笑容，对了我点头，他的笑也不像真笑。我便问他，“吃人的事，对么？” 他仍然笑着说，“不是荒年，怎么会吃人。” 我立刻就晓得，他也是一伙，喜欢吃人的；便自勇气百倍，偏要问他。&lt;br /&gt;
+“对么？”&lt;br /&gt;
+“这等事问他什么。你真会…… 说笑话。…… 今天天气很好。”&lt;br /&gt;
+ 天气是好，月色也很亮了。可是我要问你，“对么？”&lt;br /&gt;
+ 他不以为然了。含含胡胡的答道，“不……”&lt;br /&gt;
+“不对？他们何以竟吃？！”&lt;br /&gt;
+“没有的事……”&lt;br /&gt;
+“没有的事？狼子村现吃；还有书上都写着，通红斩新！”&lt;br /&gt;
+ 他便变了脸，铁一般青。睁着眼说，“有许有的，这是从来如此……”&lt;br /&gt;
+“从来如此，便对么？”&lt;br /&gt;
+“我不同你讲这些道理；总之你不该说，你说便是你错！”&lt;br /&gt;
+ 我直跳起来，张开眼，这人便不见了。全身出了一大片汗。他的年纪，比我大哥小得远，居然也是一伙；这一定是他娘老子先教的。还怕已经教给他儿子了；所以连小孩子，也都恶狠狠的看我。&lt;/p&gt;
+&lt;h2 id=&#34;第九话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第九话&#34;&gt;#&lt;/a&gt; 第九话&lt;/h2&gt;
+&lt;p&gt;自己想吃人，又怕被别人吃了，都用着疑心极深的眼光，面面相觑。……&lt;br /&gt;
+ 去了这心思，放心做事走路吃饭睡觉，何等舒服。这只是一条门槛，一个关头。他们可是父子兄弟夫妇朋友师生仇敌和各不相识的人，都结成一伙，互相劝勉，互相牵掣，死也不肯跨过这一步。&lt;/p&gt;
+&lt;h2 id=&#34;第十话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第十话&#34;&gt;#&lt;/a&gt; 第十话&lt;/h2&gt;
+&lt;p&gt;大清早，去寻我大哥；他立在堂门外看天，我便走到他背后，拦住门，格外沉静，格外和气的对他说，&lt;br /&gt;
+“大哥，我有话告诉你。”&lt;br /&gt;
+“你说就是，” 他赶紧回过脸来，点点头。&lt;br /&gt;
+“我只有几句话，可是说不出来。大哥，大约当初野蛮的人，都吃过一点人。后来因为心思不同，有的不吃人了，一味要好，便变了人，变了真的人。有的却还吃，—— 也同虫子一样，有的变了鱼鸟猴子，一直变到人。有的不要好，至今还是虫子。这吃人的人比不吃人的人，何等惭愧。怕比虫子的惭愧猴子，还差得很远很远。&lt;br /&gt;
+“易牙蒸了他儿子，给桀纣吃，还是一直从前的事。谁晓得从盘古开辟天地以后，一直吃到易牙的儿子；从易牙的儿子，一直吃到徐锡林；从徐锡林，又一直吃到狼子村捉住的人。去年城里杀了犯人，还有一个生痨病的人，用馒头蘸血舐。&lt;br /&gt;
+“他们要吃我，你一个人，原也无法可想；然而又何必去入伙。吃人的人，什么事做不出；他们会吃我，也会吃你，一伙里面，也会自吃。但只要转一步，只要立刻改了，也就是人人太平。虽然从来如此，我们今天也可以格外要好，说是不能！大哥，我相信你能说，前天佃户要减租，你说过不能。”&lt;br /&gt;
+ 当初，他还只是冷笑，随后眼光便凶狠起来，一到说破他们的隐情，那就满脸都变成青色了。大门外立着一伙人，赵贵翁和他的狗，也在里面，都探头探脑的挨进来。有的是看不出面貌，似乎用布蒙着；有的是仍旧青面獠牙，抿着嘴笑。我认识他们是一伙，都是吃人的人。可是也晓得他们心思很不一样，一种是以为从来如此，应该吃的；一种是知道不该吃，可是仍然要吃，又怕别人说破他，所以听了我的话，越发气愤不过，可是抿着嘴冷笑。&lt;br /&gt;
+这时候，大哥也忽然显出凶相，高声喝道，“都出去！疯子有什么好看！”&lt;br /&gt;
+ 这时候，我又懂得一件他们的巧妙了。他们岂但不肯改，而且早已布置；预备下一个疯子的名目罩上我。将来吃了，不但太平无事，怕还会有人见情。佃户说的大家吃了一个恶人，正是这方法。这是他们的老谱！&lt;br /&gt;
+陈老五也气愤愤的直走进来。如何按得住我的口，我偏要对这伙人说，“你们可以改了，从真心改起！要晓得将来容不得吃人的人，活在世上。&lt;br /&gt;
+“你们要不改，自己也会吃尽。即使生得多，也会给真的人除灭了，同猎人打完狼子一样！—— 同虫子一样！”&lt;br /&gt;
+ 那一伙人，都被陈老五赶走了。大哥也不知那里去了。陈老五劝我回屋子里去。屋里面全是黑沉沉的。横梁和椽子都在头上发抖；抖了一会，就大起来，堆在我身上。&lt;br /&gt;
+万分沉重，动弹不得；他的意思是要我死。我晓得他的沉重是假的，便挣扎出来，出了一身汗。可是偏要说，“你们立刻改了，从真心改起！你们要晓得将来是容不得吃人的人，……”&lt;/p&gt;
+&lt;h2 id=&#34;第十一话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第十一话&#34;&gt;#&lt;/a&gt; 第十一话&lt;/h2&gt;
+&lt;p&gt;太阳也不出，门也不开，日日是两顿饭。&lt;br /&gt;
+我捏起筷子，便想起我大哥；晓得妹子死掉的缘故，也全在他。那时我妹子才五岁，可爱可怜的样子，还在眼前。母亲哭个不住，他却劝母亲不要哭；大约因为自己吃了，哭起来不免有点过意不去。如果还能过意不去，…… 妹子是被大哥吃了，母亲知道没有，我可不得而知。&lt;br /&gt;
+母亲想也知道；不过哭的时候，却并没有说明，大约也以为应当的了。记得我四五岁时，坐在堂前乘凉，大哥说爷娘生病，做儿子的须割下一片肉来，煮熟了请他吃，才算好人；母亲也没有说不行。一片吃得，整个的自然也吃得。但是那天的哭法，现在想起来，实在还教人伤心，这真是奇极的事！&lt;/p&gt;
+&lt;h2 id=&#34;第十二话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第十二话&#34;&gt;#&lt;/a&gt; 第十二话&lt;/h2&gt;
+&lt;p&gt;不能想了。&lt;br /&gt;
+四千年来时时吃人的地方，今天才明白，我也在其中混了多年；大哥正管着家务，妹子恰恰死了，他未必不和在饭菜里，暗暗给我们吃。&lt;br /&gt;
+我未必无意之中，不吃了我妹子的几片肉，现在也轮到我自己，…… 有了四千年吃人履历的我，当初虽然不知道，现在明白，难见真的人！&lt;/p&gt;
+&lt;h2 id=&#34;第十三话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第十三话&#34;&gt;#&lt;/a&gt; 第十三话&lt;/h2&gt;
+&lt;p&gt;没有吃过人的孩子，或者还有？&lt;br /&gt;
+救救孩子……&lt;/p&gt;
+&lt;p&gt;一九一八年四月。&lt;/p&gt;
+</content>
+        <category term="好文摘抄" scheme="https://haust-kevin.github.io/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" />
+        <category term="小说" scheme="https://haust-kevin.github.io/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" />
+        <category term="鲁迅" scheme="https://haust-kevin.github.io/tags/%E9%B2%81%E8%BF%85/" />
+        <updated>2023-08-20T12:02:57.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://haust-kevin.github.io/2023/08/19/docker-container-2-image/</id>
+        <title>Docker：容器备份</title>
+        <link rel="alternate" href="https://haust-kevin.github.io/2023/08/19/docker-container-2-image/"/>
+        <content type="html">&lt;div class=&#34;note primary&#34;&gt;
+&lt;p&gt;将 docker 容器打包成镜像并在另一台服务器上运行&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;1️⃣ 将容器打包成镜像&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; commit &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;container-name&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;image-name&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;:tag&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# example: docker commit myblog hexo-blog&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;会在本地生成一个新的 docker 镜像，可以通过 &lt;code&gt;docker images&lt;/code&gt;  命令查看生成的镜像。&lt;/p&gt;
+&lt;div class=&#34;note warning&#34;&gt;
+&lt;p&gt;打包时，容器挂的目录 / 文件不会被打包进镜像。解决方案：① 在打包前为挂载的目录生成一份 copy，在另一台机器运行时你需要挂载这份 copy。② 将挂载的目录 copy 至新机器。如果打包后的镜像只需在当前服务器运行，则不需要考虑这个问题。&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;2️⃣ 将镜像打包成文件&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; save &lt;span class=&#34;token parameter variable&#34;&gt;-o&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;outfile&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;image-name&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;:tag&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# example: docker save -o blog.jar hexo-blog&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;会在当前目录生成 &lt;code&gt;blog.jar&lt;/code&gt;  文件。&lt;/p&gt;
+&lt;p&gt;3️⃣ 将打包生成的文件上传至另一台服务器&lt;br /&gt;
+使用 scp 命令或者 ssh 工具将 &lt;code&gt;blog.jar&lt;/code&gt;  复制到另一台服务器。&lt;/p&gt;
+&lt;p&gt;4️⃣ 新机器载入镜像&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; load &lt;span class=&#34;token parameter variable&#34;&gt;--input&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;file&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# example: docker load --input blog.jar&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;会在新机器生成一个新的 docker 镜像，可以通过 &lt;code&gt;docker images&lt;/code&gt;  命令查看生成的镜像。&lt;/p&gt;
+&lt;p&gt;5️⃣ 运行容器&lt;br /&gt;
+导入镜像后就可以进行正常 &lt;code&gt;docker run&lt;/code&gt;  命令了。&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; run &lt;span class=&#34;token parameter variable&#34;&gt;-itd&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--name&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;container-name&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;image-name&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;:tag&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# example: docker run -itd --name myblog hexo-blog&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;div class=&#34;note success&#34;&gt;
+&lt;p&gt;备份并导入完成&lt;/p&gt;
+&lt;/div&gt;
+</content>
+        <category term="Linux" scheme="https://haust-kevin.github.io/categories/Linux/" />
+        <category term="linux" scheme="https://haust-kevin.github.io/tags/linux/" />
+        <category term="docker" scheme="https://haust-kevin.github.io/tags/docker/" />
+        <updated>2023-08-19T06:33:40.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://haust-kevin.github.io/2023/08/17/brew-replace-download-source/</id>
+        <title>HomeBrew：brew更换下载源</title>
+        <link rel="alternate" href="https://haust-kevin.github.io/2023/08/17/brew-replace-download-source/"/>
+        <content type="html">&lt;div class=&#34;note primary&#34;&gt;
+&lt;p&gt;brew 更换下载镜像以提升下载速度&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;1️⃣ 更换下载源为&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9taXJyb3JzLnVzdGMuZWR1LmNuLw==&#34;&gt;中国科学技术大学镜像站&lt;/span&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 新建 homebrew-cask 文件夹，若已经存在则无需新建&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;brew &lt;span class=&#34;token parameter variable&#34;&gt;--repo&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;/Library/Taps/homebrew/homebrew-cask&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 将三个目录作为安全目录目录添加到全局的 Git 配置中&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;git&lt;/span&gt; config &lt;span class=&#34;token parameter variable&#34;&gt;--global&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--add&lt;/span&gt; safe.directory &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;brew &lt;span class=&#34;token parameter variable&#34;&gt;--repo&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;git&lt;/span&gt; config &lt;span class=&#34;token parameter variable&#34;&gt;--global&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--add&lt;/span&gt; safe.directory &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;brew &lt;span class=&#34;token parameter variable&#34;&gt;--repo&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;/Library/Taps/homebrew/homebrew-core&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;git&lt;/span&gt; config &lt;span class=&#34;token parameter variable&#34;&gt;--global&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--add&lt;/span&gt; safe.directory &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;brew &lt;span class=&#34;token parameter variable&#34;&gt;--repo&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;/Library/Taps/homebrew/homebrew-cask&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 更新 Homebrew&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;brew &lt;span class=&#34;token parameter variable&#34;&gt;--repo&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;git&lt;/span&gt; remote set-url origin https://mirrors.ustc.edu.cn/brew.git&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 更新 Homebrew-core&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;brew &lt;span class=&#34;token parameter variable&#34;&gt;--repo&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;/Library/Taps/homebrew/homebrew-core&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;git&lt;/span&gt; remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 更新 Homebrew-cask&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;brew &lt;span class=&#34;token parameter variable&#34;&gt;--repo&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;/Library/Taps/homebrew/homebrew-cask&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;git&lt;/span&gt; remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;2️⃣ 选择 zsh 或 bash 用户，执行即可&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bash 用户&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; ~/.bash_profile&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;source&lt;/span&gt; ~/.bash_profile&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;zsh 用户&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; ~/.zshrc&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;source&lt;/span&gt; ~/.zshrc&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3️⃣ 更新 brew&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;brew update &lt;span class=&#34;token parameter variable&#34;&gt;-v&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;div class=&#34;note success&#34;&gt;
+&lt;p&gt;配置完成&lt;/p&gt;
+&lt;/div&gt;
+</content>
+        <category term="Linux" scheme="https://haust-kevin.github.io/categories/Linux/" />
+        <category term="brew" scheme="https://haust-kevin.github.io/tags/brew/" />
+        <category term="linux" scheme="https://haust-kevin.github.io/tags/linux/" />
+        <updated>2023-08-17T07:48:34.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://haust-kevin.github.io/2023/08/15/hello-world/</id>
+        <title>Hello World</title>
+        <link rel="alternate" href="https://haust-kevin.github.io/2023/08/15/hello-world/"/>
+        <content type="html">&lt;h1 id=&#34;欢迎&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#欢迎&#34;&gt;#&lt;/a&gt; 欢迎&lt;/h1&gt;
+&lt;p&gt;大家好，欢迎来到我的个人博客&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2xvY2FsaG9zdDo0MDAwL2Jsb2cv&#34;&gt;欲揽星河の小屋&lt;/span&gt;！我是 &lt;strong&gt;Kevin&lt;/strong&gt;，一个热爱编程、追求技术创新的技术爱好者。通过这个博客，我希望能够与大家分享我的编程旅程、探索过程以及在技术领域的所见所闻。&lt;/p&gt;
+&lt;h1 id=&#34;追寻编程的脚步&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#追寻编程的脚步&#34;&gt;#&lt;/a&gt; 追寻编程的脚步&lt;/h1&gt;
+&lt;p&gt;编程是一门既充满挑战又充满乐趣的艺术。从最初的 &amp;quot;Hello World&amp;quot; 到构建复杂的应用程序，每一行代码都是一次思考和创造的过程。我依然记得我第一次编写的程序，那种由错误到正确的过程，那种实现想法的成就感，都深深地吸引着我。&lt;/p&gt;
+&lt;h1 id=&#34;探索技术的前沿&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#探索技术的前沿&#34;&gt;#&lt;/a&gt; 探索技术的前沿&lt;/h1&gt;
+&lt;p&gt;随着科技的迅猛发展，计算机技术也在不断刷新我们的认知。人工智能、区块链、云计算等领域的崭新概念不断涌现，我们仿佛站在了一个无限的技术边界前。在这个博客中，我将与大家一同探索这些前沿技术，分享我的学习经验和见解。&lt;/p&gt;
+&lt;h1 id=&#34;为何创建这个博客&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#为何创建这个博客&#34;&gt;#&lt;/a&gt; 为何创建这个博客&lt;/h1&gt;
+&lt;p&gt;我创建这个博客的初衷是为了与大家分享我的技术探索、心得体会，同时也希望能够从您的反馈中学到更多。技术的道路上，我相信每个人都有独特的经验和见解，通过这个平台，我期待与您建立起一个互相学习、共同成长的社区。&lt;/p&gt;
+&lt;h1 id=&#34;展望未来&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#展望未来&#34;&gt;#&lt;/a&gt; 展望未来&lt;/h1&gt;
+&lt;p&gt;在接下来的博客中，我将分享编程技巧、项目经验、技术思考等内容，同时也会关注技术界的热点和趋势，还会分享一些有趣的文章。我希望这个博客能够成为一个技术交流的场所，不仅仅是我与大家的沟通渠道，更是我们共同进步的平台。&lt;/p&gt;
+&lt;h1 id=&#34;结语&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#结语&#34;&gt;#&lt;/a&gt; 结语&lt;/h1&gt;
+&lt;p&gt;感谢您花时间阅读我的第一篇博客。希望您能在今后的博客中找到对您有益的内容，也欢迎您留言分享您的想法和意见。让我们一起踏上这个编程之旅，探索计算机技术的无限魅力！&lt;/p&gt;
+</content>
+        <updated>2023-08-15T08:48:34.000Z</updated>
+    </entry>
+</feed>

@@ -499,16 +499,6 @@
         <updated>2023-08-20T12:02:57.000Z</updated>
     </entry>
     <entry>
-        <id>https://haust-kevin.github.io/2023/08/20/2023/test/</id>
-        <title>狂人日记</title>
-        <link rel="alternate" href="https://haust-kevin.github.io/2023/08/20/2023/test/"/>
-        <content type="html"></content>
-        <category term="好文摘抄" scheme="https://haust-kevin.github.io/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" />
-        <category term="小说" scheme="https://haust-kevin.github.io/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" />
-        <category term="鲁迅" scheme="https://haust-kevin.github.io/tags/%E9%B2%81%E8%BF%85/" />
-        <updated>2023-08-20T12:02:57.000Z</updated>
-    </entry>
-    <entry>
         <id>https://haust-kevin.github.io/2023/08/19/docker-container-2-image/</id>
         <title>Docker：容器备份</title>
         <link rel="alternate" href="https://haust-kevin.github.io/2023/08/19/docker-container-2-image/"/>
@@ -565,7 +555,7 @@
         <title>Hello World</title>
         <link rel="alternate" href="https://haust-kevin.github.io/2023/08/15/hello-world/"/>
         <content type="html">&lt;h1 id=&#34;欢迎&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#欢迎&#34;&gt;#&lt;/a&gt; 欢迎&lt;/h1&gt;
-&lt;p&gt;大家好，欢迎来到我的个人博客&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2xvY2FsaG9zdDo0MDAwL2Jsb2cv&#34;&gt;欲揽星河の小屋&lt;/span&gt;！我是 &lt;strong&gt;Kevin&lt;/strong&gt;，一个热爱编程、追求技术创新的技术爱好者。通过这个博客，我希望能够与大家分享我的编程旅程、探索过程以及在技术领域的所见所闻。&lt;/p&gt;
+&lt;p&gt;大家好，欢迎来到我的个人博客&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2xvY2FsaG9zdDo0MDAwL2Jsb2cv&#34;&gt;沉思录&lt;/span&gt;！我是 &lt;strong&gt;Kevin&lt;/strong&gt;，一个热爱编程、追求技术创新的技术爱好者。通过这个博客，我希望能够与大家分享我的编程旅程、探索过程以及在技术领域的所见所闻。&lt;/p&gt;
 &lt;h1 id=&#34;追寻编程的脚步&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#追寻编程的脚步&#34;&gt;#&lt;/a&gt; 追寻编程的脚步&lt;/h1&gt;
 &lt;p&gt;编程是一门既充满挑战又充满乐趣的艺术。从最初的 &amp;quot;Hello World&amp;quot; 到构建复杂的应用程序，每一行代码都是一次思考和创造的过程。我依然记得我第一次编写的程序，那种由错误到正确的过程，那种实现想法的成就感，都深深地吸引着我。&lt;/p&gt;
 &lt;h1 id=&#34;探索技术的前沿&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#探索技术的前沿&#34;&gt;#&lt;/a&gt; 探索技术的前沿&lt;/h1&gt;

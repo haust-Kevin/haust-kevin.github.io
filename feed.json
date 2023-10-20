@@ -52,6 +52,18 @@
             ]
         },
         {
+            "id": "https://haust-kevin.github.io/2023/08/20/2023/test/",
+            "url": "https://haust-kevin.github.io/2023/08/20/2023/test/",
+            "title": "狂人日记",
+            "date_published": "2023-08-20T12:02:57.000Z",
+            "content_html": "",
+            "tags": [
+                "好文摘抄",
+                "小说",
+                "鲁迅"
+            ]
+        },
+        {
             "id": "https://haust-kevin.github.io/2023/08/19/docker-container-2-image/",
             "url": "https://haust-kevin.github.io/2023/08/19/docker-container-2-image/",
             "title": "Docker：容器备份",

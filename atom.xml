@@ -59,7 +59,7 @@
 &lt;p&gt;对象头包括两部分：&lt;strong&gt;Mark Word&lt;/strong&gt;, &lt;strong&gt;Klass pointer&lt;/strong&gt;&lt;/p&gt;
 &lt;h4 id=&#34;mark-word&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mark-word&#34;&gt;#&lt;/a&gt; Mark Word&lt;/h4&gt;
 &lt;p&gt;用于存储对象自身的运行时数据，如哈希码（HashCode）、GC 分代年龄、锁状态标志、线程持有的锁、偏向线程 ID、偏向时间戳等等。&lt;/p&gt;
-&lt;p&gt;Mark Word 在不同的锁状态下存储的内容不同，在 32 位 JVM 中是这么存的&lt;br /&gt;
+&lt;p&gt;Mark Word 在不同的锁状态下存储的内容不同，在 64 位 JVM 中是这么存的&lt;br /&gt;
 &lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310261655824.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;锁标志位（lock）&lt;/strong&gt;：区分锁状态，11 时表示对象待 GC 回收状态，只有最后 2 位锁标识 (11) 有效。&lt;br /&gt;
 &lt;strong&gt;是否偏向（biased_lock）&lt;/strong&gt;：是否偏向锁，由于无锁和偏向锁的锁标识都是 01，没办法区分，这里引入一位的偏向锁标识位。&lt;br /&gt;

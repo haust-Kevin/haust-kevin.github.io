@@ -10,12 +10,107 @@
         </author>
         <description>思考未知，追求卓越</description>
         <language>zh-CN</language>
-        <pubDate>Wed, 25 Oct 2023 19:34:51 +0800</pubDate>
-        <lastBuildDate>Wed, 25 Oct 2023 19:34:51 +0800</lastBuildDate>
+        <pubDate>Thu, 26 Oct 2023 15:39:09 +0800</pubDate>
+        <lastBuildDate>Thu, 26 Oct 2023 15:39:09 +0800</lastBuildDate>
         <category term="开发" />
         <category term="技术" />
         <category term="后端" />
         <category term="Java" />
+        <item>
+            <guid isPermalink="true">https://haust-kevin.github.io/2023/10/26/interview-jvm/</guid>
+            <title>面试指北：Java 虚拟机</title>
+            <link>https://haust-kevin.github.io/2023/10/26/interview-jvm/</link>
+            <category term="面试指北" scheme="https://haust-kevin.github.io/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" />
+            <category term="JVM" scheme="https://haust-kevin.github.io/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/JVM/" />
+            <category term="面试经验" scheme="https://haust-kevin.github.io/tags/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/" />
+            <category term="Java" scheme="https://haust-kevin.github.io/tags/Java/" />
+            <category term="JVM" scheme="https://haust-kevin.github.io/tags/JVM/" />
+            <pubDate>Thu, 26 Oct 2023 15:39:09 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;内存区域&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#内存区域&#34;&gt;#&lt;/a&gt; 内存区域&lt;/h2&gt;
+&lt;h3 id=&#34;java-内存区域划分&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#java-内存区域划分&#34;&gt;#&lt;/a&gt; Java 内存区域划分&lt;/h3&gt;
+&lt;p&gt;Java 虚拟机规范规定的区域分为以下 5 个部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;程序计数器（Program Counter Register）&lt;/strong&gt;：当前线程所执行的字节码的行号指示器，字节码解析器的工作是通过改变这个计数器的值，来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能，都需要依赖这个计数器来完成；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Java 虚拟机栈（Java Virtual Machine Stacks）&lt;/strong&gt;：用于存储局部变量表、操作数栈、动态链接、方法出口等信息；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;本地方法栈（Native Method Stack）&lt;/strong&gt;：与虚拟机栈的作用是一样的，只不过虚拟机栈是服务 Java 方法的，而本地方法栈是为虚拟机调用 Native 方法服务的；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Java 堆（Java Heap）&lt;/strong&gt;：Java 虚拟机中内存最大的一块，是被所有线程共享的，几乎所有的对象实例都在这里分配内存；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;方法区（Methed Area）&lt;/strong&gt;：用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译后的代码等数据。&lt;br /&gt;
+&lt;img data-src=&#34;https://uploadfiles.nowcoder.com/images/20220224/4107856_1645690687338/9602C6323C6B86C4EDA164DB052D8420&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;本地内存&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#本地内存&#34;&gt;#&lt;/a&gt; 本地内存&lt;/h4&gt;
+&lt;p&gt;Java 虚拟机在执行的时候会把管理的内存分配成不同的区域，这些区域被称为虚拟机内存，同时，对于虚拟机没有直接管理的物理内存，也有一定的利用，这些被利用却不在虚拟机内存数据区的内存，我们称它为本地内存。&lt;br /&gt;
+本地内存不受虚拟机内存参数的限制，只受物理内存容量的限制。&lt;br /&gt;
+虽然不受参数的限制，但是如果内存的占用超出物理内存的大小，同样也会报 OOM。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;元空间&lt;/strong&gt;&lt;br /&gt;
+在 Java1.8 中，HotSpot 虚拟机已经将方法区 (永久带) 移除，取而代之的就是元空间。元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;直接内存&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接内存不是虚拟机运行时数据区的一部分，也不是《Java 虚拟机规范》中定义的内存区域。&lt;/li&gt;
+&lt;li&gt;直接内存是在 Java 堆外的、直接向系统申请的内存空间。&lt;/li&gt;
+&lt;li&gt;来源于 NIO ，通过存在堆中的 DirectByteBuffer 操作 Native 内存。&lt;/li&gt;
+&lt;li&gt;通常，访问直接内存的速度会优于 Java 堆，即读写性能高。因此处于性能考虑，读写频繁的场合可能会考虑使用直接内存。Java 的 NIO 库允许 Java 程序使用直接内存，用于数据缓冲区。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;主内存和本地内存的关系&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#主内存和本地内存的关系&#34;&gt;#&lt;/a&gt; 主内存和本地内存的关系&lt;/h4&gt;
+&lt;p&gt;JMM 规定的主内存和本地内存的关系&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;所有的变量都存储在主内存中，同时每个线程也有自己独立的工作内存，工作内存中所有的变量内容都是主内存的拷贝。&lt;/li&gt;
+&lt;li&gt;线程不能直接读写主内存中的变量，而是只能操作自己工作内存中的变量，再同步到主内存中。即在修改变量之前，要先执行第一步规定的，把数据拷贝到工作内存中再修改，再同步。&lt;/li&gt;
+&lt;li&gt;主内存是多个线程共享的，但线程间不共享工作内存，如果线程间需要通信，必须借助主内存中转来完成。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;总结&lt;/strong&gt;：所有的共享变量，是存在于主内存中的，每个线程有自己的本地内存，而且线程读写共享数据也是通过本地内存交换的，正是由于有交换的过程，并且这个交换不是实时的，所以才导致了可见性的问题。&lt;strong&gt;volatile&lt;/strong&gt; 变量，用来确保将变量的更新操作通知到其他线程。当把变量声明为 volatile 类型后，编译器与运行时都会注意到这个变量是共享的，因此不会将该变量上的操作与其他内存操作一起重排序。volatile 变量不会被缓存在寄存器或者对其他处理器不可见的地方，因此在读取 volatile 类型的变量时总会返回最新写入的值。&lt;/p&gt;
+&lt;h3 id=&#34;对象内存布局&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#对象内存布局&#34;&gt;#&lt;/a&gt; 对象内存布局&lt;/h3&gt;
+&lt;p&gt;Java 对象保存在堆中时，由以下三部分组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;对象头（object header）&lt;/strong&gt;：包括了关于堆对象的布局、类型、GC 状态、同步状态和标识哈希码的基本信息。Java 对象和 vm 内部对象都有一个共同的对象头格式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实例数据（Instance Data）&lt;/strong&gt;：主要是存放类的数据信息，父类的信息，对象字段属性信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对齐填充（Padding）&lt;/strong&gt;：为了字节对齐，填充的数据，不是必须的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对象头包括两部分：&lt;strong&gt;Mark Word&lt;/strong&gt;, &lt;strong&gt;Klass pointer&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;mark-word&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mark-word&#34;&gt;#&lt;/a&gt; Mark Word&lt;/h4&gt;
+&lt;p&gt;用于存储对象自身的运行时数据，如哈希码（HashCode）、GC 分代年龄、锁状态标志、线程持有的锁、偏向线程 ID、偏向时间戳等等。&lt;/p&gt;
+&lt;p&gt;Mark Word 在不同的锁状态下存储的内容不同，在 32 位 JVM 中是这么存的&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310261655824.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;锁标志位（lock）&lt;/strong&gt;：区分锁状态，11 时表示对象待 GC 回收状态，只有最后 2 位锁标识 (11) 有效。&lt;br /&gt;
+&lt;strong&gt;是否偏向（biased_lock）&lt;/strong&gt;：是否偏向锁，由于无锁和偏向锁的锁标识都是 01，没办法区分，这里引入一位的偏向锁标识位。&lt;br /&gt;
+&lt;strong&gt;分代年龄（age）&lt;/strong&gt;：表示对象被 GC 的次数，当该次数到达阈值的时候，对象就会转移到老年代。&lt;br /&gt;
+&lt;strong&gt;对象的 hashcode（hash）&lt;/strong&gt;：运行期间调用 System.identityHashCode () 来计算，延迟计算，并把结果赋值到这里。当对象加锁后，计算的结果 31 位不够表示，在偏向锁，轻量锁，重量锁，hashcode 会被转移到 Monitor 中。&lt;br /&gt;
+&lt;strong&gt;偏向锁的线程 ID（JavaThread）&lt;/strong&gt;：偏向模式的时候，当某个线程持有对象的时候，对象这里就会被置为该线程的 ID。 在后面的操作中，就无需再进行尝试获取锁的动作。&lt;br /&gt;
+&lt;strong&gt;epoch&lt;/strong&gt;：偏向锁的时间戳。&lt;br /&gt;
+&lt;strong&gt;ptr_to_lock_record&lt;/strong&gt;：轻量级锁状态下，指向栈中锁记录的指针。锁记录存储的是所之前锁对象的 Mark Word 的拷贝。&lt;br /&gt;
+&lt;strong&gt;ptr_to_heavyweight_monitor&lt;/strong&gt;：重量级锁状态下，指向对象监视器 Monitor 的指针。如果两个不同的线程同时在同一个对象上竞争，则必须将轻量级锁定升级到 Monitor 以管理等待的线程。在重量级锁定的情况下，JVM 在对象的 ptr_to_heavyweight_monitor 设置指向 Monitor 的指针。&lt;/p&gt;
+&lt;h4 id=&#34;数据对齐&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数据对齐&#34;&gt;#&lt;/a&gt; 数据对齐&lt;/h4&gt;
+&lt;p&gt;字段内存对齐的其中一个原因，是让字段只出现在同一 CPU 的缓存行中。如果字段不是对齐的，那么就有可能出现跨缓存行的字段。也就是说，该字段的读取可能需要替换两个缓存行，而该字段的存储也会同时污染两个缓存行。这两种情况对程序的执行效率而言都是不利的。其实对其填充的最终目的是为了计算机高效寻址。&lt;/p&gt;
+&lt;h3 id=&#34;偏向锁&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#偏向锁&#34;&gt;#&lt;/a&gt; 偏向锁&lt;/h3&gt;
+&lt;h4 id=&#34;锁撤销&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#锁撤销&#34;&gt;#&lt;/a&gt; 锁撤销&lt;/h4&gt;
+&lt;p&gt;撤销偏向锁就是将锁对象 oop 的对象头恢复成无锁状态或者膨胀成轻量级锁状态，执行撤销动作的前提是锁对象 oop 的对象头处于偏向锁状态。&lt;br /&gt;
+&lt;strong&gt;锁撤销过程&lt;/strong&gt;&lt;br /&gt;
+尝试获取某个偏向锁，如果该偏向锁被某个线程占用了，但是没有关联的 BasicObjectLock ，即实际占用该偏向锁的方法已经退出了，则会将其恢复成无锁状态，然后膨胀成轻量级锁，但是在撤销一定次数后触发批量重偏向（rebasic）的情形下也可能重新获取该偏向锁。如果该偏向锁正在被某个方法所使用，即存在对应的 BasicObjectLock ，则直接将该偏向锁膨胀成轻量级锁。&lt;/p&gt;
+&lt;p&gt;在已偏向后调用 Object.hashCode () 方法时，锁定状态下，锁膨胀为重量级锁；非锁定状态下，锁会恢复为无锁状态。&lt;/p&gt;
+&lt;h4 id=&#34;批量重偏向&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#批量重偏向&#34;&gt;#&lt;/a&gt; 批量重偏向&lt;/h4&gt;
+&lt;p&gt;避免短时间内大量偏向锁的撤销。例如一个线程创建了大量对象并执行了初始的同步操作，后来另一个线程也来将这些对象作为锁对象进行操作，这样会导致大量的偏向锁撤销操作。当执行批量重偏向后，如果原偏向锁持有者线程不再执行同步块，则锁可以偏向于新线程。&lt;br /&gt;
+以 class 为单位，为每个 class 维护一个偏向锁撤销计数器，每一次该 class 的对象发生偏向撤销操作时，该计数器 +1，当这个值达到重偏向阈值（默认 20 ）时， JVM 就认为该 class 的偏向锁有问题，因此会进行批量重偏向。每个 class 对象会有一个对应的 epoch 字段，每个处于偏向锁状态对象的 mark word 中也有该字段，其初始值为创建该对象时，class 中的 epoch 的值。每次发生批量重偏向时，就将该值 +1，同时遍历 JVM 中所有线程的栈，找到该 class 所有正处于加锁状态的偏向锁，将其 epoch 字段改为新值。下次获得锁时，发现当前对象的 epoch 值和 class 的 epoch 不相等，那就算当前已经偏向了其他线程，也不会执行撤销操作，而是直接通过 CAS 操作将其 mark word 的 Thread Id 改成当前线程 Id。&lt;/p&gt;
+&lt;h4 id=&#34;批量锁撤销&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#批量锁撤销&#34;&gt;#&lt;/a&gt; 批量锁撤销&lt;/h4&gt;
+&lt;p&gt;当一个偏向锁如果撤销次数到达 40 的时候就认为这个对象设计的有问题；那么 JVM 会把这个对象所对应的类所有的对象都撤销偏向锁；并且新实例化的对象也是不可偏向的。&lt;/p&gt;
+&lt;h4 id=&#34;对象计算过哈希值之后还能进入偏向锁状态吗&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#对象计算过哈希值之后还能进入偏向锁状态吗&#34;&gt;#&lt;/a&gt; 对象计算过哈希值之后还能进入偏向锁状态吗&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;当一个对象已经计算过 identity hashcode，它就无法进入偏向锁状态；&lt;/li&gt;
+&lt;li&gt;当一个对象当前正处于偏向锁状态，并且需要计算其 identity hashcode 的话，则它的偏向锁会被撤销，并且锁会膨胀为重量锁；&lt;/li&gt;
+&lt;li&gt;重量锁的实现中，ObjectMonitor 类里有字段可以记录非加锁状态下的 mark word ，其中可以存储 identity hash code 的值。或者简单说就是重量锁可以存下 identity hash code。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Identity hash code 是未被覆写的 java.lang.Object.hashCode ()&lt;/p&gt;
+&lt;h2 id=&#34;类文件结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#类文件结构&#34;&gt;#&lt;/a&gt; 类文件结构&lt;/h2&gt;
+&lt;h2 id=&#34;类加载机制&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#类加载机制&#34;&gt;#&lt;/a&gt; 类加载机制&lt;/h2&gt;
+&lt;h2 id=&#34;自动内存管理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#自动内存管理&#34;&gt;#&lt;/a&gt; 自动内存管理&lt;/h2&gt;
+&lt;h3 id=&#34;垃圾收集算法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#垃圾收集算法&#34;&gt;#&lt;/a&gt; 垃圾收集算法&lt;/h3&gt;
+&lt;h4 id=&#34;分代收集理论&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分代收集理论&#34;&gt;#&lt;/a&gt; 分代收集理论&lt;/h4&gt;
+&lt;h4 id=&#34;标记-清除算法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#标记-清除算法&#34;&gt;#&lt;/a&gt; 标记 - 清除算法&lt;/h4&gt;
+&lt;h4 id=&#34;标记-复制算法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#标记-复制算法&#34;&gt;#&lt;/a&gt; 标记 - 复制算法&lt;/h4&gt;
+&lt;h4 id=&#34;标记-整理算法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#标记-整理算法&#34;&gt;#&lt;/a&gt; 标记 - 整理算法&lt;/h4&gt;
+&lt;h3 id=&#34;经典垃圾收集器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#经典垃圾收集器&#34;&gt;#&lt;/a&gt; 经典垃圾收集器&lt;/h3&gt;
+&lt;h4 id=&#34;cms&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cms&#34;&gt;#&lt;/a&gt; CMS&lt;/h4&gt;
+&lt;h4 id=&#34;g1&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#g1&#34;&gt;#&lt;/a&gt; G1&lt;/h4&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://haust-kevin.github.io/2023/10/25/interview-Java-basic/</guid>
             <title>面试指北：Java基础</title>

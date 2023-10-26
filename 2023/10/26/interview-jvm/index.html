@@ -1,0 +1,668 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="沉思录" href="https://haust-kevin.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="沉思录" href="https://haust-kevin.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="沉思录" href="https://haust-kevin.github.io/feed.json" />
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/artitalk"></script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=HarmonyOS%20Sans:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="面试经验,Java,JVM" />
+
+
+<link rel="canonical" href="https://haust-kevin.github.io/2023/10/26/interview-jvm/">
+
+
+
+  <title>
+面试指北：Java 虚拟机 - JVM - 面试指北 |
+Kevin's Blog = 沉思录 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">面试指北：Java 虚拟机
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-10-26 15:39:09">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-10-26T15:39:09+08:00">2023-10-26</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>3.7k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>3 分钟</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Kevin's Blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646849.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646842.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423777.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646852.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653322.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646845.jpg"></li>
+        </ul>
+      </div>
+      
+      <div id="waves">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" />
+            <use xlink:href="#gentle-wave" x="48" y="3" />
+            <use xlink:href="#gentle-wave" x="48" y="5" />
+            <use xlink:href="#gentle-wave" x="48" y="7" />
+          </g>
+        </svg>
+      </div>
+    </header>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" itemprop="item" rel="index" title="分类于 面试指北"><span itemprop="name">面试指北</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/JVM/" itemprop="item" rel="index" title="分类于 JVM"><span itemprop="name">JVM</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://haust-kevin.github.io/2023/10/26/interview-jvm/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="小王学长">
+    <meta itemprop="description" content="古之立大事者，不惟有超世之才，亦必有坚忍不拔之志, 思考未知，追求卓越">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="沉思录">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="内存区域"><a class="anchor" href="#内存区域">#</a> 内存区域</h2>
+<h3 id="java-内存区域划分"><a class="anchor" href="#java-内存区域划分">#</a> Java 内存区域划分</h3>
+<p>Java 虚拟机规范规定的区域分为以下 5 个部分：</p>
+<ul>
+<li><strong>程序计数器（Program Counter Register）</strong>：当前线程所执行的字节码的行号指示器，字节码解析器的工作是通过改变这个计数器的值，来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能，都需要依赖这个计数器来完成；</li>
+<li><strong>Java 虚拟机栈（Java Virtual Machine Stacks）</strong>：用于存储局部变量表、操作数栈、动态链接、方法出口等信息；</li>
+<li><strong>本地方法栈（Native Method Stack）</strong>：与虚拟机栈的作用是一样的，只不过虚拟机栈是服务 Java 方法的，而本地方法栈是为虚拟机调用 Native 方法服务的；</li>
+<li><strong>Java 堆（Java Heap）</strong>：Java 虚拟机中内存最大的一块，是被所有线程共享的，几乎所有的对象实例都在这里分配内存；</li>
+<li><strong>方法区（Methed Area）</strong>：用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译后的代码等数据。<br />
+<img data-src="https://uploadfiles.nowcoder.com/images/20220224/4107856_1645690687338/9602C6323C6B86C4EDA164DB052D8420" alt="" /></li>
+</ul>
+<h4 id="本地内存"><a class="anchor" href="#本地内存">#</a> 本地内存</h4>
+<p>Java 虚拟机在执行的时候会把管理的内存分配成不同的区域，这些区域被称为虚拟机内存，同时，对于虚拟机没有直接管理的物理内存，也有一定的利用，这些被利用却不在虚拟机内存数据区的内存，我们称它为本地内存。<br />
+本地内存不受虚拟机内存参数的限制，只受物理内存容量的限制。<br />
+虽然不受参数的限制，但是如果内存的占用超出物理内存的大小，同样也会报 OOM。</p>
+<p><strong>元空间</strong><br />
+在 Java1.8 中，HotSpot 虚拟机已经将方法区 (永久带) 移除，取而代之的就是元空间。元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。</p>
+<p><strong>直接内存</strong></p>
+<ul>
+<li>直接内存不是虚拟机运行时数据区的一部分，也不是《Java 虚拟机规范》中定义的内存区域。</li>
+<li>直接内存是在 Java 堆外的、直接向系统申请的内存空间。</li>
+<li>来源于 NIO ，通过存在堆中的 DirectByteBuffer 操作 Native 内存。</li>
+<li>通常，访问直接内存的速度会优于 Java 堆，即读写性能高。因此处于性能考虑，读写频繁的场合可能会考虑使用直接内存。Java 的 NIO 库允许 Java 程序使用直接内存，用于数据缓冲区。</li>
+</ul>
+<h4 id="主内存和本地内存的关系"><a class="anchor" href="#主内存和本地内存的关系">#</a> 主内存和本地内存的关系</h4>
+<p>JMM 规定的主内存和本地内存的关系</p>
+<ul>
+<li>所有的变量都存储在主内存中，同时每个线程也有自己独立的工作内存，工作内存中所有的变量内容都是主内存的拷贝。</li>
+<li>线程不能直接读写主内存中的变量，而是只能操作自己工作内存中的变量，再同步到主内存中。即在修改变量之前，要先执行第一步规定的，把数据拷贝到工作内存中再修改，再同步。</li>
+<li>主内存是多个线程共享的，但线程间不共享工作内存，如果线程间需要通信，必须借助主内存中转来完成。</li>
+</ul>
+<p><strong>总结</strong>：所有的共享变量，是存在于主内存中的，每个线程有自己的本地内存，而且线程读写共享数据也是通过本地内存交换的，正是由于有交换的过程，并且这个交换不是实时的，所以才导致了可见性的问题。<strong>volatile</strong> 变量，用来确保将变量的更新操作通知到其他线程。当把变量声明为 volatile 类型后，编译器与运行时都会注意到这个变量是共享的，因此不会将该变量上的操作与其他内存操作一起重排序。volatile 变量不会被缓存在寄存器或者对其他处理器不可见的地方，因此在读取 volatile 类型的变量时总会返回最新写入的值。</p>
+<h3 id="对象内存布局"><a class="anchor" href="#对象内存布局">#</a> 对象内存布局</h3>
+<p>Java 对象保存在堆中时，由以下三部分组成：</p>
+<ul>
+<li><strong>对象头（object header）</strong>：包括了关于堆对象的布局、类型、GC 状态、同步状态和标识哈希码的基本信息。Java 对象和 vm 内部对象都有一个共同的对象头格式。</li>
+<li><strong>实例数据（Instance Data）</strong>：主要是存放类的数据信息，父类的信息，对象字段属性信息。</li>
+<li><strong>对齐填充（Padding）</strong>：为了字节对齐，填充的数据，不是必须的。</li>
+</ul>
+<p>对象头包括两部分：<strong>Mark Word</strong>, <strong>Klass pointer</strong></p>
+<h4 id="mark-word"><a class="anchor" href="#mark-word">#</a> Mark Word</h4>
+<p>用于存储对象自身的运行时数据，如哈希码（HashCode）、GC 分代年龄、锁状态标志、线程持有的锁、偏向线程 ID、偏向时间戳等等。</p>
+<p>Mark Word 在不同的锁状态下存储的内容不同，在 32 位 JVM 中是这么存的<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310261655824.png" alt="" /></p>
+<p><strong>锁标志位（lock）</strong>：区分锁状态，11 时表示对象待 GC 回收状态，只有最后 2 位锁标识 (11) 有效。<br />
+<strong>是否偏向（biased_lock）</strong>：是否偏向锁，由于无锁和偏向锁的锁标识都是 01，没办法区分，这里引入一位的偏向锁标识位。<br />
+<strong>分代年龄（age）</strong>：表示对象被 GC 的次数，当该次数到达阈值的时候，对象就会转移到老年代。<br />
+<strong>对象的 hashcode（hash）</strong>：运行期间调用 System.identityHashCode () 来计算，延迟计算，并把结果赋值到这里。当对象加锁后，计算的结果 31 位不够表示，在偏向锁，轻量锁，重量锁，hashcode 会被转移到 Monitor 中。<br />
+<strong>偏向锁的线程 ID（JavaThread）</strong>：偏向模式的时候，当某个线程持有对象的时候，对象这里就会被置为该线程的 ID。 在后面的操作中，就无需再进行尝试获取锁的动作。<br />
+<strong>epoch</strong>：偏向锁的时间戳。<br />
+<strong>ptr_to_lock_record</strong>：轻量级锁状态下，指向栈中锁记录的指针。锁记录存储的是所之前锁对象的 Mark Word 的拷贝。<br />
+<strong>ptr_to_heavyweight_monitor</strong>：重量级锁状态下，指向对象监视器 Monitor 的指针。如果两个不同的线程同时在同一个对象上竞争，则必须将轻量级锁定升级到 Monitor 以管理等待的线程。在重量级锁定的情况下，JVM 在对象的 ptr_to_heavyweight_monitor 设置指向 Monitor 的指针。</p>
+<h4 id="数据对齐"><a class="anchor" href="#数据对齐">#</a> 数据对齐</h4>
+<p>字段内存对齐的其中一个原因，是让字段只出现在同一 CPU 的缓存行中。如果字段不是对齐的，那么就有可能出现跨缓存行的字段。也就是说，该字段的读取可能需要替换两个缓存行，而该字段的存储也会同时污染两个缓存行。这两种情况对程序的执行效率而言都是不利的。其实对其填充的最终目的是为了计算机高效寻址。</p>
+<h3 id="偏向锁"><a class="anchor" href="#偏向锁">#</a> 偏向锁</h3>
+<h4 id="锁撤销"><a class="anchor" href="#锁撤销">#</a> 锁撤销</h4>
+<p>撤销偏向锁就是将锁对象 oop 的对象头恢复成无锁状态或者膨胀成轻量级锁状态，执行撤销动作的前提是锁对象 oop 的对象头处于偏向锁状态。<br />
+<strong>锁撤销过程</strong><br />
+尝试获取某个偏向锁，如果该偏向锁被某个线程占用了，但是没有关联的 BasicObjectLock ，即实际占用该偏向锁的方法已经退出了，则会将其恢复成无锁状态，然后膨胀成轻量级锁，但是在撤销一定次数后触发批量重偏向（rebasic）的情形下也可能重新获取该偏向锁。如果该偏向锁正在被某个方法所使用，即存在对应的 BasicObjectLock ，则直接将该偏向锁膨胀成轻量级锁。</p>
+<p>在已偏向后调用 Object.hashCode () 方法时，锁定状态下，锁膨胀为重量级锁；非锁定状态下，锁会恢复为无锁状态。</p>
+<h4 id="批量重偏向"><a class="anchor" href="#批量重偏向">#</a> 批量重偏向</h4>
+<p>避免短时间内大量偏向锁的撤销。例如一个线程创建了大量对象并执行了初始的同步操作，后来另一个线程也来将这些对象作为锁对象进行操作，这样会导致大量的偏向锁撤销操作。当执行批量重偏向后，如果原偏向锁持有者线程不再执行同步块，则锁可以偏向于新线程。<br />
+以 class 为单位，为每个 class 维护一个偏向锁撤销计数器，每一次该 class 的对象发生偏向撤销操作时，该计数器 +1，当这个值达到重偏向阈值（默认 20 ）时， JVM 就认为该 class 的偏向锁有问题，因此会进行批量重偏向。每个 class 对象会有一个对应的 epoch 字段，每个处于偏向锁状态对象的 mark word 中也有该字段，其初始值为创建该对象时，class 中的 epoch 的值。每次发生批量重偏向时，就将该值 +1，同时遍历 JVM 中所有线程的栈，找到该 class 所有正处于加锁状态的偏向锁，将其 epoch 字段改为新值。下次获得锁时，发现当前对象的 epoch 值和 class 的 epoch 不相等，那就算当前已经偏向了其他线程，也不会执行撤销操作，而是直接通过 CAS 操作将其 mark word 的 Thread Id 改成当前线程 Id。</p>
+<h4 id="批量锁撤销"><a class="anchor" href="#批量锁撤销">#</a> 批量锁撤销</h4>
+<p>当一个偏向锁如果撤销次数到达 40 的时候就认为这个对象设计的有问题；那么 JVM 会把这个对象所对应的类所有的对象都撤销偏向锁；并且新实例化的对象也是不可偏向的。</p>
+<h4 id="对象计算过哈希值之后还能进入偏向锁状态吗"><a class="anchor" href="#对象计算过哈希值之后还能进入偏向锁状态吗">#</a> 对象计算过哈希值之后还能进入偏向锁状态吗</h4>
+<ul>
+<li>当一个对象已经计算过 identity hashcode，它就无法进入偏向锁状态；</li>
+<li>当一个对象当前正处于偏向锁状态，并且需要计算其 identity hashcode 的话，则它的偏向锁会被撤销，并且锁会膨胀为重量锁；</li>
+<li>重量锁的实现中，ObjectMonitor 类里有字段可以记录非加锁状态下的 mark word ，其中可以存储 identity hash code 的值。或者简单说就是重量锁可以存下 identity hash code。</li>
+</ul>
+<p>Identity hash code 是未被覆写的 java.lang.Object.hashCode ()</p>
+<h2 id="类文件结构"><a class="anchor" href="#类文件结构">#</a> 类文件结构</h2>
+<h2 id="类加载机制"><a class="anchor" href="#类加载机制">#</a> 类加载机制</h2>
+<h2 id="自动内存管理"><a class="anchor" href="#自动内存管理">#</a> 自动内存管理</h2>
+<h3 id="垃圾收集算法"><a class="anchor" href="#垃圾收集算法">#</a> 垃圾收集算法</h3>
+<h4 id="分代收集理论"><a class="anchor" href="#分代收集理论">#</a> 分代收集理论</h4>
+<h4 id="标记-清除算法"><a class="anchor" href="#标记-清除算法">#</a> 标记 - 清除算法</h4>
+<h4 id="标记-复制算法"><a class="anchor" href="#标记-复制算法">#</a> 标记 - 复制算法</h4>
+<h4 id="标记-整理算法"><a class="anchor" href="#标记-整理算法">#</a> 标记 - 整理算法</h4>
+<h3 id="经典垃圾收集器"><a class="anchor" href="#经典垃圾收集器">#</a> 经典垃圾收集器</h3>
+<h4 id="cms"><a class="anchor" href="#cms">#</a> CMS</h4>
+<h4 id="g1"><a class="anchor" href="#g1">#</a> G1</h4>
+
+      <div class="tags">
+          <a href="/tags/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/" rel="tag"><i class="ic i-tag"></i> 面试经验</a>
+          <a href="/tags/Java/" rel="tag"><i class="ic i-tag"></i> Java</a>
+          <a href="/tags/JVM/" rel="tag"><i class="ic i-tag"></i> JVM</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-10-26 18:47:46" itemprop="dateModified" datetime="2023-10-26T18:47:46+08:00">2023-10-26</time>
+  </span>
+  <span id="2023/10/26/interview-jvm/" class="item leancloud_visitors" data-flag-title="面试指北：Java 虚拟机" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>小王学长 <i class="ic i-at"><em>@</em></i>沉思录
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://haust-kevin.github.io/2023/10/26/interview-jvm/" title="面试指北：Java 虚拟机">https://haust-kevin.github.io/2023/10/26/interview-jvm/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/10/25/interview-Java-basic/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646848.jpg" title="面试指北：Java基础">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Java基础</span>
+  <h3>面试指北：Java基础</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F"><span class="toc-number">1.</span> <span class="toc-text"> 内存区域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86"><span class="toc-number">1.1.</span> <span class="toc-text"> Java 内存区域划分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%86%85%E5%AD%98"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 本地内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%86%85%E5%AD%98%E5%92%8C%E6%9C%AC%E5%9C%B0%E5%86%85%E5%AD%98%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 主内存和本地内存的关系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80"><span class="toc-number">1.2.</span> <span class="toc-text"> 对象内存布局</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mark-word"><span class="toc-number">1.2.1.</span> <span class="toc-text"> Mark Word</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 数据对齐</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%8F%E5%90%91%E9%94%81"><span class="toc-number">1.3.</span> <span class="toc-text"> 偏向锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%81%E6%92%A4%E9%94%80"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 锁撤销</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E9%87%8D%E5%81%8F%E5%90%91"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 批量重偏向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E9%94%81%E6%92%A4%E9%94%80"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 批量锁撤销</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E8%AE%A1%E7%AE%97%E8%BF%87%E5%93%88%E5%B8%8C%E5%80%BC%E4%B9%8B%E5%90%8E%E8%BF%98%E8%83%BD%E8%BF%9B%E5%85%A5%E5%81%8F%E5%90%91%E9%94%81%E7%8A%B6%E6%80%81%E5%90%97"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 对象计算过哈希值之后还能进入偏向锁状态吗</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text"> 类文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text"> 类加载机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text"> 自动内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text"> 垃圾收集算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E4%BB%A3%E6%94%B6%E9%9B%86%E7%90%86%E8%AE%BA"><span class="toc-number">4.1.1.</span> <span class="toc-text"> 分代收集理论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text"> 标记 - 清除算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0-%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.3.</span> <span class="toc-text"> 标记 - 复制算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.4.</span> <span class="toc-text"> 标记 - 整理算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.2.</span> <span class="toc-text"> 经典垃圾收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cms"><span class="toc-number">4.2.1.</span> <span class="toc-text"> CMS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#g1"><span class="toc-number">4.2.2.</span> <span class="toc-text"> G1</span></a></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/10/26/interview-jvm/" rel="bookmark" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="小王学长"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">小王学长</p>
+  <div class="description" itemprop="description">思考未知，追求卓越</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">10</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">10</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">11</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhdXN0LUtldmlu" title="https:&#x2F;&#x2F;github.com&#x2F;haust-Kevin"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS93YW5nLWRpbmctYmFuZy05Ng==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;wang-ding-bang-96"><i class="ic i-zhihu"></i></span>
+      <a href="/about/about-me" title="&#x2F;about&#x2F;about-me" class="item about"><i class="ic i-address-card"></i></a>
+      <span class="exturl item email" data-url="bWFpbHRvOjMzNjQ5MTc5OTBAcXEuY29t" title="mailto:3364917990@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item bilibili" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vNDgxNzgwMTcw" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;481780170"><i class="ic i-bilibili"></i></span>
+      <span class="exturl item qq" data-url="aHR0cDovL3dwYS5xcS5jb20vbXNncmQ/dj0zJnVpbj0zMzY0OTE3OTkwJnNpdGU9cXEmbWVudT15ZXM=" title="http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;3364917990&amp;site&#x3D;qq&amp;menu&#x3D;yes"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="/links/friends/" rel="section"><i class="ic i-link"></i>链接</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/links/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/links/recommend/" rel="section"><i class="ic i-magic"></i>推荐</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-user"></i>关于</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/about/about-me/" rel="section"><i class="ic i-address-card"></i>博主</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/about/about-site/" rel="section"><i class="ic i-cloud"></i>本站</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/moments/" rel="section"><i class="ic i-pen"></i>说说</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
+</div>
+
+    <span><a href="/2023/08/22/%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java%E5%9F%BA%E7%A1%80/" title="分类于 Java基础">Java基础</a>
+</div>
+
+    <span><a href="/2023/10/25/interview-Java-basic/" title="面试指北：Java基础">面试指北：Java基础</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="分类于 计算机网络">计算机网络</a>
+</div>
+
+    <span><a href="/2023/10/24/interview-network/" title="面试指北：计算机网络">面试指北：计算机网络</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" title="分类于 好文摘抄">好文摘抄</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" title="分类于 小说">小说</a>
+</div>
+
+    <span><a href="/2023/08/20/%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/04/sgs-wallpaper/" title="三国杀官方原画">三国杀官方原画</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/17/brew-replace-download-source/" title="HomeBrew：brew更换下载源">HomeBrew：brew更换下载源</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/19/docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/JVM/" title="分类于 JVM">JVM</a>
+</div>
+
+    <span><a href="/2023/10/26/interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="分类于 数据结构与算法">数据结构与算法</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 算法基础">算法基础</a>
+</div>
+
+    <span><a href="/2023/10/17/bubble-sort/" title="冒泡排序、鸡尾酒排序、梳子排序">冒泡排序、鸡尾酒排序、梳子排序</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/08/15/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">小王学长 @ Kevin's Blog</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="站点总字数">35k 字</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="站点阅读时长">32 分钟</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/10/26/interview-jvm/',
+    favicon: {
+      show: "要每天开心哦 ^_^",
+      hide: "等你回来呦~"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

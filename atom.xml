@@ -339,7 +339,7 @@ CMS 使用 增量更新的方式解决「对象消失」的问题。&lt;/p&gt;
 &lt;h5 id=&#34;缺点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#缺点&#34;&gt;#&lt;/a&gt; 缺点&lt;/h5&gt;
 &lt;ul&gt;
 &lt;li&gt;对 CPU 资源太敏感，虽然在并发标记阶段用户线程没有暂停，但是由于收集器占用了一部分 CPU 资源，导致程序的响应速度变慢。&lt;/li&gt;
-&lt;li&gt;无法处理浮动垃圾。原因在于 CMS 是以获取最短停顿时间为目标的，自然不可能在一次垃圾处理过程中花费太多时间，只好在下一次 GC 的时候处理。&lt;/li&gt;
+&lt;li&gt;无法处理浮动垃圾。原因在于 CMS 是以获取最短停顿时间为目标的，自然不可能在一次垃圾处理过程中花费太多时间，只好在下一次 GC 的时候处理。有可能出现「Con-current Mode Failure」失败进而导致另一次完全「Stop The World」的 Full GC 的产生。&lt;/li&gt;
 &lt;li&gt;由于 CMS 收集器是基于「标记 - 清除」算法的，前面说过这个算法会导致大量的空间碎片的产生，一旦空间碎片过多，大对象就没办法给其分配内存，那么即使内存还有剩余空间容纳这个大对象，但是却没有连续的足够大的空间放下这个对象，所以虚拟机就会触发一次 Full GC。Full GC 会进行一次碎片整理。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;g1-garbage-first&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#g1-garbage-first&#34;&gt;#&lt;/a&gt; G1 (Garbage First)&lt;/h4&gt;

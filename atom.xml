@@ -371,7 +371,7 @@ CMS 使用 增量更新的方式解决「对象消失」的问题。&lt;/p&gt;
     </entry>
     <entry>
         <id>https://haust-kevin.github.io/2023/10/25/interview-Java-basic/</id>
-        <title>面试指北：Java基础</title>
+        <title>面试指北：Java 基础</title>
         <link rel="alternate" href="https://haust-kevin.github.io/2023/10/25/interview-Java-basic/"/>
         <content type="html">&lt;h2 id=&#34;面向对象&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#面向对象&#34;&gt;#&lt;/a&gt; 面向对象&lt;/h2&gt;
 &lt;h3 id=&#34;面向对象的三大特征&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#面向对象的三大特征&#34;&gt;#&lt;/a&gt; 面向对象的三大特征&lt;/h3&gt;
@@ -1625,8 +1625,8 @@ DNS 解析：将域名解析成 IP 地址&lt;br /&gt;
 &lt;/div&gt;
 </content>
         <category term="Linux" scheme="https://haust-kevin.github.io/categories/Linux/" />
-        <category term="docker" scheme="https://haust-kevin.github.io/tags/docker/" />
         <category term="linux" scheme="https://haust-kevin.github.io/tags/linux/" />
+        <category term="docker" scheme="https://haust-kevin.github.io/tags/docker/" />
         <updated>2023-08-19T06:33:40.000Z</updated>
     </entry>
     <entry>
@@ -1648,8 +1648,8 @@ DNS 解析：将域名解析成 IP 地址&lt;br /&gt;
 &lt;/div&gt;
 </content>
         <category term="Linux" scheme="https://haust-kevin.github.io/categories/Linux/" />
-        <category term="linux" scheme="https://haust-kevin.github.io/tags/linux/" />
         <category term="brew" scheme="https://haust-kevin.github.io/tags/brew/" />
+        <category term="linux" scheme="https://haust-kevin.github.io/tags/linux/" />
         <updated>2023-08-17T07:48:34.000Z</updated>
     </entry>
     <entry>

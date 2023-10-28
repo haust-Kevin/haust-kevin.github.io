@@ -374,7 +374,7 @@ CMS 使用 增量更新的方式解决「对象消失」的问题。&lt;/p&gt;
         </item>
         <item>
             <guid isPermalink="true">https://haust-kevin.github.io/2023/10/25/interview-Java-basic/</guid>
-            <title>面试指北：Java基础</title>
+            <title>面试指北：Java 基础</title>
             <link>https://haust-kevin.github.io/2023/10/25/interview-Java-basic/</link>
             <category term="面试指北" scheme="https://haust-kevin.github.io/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" />
             <category term="Java基础" scheme="https://haust-kevin.github.io/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java%E5%9F%BA%E7%A1%80/" />
@@ -1608,8 +1608,8 @@ DNS 解析：将域名解析成 IP 地址&lt;br /&gt;
             <title>Docker：容器备份</title>
             <link>https://haust-kevin.github.io/2023/08/19/docker-container-2-image/</link>
             <category term="Linux" scheme="https://haust-kevin.github.io/categories/Linux/" />
-            <category term="docker" scheme="https://haust-kevin.github.io/tags/docker/" />
             <category term="linux" scheme="https://haust-kevin.github.io/tags/linux/" />
+            <category term="docker" scheme="https://haust-kevin.github.io/tags/docker/" />
             <pubDate>Sat, 19 Aug 2023 14:33:40 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note primary&#34;&gt;
 &lt;p&gt;将 docker 容器打包成镜像并在另一台服务器上运行&lt;/p&gt;
@@ -1637,8 +1637,8 @@ DNS 解析：将域名解析成 IP 地址&lt;br /&gt;
             <title>HomeBrew：brew更换下载源</title>
             <link>https://haust-kevin.github.io/2023/08/17/brew-replace-download-source/</link>
             <category term="Linux" scheme="https://haust-kevin.github.io/categories/Linux/" />
-            <category term="linux" scheme="https://haust-kevin.github.io/tags/linux/" />
             <category term="brew" scheme="https://haust-kevin.github.io/tags/brew/" />
+            <category term="linux" scheme="https://haust-kevin.github.io/tags/linux/" />
             <pubDate>Thu, 17 Aug 2023 15:48:34 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note primary&#34;&gt;
 &lt;p&gt;brew 更换下载镜像以提升下载速度&lt;/p&gt;

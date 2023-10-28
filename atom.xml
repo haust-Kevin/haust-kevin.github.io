@@ -27,7 +27,7 @@
     </entry>
     <entry>
         <id>https://haust-kevin.github.io/2023/10/28/interview-db-mysql/</id>
-        <title>面试指北：MySql 数据库</title>
+        <title>面试指北：MySQL 数据库</title>
         <link rel="alternate" href="https://haust-kevin.github.io/2023/10/28/interview-db-mysql/"/>
         <content type="html">&lt;h2 id=&#34;事务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事务&#34;&gt;#&lt;/a&gt; 事务&lt;/h2&gt;
 &lt;p&gt;数据库中的事务是指对数据库执行一批操作，在同一个事务当中，这些操作最终要么全部执行成功，要么全部失败，不会存在部分成功的情况。&lt;/p&gt;

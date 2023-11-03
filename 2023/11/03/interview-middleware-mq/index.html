@@ -26,12 +26,16 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
-
-<link rel="canonical" href="https://haust-kevin.github.io/tags/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/">
-
+  <meta name="keywords" content="八股文,消息队列,Kafka" />
 
 
-  <title>标签：面试经验 | Kevin's Blog = 沉思录 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</title>
+<link rel="canonical" href="https://haust-kevin.github.io/2023/11/03/interview-middleware-mq/">
+
+
+
+  <title>
+interview-middleware-mq - 中间件 - 面试指北 |
+Kevin's Blog = 沉思录 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
   <div id="loading">
@@ -58,9 +62,34 @@
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">
-    包含标签"面试经验"的文章
+  <h1 itemprop="name headline">interview-middleware-mq
   </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-11-03 19:58:57">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-11-03T19:58:57+08:00">2023-11-03</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>0</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>1 分钟</span>
+  </span>
+</div>
+
 
           </div>
         </div>
@@ -90,12 +119,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646860.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040032.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653320.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040031.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040035.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646859.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040030.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646841.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646856.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653322.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040045.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040022.jpg"></li>
         </ul>
       </div>
       
@@ -117,124 +146,111 @@
       <div class="inner">
         <div id="main" class="pjax">
           
-  <div class="collapse wrap">
-    <h2 class="item header">
-      <a href="/tags">全部</a>
-      <small>/</small>
-      面试经验
-      <small>标签</small>
-    </h2>
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" itemprop="item" rel="index" title="分类于 面试指北"><span itemprop="name">面试指北</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="item" rel="index" title="分类于 中间件"><span itemprop="name">中间件</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
 
-        <article class="item normal" itemscope itemtype="http://schema.org/Article">
-          <div class="meta">
-            <time itemprop="dateCreated"
-                  datetime="2023-11-01T18:02:28+08:00"
-                  content="2023-11-01">
-              2023-11-01
-            </time>
-                <span><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Web/">Web</a></span>
-          </div>
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://haust-kevin.github.io/2023/11/03/interview-middleware-mq/">
 
-          <div class="title">
-              <a href="/2023/11/01/interview-web-spring/" itemprop="url">
-                <span itemprop="name">面试指北：Spring</span>
-              </a>
-          </div>
-        </article>
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="小王学长">
+    <meta itemprop="description" content="古之立大事者，不惟有超世之才，亦必有坚忍不拔之志, 思考未知，追求卓越">
+  </span>
 
-        <article class="item normal" itemscope itemtype="http://schema.org/Article">
-          <div class="meta">
-            <time itemprop="dateCreated"
-                  datetime="2023-10-28T15:01:27+08:00"
-                  content="2023-10-28">
-              2023-10-28
-            </time>
-                <span><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span>
-          </div>
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="沉思录">
+  </span>
 
-          <div class="title">
-              <a href="/2023/10/28/interview-db-redis/" itemprop="url">
-                <span itemprop="name">面试指北：Redis 数据库</span>
-              </a>
-          </div>
-        </article>
+  <div class="body md" itemprop="articleBody">
+    
 
-        <article class="item normal" itemscope itemtype="http://schema.org/Article">
-          <div class="meta">
-            <time itemprop="dateCreated"
-                  datetime="2023-10-28T14:47:35+08:00"
-                  content="2023-10-28">
-              2023-10-28
-            </time>
-                <span><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span>
-          </div>
-
-          <div class="title">
-              <a href="/2023/10/28/interview-db-mysql/" itemprop="url">
-                <span itemprop="name">面试指北：MySQL 数据库</span>
-              </a>
-          </div>
-        </article>
-
-        <article class="item normal" itemscope itemtype="http://schema.org/Article">
-          <div class="meta">
-            <time itemprop="dateCreated"
-                  datetime="2023-10-26T15:39:09+08:00"
-                  content="2023-10-26">
-              2023-10-26
-            </time>
-                <span><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/JVM/">JVM</a></span>
-          </div>
-
-          <div class="title">
-              <a href="/2023/10/26/interview-jvm/" itemprop="url">
-                <span itemprop="name">面试指北：Java 虚拟机</span>
-              </a>
-          </div>
-        </article>
-
-        <article class="item normal" itemscope itemtype="http://schema.org/Article">
-          <div class="meta">
-            <time itemprop="dateCreated"
-                  datetime="2023-10-25T19:34:51+08:00"
-                  content="2023-10-25">
-              2023-10-25
-            </time>
-                <span><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a></span>
-          </div>
-
-          <div class="title">
-              <a href="/2023/10/25/interview-Java-basic/" itemprop="url">
-                <span itemprop="name">面试指北：Java 基础</span>
-              </a>
-          </div>
-        </article>
-
-        <article class="item normal" itemscope itemtype="http://schema.org/Article">
-          <div class="meta">
-            <time itemprop="dateCreated"
-                  datetime="2023-10-24T18:13:56+08:00"
-                  content="2023-10-24">
-              2023-10-24
-            </time>
-                <span><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span>
-          </div>
-
-          <div class="title">
-              <a href="/2023/10/24/interview-network/" itemprop="url">
-                <span itemprop="name">面试指北：计算机网络</span>
-              </a>
-          </div>
-        </article>
+    
+      <div class="tags">
+          <a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/" rel="tag"><i class="ic i-tag"></i> 八股文</a>
+          <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" rel="tag"><i class="ic i-tag"></i> 消息队列</a>
+          <a href="/tags/Kafka/" rel="tag"><i class="ic i-tag"></i> Kafka</a>
+      </div>
   </div>
 
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-11-03 20:01:36" itemprop="dateModified" datetime="2023-11-03T20:01:36+08:00">2023-11-03</time>
+  </span>
+  <span id="2023/11/03/interview-middleware-mq/" class="item leancloud_visitors" data-flag-title="interview-middleware-mq" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>小王学长 <i class="ic i-at"><em>@</em></i>沉思录
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://haust-kevin.github.io/2023/11/03/interview-middleware-mq/" title="interview-middleware-mq">https://haust-kevin.github.io/2023/11/03/interview-middleware-mq/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
   
 
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/11/01/interview-web-spring/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646849.jpg" title="面试指北：Spring">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Web</span>
+  <h3>面试指北：Spring</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
 
 
         </div>
         <div id="sidebar">
           
+
 <div class="inner">
 
   <div class="panels">
@@ -242,6 +258,9 @@
       <div class="contents panel pjax" data-title="文章目录">
       </div>
       <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/11/03/interview-middleware-mq/" rel="bookmark" title="interview-middleware-mq">interview-middleware-mq</a></li>
+        </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
         <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -254,7 +273,7 @@
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">13</span>
+        <span class="count">14</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -266,7 +285,7 @@
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">17</span>
+        <span class="count">19</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -369,6 +388,7 @@
   </ul>
 </div>
 
+
         </div>
         <div class="dimmer"></div>
       </div>
@@ -380,16 +400,6 @@
 <div class="rpost pjax">
   <h2>随机文章</h2>
   <ul>
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
-</div>
-
-    <span><a href="/2023/08/22/%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
-  </li>
-
       
   <li class="item">
     
@@ -408,6 +418,64 @@
 <div class="breadcrumb">
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
 <i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/26/interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/25/interview-Java-basic/" title="面试指北：Java 基础">面试指北：Java 基础</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Web/" title="分类于 Web">Web</a>
+</div>
+
+    <span><a href="/2023/11/01/interview-web-spring/" title="面试指北：Spring">面试指北：Spring</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/17/brew-replace-download-source/" title="HomeBrew：brew 更换下载源">HomeBrew：brew 更换下载源</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="分类于 计算机网络">计算机网络</a>
 </div>
 
@@ -418,33 +486,10 @@
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java-%E5%9F%BA%E7%A1%80/" title="分类于 Java 基础">Java 基础</a>
+<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
 </div>
 
-    <span><a href="/2023/10/25/interview-Java-basic/" title="面试指北：Java 基础">面试指北：Java 基础</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2023/09/04/sgs-wallpaper/" title="三国杀官方原画">三国杀官方原画</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/JVM/" title="分类于 JVM">JVM</a>
-</div>
-
-    <span><a href="/2023/10/26/interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
+    <span><a href="/2023/08/22/%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
   </li>
 
       
@@ -465,32 +510,10 @@
 <div class="breadcrumb">
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Web/" title="分类于 Web">Web</a>
-</div>
-
-    <span><a href="/2023/11/01/interview-web-spring/" title="面试指北：Spring">面试指北：Spring</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/2023/08/19/docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
-<i class="ic i-angle-right"></i>
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 </div>
 
-    <span><a href="/2023/10/28/interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+    <span><a href="/2023/10/28/interview-db-redis/" title="面试指北：Redis 数据库">面试指北：Redis 数据库</a></span>
   </li>
 
   </ul>
@@ -533,7 +556,7 @@
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: 'tags/面试经验/',
+    path: '2023/11/03/interview-middleware-mq/',
     favicon: {
       show: "要每天开心哦 ^_^",
       hide: "等你回来呦~"

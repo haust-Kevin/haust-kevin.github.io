@@ -15,9 +15,81 @@
     <category term="Java" />
     <entry>
         <id>https://haust-kevin.github.io/2023/11/03/interview-middleware-mq/</id>
-        <title>interview-middleware-mq</title>
+        <title>面试指北：消息队列</title>
         <link rel="alternate" href="https://haust-kevin.github.io/2023/11/03/interview-middleware-mq/"/>
-        <content type="html"></content>
+        <content type="html">&lt;h2 id=&#34;mq&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mq&#34;&gt;#&lt;/a&gt; MQ&lt;/h2&gt;
+&lt;h3 id=&#34;mq-的作用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mq-的作用&#34;&gt;#&lt;/a&gt; MQ 的作用&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;解耦&lt;/strong&gt;：将系统按照不同的业务功能拆分出来，消息生产者只管把消息发布到 MQ 中而不用管谁来取，消息消费者只管从 MQ 中取消息而不管是谁发布的。消息生产者和消费者都不知道对方的存在；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;异步&lt;/strong&gt;：主流程只需要完成业务的核心功能；对于业务非核心功能，将消息放入到消息队列之中进行异步处理，减少请求的等待，提高系统的总体性能；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;削峰 / 限流&lt;/strong&gt;：将所有请求都写到消息队列中，消费服务器按照自身能够处理的请求数从队列中拿到请求，防止请求并发过高将系统搞崩溃；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mq-的缺点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mq-的缺点&#34;&gt;#&lt;/a&gt; MQ 的缺点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;系统可用性降低&lt;/strong&gt;：系统引用的外部依赖越多，越容易挂掉，如果 MQ 服务器挂掉，那么可能会导致整套系统崩溃。这时就要考虑如何保证消息队列的高可用了。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;系统复杂度提高&lt;/strong&gt;：加入消息队列之后，需要保证消息没有重复消费、如何处理消息丢失的情况、如何保证消息传递的有序性等问题。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据一致性问题&lt;/strong&gt;：A 系统处理完了直接返回成功了，使用者都以为你这个请求就成功了；但是问题是，要是 BCD 三个系统那里，BD 两个系统写库成功了，结果 C 系统写库失败了，就会导致数据不一致了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;常见-mq-的对比&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#常见-mq-的对比&#34;&gt;#&lt;/a&gt; 常见 MQ 的对比&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;特性&lt;/th&gt;
+&lt;th&gt;ActiveMQ&lt;/th&gt;
+&lt;th&gt;RabbitMQ&lt;/th&gt;
+&lt;th&gt;RocketMQ&lt;/th&gt;
+&lt;th&gt;Kafka&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;单机吞吐量&lt;/td&gt;
+&lt;td&gt;万级，比 RocketMQ、Kafka 低一个数量级&lt;/td&gt;
+&lt;td&gt;同 ActiveMQ&lt;/td&gt;
+&lt;td&gt;10 万级，支撑高吞吐&lt;/td&gt;
+&lt;td&gt;10 万级，高吞吐，一般配合大数据类的系统来进行实时数据计算、日志采集等场景&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;topic 数量对吞吐量的影响&lt;/td&gt;
+&lt;td colspan=&#34;2&#34;&gt;&lt;/td&gt;
+&lt;td&gt;topic 可以达到几百 / 几千的级别，吞吐量会有较小幅度的下降，这是 RocketMQ 的一大优势，在同等机器下，可以支撑大量的 topic&lt;/td&gt;
+&lt;td&gt;topic 从几十到几百个时候，吞吐量会大幅度下降，在同等机器下，Kafka 尽量保证 topic 数量不要过多，如果要支撑大规模的 topic，需要增加更多的机器资源&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;时效性&lt;/td&gt;
+&lt;td&gt;ms 级&lt;/td&gt;
+&lt;td&gt;微秒级，这是 RabbitMQ 的一大特点，延迟最低&lt;/td&gt;
+&lt;td&gt;ms 级&lt;/td&gt;
+&lt;td&gt;延迟在 ms 级以内&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;可用性&lt;/td&gt;
+&lt;td&gt;高，基于主从架构实现高可用&lt;/td&gt;
+&lt;td&gt;同 ActiveMQ&lt;/td&gt;
+&lt;td&gt;非常高，分布式架构&lt;/td&gt;
+&lt;td&gt;非常高，分布式，一个数据多个副本，少数机器宕机，不会丢失数据，不会导致不可用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;消息可靠性&lt;/td&gt;
+&lt;td&gt;有较低的概率丢失数据&lt;/td&gt;
+&lt;td&gt;基本不丢&lt;/td&gt;
+&lt;td&gt;经过参数优化配置，可以做到 0 丢失&lt;/td&gt;
+&lt;td&gt;同 RocketMQ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;功能支持&lt;/td&gt;
+&lt;td&gt;MQ 领域的功能极其完备&lt;/td&gt;
+&lt;td&gt;基于 erlang 开发，并发能力很强，性能极好，延时很低&lt;/td&gt;
+&lt;td&gt;MQ 功能较为完善，还是分布式的，扩展性好&lt;/td&gt;
+&lt;td&gt;功能较为简单，主要支持简单的 MQ 功能，在大数据领域的实时计算以及日志采集被大规模使用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;如何保证消息不被重复消费&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#如何保证消息不被重复消费&#34;&gt;#&lt;/a&gt; 如何保证消息不被重复消费&lt;/h3&gt;
+&lt;h3 id=&#34;如何保证消息不丢失进行可靠性传输&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#如何保证消息不丢失进行可靠性传输&#34;&gt;#&lt;/a&gt; 如何保证消息不丢失，进行可靠性传输&lt;/h3&gt;
+&lt;h3 id=&#34;如何保证消息的有序性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#如何保证消息的有序性&#34;&gt;#&lt;/a&gt; 如何保证消息的有序性&lt;/h3&gt;
+&lt;h3 id=&#34;如何处理消息堆积情况&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#如何处理消息堆积情况&#34;&gt;#&lt;/a&gt; 如何处理消息堆积情况&lt;/h3&gt;
+</content>
         <category term="面试指北" scheme="https://haust-kevin.github.io/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" />
         <category term="中间件" scheme="https://haust-kevin.github.io/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" />
         <category term="八股文" scheme="https://haust-kevin.github.io/tags/%E5%85%AB%E8%82%A1%E6%96%87/" />
@@ -1850,7 +1922,7 @@ DNS 解析：将域名解析成 IP 地址&lt;br /&gt;
 &lt;/ol&gt;
 </content>
         <category term="面试指北" scheme="https://haust-kevin.github.io/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" />
-        <category term="计算机网络" scheme="https://haust-kevin.github.io/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" />
+        <category term="计算机基础" scheme="https://haust-kevin.github.io/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" />
         <category term="八股文" scheme="https://haust-kevin.github.io/tags/%E5%85%AB%E8%82%A1%E6%96%87/" />
         <category term="计算机网络" scheme="https://haust-kevin.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" />
         <updated>2023-10-24T10:13:56.000Z</updated>

@@ -18,6 +18,21 @@
         <title>面试指北：消息队列</title>
         <link rel="alternate" href="https://haust-kevin.github.io/2023/11/03/interview-middleware-mq/"/>
         <content type="html">&lt;h2 id=&#34;mq&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mq&#34;&gt;#&lt;/a&gt; MQ&lt;/h2&gt;
+&lt;h3 id=&#34;常见-mq-模型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#常见-mq-模型&#34;&gt;#&lt;/a&gt; 常见 MQ 模型&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;队列模型&lt;/strong&gt;&lt;br /&gt;
+最简单的消息模型，队列模式，用阻塞队列实现的生产者消费者模式，也可以看作一个队列模型的消息队列。&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311051512755.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;strong&gt;发布 - 订阅模型&lt;/strong&gt;&lt;br /&gt;
+队列模式也可以有多个生产者消费者，但是同一个消息只能被一个消费者消费，为了解决这个为题，演化出了另一种消息模型 ** 发布 - 订阅模型（Publish-Subscribe Pattern）** 也被称为主题模型。&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311051515770.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+在发布 - 订阅模型中，消息的发送方称为发布者（Publisher），消息的接收方称为订阅者（Subscriber），服务端存放消息的容器称为主题（Topic）。发布者将消息发送到主题中，订阅者在接收消息之前需要先 “订阅主题”。每个订阅者都可以接收到主题的所有消息。&lt;/p&gt;
+&lt;h3 id=&#34;kafka&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#kafka&#34;&gt;#&lt;/a&gt; Kafka&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;消息模型&lt;/strong&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311051521839.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;strong&gt;服务架构&lt;/strong&gt;&lt;br /&gt;
+ partition：kafka Topic 可以划分为多个 partition，分布在不同的 Broker 上，天然分布式，每个 patition 可以设置副本，其中主 partition 为 leader，副本 partition 为 follower，follower 和 leader 在不同的机器，消息的接收和发送都是 leader 负责的，follower partition 会从 leader 同步数据，如果 leader 所在的 borker 挂了，会从 follower 中选举一个成为 leader，高可用。&lt;/p&gt;
+&lt;p&gt;Consumer Group：在 kafka 的 Topic 的订阅单位也是 Consumer Group，每个消费组可以收到完整的消息，但是同一个分区的数据只能被消费者组中的某一个消费者消费，分区和消费者关系是多对一。&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311051518428.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;mq-的作用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mq-的作用&#34;&gt;#&lt;/a&gt; MQ 的作用&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;解耦&lt;/strong&gt;：将系统按照不同的业务功能拆分出来，消息生产者只管把消息发布到 MQ 中而不用管谁来取，消息消费者只管从 MQ 中取消息而不管是谁发布的。消息生产者和消费者都不知道对方的存在；&lt;/li&gt;

@@ -39,8 +39,8 @@
 &lt;p&gt;&lt;strong&gt;消息模型&lt;/strong&gt;&lt;br /&gt;
 &lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311051521839.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
 &lt;strong&gt;服务架构&lt;/strong&gt;&lt;br /&gt;
- partition：kafka Topic 可以划分为多个 partition，分布在不同的 Broker 上，天然分布式，每个 patition 可以设置副本，其中主 partition 为 leader，副本 partition 为 follower，follower 和 leader 在不同的机器，消息的接收和发送都是 leader 负责的，follower partition 会从 leader 同步数据，如果 leader 所在的 borker 挂了，会从 follower 中选举一个成为 leader，高可用。&lt;/p&gt;
-&lt;p&gt;Consumer Group：在 kafka 的 Topic 的订阅单位也是 Consumer Group，每个消费组可以收到完整的消息，但是同一个分区的数据只能被消费者组中的某一个消费者消费，分区和消费者关系是多对一。&lt;br /&gt;
+&lt;strong&gt; partition&lt;/strong&gt;：kafka Topic 可以划分为多个 partition，分布在不同的 Broker 上，天然分布式，每个 patition 可以设置副本，其中主 partition 为 leader，副本 partition 为 follower，follower 和 leader 在不同的机器，消息的接收和发送都是 leader 负责的，follower partition 会从 leader 同步数据，如果 leader 所在的 borker 挂了，会从 follower 中选举一个成为 leader，高可用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Consumer Group&lt;/strong&gt;：在 kafka 的 Topic 的订阅单位也是 Consumer Group，每个消费组可以收到完整的消息，但是同一个分区的数据只能被消费者组中的某一个消费者消费，分区和消费者关系是多对一。&lt;br /&gt;
 &lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311051518428.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;mq-的作用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mq-的作用&#34;&gt;#&lt;/a&gt; MQ 的作用&lt;/h3&gt;
 &lt;ul&gt;

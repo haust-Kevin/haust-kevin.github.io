@@ -37,7 +37,7 @@
 &amp;quot;312&amp;quot;&lt;br /&gt;
 &amp;quot;321&amp;quot;&lt;br /&gt;
  给定 n 和 k，返回第 k 个排列。&lt;/p&gt;
-&lt;h3 id=&#34;examples&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#examples&#34;&gt;#&lt;/a&gt; Examples&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Examples&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;示例 1：&lt;br /&gt;

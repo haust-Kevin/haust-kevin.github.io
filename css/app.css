@@ -1519,6 +1519,17 @@ main >.inner {
   text-shadow: 0rem 0.2rem 0.3rem rgba(0,0,0,0.5);
   color: var(--header-text-color);
 }
+#header::before {
+  background: url("https://cdn.jsdelivr.net/gh/lavender816/CDN@1.8/img/dot.jpg");
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -4;
+  background-attachment: fixed;
+}
 #header a:hover {
   color: currentColor;
 }
@@ -1803,7 +1814,7 @@ main >.inner {
   padding: 3rem 5rem 0;
   text-align: center;
   width: 100%;
-  height: 50vh;
+  height: 80vh;
   min-height: 10rem;
 }
 #brand.affix {
@@ -2009,10 +2020,11 @@ main >.inner {
 .waves {
   width: 100%;
   height: 15vh;
-  margin-bottom: -0.6875rem;
   min-height: 3.125rem;
   max-height: 9.375rem;
-  position: relative;
+  position: absolute;
+  z-index: 4;
+  bottom: 0;
 }
 @media (max-width: 767px) {
   .waves {

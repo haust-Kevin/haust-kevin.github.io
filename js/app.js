@@ -1618,6 +1618,10 @@ const goToCommentHandle = function () {
   pageScroll($('#comments'));
 }
 
+const goToContentHandle = function () {
+  pageScroll($('#main'));
+}
+
 const menuActive = function () {
   $.each('.menu .item:not(.title)', function (element) {
     var target = element.child('a[href]');

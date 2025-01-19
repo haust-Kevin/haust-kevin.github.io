@@ -1357,7 +1357,7 @@ const positionInit = function(comment) {
     target = $(decodeURI(anchor))
   else {
     // 首页wave初始位置设定
-    target = CONFIG.auto_scroll ? parseInt(store.get(LOCAL_URL)) : parseInt( window.innerHeight * 0.3)
+    target = CONFIG.auto_scroll ? parseInt(store.get(LOCAL_URL)) : parseInt( window.innerHeight * 0.6)
   }
 
   if(target) {

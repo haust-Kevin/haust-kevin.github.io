@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haust-kevin.github.io</id>
     <title>沉思录</title>
-    <subtitle>古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</subtitle>
+    <subtitle>Talk is cheap. Show me the code.</subtitle>
     <icon>https://haust-kevin.github.io/images/favicon.ico</icon>
     <link href="https://haust-kevin.github.io" />
     <author>

@@ -1,0 +1,728 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="沉思录" href="https://haust-kevin.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="沉思录" href="https://haust-kevin.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="沉思录" href="https://haust-kevin.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=HarmonyOS%20Sans:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="八股文,消息队列,Kafka" />
+
+
+<link rel="canonical" href="https://haust-kevin.github.io/2023/11/03/2023-11-interview-middleware-mq/">
+
+
+
+  <title>
+面试指北：消息队列 - 中间件 - 面试指北 |
+Kevin's Blog = 沉思录 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">面试指北：消息队列
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-11-03 19:58:57">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-11-03T19:58:57+08:00">2023-11-03</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>3.1k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>3 分钟</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Kevin's Blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202401242041666.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646860.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423782.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040033.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202405112157420.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653322.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" itemprop="item" rel="index" title="分类于 面试指北"><span itemprop="name">面试指北</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="item" rel="index" title="分类于 中间件"><span itemprop="name">中间件</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://haust-kevin.github.io/2023/11/03/2023-11-interview-middleware-mq/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="小王学长">
+    <meta itemprop="description" content="古之立大事者，不惟有超世之才，亦必有坚忍不拔之志, 思考未知，追求卓越">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="沉思录">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="mq"><a class="anchor" href="#mq">#</a> MQ</h2>
+<h3 id="常见-mq-模型"><a class="anchor" href="#常见-mq-模型">#</a> 常见 MQ 模型</h3>
+<p><strong>队列模型</strong><br />
+最简单的消息模型，队列模式，用阻塞队列实现的生产者消费者模式，也可以看作一个队列模型的消息队列。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311051512755.png" alt="" /><br />
+<strong>发布 - 订阅模型</strong><br />
+队列模式也可以有多个生产者消费者，但是同一个消息只能被一个消费者消费，为了解决这个为题，演化出了另一种消息模型 ** 发布 - 订阅模型（Publish-Subscribe Pattern）** 也被称为主题模型。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311051515770.png" alt="" /><br />
+在发布 - 订阅模型中，消息的发送方称为发布者（Publisher），消息的接收方称为订阅者（Subscriber），服务端存放消息的容器称为主题（Topic）。发布者将消息发送到主题中，订阅者在接收消息之前需要先 “订阅主题”。每个订阅者都可以接收到主题的所有消息。</p>
+<h3 id="kafka"><a class="anchor" href="#kafka">#</a> Kafka</h3>
+<p><strong>消息模型</strong><br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311051521839.png" alt="" /><br />
+<strong>服务架构</strong><br />
+<strong> partition</strong>：kafka Topic 可以划分为多个 partition，分布在不同的 Broker 上，天然分布式，每个 patition 可以设置副本，其中主 partition 为 leader，副本 partition 为 follower，follower 和 leader 在不同的机器，消息的接收和发送都是 leader 负责的，follower partition 会从 leader 同步数据，如果 leader 所在的 borker 挂了，会从 follower 中选举一个成为 leader，高可用。</p>
+<p><strong>Consumer Group</strong>：在 kafka 的 Topic 的订阅单位也是 Consumer Group，每个消费组可以收到完整的消息，但是同一个分区的数据只能被消费者组中的某一个消费者消费，分区和消费者关系是多对一。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311051518428.png" alt="" /></p>
+<h3 id="mq-的作用"><a class="anchor" href="#mq-的作用">#</a> MQ 的作用</h3>
+<ul>
+<li><strong>解耦</strong>：将系统按照不同的业务功能拆分出来，消息生产者只管把消息发布到 MQ 中而不用管谁来取，消息消费者只管从 MQ 中取消息而不管是谁发布的。消息生产者和消费者都不知道对方的存在；</li>
+<li><strong>异步</strong>：主流程只需要完成业务的核心功能；对于业务非核心功能，将消息放入到消息队列之中进行异步处理，减少请求的等待，提高系统的总体性能；</li>
+<li><strong>削峰 / 限流</strong>：将所有请求都写到消息队列中，消费服务器按照自身能够处理的请求数从队列中拿到请求，防止请求并发过高将系统搞崩溃；</li>
+</ul>
+<h3 id="mq-的缺点"><a class="anchor" href="#mq-的缺点">#</a> MQ 的缺点</h3>
+<ul>
+<li><strong>系统可用性降低</strong>：系统引用的外部依赖越多，越容易挂掉，如果 MQ 服务器挂掉，那么可能会导致整套系统崩溃。这时就要考虑如何保证消息队列的高可用了。</li>
+<li><strong>系统复杂度提高</strong>：加入消息队列之后，需要保证消息没有重复消费、如何处理消息丢失的情况、如何保证消息传递的有序性等问题。</li>
+<li><strong>数据一致性问题</strong>：A 系统处理完了直接返回成功了，使用者都以为你这个请求就成功了；但是问题是，要是 BCD 三个系统那里，BD 两个系统写库成功了，结果 C 系统写库失败了，就会导致数据不一致了。</li>
+</ul>
+<h3 id="常见-mq-的对比"><a class="anchor" href="#常见-mq-的对比">#</a> 常见 MQ 的对比</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>ActiveMQ</th>
+<th>RabbitMQ</th>
+<th>RocketMQ</th>
+<th>Kafka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单机吞吐量</td>
+<td>万级，比 RocketMQ、Kafka 低一个数量级</td>
+<td>同 ActiveMQ</td>
+<td>10 万级，支撑高吞吐</td>
+<td>10 万级，高吞吐，一般配合大数据类的系统来进行实时数据计算、日志采集等场景</td>
+</tr>
+<tr>
+<td>topic 数量对吞吐量的影响</td>
+<td colspan="2"></td>
+<td>topic 可以达到几百 / 几千的级别，吞吐量会有较小幅度的下降，这是 RocketMQ 的一大优势，在同等机器下，可以支撑大量的 topic</td>
+<td>topic 从几十到几百个时候，吞吐量会大幅度下降，在同等机器下，Kafka 尽量保证 topic 数量不要过多，如果要支撑大规模的 topic，需要增加更多的机器资源</td>
+</tr>
+<tr>
+<td>时效性</td>
+<td>ms 级</td>
+<td>微秒级，这是 RabbitMQ 的一大特点，延迟最低</td>
+<td>ms 级</td>
+<td>延迟在 ms 级以内</td>
+</tr>
+<tr>
+<td>可用性</td>
+<td>高，基于主从架构实现高可用</td>
+<td>同 ActiveMQ</td>
+<td>非常高，分布式架构</td>
+<td>非常高，分布式，一个数据多个副本，少数机器宕机，不会丢失数据，不会导致不可用</td>
+</tr>
+<tr>
+<td>消息可靠性</td>
+<td>有较低的概率丢失数据</td>
+<td>基本不丢</td>
+<td>经过参数优化配置，可以做到 0 丢失</td>
+<td>同 RocketMQ</td>
+</tr>
+<tr>
+<td>功能支持</td>
+<td>MQ 领域的功能极其完备</td>
+<td>基于 erlang 开发，并发能力很强，性能极好，延时很低</td>
+<td>MQ 功能较为完善，还是分布式的，扩展性好</td>
+<td>功能较为简单，主要支持简单的 MQ 功能，在大数据领域的实时计算以及日志采集被大规模使用</td>
+</tr>
+</tbody>
+</table>
+<h3 id="如何保证消息不被重复消费"><a class="anchor" href="#如何保证消息不被重复消费">#</a> 如何保证消息不被重复消费</h3>
+<p>因为消息队列的服务质量是 <strong>At least once</strong> ，因此消息队列无法保证消息不重复，因此消费重复的问题得由 Consumer 端来解决。<br />
+一般采用<strong>幂等性</strong>解决重复消息问题。所以「如何保证消息不被重复消费？」就转变为「如何保证消费者的幂等性？」<br />
+<strong>那么如何保证幂等性呢？</strong></p>
+<ol>
+<li>写数据时，先根据主键查一下这条数据是否存在，如果已经存在则 update；</li>
+<li>数据库的唯一键约束也可以保证不会重复插入多条，因为重复插入多条只会报错，不会导致数据库中出现脏数据；</li>
+<li>如果是写 redis，就没有问题，因为 set 操作是天然幂等性的。</li>
+</ol>
+<h3 id="如何保证消息不丢失进行可靠性传输"><a class="anchor" href="#如何保证消息不丢失进行可靠性传输">#</a> 如何保证消息不丢失，进行可靠性传输</h3>
+<p><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311042311197.png" alt="" /><br />
+可以看到一共有三个阶段，分别是<strong>生产消息</strong>、<strong>存储消息</strong>和<strong>消费消息</strong>。我们从这三个阶段分别入手来看看如何确保消息不会丢失。</p>
+<p><strong>生产消息</strong><br />
+生产者发送消息至 Broker，需要处理 Broker 的响应，不论是同步还是异步发送消息，同步和异步回调都需要<strong>做好 try-catch</strong>，妥善的处理响应，如果 Broker 返回写入失败等错误消息，需要重试发送。当多次发送失败需要作报警，日志记录等。<br />
+这样就能保证在生产消息阶段消息不会丢失。</p>
+<p><strong>存储消息</strong><br />
+存储消息阶段需要<strong>在消息刷盘之后再给生产者响应</strong>，假设消息写入缓存中就返回响应，那么机器突然断电这消息就没了，而生产者以为已经发送成功了。<br />
+如果 Broker 是集群部署，有多副本机制，即消息不仅仅要写入当前 Broker, 还需要写入副本机中。那配置成至少写入两台机子后再给生产者响应。这样基本上就能保证存储的可靠了。</p>
+<p><strong>消费消息</strong><br />
+这里经常会有同学犯错，有些同学当消费者拿到消息之后直接存入内存队列中就直接返回给 Broker 消费成功，这是不对的。<br />
+你需要考虑拿到消息放在内存之后消费者就宕机了怎么办。所以我们应该<strong>在消费者真正执行完业务逻辑之后，再发送给 Broker 消费成功</strong>，这才是真正的消费了。<br />
+所以只要我们在消息业务逻辑处理完成之后再给 Broker 响应，那么消费阶段消息就不会丢失。</p>
+<p><strong>小结一下</strong><br />
+可以看出，保证消息的可靠性需要三方配合。</p>
+<ul>
+<li>生产者需要处理好 Broker 的响应，出错情况下利用重试、报警等手段。</li>
+<li>Broker 需要控制响应的时机，单机情况下是消息刷盘后返回响应，集群多副本情况下，即发送至两个副本及以上的情况下再返回响应。</li>
+<li>消费者需要在执行完真正的业务逻辑之后再返回响应给 Broker。</li>
+</ul>
+<h3 id="如何保证消息的有序性"><a class="anchor" href="#如何保证消息的有序性">#</a> 如何保证消息的有序性</h3>
+<p>有序性分：全局有序和部分有序。<br />
+<strong>全局有序</strong><br />
+如果要保证消息的全局有序，首先只能由一个生产者往 Topic 发送消息，并且一个 Topic 内部只能有一个队列（分区）。消费者也必须是单线程消费这个队列。这样的消息就是全局有序的！<br />
+不过一般情况下我们都不需要全局有序，即使是同步 MySQL Binlog 也只需要保证单表消息有序即可。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311042348158.png" alt="" /></p>
+<p><strong>部分有序</strong><br />
+因此绝大部分的有序需求是部分有序，部分有序我们就可以将 Topic 内部划分成我们需要的队列数，把消息通过特定的策略发往固定的队列中，然后每个队列对应一个单线程处理的消费者。这样即完成了部分有序的需求，又可以通过队列数量的并发来提高消息处理效率。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311050007730.png" alt="" /></p>
+<h3 id="如何处理消息堆积情况"><a class="anchor" href="#如何处理消息堆积情况">#</a> 如何处理消息堆积情况</h3>
+<p><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311050015622.jpg" alt="" /></p>
+<p>新建一个临时的 Topic，设置为 <code>5*X</code>  个 Partition。<br />
+原 Consumer 不再处理业务逻辑了，只负责搬运，把消息放到临时 Topic 中。<br />
+这  <code>5*X</code>  个 Partition 可以有 <code>5*X</code>  个 Consumer 了，它们来处理原来的业务逻辑。<br />
+这  <code>5*X</code>  个 Consumer 每秒一共能处理原来五倍数量的消息了，这样就可以快速处理完积压的消息。<br />
+当处理完消息积压后，将原来的 Topic 分区增加到适当数量，把整体结构恢复为原来的形式。</p>
+
+      <div class="tags">
+          <a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/" rel="tag"><i class="ic i-tag"></i> 八股文</a>
+          <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" rel="tag"><i class="ic i-tag"></i> 消息队列</a>
+          <a href="/tags/Kafka/" rel="tag"><i class="ic i-tag"></i> Kafka</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-01-19 16:15:09" itemprop="dateModified" datetime="2025-01-19T16:15:09+08:00">2025-01-19</time>
+  </span>
+  <span id="2023/11/03/2023-11-interview-middleware-mq/" class="item leancloud_visitors" data-flag-title="面试指北：消息队列" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>小王学长 <i class="ic i-at"><em>@</em></i>沉思录
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://haust-kevin.github.io/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">https://haust-kevin.github.io/2023/11/03/2023-11-interview-middleware-mq/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/11/01/2023-11-interview-web-spring/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309022040014.png" title="面试指北：Spring">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Web</span>
+  <h3>面试指北：Spring</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/04/27/2024-04-leetcode-permutation-sequence/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646865.jpg" title="LeetCode：60. 排列序列">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> LeetCode</span>
+  <h3>LeetCode：60. 排列序列</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mq"><span class="toc-number">1.</span> <span class="toc-text"> MQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81-mq-%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> 常见 MQ 模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kafka"><span class="toc-number">1.2.</span> <span class="toc-text"> Kafka</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mq-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text"> MQ 的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mq-%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-number">1.4.</span> <span class="toc-text"> MQ 的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81-mq-%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">1.5.</span> <span class="toc-text"> 常见 MQ 的对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E8%A2%AB%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9"><span class="toc-number">1.6.</span> <span class="toc-text"> 如何保证消息不被重复消费</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E4%B8%A2%E5%A4%B1%E8%BF%9B%E8%A1%8C%E5%8F%AF%E9%9D%A0%E6%80%A7%E4%BC%A0%E8%BE%93"><span class="toc-number">1.7.</span> <span class="toc-text"> 如何保证消息不丢失，进行可靠性传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E6%9C%89%E5%BA%8F%E6%80%A7"><span class="toc-number">1.8.</span> <span class="toc-text"> 如何保证消息的有序性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF%E6%83%85%E5%86%B5"><span class="toc-number">1.9.</span> <span class="toc-text"> 如何处理消息堆积情况</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/11/03/2023-11-interview-middleware-mq/" rel="bookmark" title="面试指北：消息队列">面试指北：消息队列</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="小王学长"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">小王学长</p>
+  <div class="description" itemprop="description">思考未知，追求卓越</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">16</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">15</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">25</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhdXN0LUtldmlu" title="https:&#x2F;&#x2F;github.com&#x2F;haust-Kevin"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS93YW5nLWRpbmctYmFuZy05Ng==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;wang-ding-bang-96"><i class="ic i-zhihu"></i></span>
+      <a href="/about/about-me" title="&#x2F;about&#x2F;about-me" class="item about"><i class="ic i-address-card"></i></a>
+      <span class="exturl item email" data-url="bWFpbHRvOjMzNjQ5MTc5OTBAcXEuY29t" title="mailto:3364917990@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item bilibili" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vNDgxNzgwMTcw" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;481780170"><i class="ic i-bilibili"></i></span>
+      <span class="exturl item qq" data-url="aHR0cDovL3dwYS5xcS5jb20vbXNncmQ/dj0zJnVpbj0zMzY0OTE3OTkwJnNpdGU9cXEmbWVudT15ZXM=" title="http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;3364917990&amp;site&#x3D;qq&amp;menu&#x3D;yes"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="/links/friends/" rel="section"><i class="ic i-link"></i>链接</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/links/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/links/recommend/" rel="section"><i class="ic i-magic"></i>推荐</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-user"></i>关于</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/about/about-me/" rel="section"><i class="ic i-address-card"></i>博主</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/about/about-site/" rel="section"><i class="ic i-cloud"></i>本站</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/moments/" rel="section"><i class="ic i-pen"></i>说说</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/11/01/2023-11-interview-web-spring/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/04/27/2024-04-leetcode-permutation-sequence/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/" title="分类于 算法题解">算法题解</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/LeetCode/" title="分类于 LeetCode">LeetCode</a>
+</div>
+
+    <span><a href="/2024/04/27/2024-04-leetcode-permutation-sequence/" title="LeetCode：60. 排列序列">LeetCode：60. 排列序列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Web/" title="分类于 Web">Web</a>
+</div>
+
+    <span><a href="/2023/11/01/2023-11-interview-web-spring/" title="面试指北：Spring">面试指北：Spring</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" title="分类于 计算机基础">计算机基础</a>
+</div>
+
+    <span><a href="/2023/10/24/2023-10-interview-network/" title="面试指北：计算机网络">面试指北：计算机网络</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="分类于 环境搭建">环境搭建</a>
+</div>
+
+    <span><a href="/2025/01/19/2025-01-rust-init-env/" title="Rust：环境搭建">Rust：环境搭建</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-redis/" title="面试指北：Redis 数据库">面试指北：Redis 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="分类于 中间件">中间件</a>
+</div>
+
+    <span><a href="/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">面试指北：消息队列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
+</div>
+
+    <span><a href="/2023/08/22/2023-08-%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" title="分类于 好文摘抄">好文摘抄</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" title="分类于 小说">小说</a>
+</div>
+
+    <span><a href="/2023/08/20/2023-08-%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">小王学长 @ Kevin's Blog</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="站点总字数">84k 字</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:16</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/11/03/2023-11-interview-middleware-mq/',
+    favicon: {
+      show: "要每天开心哦 ^_^",
+      hide: "等你回来呦~"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

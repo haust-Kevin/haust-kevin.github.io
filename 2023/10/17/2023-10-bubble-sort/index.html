@@ -1,0 +1,634 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="沉思录" href="https://haust-kevin.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="沉思录" href="https://haust-kevin.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="沉思录" href="https://haust-kevin.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=HarmonyOS%20Sans:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="排序算法" />
+
+
+<link rel="canonical" href="https://haust-kevin.github.io/2023/10/17/2023-10-bubble-sort/">
+
+
+
+  <title>
+冒泡排序、鸡尾酒排序、梳子排序 - 算法基础 - 数据结构与算法 |
+Kevin's Blog = 沉思录 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">冒泡排序、鸡尾酒排序、梳子排序
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-10-17 09:40:45">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-10-17T09:40:45+08:00">2023-10-17</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>2.2k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>2 分钟</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Kevin's Blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040014.png"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040036.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040039.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646840.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423779.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040026.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="item" rel="index" title="分类于 数据结构与算法"><span itemprop="name">数据结构与算法</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" itemprop="item" rel="index" title="分类于 算法基础"><span itemprop="name">算法基础</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://haust-kevin.github.io/2023/10/17/2023-10-bubble-sort/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="小王学长">
+    <meta itemprop="description" content="古之立大事者，不惟有超世之才，亦必有坚忍不拔之志, 思考未知，追求卓越">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="沉思录">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <div class="note primary">
+<p>冒泡排序及其变种</p>
+</div>
+<h1 id="冒泡排序"><a class="anchor" href="#冒泡排序">#</a> 冒泡排序</h1>
+<h2 id="介绍"><a class="anchor" href="#介绍">#</a> 介绍</h2>
+<p><strong>冒泡排序</strong>，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。每次冒泡，都会将最大的数移动到最末端，并缩小冒泡范围。</p>
+<h2 id="动画"><a class="anchor" href="#动画">#</a> 动画</h2>
+<p><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310171010738.gif" alt="冒泡排序" /></p>
+<h2 id="代码示例"><a class="anchor" href="#代码示例">#</a> 代码示例</h2>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> vec<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> vec<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token keyword">bool</span> swapFlag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> vec<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>            <span class="token keyword">if</span><span class="token punctuation">(</span>vec<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> vec<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>                <span class="token function">swap</span><span class="token punctuation">(</span>vec<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> vec<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>                swapFlag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>swapFlag<span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h1 id="鸡尾酒排序"><a class="anchor" href="#鸡尾酒排序">#</a> 鸡尾酒排序</h1>
+<h2 id="介绍-2"><a class="anchor" href="#介绍-2">#</a> 介绍</h2>
+<p><strong>鸡尾酒排序</strong>，是冒泡排序的轻微变形。不同的地方在于从低到高然后从高到低，而冒泡排序则仅从低到高去比较序列里的每个元素。他可以得到比冒泡排序稍微好一点的性能，原因是冒泡排序只从一个方向进行比对（由低到高），每次循环只移动一个项目。鸡尾酒排序，对于乌龟（序列末端较小的数）比较多的情况，相对于原始冒泡排序有更好的性能。<br />
+以序列（2,3,4,5,1）为例，鸡尾酒排序只需要访问一次（来回两趟）序列就可以完成排序，但如果使用冒泡排序则需要四次。</p>
+<h2 id="动画-2"><a class="anchor" href="#动画-2">#</a> 动画</h2>
+<p><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310171008464.gif" alt="鸡尾酒排序" /></p>
+<h2 id="代码示例-2"><a class="anchor" href="#代码示例-2">#</a> 代码示例</h2>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">cocktailSort</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> vec<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">int</span> right <span class="token operator">=</span> vec<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">bool</span> swapFlag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> left<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> right<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token keyword">if</span><span class="token punctuation">(</span>vec<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> vec<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>                <span class="token function">swap</span><span class="token punctuation">(</span>vec<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> vec<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>                swapFlag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        right<span class="token operator">--</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> right<span class="token punctuation">;</span> i <span class="token operator">></span> left<span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            <span class="token keyword">if</span><span class="token punctuation">(</span>vec<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">></span> vec<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>                <span class="token function">swap</span><span class="token punctuation">(</span>vec<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> vec<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>                swapFlag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        left<span class="token operator">++</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>swapFlag<span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h1 id="梳子排序"><a class="anchor" href="#梳子排序">#</a> 梳子排序</h1>
+<h2 id="介绍-3"><a class="anchor" href="#介绍-3">#</a> 介绍</h2>
+<p><strong>梳子排序</strong>，改良自冒泡排序和快速排序，其要旨在于消除乌龟，亦即在数组尾部的小数值，这些数值是造成冒泡排序缓慢的主因。相对地，兔子，亦即在数组前端的大数值，不影响冒泡排序的性能。<br />
+在冒泡排序中，只比较数组中相邻的二项，即比较的二项的间距（Gap）是 1，梳排序提出此间距其实可大于 1，改自插入排序的希尔排序同样提出相同观点。梳排序中，开始时的间距设置为数组长度，并在循环中以固定比率递减，通常递减率设置为 1.3（约为原 gap 的 1/8）。在一次循环中，梳排序如同冒泡排序一样把数组从首到尾扫描一次，比较及交换两项，不同的是两项的间距不固定于 1。如果间距递减至 1，梳排序假定输入数组大致排序好，并以冒泡排序作最后检查及修正。<br />
+在 gap 大于 1 时，每次将 gap 递减并执行一次冒泡过程，在 gap 变到 1 时，执行正常的冒泡排序，但是由于前面的梳理，只需要极少量的冒泡就能得到有序的数组。</p>
+<h2 id="动画-3"><a class="anchor" href="#动画-3">#</a> 动画</h2>
+<p><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310171022862.gif" alt="梳排序" /></p>
+<h2 id="代码示例-3"><a class="anchor" href="#代码示例-3">#</a> 代码示例</h2>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">combSort</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> vec<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">int</span> gap <span class="token operator">=</span> vec<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">bool</span> swapFlag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span>gap <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">||</span> swapFlag<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>gap <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>            gap <span class="token operator">=</span> <span class="token keyword">int</span> <span class="token punctuation">(</span>gap <span class="token operator">*</span> <span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        swapFlag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> gap <span class="token operator">+</span> i <span class="token operator">&lt;</span> vec<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>vec<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> vec<span class="token punctuation">[</span>i <span class="token operator">+</span> gap<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>                <span class="token function">swap</span><span class="token punctuation">(</span>vec<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> vec<span class="token punctuation">[</span>i <span class="token operator">+</span> gap<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>                swapFlag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="递减率"><a class="anchor" href="#递减率">#</a> 递减率</h2>
+<p>递减率的设置影响着梳排序的效率，原作者以随机数作实验，得到最有效递减率为 1.3 的。如果此比率太小，则导致一循环中有过多的比较，如果比率太大，则未能有效消除数组中的乌龟。<br />
+亦有人提议用！<span class="exturl" data-url="aHR0cHM6Ly93aWtpbWVkaWEub3JnL2FwaS9yZXN0X3YxL21lZGlhL21hdGgvcmVuZGVyL3N2Zy81YTY5MGFmODc0NGRlZGZjOGU1YzdjNTAzMWM2YjRjYWMxYWQ2OGEz"></span> 作递减率，同时增加换算表协助于每一循环开始时计算新间距。<br />
+因为编程语言中乘法比除法快，故会取递减率倒数与间距相乘，<img data-src="https://wikimedia.org/api/rest_v1/media/math/render/svg/cf95dfe8165efadd4f406a92b6874f423f9a84c4" alt="" /></p>
+<h2 id="其它优化"><a class="anchor" href="#其它优化">#</a> 其它优化</h2>
+<p>设置递减率为 1.3 时，最后只会有三种不同的间距组合：(9, 6, 4, 3, 2, 1)、(10, 7, 5, 3, 2, 1)、或 (11, 8, 6, 4, 3, 2, 1)。实验证明，如果间距变成 9 或 10 时一律改作 11，则对效率有明显改善，原因是如果间距曾经是 9 或 10，则到间距变成 1 时，数值通常不是递增序列，故此要进行几次冒泡排序循环修正。加入此指定间距的变异形式称为<strong>梳排序 - 11</strong></p>
+<h2 id="bilibili-视频分享"><a class="anchor" href="#bilibili-视频分享">#</a> bilibili 视频分享</h2>
+<p>
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?aid=990702293&bvid=BV1Fx4y1M7UZ&cid=974799135&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;"> </iframe>
+</div>
+</p>
+<h1 id="总结"><a class="anchor" href="#总结">#</a> 总结</h1>
+<p>冒泡排序、鸡尾酒排序、梳排序都是优美的算法，后两种属于第一种的优化，但是冒泡排序只适合处理序列大致有序的情况，对于绝大多数的一般序列远不如归并排序、快速排序等算法。也不会有任何语言将冒泡排序作为默认的排序算法，他们大都选择快速排序 + 插入排序的组合算法。</p>
+
+      <div class="tags">
+          <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag"><i class="ic i-tag"></i> 排序算法</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-01-19 19:48:29" itemprop="dateModified" datetime="2025-01-19T19:48:29+08:00">2025-01-19</time>
+  </span>
+  <span id="2023/10/17/2023-10-bubble-sort/" class="item leancloud_visitors" data-flag-title="冒泡排序、鸡尾酒排序、梳子排序" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>小王学长 <i class="ic i-at"><em>@</em></i>沉思录
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://haust-kevin.github.io/2023/10/17/2023-10-bubble-sort/" title="冒泡排序、鸡尾酒排序、梳子排序">https://haust-kevin.github.io/2023/10/17/2023-10-bubble-sort/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/09/04/2023-09-sgs-wallpaper/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;sgs-wallpaper@master&#x2F;%E6%94%B6%E9%9B%86&#x2F;%E8%9C%80&#x2F;sp%E5%AD%99%E5%B0%9A%E9%A6%99-%E8%8A%B1%E6%9B%B3%E5%BF%83%E7%89%B5.jpg" title="三国杀官方原画">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>三国杀官方原画</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/10/24/2023-10-interview-network/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309031423779.jpg" title="面试指北：计算机网络">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 计算机基础</span>
+  <h3>面试指北：计算机网络</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text"> 冒泡排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text"> 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-number">1.2.</span> <span class="toc-text"> 动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text"> 代码示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%B8%A1%E5%B0%BE%E9%85%92%E6%8E%92%E5%BA%8F"><span class="toc-number">2.</span> <span class="toc-text"> 鸡尾酒排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D-2"><span class="toc-number">2.1.</span> <span class="toc-text"> 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B-2"><span class="toc-number">2.3.</span> <span class="toc-text"> 代码示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A2%B3%E5%AD%90%E6%8E%92%E5%BA%8F"><span class="toc-number">3.</span> <span class="toc-text"> 梳子排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D-3"><span class="toc-number">3.1.</span> <span class="toc-text"> 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB-3"><span class="toc-number">3.2.</span> <span class="toc-text"> 动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B-3"><span class="toc-number">3.3.</span> <span class="toc-text"> 代码示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%87%8F%E7%8E%87"><span class="toc-number">3.4.</span> <span class="toc-text"> 递减率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E4%BC%98%E5%8C%96"><span class="toc-number">3.5.</span> <span class="toc-text"> 其它优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bilibili-%E8%A7%86%E9%A2%91%E5%88%86%E4%BA%AB"><span class="toc-number">3.6.</span> <span class="toc-text"> bilibili 视频分享</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text"> 总结</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/10/17/2023-10-bubble-sort/" rel="bookmark" title="冒泡排序、鸡尾酒排序、梳子排序">冒泡排序、鸡尾酒排序、梳子排序</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="小王学长"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">小王学长</p>
+  <div class="description" itemprop="description">思考未知，追求卓越</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">16</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">15</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">25</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhdXN0LUtldmlu" title="https:&#x2F;&#x2F;github.com&#x2F;haust-Kevin"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS93YW5nLWRpbmctYmFuZy05Ng==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;wang-ding-bang-96"><i class="ic i-zhihu"></i></span>
+      <a href="/about/about-me" title="&#x2F;about&#x2F;about-me" class="item about"><i class="ic i-address-card"></i></a>
+      <span class="exturl item email" data-url="bWFpbHRvOjMzNjQ5MTc5OTBAcXEuY29t" title="mailto:3364917990@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item bilibili" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vNDgxNzgwMTcw" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;481780170"><i class="ic i-bilibili"></i></span>
+      <span class="exturl item qq" data-url="aHR0cDovL3dwYS5xcS5jb20vbXNncmQ/dj0zJnVpbj0zMzY0OTE3OTkwJnNpdGU9cXEmbWVudT15ZXM=" title="http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;3364917990&amp;site&#x3D;qq&amp;menu&#x3D;yes"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="/links/friends/" rel="section"><i class="ic i-link"></i>链接</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/links/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/links/recommend/" rel="section"><i class="ic i-magic"></i>推荐</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-user"></i>关于</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/about/about-me/" rel="section"><i class="ic i-address-card"></i>博主</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/about/about-site/" rel="section"><i class="ic i-cloud"></i>本站</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/moments/" rel="section"><i class="ic i-pen"></i>说说</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/09/04/2023-09-sgs-wallpaper/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/10/24/2023-10-interview-network/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/19/2023-08-docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="分类于 数据结构与算法">数据结构与算法</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 算法基础">算法基础</a>
+</div>
+
+    <span><a href="/2023/10/17/2023-10-bubble-sort/" title="冒泡排序、鸡尾酒排序、梳子排序">冒泡排序、鸡尾酒排序、梳子排序</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
+</div>
+
+    <span><a href="/2023/08/22/2023-08-%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Web/" title="分类于 Web">Web</a>
+</div>
+
+    <span><a href="/2023/11/01/2023-11-interview-web-spring/" title="面试指北：Spring">面试指北：Spring</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" title="分类于 计算机基础">计算机基础</a>
+</div>
+
+    <span><a href="/2023/10/24/2023-10-interview-network/" title="面试指北：计算机网络">面试指北：计算机网络</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="分类于 中间件">中间件</a>
+</div>
+
+    <span><a href="/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">面试指北：消息队列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="分类于 环境搭建">环境搭建</a>
+</div>
+
+    <span><a href="/2025/01/19/2025-01-rust-init-env/" title="Rust：环境搭建">Rust：环境搭建</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" title="分类于 好文摘抄">好文摘抄</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" title="分类于 小说">小说</a>
+</div>
+
+    <span><a href="/2023/08/20/2023-08-%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">小王学长 @ Kevin's Blog</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="站点总字数">84k 字</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:16</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/10/17/2023-10-bubble-sort/',
+    favicon: {
+      show: "要每天开心哦 ^_^",
+      hide: "等你回来呦~"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,860 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="沉思录" href="https://haust-kevin.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="沉思录" href="https://haust-kevin.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="沉思录" href="https://haust-kevin.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=HarmonyOS%20Sans:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="八股文,Java" />
+
+
+<link rel="canonical" href="https://haust-kevin.github.io/2023/10/25/2023-10-interview-Java-basic/">
+
+
+
+  <title>
+面试指北：Java 基础 - Java - 面试指北 |
+Kevin's Blog = 沉思录 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">面试指北：Java 基础
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-10-25 19:34:51">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-10-25T19:34:51+08:00">2023-10-25</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>11k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>10 分钟</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Kevin's Blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202401242041666.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040022.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653320.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040016.png"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646861.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040031.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" itemprop="item" rel="index" title="分类于 面试指北"><span itemprop="name">面试指北</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" itemprop="item" rel="index" title="分类于 Java"><span itemprop="name">Java</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://haust-kevin.github.io/2023/10/25/2023-10-interview-Java-basic/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="小王学长">
+    <meta itemprop="description" content="古之立大事者，不惟有超世之才，亦必有坚忍不拔之志, 思考未知，追求卓越">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="沉思录">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="面向对象"><a class="anchor" href="#面向对象">#</a> 面向对象</h2>
+<h3 id="面向对象的三大特征"><a class="anchor" href="#面向对象的三大特征">#</a> 面向对象的三大特征</h3>
+<p>面向对象的程序设计方法具有三个基本特征：封装、继承、多态。<br />
+<strong>封装</strong>指的是将对象的实现细节隐藏起来，然后通过一些公用方法来暴露该对象的功能；<br />
+<strong>继承</strong>是面向对象实现软件复用的重要手段，当子类继承父类后，子类作为一种特殊的父类，将直接获得父类的属性和方法；<br />
+<strong>多态</strong>指的是子类对象可以直接赋给父类变量，但运行时依然表现出子类的行为特征，这意味着同一个类型的对象在执行同一个方法时，可能表现出多种行为特征。</p>
+<h2 id="java-基础"><a class="anchor" href="#java-基础">#</a> Java 基础</h2>
+<h3 id="string-stringbuilder-stringbuffer"><a class="anchor" href="#string-stringbuilder-stringbuffer">#</a> String &amp; StringBuilder &amp; StringBuffer</h3>
+<p><code>String</code>  类是不可变类，即一旦一个 <code>String</code>  对象被创建以后，包含在这个对象中的字符序列是不可改变的，直至这个对象被销毁。<br />
+ <code>StringBuffer</code> 、 <code>StringBuilder</code>  都代表可变的字符串对象，它们有共同的父类  <code>AbstractStringBuilder</code> ，并且两个类的构造方法和成员方法也基本相同。不同的是， <code>StringBuffer</code>  是线程安全的，而 <code>StringBuilder</code>  是非线程安全的，所以 <code>StringBuilder</code>  性能略高。一般情况下，要创建一个内容可变的字符串，建议优先考虑 <code>StringBuilder</code>  类。</p>
+<h3 id="java-中str-hello和str-new-stringhello两种创建字符串的区别"><a class="anchor" href="#java-中str-hello和str-new-stringhello两种创建字符串的区别">#</a> Java 中 <code>str = &quot;hello&quot;</code>  和 <code>str = new String(&quot;hello')</code>  两种创建字符串的区别</h3>
+<p>当 Java 程序直接使用  <code>&quot;hello&quot;</code>  的字符串直接量时，JVM 会使用常量池来管理字符串直接量 （在执行这句话时，JVM 会先检查常量池中是否已经存有  <code>&quot;hello&quot;</code> ，若没有则将  <code>&quot;hello&quot;</code>  存入常量池，否则就复用常量池中已有的  <code>&quot;hello&quot;</code> ，将其引用赋值给变量 str。）。</p>
+<p>当使用  <code>new String(&quot;hello&quot;)</code>  时，JVM 会先使用常量池来管理  <code>&quot;hello&quot;</code>  字符串直接量，再调用 String 类的构造器来创建一个新的 String 对象，新创建的 String 对象被保存在堆内存中。并且，堆中对象的数据会指向常量池中的直接量。</p>
+<h3 id="java-创建对象的方式"><a class="anchor" href="#java-创建对象的方式">#</a> Java 创建对象的方式</h3>
+<ol>
+<li>使用 new 关键字</li>
+<li>使用 Class 类的 newInstance () 方法：
+<ol>
+<li>使用 Class 类的 forName () 方法</li>
+<li>使用 ClassLoader 类的 loadClass () 方法</li>
+</ol>
+</li>
+<li>使用 Constructor 类的 newInstance () 方法</li>
+<li>使用 clone () 方法</li>
+<li>使用反序列化</li>
+</ol>
+<h3 id="两个字符串相加的底层实现"><a class="anchor" href="#两个字符串相加的底层实现">#</a> 两个字符串相加的底层实现</h3>
+<p>如果拼接的都是字符串直接量，则在编译时编译器会将其直接优化为一个完整的字符串，和你直接写一个完整的字符串是一样的。<br />
+如果拼接的字符串中包含变量，则在编译时编译器采用 StringBuilder 对其进行优化，即自动创建 StringBuilder 实例并调用其 append () 方法，将这些字符串拼接在一起。</p>
+<h3 id="java-的异常接口"><a class="anchor" href="#java-的异常接口">#</a> Java 的异常接口</h3>
+<p>Throwable 是异常的顶层父类，代表所有的非正常情况。它有两个直接子类，分别是 Error、Exception。</p>
+<ul>
+<li><code>Error</code>  是错误，一般是指与虚拟机相关的问题，如系统崩溃、虚拟机错误、动态链接失败等，这种错误无法恢复或不可能捕获，将导致应用程序中断。通常应用程序无法处理这些错误，因此应用程序不应该试图使用 catch 块来捕获 Error 对象。在定义方法时，也无须在其 throws 子句中声明该方法可能抛出 Error 及其任何子类。</li>
+<li><code>Exception</code>  是异常，它被分为两大类，分别是 Checked 异常和 Runtime 异常。
+<ul>
+<li><code>RuntimeException</code>  （不受检异常）： RuntimeException 类及其子类表示 JVM 在运行期间可能出现的错误。编译器不会检查此类异常，并且不要求处理异常，比如用空值对象的引用（NullPointerException）、数组下标越界（ArrayIndexOutBoundException）。此类异常属于不可查异常，一般是由程序逻辑错误引起的，在程序中可以选择捕获处理，也可以不处理。</li>
+<li><code>CheckedException</code>  （受检异常）： Exception 中除 RuntimeException 及其子类之外的异常。编译器会检查此类异常，如果程序中出现此类异常，比如说 IOException ，必须对该异常进行处理，要么使用 <code>try-catch</code>  捕获，要么使用 throws 语句抛出，否则编译不通过。</li>
+</ul>
+</li>
+</ul>
+<h3 id="java-对象的四种引用方式"><a class="anchor" href="#java-对象的四种引用方式">#</a> Java 对象的四种引用方式</h3>
+<p>Java 对象的四种引用方式分别是强引用、软引用、弱引用、虚引用，具体含义如下：</p>
+<ul>
+<li><strong>强引用</strong>：这是 Java 程序中最常见的引用方式，即程序创建一个对象，并把这个对象赋给一个引用变量，程序通过该引用变量来操作实际的对象。当一个对象被一个或一个以上的引用变量所引用时，它处于可达状态，不可能被系统垃圾回收机制回收。</li>
+<li><strong>软引用</strong>：当一个对象只有软引用时，它有可能被垃圾回收机制回收。对于只有软引用的对象而言，当系统内存空间足够时，它不会被系统回收，程序也可使用该对象。当系统内存空间不足时，系统可能会回收它。软引用通常用于对内存敏感的程序中。</li>
+<li><strong>弱引用</strong>：弱引用和软引用很像，但弱引用的引用级别更低。对于只有弱引用的对象而言，当系统垃圾回收机制运行时，不管系统内存是否足够，总会回收该对象所占用的内存。当然，并不是说当一个对象只有弱引用时，它就会立即被回收，正如那些失去引用的对象一样，必须等到系统垃圾回收机制运行时才会被回收。</li>
+<li><strong>虚引用</strong>：虚引用完全类似于没有引用。虚引用对对象本身没有太大影响，对象甚至感觉不到虚引用的存在。如果一个对象只有一个虚引用时，那么它和没有引用的效果大致相同。虚引用主要用于跟踪对象被垃圾回收的状态，虚引用不能单独使用，虚引用必须和引用队列联合使用。</li>
+</ul>
+<h2 id="容器类型"><a class="anchor" href="#容器类型">#</a> 容器类型</h2>
+<h3 id="java-中有哪些容器"><a class="anchor" href="#java-中有哪些容器">#</a> Java 中有哪些容器</h3>
+<p>Java 中的集合类主要由 <code>Collection</code>  和 <code>Map</code>  这两个接口派生而出，其中 <code>Collection</code>  接口又派生出三个子接口，分别是 <code>Set</code> 、 <code>List</code> 、 <code>Queue</code> 。所有的 Java 集合类，都是 <code>Set</code> 、 <code>List</code> 、 <code>Queue</code> 、 <code>Map</code>  这四个接口的实现类，这四个接口将集合分成了四大类，其中</p>
+<ul>
+<li><code>Set</code>  代表无序的，元素不可重复的集合；</li>
+<li><code>List</code>  代表有序的，元素可以重复的集合；</li>
+<li><code>Queue</code>  代表先进先出（FIFO）的队列；</li>
+<li><code>Map</code>  代表具有映射关系（key-value）的集合。</li>
+</ul>
+<h3 id="java-中容器的线程安全性"><a class="anchor" href="#java-中容器的线程安全性">#</a> Java 中容器的线程安全性</h3>
+<p>java.util 包下的集合类大部分都是线程不安全的，例如我们常用的 HashSet、TreeSet、ArrayList、LinkedList、ArrayDeque、HashMap、TreeMap，这些都是线程不安全的集合类，但是它们的优点是性能好。如果需要使用线程安全的集合类，则可以使用 <code>Collections</code>  工具类提供的 <code>synchronizedXxx()</code>  方法，将这些集合类包装成线程安全的集合类。</p>
+<p>java.util 包下也有线程安全的集合类，例如 Vector、Hashtable 。这些集合类都是比较古老的 API ，虽然实现了线程安全，但是性能很差。所以即便是需要使用线程安全的集合类，也建议将线程不安全的集合类包装成线程安全集合类的方式，而不是直接使用这些古老的 API 。</p>
+<p>从 Java5 开始，Java 在 java.util.concurrent 包下提供了大量支持高效并发访问的集合类，它们既能保证良好的访问性能，又能保证线程安全。这些集合类可以分为两部分，它们的特征如下：</p>
+<ul>
+<li>以 Concurrent 开头的集合类：<br />
+以 Concurrent 开头的集合类代表了支持并发访问的集合，它们可以支持多个线程并发写入访问，这些写入线程的所有操作都是线程安全的，但读取操作不必锁定。以 Concurrent 开头的集合类采用了更复杂的算法来保证永远不会锁住整个集合，因此在并发写入时有较好的性能。</li>
+<li>以 CopyOnWrite 开头的集合类：<br />
+以 CopyOnWrite 开头的集合类采用复制底层数组的方式来实现写操作。当线程对此类集合执行读取操作时，线程将会直接读取集合本身，无须加锁与阻塞。当线程对此类集合执行写入操作时，集合会在底层复制一份新的数组，接下来对新的数组执行写入操作。由于对集合的写入操作都是对数组的副本执行操作，因此它是线程安全的。</li>
+</ul>
+<h3 id="hashmap"><a class="anchor" href="#hashmap">#</a> HashMap</h3>
+<h4 id="hashmap-为什么在获取-hash-值时要进行位运算"><a class="anchor" href="#hashmap-为什么在获取-hash-值时要进行位运算">#</a> HashMap 为什么在获取 hash 值时要进行位运算</h4>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> <span class="token function">hash</span><span class="token punctuation">(</span><span class="token class-name">Object</span> key<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">int</span> h<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">(</span>key <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> <span class="token punctuation">(</span>h <span class="token operator">=</span> key<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token punctuation">(</span>h <span class="token operator">>>></span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><ol>
+<li>如果使用直接使用 hashCode 对数组大小取余，那么相当于参与运算的只有 hashCode 的低位，高位是没有起到任何作用的，所以我们的思路就是让 hashCode 取值出的高位也参与运算，进一步降低 hash 碰撞的概率，使得数据分布更平均，我们把这样的操作称为扰动。</li>
+<li>而这么来看 hashCode 被散列 （异或） 的是低 16 位，而 HashMap 数组长度一般不会超过 2 的 16 次幂，那么高 16 位在大多数情况是用不到的，所以只需要拿 key 的 HashCode 和它的高 16 位做异或即可利用高位的 hash 值，降低哈希碰撞概率也使数据分布更加均匀。</li>
+</ol>
+<p><strong>为什么用异或</strong><br />
+保证了对象的 hashCode 的 32 位值只要有一位发生改变，整个 hash () 返回值就会改变。尽可能的减少碰撞。</p>
+<h4 id="jdk7-和-jdk8-中-hashmap-的区别"><a class="anchor" href="#jdk7-和-jdk8-中-hashmap-的区别">#</a> JDK7 和 JDK8 中 HashMap 的区别</h4>
+<p>JDK7 中的 HashMap ，是基于数组 + 链表来实现的，它的底层维护一个 Entry 数组。它会根据计算的 hashCode 将对应的 KV 键值对存储到该数组中，一旦发生 hashCode 冲突，那么就会将该 KV 键值对放到对应的已有元素的后面， 此时便形成了一个链表式的存储结构。JDK7 中 HashMap 的实现方案有一个明显的缺点，即当 Hash 冲突严重时，在桶上形成的链表会变得越来越长，这样在查询时的效率就会越来越低，其时间复杂度为 O (N) 。</p>
+<p>JDK8 中的 HashMap ，是基于数组 + 链表 + 红黑树来实现的，它的底层维护一个 Node 数组。当链表的存储的数据个数大于等于 8 的时候，不再采用链表存储，而采用了红黑树存储结构。这么做主要是在查询的时间复杂度上进行优化，链表为 O (N) ，而红黑树一直是 O (logN) ，可以大大的提高查找性能。</p>
+<h4 id="hashmap-扩容"><a class="anchor" href="#hashmap-扩容">#</a> HashMap 扩容</h4>
+<p><strong>JDK1.7 扩容</strong><br />
+ JDK1.7 发生扩容的条件必须同时满足两点：</p>
+<ul>
+<li>当前存储的数量大于等于阈值</li>
+<li>发生 hash 碰撞</li>
+</ul>
+<p><strong>特点</strong>：先扩容，再添加（扩容使用的头插法）<br />
+<strong>缺点</strong>：头插法会使链表发生反转，多线程环境下可能会死循环<br />
+<strong>扩容结果</strong>：table 容量变为 2 倍，所有的元素下标需要重新计算，newIndex = hash （扰动后） &amp; （newLength - 1）</p>
+<p><strong>JDK1.8 扩容</strong><br />
+ JDK1.8 发生扩容的条件需满足其中一项：</p>
+<ul>
+<li>当前存储的数量大于等于阈值</li>
+<li>当某个链表长度 &gt;=8，但是数组存储的结点数 size () &lt; 64 时</li>
+</ul>
+<p><strong>特点</strong>：先插后判断是否需要扩容（扩容时是尾插法）<br />
+<strong>缺点</strong>：多线程下，1.8 会有数据覆盖<br />
+ table 容量变为 2 倍，但是不需要像之前一样计算下标，只需要将 hash 值和旧数组长度相与即可确定位置。</p>
+<ul>
+<li>如果 Node 桶的数据结构是链表会生成 low 和 high 两条链表，是红黑树则生成 low 和 high 两颗红黑树</li>
+<li>依靠 (hash &amp; oldCap) == 0 判断 Node 中的每个结点归属于 low 还是 high。</li>
+<li>把 low 插入到 新数组中 当前数组下标的位置，把 high 链表插入到 新数组中 [当前数组下标 + 旧数组长度] 的位置</li>
+<li>如果生成的 low，high 树中元素个数小于等于 6 退化成链表再插入到新数组的相应下标的位置</li>
+</ul>
+<h4 id="链表升级成红黑树的条件"><a class="anchor" href="#链表升级成红黑树的条件">#</a> 链表升级成红黑树的条件</h4>
+<p>链表长度大于 8 时才会考虑升级成红黑树，是有一个条件是 HashMap 的 Node 数组长度大于等于 64（不满足则会进行一次扩容替代升级）。</p>
+<h4 id="红黑树退化成链表的条件"><a class="anchor" href="#红黑树退化成链表的条件">#</a> 红黑树退化成链表的条件</h4>
+<ul>
+<li>扩容 resize ( ) 时，红黑树拆分成的 树的结点数小于等于临界值 6 个，则退化成链表。</li>
+<li>删除元素 remove () 时，在 removeTreeNode () 方法会检查红黑树是否满足退化条件，与结点数无关。如果红黑树根 root 为空，或者 root 的左子树 / 右子树为空，或者 根的左子树的左子树为空，都会发生红黑树退化成链表。<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> root<span class="token punctuation">.</span>right <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token punctuation">(</span>rl <span class="token operator">=</span> root<span class="token punctuation">.</span>left<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> rl<span class="token punctuation">.</span>left <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    tab<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> first<span class="token punctuation">.</span><span class="token function">untreeify</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// too small</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">return</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="concurrenthashmap"><a class="anchor" href="#concurrenthashmap">#</a> ConcurrentHashMap</h3>
+<h4 id="jdk-17-中的实现"><a class="anchor" href="#jdk-17-中的实现">#</a> JDK 1.7 中的实现：</h4>
+<p>在 jdk 1.7 中，ConcurrentHashMap 是由 Segment 数据结构和 HashEntry 数组结构构成，采取分段锁来保证安全性。Segment 是 ReentrantLock 重入锁，在 ConcurrentHashMap 中扮演锁的角色，HashEntry 则用于存储键值对数据。一个 ConcurrentHashMap 里包含一个 Segment 数组，一个 Segment 里包含一个 HashEntry 数组，Segment 的结构和 HashMap 类似，是一个数组和链表结构。<br />
+<img data-src="https://uploadfiles.nowcoder.com/images/20220224/4107856_1645689003626/A064CF0DD49D1B3694548913C28728DB" alt="ConcurrentHashMap-jdk1.7" /><br />
+JDK1.7 中的并发方式只是相当于在一个 HashMap 中包含多个 HashMap ，在对不同 HashMap 的访问上能够提供并发，并发度取决于 Segment 数组的长度。</p>
+<h4 id="jdk-18-中的实现"><a class="anchor" href="#jdk-18-中的实现">#</a> JDK 1.8 中的实现：</h4>
+<p>JDK1.8 的实现已经摒弃了 Segment 的概念，而是直接用 Node 数组 + 链表 + 红黑树的数据结构来实现，并发控制使用 Synchronized 和 CAS 来操作，整个看起来就像是优化过且线程安全的 HashMap，虽然在 JDK1.8 中还能看到 Segment 的数据结构，但是已经简化了属性，只是为了兼容旧版本。<br />
+<img data-src="https://uploadfiles.nowcoder.com/images/20220224/4107856_1645689024609/9C8ABF1CD3475339A49DE3B9E1696FE7" alt="ConcurrentHashMap-jdk1.8" /></p>
+<h3 id="linkedhashmap"><a class="anchor" href="#linkedhashmap">#</a> LinkedHashMap</h3>
+<ul>
+<li>LinkedHashMap 使用双向链表来维护 key-value 对的顺序（其实只需要考虑 key 的顺序），该链表负责维护 Map 的迭代顺序，迭代顺序与 key-value 对的插入顺序保持一致。在实现上，LinkedHashMap 很多方法直接继承自 HashMap，仅为维护双向链表重写了部分方法。</li>
+<li>LinkedHashMap 可以避免对 HashMap 、Hashtable 里的 key-value 对进行排序（只要插入 key-value 对时保持顺序即可），同时又可避免使用 TreeMap 所增加的成本。</li>
+<li>LinkedHashMap 需要维护元素的插入顺序，因此性能略低于 HashMap 的性能。但因为它以链表来维护内部顺序，所以在迭代访问 Map 里的全部元素时将有较好的性能。</li>
+</ul>
+<h3 id="copyonwritearraylist"><a class="anchor" href="#copyonwritearraylist">#</a> CopyOnWriteArrayList</h3>
+<p>CopyOnWriteArrayList 允许线程并发访问读操作，这个时候是没有加锁限制的，性能较高。而写操作的时候，则首先将容器复制一份，然后在新的副本上执行写操作，这个时候写操作是上锁的。结束之后再将原容器的引用指向新容器。注意，在上锁执行写操作的过程中，如果有需要读操作，会作用在原容器上。因此上锁的写操作不会影响到并发访问的读操作。</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">private</span> <span class="token class-name">E</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> index<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token class-name">E</span><span class="token punctuation">)</span> a<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">E</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>lock<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> elements <span class="token operator">=</span> <span class="token function">getArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            <span class="token keyword">int</span> len <span class="token operator">=</span> elements<span class="token punctuation">.</span>length<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> newElements <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>elements<span class="token punctuation">,</span> len <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            newElements<span class="token punctuation">[</span>len<span class="token punctuation">]</span> <span class="token operator">=</span> e<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token function">setArray</span><span class="token punctuation">(</span>newElements<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">E</span> <span class="token function">remove</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>lock<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>            <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> elements <span class="token operator">=</span> <span class="token function">getArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>            <span class="token keyword">int</span> len <span class="token operator">=</span> elements<span class="token punctuation">.</span>length<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>            <span class="token class-name">E</span> oldValue <span class="token operator">=</span> <span class="token function">get</span><span class="token punctuation">(</span>elements<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>            <span class="token keyword">int</span> numMoved <span class="token operator">=</span> len <span class="token operator">-</span> index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>numMoved <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="23"></td><td><pre>                <span class="token function">setArray</span><span class="token punctuation">(</span><span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>elements<span class="token punctuation">,</span> len <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>            <span class="token keyword">else</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>                <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> newElements <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">[</span>len <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>                <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>elements<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> newElements<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>                <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>elements<span class="token punctuation">,</span> index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> newElements<span class="token punctuation">,</span> index<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="28"></td><td><pre>                                 numMoved<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>                <span class="token function">setArray</span><span class="token punctuation">(</span>newElements<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>            <span class="token keyword">return</span> oldValue<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h3 id="blockingqueue"><a class="anchor" href="#blockingqueue">#</a> BlockingQueue</h3>
+<table>
+<thead>
+<tr>
+<th>实现类</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ArrayBlockingQueue</td>
+<td>基于数组的阻塞队列，使用数组存储数据，并需要指定其长度，所以是一个有界队列</td>
+</tr>
+<tr>
+<td>LinkedBlockingQueue</td>
+<td>基于链表的阻塞队列，使用链表存储数据，默认是一个无界队列；也可以通过构造方法中的 capacity 设置最大元素数量，所以也可以作为有界队列</td>
+</tr>
+<tr>
+<td>SynchronousQueue</td>
+<td>一种没有缓冲的队列，生产者产生的数据直接会被消费者获取并且立刻消费</td>
+</tr>
+<tr>
+<td>PriorityBlockingQueue</td>
+<td>基于优先级别的阻塞队列，底层基于数组实现，是一个无界队列 DelayQueue 延迟队列，其中的元素只有到了其指定的延迟时间，才能够从队列中出队</td>
+</tr>
+</tbody>
+</table>
+<p>声明一个 SynchronousQueue 有两种不同的方式，它们之间有着不太一样的行为。公平模式和非公平模式的区别：如果采用公平模式：SynchronousQueue 会采用公平锁，并配合一个 TransferQueue 来阻塞多余的生产者和消费者，从而体系整体的公平策略；但如果是非公平模式（SynchronousQueue 默认）：SynchronousQueue 采用非公平锁，同时配合一个 TransferStack 来管理多余的生产者和消费者，而后一种模式，如果生产者和消费者的处理速度有差距，则很容易出现饥渴的情况，即可能有某些生产者或者是消费者的数据永远都得不到处理。</p>
+<h2 id="thread"><a class="anchor" href="#thread">#</a> Thread</h2>
+<h3 id="进程与线程的区别"><a class="anchor" href="#进程与线程的区别">#</a> 进程与线程的区别</h3>
+<p><strong>根本区别</strong>：进程是操作系统资源分配的基本单位，而线程是处理器任务调度和执行的基本单位。<br />
+<strong>资源开销</strong>：每个进程都有独立的代码和数据空间（程序上下文），程序之间的切换会有较大的开销；线程可以看做轻量级的进程，同一类线程共享代码和数据空间，每个线程都有自己独立的运行栈和程序计数器（PC），线程之间切换的开销小。<br />
+<strong>包含关系</strong>：如果一个进程内有多个线程，则执行过程不是一条线的，而是多条线（线程）共同完成的；线程是进程的一部分，所以线程也被称为轻权进程或者轻量级进程。<br />
+<strong>内存分配</strong>：同一进程的线程共享本进程的地址空间和资源，而进程之间的地址空间和资源是相互独立的。<br />
+<strong>影响关系</strong>：一个进程崩溃后，在保护模式下不会对其他进程产生影响，但是一个线程崩溃整个进程都死掉。所以多进程要比多线程健壮。<br />
+<strong>执行过程</strong>：每个独立的进程有程序运行的入口、顺序执行序列和程序出口。但是线程不能独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制，两者均可并发执行。</p>
+<h3 id="创建线程的方式"><a class="anchor" href="#创建线程的方式">#</a> 创建线程的方式</h3>
+<p>创建线程有三种方式，分别是继承 Thread 类、实现 Runnable 接口、实现 Callable 接口。</p>
+<ul>
+<li>通过继承 Thread 类来创建并启动线程的步骤如下：
+<ul>
+<li>定义 Thread 类的子类，并重写该类的 run () 方法，该 run () 方法将作为线程执行体。</li>
+<li>创建 Thread 子类的实例，即创建了线程对象。</li>
+<li>调用线程对象的 start () 方法来启动该线程。</li>
+</ul>
+</li>
+<li>通过实现 Runnable 接口来创建并启动线程的步骤如下：
+<ul>
+<li>定义 Runnable 接口的实现类，并实现该接口的 run () 方法，该 run () 方法将作为线程执行体。</li>
+<li>创建 Runnable 实现类的实例，并将其作为 Thread 的 target 来创建 Threa d 对象，Thread 对象为线程对象。</li>
+<li>调用线程对象的 start () 方法来启动该线程。</li>
+</ul>
+</li>
+<li>通过实现 Callable 接口来创建并启动线程的步骤如下：
+<ul>
+<li>创建 Callable 接口的实现类，并实现 call () 方法，该 call () 方法将作为线程执行体，且该 call () 方法有返回值。然后再创建 Callable 实现类的实例。</li>
+<li>使用 FutureTask 类来包装 Callable 对象，该 FutureTask 对象封装了该 Callable 对象的 call () 方法的返回值。</li>
+<li>使用 FutureTask 对象作为 Thread 对象的 target 创建并启动新线程。</li>
+<li>调用 FutureTask 对象的 get () 方法来获得子线程执行结束后的返回值。</li>
+</ul>
+</li>
+</ul>
+<h3 id="run-start"><a class="anchor" href="#run-start">#</a> run() &amp; start()</h3>
+<p>run () 方法被称为线程执行体，它的方法体代表了线程需要完成的任务，而 start () 方法用来启动线程。<br />
+start () 方法用于启动线程，run () 方法用于执行线程的运行时代码。但如果直接调用线程对象的 run () 方法，则 run () 方法立即就会被执行，而且在 run () 方法返回之前其他线程无法并发执行。run () 可以重复调用，而 start () 只能调用一次。</p>
+<h3 id="thread-是否能重新启动"><a class="anchor" href="#thread-是否能重新启动">#</a> Thread 是否能重新启动</h3>
+<p>只能对处于新建状态的线程调用 start () 方法，否则将引发 IllegalThreadStateException 异常。<br />
+如果想重用一个过程，可以把线程逻辑定义在 Runnable 对象里面，通过新建 Thread 对象达到重新启动逻辑的效果。</p>
+<h3 id="thread-的五种状态"><a class="anchor" href="#thread-的五种状态">#</a> Thread 的五种状态</h3>
+<p>在线程的生命周期中，它要经过新建（New）、就绪（Ready）、运行（Running）、阻塞（Blocked）和死亡（Dead）5 种状态。<br />
+<img data-src="https://uploadfiles.nowcoder.com/images/20220224/4107856_1645689998870/B6700F052B8C52C28D140E41896513FE" alt="线程 5 种状态的转换关系" /></p>
+<h3 id="产生死锁的四个必要条件"><a class="anchor" href="#产生死锁的四个必要条件">#</a> 产生死锁的四个必要条件：</h3>
+<ul>
+<li><strong>互斥条件</strong>：一个资源每次只能被一个进程使用。</li>
+<li><strong>请求与保持条件</strong>：一个进程因请求资源而阻塞时，对已获得的资源保持不放。</li>
+<li><strong>不剥夺条件</strong>：进程已获得的资源，在末使用完之前，不能强行剥夺。</li>
+<li><strong>循环等待条件</strong>：若干进程之间形成一种头尾相接的循环等待资源关系。</li>
+</ul>
+<h3 id="sleep-和-wait-有什么区别"><a class="anchor" href="#sleep-和-wait-有什么区别">#</a> sleep () 和 wait () 有什么区别</h3>
+<ul>
+<li>类的不同：sleep () 来自 Thread，wait () 来自 Object。</li>
+<li>释放锁：sleep () 不释放锁；wait () 释放锁。</li>
+<li>用法不同：sleep () 时间到会自动恢复；wait () 可以使用 notify () /notifyAll () 直接唤醒。</li>
+</ul>
+<h3 id="锁升级"><a class="anchor" href="#锁升级">#</a> 锁升级</h3>
+<p>synchronized 锁升级原理：在锁对象的对象头里面有一个 threadid 字段，在第一次访问的时候 threadid 为空，jvm 让其持有偏向锁，并将 threadid 设置为其线程 id，再次进入的时候会先判断 threadid 是否与其线程 id 一致，如果一致则可以直接使用此对象，如果不一致，则升级偏向锁为轻量级锁，通过自旋循环一定次数来获取锁，执行一定次数之后，如果还没有正常获取到要使用的对象，此时就会把锁从轻量级升级为重量级锁，此过程就构成了 synchronized 锁的升级。</p>
+<h2 id="threadpool"><a class="anchor" href="#threadpool">#</a> ThreadPool</h2>
+<h3 id="线程池的参数"><a class="anchor" href="#线程池的参数">#</a> 线程池的参数</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span><span class="token keyword">int</span> corePoolSize<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="2"></td><td><pre>                            <span class="token keyword">int</span> maximumPoolSize<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="3"></td><td><pre>                            <span class="token keyword">long</span> keepAliveTime<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>                            <span class="token class-name">TimeUnit</span> unit<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>                            <span class="token class-name">BlockingQueue</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Runnable</span><span class="token punctuation">></span></span> workQueue<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>                            <span class="token class-name">ThreadFactory</span> threadFactory<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>                            <span class="token class-name">RejectedExecutionHandler</span> handler<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span>corePoolSize <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">||</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        maximumPoolSize <span class="token operator">&lt;=</span> <span class="token number">0</span> <span class="token operator">||</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        maximumPoolSize <span class="token operator">&lt;</span> corePoolSize <span class="token operator">||</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        keepAliveTime <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span>workQueue <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> threadFactory <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> handler <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">NullPointerException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token keyword">this</span><span class="token punctuation">.</span>corePoolSize <span class="token operator">=</span> corePoolSize<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token keyword">this</span><span class="token punctuation">.</span>maximumPoolSize <span class="token operator">=</span> maximumPoolSize<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token keyword">this</span><span class="token punctuation">.</span>workQueue <span class="token operator">=</span> workQueue<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token keyword">this</span><span class="token punctuation">.</span>keepAliveTime <span class="token operator">=</span> unit<span class="token punctuation">.</span><span class="token function">toNanos</span><span class="token punctuation">(</span>keepAliveTime<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token keyword">this</span><span class="token punctuation">.</span>threadFactory <span class="token operator">=</span> threadFactory<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">this</span><span class="token punctuation">.</span>handler <span class="token operator">=</span> handler<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><ul>
+<li><strong>corePoolSize</strong>（核心工作线程数）：当向线程池提交一个任务时，若线程池已创建的线程数小于 corePoolSize，即便此时存在空闲线程，也会通过创建一个新线程来执行该任务，直到已创建的线程数大于或等于 corePoolSize 时。</li>
+<li><strong>maximumPoolSize</strong>（最大线程数）：线程池所允许的最大线程个数。当队列满了，且已创建的线程数小于 maximumPoolSize，则线程池会创建新的线程来执行任务。另外，对于无界队列，可忽略该参数。</li>
+<li><strong>keepAliveTime</strong>（多余线程存活时间）：当线程池中线程数大于核心线程数时，线程的空闲时间如果超过线程存活时间，那么这个线程就会被销毁，直到线程池中的线程数小于等于核心线程数。</li>
+<li><strong>workQueue</strong>（队列）：用于传输和保存等待执行任务的阻塞队列。</li>
+<li><strong>threadFactory</strong>（线程创建工厂）：用于创建新线程。threadFactory 创建的线程也是采用 new Thread () 方式，threadFactory 创建的线程名都具有统一的风格：pool-m-thread-n（m 为线程池的编号，n 为线程池内的线程编号）。</li>
+<li><strong>handler</strong>（拒绝策略）：当线程池和队列都满了，再加入线程会执行此策略</li>
+</ul>
+<h3 id="默认线程池"><a class="anchor" href="#默认线程池">#</a> 默认线程池</h3>
+<table>
+<thead>
+<tr>
+<th>线程池名称</th>
+<th>使用阻塞队列</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>newFixedThreadPool</td>
+<td>LinkedBlockingQueue()</td>
+<td>1、核心线程数和最大线程数相同。2、由于 keepAliveTime 设置为 0 ，当线程创建后会一直存在。3、由于用的是无界队列所以可能会导致 OOM。</td>
+</tr>
+<tr>
+<td>newSingleThreadExecutor</td>
+<td>LinkedBlockingQueue()</td>
+<td>1、核心线程数和最大线程数都为 1 ，单线程。2、无界队列可能导致 OOM 。</td>
+</tr>
+<tr>
+<td>newCachedThreadPool</td>
+<td>SynchronousQueue()</td>
+<td>1、核心线程数为 0 ，最大线程数为 Integer.MAX_VALUE 。2、当没任务时线程存活时间为 60 秒。3、使用的是 0 大小的队列，所以不存储任务，只做任务转发。4、极端情况下会创建过多的线程，耗尽 CPU 和内存资源。</td>
+</tr>
+<tr>
+<td>newScheduledThreadPool</td>
+<td>DelayedWorkQueue()</td>
+<td>1、执行周期任务。2、无界队列，可能会导致 OOM 。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="线程池工作原理"><a class="anchor" href="#线程池工作原理">#</a> 线程池工作原理</h3>
+<p><img data-src="https://uploadfiles.nowcoder.com/images/20220224/4107856_1645690520076/70D6B0404AB5E9C7AF6699C94B4766BF" alt="线程池工作原理" /></p>
+<h3 id="线程池的拒绝策略"><a class="anchor" href="#线程池的拒绝策略">#</a> 线程池的拒绝策略</h3>
+<p>当线程池的任务缓存队列已满并且线程池中的线程数目达到 maximumPoolSize，如果还有任务到来就会采取任务拒绝策略，通常有以下四种策略：</p>
+<ul>
+<li><strong>AbortPolicy</strong>：丢弃任务并抛出 RejectedExecutionException 异常。</li>
+<li><strong>DiscardPolicy</strong>：也是丢弃任务，但是不抛出异常。</li>
+<li><strong>DiscardOldestPolicy</strong>：丢弃队列最前面的任务，然后重新尝试执行任务（重复该过程）。</li>
+<li><strong>CallerRunsPolicy</strong>：由调用线程处理该任务。</li>
+</ul>
+
+      <div class="tags">
+          <a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/" rel="tag"><i class="ic i-tag"></i> 八股文</a>
+          <a href="/tags/Java/" rel="tag"><i class="ic i-tag"></i> Java</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-01-19 16:15:09" itemprop="dateModified" datetime="2025-01-19T16:15:09+08:00">2025-01-19</time>
+  </span>
+  <span id="2023/10/25/2023-10-interview-Java-basic/" class="item leancloud_visitors" data-flag-title="面试指北：Java 基础" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>小王学长 <i class="ic i-at"><em>@</em></i>沉思录
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://haust-kevin.github.io/2023/10/25/2023-10-interview-Java-basic/" title="面试指北：Java 基础">https://haust-kevin.github.io/2023/10/25/2023-10-interview-Java-basic/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/10/24/2023-10-interview-network/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309022040037.jpg" title="面试指北：计算机网络">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 计算机基础</span>
+  <h3>面试指北：计算机网络</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/10/26/2023-10-interview-jvm/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646856.jpg" title="面试指北：Java 虚拟机">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Java</span>
+  <h3>面试指北：Java 虚拟机</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text"> 面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81"><span class="toc-number">1.1.</span> <span class="toc-text"> 面向对象的三大特征</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java-%E5%9F%BA%E7%A1%80"><span class="toc-number">2.</span> <span class="toc-text"> Java 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#string-stringbuilder-stringbuffer"><span class="toc-number">2.1.</span> <span class="toc-text"> String &amp; StringBuilder &amp; StringBuffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-%E4%B8%ADstr-hello%E5%92%8Cstr-new-stringhello%E4%B8%A4%E7%A7%8D%E5%88%9B%E5%BB%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.2.</span> <span class="toc-text"> Java 中 str &#x3D; &quot;hello&quot;  和 str &#x3D; new String(&quot;hello&#39;)  两种创建字符串的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text"> Java 创建对象的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%8A%A0%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.4.</span> <span class="toc-text"> 两个字符串相加的底层实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-%E7%9A%84%E5%BC%82%E5%B8%B8%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.5.</span> <span class="toc-text"> Java 的异常接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">2.6.</span> <span class="toc-text"> Java 对象的四种引用方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text"> 容器类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-%E4%B8%AD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%AE%B9%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text"> Java 中有哪些容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-%E4%B8%AD%E5%AE%B9%E5%99%A8%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7"><span class="toc-number">3.2.</span> <span class="toc-text"> Java 中容器的线程安全性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hashmap"><span class="toc-number">3.3.</span> <span class="toc-text"> HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hashmap-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8%E8%8E%B7%E5%8F%96-hash-%E5%80%BC%E6%97%B6%E8%A6%81%E8%BF%9B%E8%A1%8C%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">3.3.1.</span> <span class="toc-text"> HashMap 为什么在获取 hash 值时要进行位运算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jdk7-%E5%92%8C-jdk8-%E4%B8%AD-hashmap-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.3.2.</span> <span class="toc-text"> JDK7 和 JDK8 中 HashMap 的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hashmap-%E6%89%A9%E5%AE%B9"><span class="toc-number">3.3.3.</span> <span class="toc-text"> HashMap 扩容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E5%8D%87%E7%BA%A7%E6%88%90%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="toc-number">3.3.4.</span> <span class="toc-text"> 链表升级成红黑树的条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91%E9%80%80%E5%8C%96%E6%88%90%E9%93%BE%E8%A1%A8%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="toc-number">3.3.5.</span> <span class="toc-text"> 红黑树退化成链表的条件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concurrenthashmap"><span class="toc-number">3.4.</span> <span class="toc-text"> ConcurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jdk-17-%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.4.1.</span> <span class="toc-text"> JDK 1.7 中的实现：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jdk-18-%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.4.2.</span> <span class="toc-text"> JDK 1.8 中的实现：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linkedhashmap"><span class="toc-number">3.5.</span> <span class="toc-text"> LinkedHashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#copyonwritearraylist"><span class="toc-number">3.6.</span> <span class="toc-text"> CopyOnWriteArrayList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#blockingqueue"><span class="toc-number">3.7.</span> <span class="toc-text"> BlockingQueue</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#thread"><span class="toc-number">4.</span> <span class="toc-text"> Thread</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.1.</span> <span class="toc-text"> 进程与线程的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">4.2.</span> <span class="toc-text"> 创建线程的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#run-start"><span class="toc-number">4.3.</span> <span class="toc-text"> run() &amp; start()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#thread-%E6%98%AF%E5%90%A6%E8%83%BD%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8"><span class="toc-number">4.4.</span> <span class="toc-text"> Thread 是否能重新启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#thread-%E7%9A%84%E4%BA%94%E7%A7%8D%E7%8A%B6%E6%80%81"><span class="toc-number">4.5.</span> <span class="toc-text"> Thread 的五种状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A7%E7%94%9F%E6%AD%BB%E9%94%81%E7%9A%84%E5%9B%9B%E4%B8%AA%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-number">4.6.</span> <span class="toc-text"> 产生死锁的四个必要条件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sleep-%E5%92%8C-wait-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-number">4.7.</span> <span class="toc-text"> sleep () 和 wait () 有什么区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%81%E5%8D%87%E7%BA%A7"><span class="toc-number">4.8.</span> <span class="toc-text"> 锁升级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#threadpool"><span class="toc-number">5.</span> <span class="toc-text"> ThreadPool</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">5.1.</span> <span class="toc-text"> 线程池的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">5.2.</span> <span class="toc-text"> 默认线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">5.3.</span> <span class="toc-text"> 线程池工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5"><span class="toc-number">5.4.</span> <span class="toc-text"> 线程池的拒绝策略</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/10/25/2023-10-interview-Java-basic/" rel="bookmark" title="面试指北：Java 基础">面试指北：Java 基础</a></li><li><a href="/2023/10/26/2023-10-interview-jvm/" rel="bookmark" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="小王学长"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">小王学长</p>
+  <div class="description" itemprop="description">思考未知，追求卓越</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">16</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">15</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">25</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhdXN0LUtldmlu" title="https:&#x2F;&#x2F;github.com&#x2F;haust-Kevin"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS93YW5nLWRpbmctYmFuZy05Ng==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;wang-ding-bang-96"><i class="ic i-zhihu"></i></span>
+      <a href="/about/about-me" title="&#x2F;about&#x2F;about-me" class="item about"><i class="ic i-address-card"></i></a>
+      <span class="exturl item email" data-url="bWFpbHRvOjMzNjQ5MTc5OTBAcXEuY29t" title="mailto:3364917990@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item bilibili" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vNDgxNzgwMTcw" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;481780170"><i class="ic i-bilibili"></i></span>
+      <span class="exturl item qq" data-url="aHR0cDovL3dwYS5xcS5jb20vbXNncmQ/dj0zJnVpbj0zMzY0OTE3OTkwJnNpdGU9cXEmbWVudT15ZXM=" title="http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;3364917990&amp;site&#x3D;qq&amp;menu&#x3D;yes"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="/links/friends/" rel="section"><i class="ic i-link"></i>链接</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/links/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/links/recommend/" rel="section"><i class="ic i-magic"></i>推荐</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-user"></i>关于</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/about/about-me/" rel="section"><i class="ic i-address-card"></i>博主</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/about/about-site/" rel="section"><i class="ic i-cloud"></i>本站</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/moments/" rel="section"><i class="ic i-pen"></i>说说</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/10/24/2023-10-interview-network/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/10/26/2023-10-interview-jvm/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="分类于 中间件">中间件</a>
+</div>
+
+    <span><a href="/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">面试指北：消息队列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="分类于 环境搭建">环境搭建</a>
+</div>
+
+    <span><a href="/2025/01/19/2025-01-rust-init-env/" title="Rust：环境搭建">Rust：环境搭建</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="分类于 数据结构与算法">数据结构与算法</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 算法基础">算法基础</a>
+</div>
+
+    <span><a href="/2023/10/17/2023-10-bubble-sort/" title="冒泡排序、鸡尾酒排序、梳子排序">冒泡排序、鸡尾酒排序、梳子排序</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/19/2023-08-docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Web/" title="分类于 Web">Web</a>
+</div>
+
+    <span><a href="/2023/11/01/2023-11-interview-web-spring/" title="面试指北：Spring">面试指北：Spring</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" title="分类于 计算机基础">计算机基础</a>
+</div>
+
+    <span><a href="/2023/10/24/2023-10-interview-network/" title="面试指北：计算机网络">面试指北：计算机网络</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" title="分类于 好文摘抄">好文摘抄</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" title="分类于 小说">小说</a>
+</div>
+
+    <span><a href="/2023/08/20/2023-08-%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/04/2023-09-sgs-wallpaper/" title="三国杀官方原画">三国杀官方原画</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">小王学长 @ Kevin's Blog</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="站点总字数">84k 字</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:16</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/10/25/2023-10-interview-Java-basic/',
+    favicon: {
+      show: "要每天开心哦 ^_^",
+      hide: "等你回来呦~"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

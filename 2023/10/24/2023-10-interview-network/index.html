@@ -1,0 +1,1057 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="沉思录" href="https://haust-kevin.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="沉思录" href="https://haust-kevin.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="沉思录" href="https://haust-kevin.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=HarmonyOS%20Sans:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="八股文,计算机网络" />
+
+
+<link rel="canonical" href="https://haust-kevin.github.io/2023/10/24/2023-10-interview-network/">
+
+
+
+  <title>
+面试指北：计算机网络 - 计算机基础 - 面试指北 |
+Kevin's Blog = 沉思录 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">面试指北：计算机网络
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-10-24 18:13:56">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-10-24T18:13:56+08:00">2023-10-24</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>7.6k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>7 分钟</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Kevin's Blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040037.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040031.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202401242041048.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646862.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423788.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646850.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" itemprop="item" rel="index" title="分类于 面试指北"><span itemprop="name">面试指北</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="item" rel="index" title="分类于 计算机基础"><span itemprop="name">计算机基础</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://haust-kevin.github.io/2023/10/24/2023-10-interview-network/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="小王学长">
+    <meta itemprop="description" content="古之立大事者，不惟有超世之才，亦必有坚忍不拔之志, 思考未知，追求卓越">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="沉思录">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="osi-七层网络模型"><a class="anchor" href="#osi-七层网络模型">#</a> OSI 七层网络模型</h2>
+<p>OSI 的七层协议主要包括：物理层（physical layer）、数据链路层（data link layer）、网络层（network layer）、运输层（transport layer）、会话层（session layer）、表示层（presentation layer）、应用层（application layer）。</p>
+<table>
+<thead>
+<tr>
+<th>OSI 七层网络模型</th>
+<th>功能</th>
+<th>常用网络协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>应用层是网络体系中最高的一层，也是唯一面向用户的一层，也可视为为用户提供常用的应用程序，每个网络应用都对应着不同的协议</td>
+<td>HTTP、TFTP, FTP, NFS, WAIS、SMTP</td>
+</tr>
+<tr>
+<td>表示层</td>
+<td>主要负责数据格式的转换，确保一个系统的应用层发送的消息可以被另一个系统的应用层读取，编码转换，数据解析，管理数据的解密和加密，同时也对应用层的协议进行翻译</td>
+<td>JPEG、MPEG、ASII</td>
+</tr>
+<tr>
+<td>会话层</td>
+<td>负责网络中两节点的建立，在数据传输中维护计算机网络中两台计算机之间的通信连接，并决定何时终止通信</td>
+<td>SMTP, DNS</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>是整个网络关键的部分，是实现两个用户进程间端到端的可靠通信，处理数据包的错误等传输问题。是向下通信服务最高层，向上用户功能最底层。即向网络层提供服务，向会话层提供独立于网络层的传送服务和可靠的透明数据传输</td>
+<td>TCP, UDP</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>将传输层传下来的报文段封装成分组，选择合适的路由，使得传输层传下来的分组能够交付到目的主机</td>
+<td>IP、ICMP、ARP、RARP、OSPF、IPX、RIP、IGRP（交换机）</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>物理地址（MAC 地址），网络设备的唯一身份标识。建立逻辑连接、进行硬件地址寻址，相邻的两个设备间的互相通信</td>
+<td>PPP、FR、HDLC、VLAN、MAC（网桥、交换机）</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>七层模型中的最底层，主要是物理介质传输媒介（网线或者是无线），在不同设备中传输比特，将 0/1 信号与电信号或者光信号互相转化</td>
+<td>IEEE 802.1A, IEEE 802.2 到 IEEE 802 （中继器、集线器）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="三次握手-四次挥手"><a class="anchor" href="#三次握手-四次挥手">#</a> 三次握手 &amp; 四次挥手</h2>
+<h3 id="三次握手"><a class="anchor" href="#三次握手">#</a> 三次握手</h3>
+<h4 id="三次握手示意图"><a class="anchor" href="#三次握手示意图">#</a> 三次握手示意图</h4>
+<p><img data-src="https://uploadfiles.nowcoder.com/images/20220224/4107856_1645697608907/3A588F923BE7D29034DABEB3AB473BCE" alt="三次握手" /></p>
+<ul>
+<li>客户端在需要时，向服务器<strong>发起请求连接报文</strong>，发出后状态从 CLOSED 转换为 SYN-SEND  同步 - 已发送状态。</li>
+<li>服务器一直处于 LISTEN 状态，接收到请求后，<strong>对客户端的请求进行回应</strong>，转换为 SYN-RCVD，同步 - 已收到状态。</li>
+<li>客户端收到服务器的回应后，状态转换为 ESTABLISHED，并且<strong>再次向服务器发送确认</strong>。</li>
+<li>服务器收到客户端的确认之后，服务器也转换为 ESTABLISHED 状态，完成了连接。</li>
+</ul>
+<h4 id="三次握手过程"><a class="anchor" href="#三次握手过程">#</a> 三次握手过程</h4>
+<ol>
+<li>客户端发送一个 SYN0 给服务器（选择初始序列号，不携带任何数据）</li>
+<li>服务器收到 SYN0，回复 SYN1 和 ACK（服务器分配缓存，选择自己初始序列号）</li>
+<li>客户端收到 SYN1、ACK，回复 ACK（可以包含数据）</li>
+</ol>
+<h4 id="为什么要三次握手"><a class="anchor" href="#为什么要三次握手">#</a> 为什么要三次握手</h4>
+<p>如果不是三次握手，只有两次<br />
+如果客户端发出请求连接时，报文延时了，于是客户端重新发送了一次连接请求消息<br />
+后来收到了确认，建立了连接，然后完成了数据传输，关闭了连接<br />
+此时，服务器收到了那个迟到的请求消息，此时这个请求不应该建立双向的连接。<br />
+但是如果只有两次握手，服务器收到请求就响应建立了连接了<br />
+但是如果是三次，客户端不会再次确认，服务器也就随后知道了这消息有问题，不会建立连接</p>
+<h3 id="四次挥手"><a class="anchor" href="#四次挥手">#</a> 四次挥手</h3>
+<h4 id="四次挥手示意图"><a class="anchor" href="#四次挥手示意图">#</a> 四次挥手示意图</h4>
+<p><img data-src="https://uploadfiles.nowcoder.com/images/20220224/4107856_1645697582360/95BEBBEC5A8D1A75D8FE435BD5FDBA12" alt="四次挥手" /></p>
+<ul>
+<li>
+<p>客户端进程<strong>发出连接释放报文</strong>，并且停止发送数据。释放数据报文首部，FIN=1，其序列号为 seq=u（等于前面已经传送过来的数据的最后一个字节的序号加 1），此时，客户端进入 FIN-WAIT-1（终止等待 1）状态。 TCP 规定，FIN 报文段即使不携带数据，也要消耗一个序号。</p>
+</li>
+<li>
+<p>服务器收到连接释放报文，<strong>发出确认报文</strong>，ACK=1，ack=u+1，并且带上自己的序列号 seq=v，此时，服务端就进入了 CLOSE-WAIT（关闭等待）状态。TCP 服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个 CLOSE-WAIT 状态持续的时间。</p>
+</li>
+<li>
+<p>客户端收到服务器的确认请求后，此时，客户端就进入 FIN-WAIT-2（终止等待 2）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。</p>
+</li>
+<li>
+<p>服务器将最后的数据发送完毕后，就向客户端<strong>发送连接释放报文</strong>，FIN=1，ack=u+1，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为 seq=w，此时，服务器就进入了 LAST-ACK（最后确认）状态，等待客户端的确认。</p>
+</li>
+<li>
+<p>客户端收到服务器的连接释放报文后，<strong>必须发出确认</strong>，ACK=1，ack=w+1，而自己的序列号是 seq=u+1，此时，客户端就进入了 TIME-WAIT（时间等待）状态。注意此时 TCP 连接还没有释放，必须经过 2∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的 TCB 后，才进入 CLOSED 状态。</p>
+</li>
+<li>
+<p>服务器只要收到了客户端发出的确认，立即进入 CLOSED 状态。同样，撤销 TCB 后，就结束了这次的 TCP 连接。可以看到，服务器结束 TCP 连接的时间要比客户端早一些。</p>
+</li>
+</ul>
+<h4 id="四次挥手过程"><a class="anchor" href="#四次挥手过程">#</a> 四次挥手过程：</h4>
+<ol>
+<li>客户端向服务器发送 FIN 控制报文段（首部中的 FIN 比特被置位）；</li>
+<li>服务端收到 FIN，回复 ACK。服务器进入关闭等待状态，发送 FIN;</li>
+<li>客户端收到 FIN，给服务器回复 ACK，客户端进入等待状态（进入 “等待”，以确保服务器收到 ACK 真正关闭连接）;</li>
+<li>服务端收到 ACK，链接关闭。</li>
+</ol>
+<h4 id="四次挥手原因"><a class="anchor" href="#四次挥手原因">#</a> 四次挥手原因：</h4>
+<p>TCP 协议是一种面向连接的、可靠的、基于字节流的运输层通信协议。TCP 是全双工模式，这就意味着，当客户端发出 FIN 报文段时，只是表示客户端已经没有数据要发送了，客户端告诉服务器，它的数据已经全部发送完毕了；但是，这个时候客户端还是可以接受来自服务端的数据；当服务端返回 ACK 报文段时，表示它已经知道客户端没有数据发送了，但是服务端还是可以发送数据到客户端的；当服务端也发送了 FIN 报文段时，这个时候就表示服务端也没有数据要发送了，就会告诉客户端，我也没有数据要发送了，之后彼此就会愉快的中断这次 TCP 连接。</p>
+<h2 id="粘包"><a class="anchor" href="#粘包">#</a> 粘包</h2>
+<p>TCP 粘包就是指发送方发送的若干包数据到达接收方时粘成了一包，从接收缓冲区来看，后一包数据的头紧接着前一包数据的尾，出现粘包的原因是多方面的，可能是来自发送方，也可能是来自接收方。</p>
+<h3 id="原因"><a class="anchor" href="#原因">#</a> 原因</h3>
+<ol>
+<li>发送方原因<br />
+ TCP 默认使用 Nagle 算法（主要作用：减少网络中报文段的数量），而 Nagle 算法主要做两件事：</li>
+</ol>
+<ul>
+<li>只有上一个分组得到确认，才会发送下一个分组</li>
+<li>收集多个小分组，在一个确认到来时一起发送</li>
+</ul>
+<ol start="2">
+<li>接收方原因<br />
+ TCP 接收到数据包时，并不会马上交到应用层进行处理，或者说应用层并不会立即处理。实际上，TCP 将接收到的数据包保存在接收缓存里，然后应用程序主动从缓存读取收到的分组。这样一来，如果 TCP 接收数据包到缓存的速度大于应用程序从缓存中读取数据包的速度，多个包就会被缓存，应用程序就有可能读取到多个首尾相接粘到一起的包。</li>
+</ol>
+<h3 id="处理方式"><a class="anchor" href="#处理方式">#</a> 处理方式</h3>
+<ul>
+<li>发送端将每个包都封装成固定的长度，比如 100 字节大小。如果不足 100 字节可通过补 0 或空等进行填充到指定长度；</li>
+<li>发送端在每个包的末尾使用固定的分隔符，例如 <code>\r\n</code> 。如果发生拆包需等待多个包发送过来之后再找到其中的、r\n 进行合并；例如，FTP 协议；</li>
+<li>将消息分为头部和消息体，头部中保存整个消息的长度，只有读取到足够长度的消息之后才算是读到了一个完整的消息；</li>
+</ul>
+<h3 id="为什么-udp-没有粘包"><a class="anchor" href="#为什么-udp-没有粘包">#</a> 为什么 UDP 没有粘包</h3>
+<p>粘包拆包问题在数据链路层、网络层以及传输层都有可能发生。日常的网络应用开发大都在传输层进行，由于 UDP 有消息保护边界，不会发生粘包拆包问题，因此粘包拆包问题只发生在 TCP 协议中。</p>
+<h2 id="http-https"><a class="anchor" href="#http-https">#</a> HTTP &amp; HTTPS</h2>
+<h3 id="http"><a class="anchor" href="#http">#</a> HTTP</h3>
+<p>HTTP 协议是 Hyper Text Transfer Protocol（超文本传输协议）的缩写，是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。</p>
+<h4 id="http-请求方法"><a class="anchor" href="#http-请求方法">#</a> HTTP 请求方法</h4>
+<p>HTTP1.0 定义了三种请求方法： GET, POST 和 HEAD 方法。<br />
+HTTP1.1 新增了六种请求方法：OPTIONS、PUT、PATCH、DELETE、TRACE 和 CONNECT 方法。</p>
+<table>
+<thead>
+<tr>
+<th>REQUEST METHOD</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>请求指定的页面信息，并返回实体主体。</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td>类似于 GET 请求，只不过返回的响应中没有具体的内容，用于获取报头。</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST 请求可能会导致新的资源的建立和 / 或已有资源的修改。</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>从客户端向服务器传送的数据取代指定的文档的内容。</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>请求服务器删除指定的页面。</td>
+</tr>
+<tr>
+<td>CONNECT</td>
+<td>HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器。</td>
+</tr>
+<tr>
+<td>OPTIONS</td>
+<td>允许客户端查看服务器的性能。</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>回显服务器收到的请求，主要用于测试或诊断。</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>是对 PUT 方法的补充，用来对已知资源进行局部更新 。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="http-状态码"><a class="anchor" href="#http-状态码">#</a> HTTP 状态码</h4>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>状态码英文名称</th>
+<th>中文描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>Continue</td>
+<td>继续。客户端应继续其请求</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Switching Protocols</td>
+<td>切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到 HTTP 的新版本协议</td>
+</tr>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>请求成功。一般用于 GET 与 POST 请求</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td>已创建。成功请求并创建了新的资源</td>
+</tr>
+<tr>
+<td>202</td>
+<td>Accepted</td>
+<td>已接受。已经接受请求，但未处理完成</td>
+</tr>
+<tr>
+<td>203</td>
+<td>Non-Authoritative Information</td>
+<td>非授权信息。请求成功。但返回的 meta 信息不在原始的服务器，而是一个副本</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content</td>
+<td>无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档</td>
+</tr>
+<tr>
+<td>205</td>
+<td>Reset Content</td>
+<td>重置内容。服务器处理成功，用户终端（例如：浏览器）应重置文档视图。可通过此返回码清除浏览器的表单域</td>
+</tr>
+<tr>
+<td>206</td>
+<td>Partial Content</td>
+<td>部分内容。服务器成功处理了部分 GET 请求</td>
+</tr>
+<tr>
+<td>300</td>
+<td>Multiple Choices</td>
+<td>多种选择。请求的资源可包括多个位置，相应可返回一个资源特征与地址的列表用于用户终端（例如：浏览器）选择</td>
+</tr>
+<tr>
+<td>301</td>
+<td>Moved Permanently</td>
+<td>永久移动。请求的资源已被永久的移动到新 URI，返回信息会包括新的 URI，浏览器会自动定向到新 URI。今后任何新的请求都应使用新</td>
+<td>的 URI 代替</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Found</td>
+<td>临时移动。与 301 类似。但资源只是临时被移动。客户端应继续使用原有 URI</td>
+</tr>
+<tr>
+<td>303</td>
+<td>See Other</td>
+<td>查看其它地址。与 301 类似。使用 GET 和 POST 请求查看</td>
+</tr>
+<tr>
+<td>304</td>
+<td>Not Modified</td>
+<td>未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源</td>
+</tr>
+<tr>
+<td>305</td>
+<td>Use Proxy</td>
+<td>使用代理。所请求的资源必须通过代理访问</td>
+</tr>
+<tr>
+<td>306</td>
+<td>Unused</td>
+<td>已经被废弃的 HTTP 状态码</td>
+</tr>
+<tr>
+<td>307</td>
+<td>Temporary Redirect</td>
+<td>临时重定向。与 302 类似。使用 GET 请求重定向</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>客户端请求的语法错误，服务器无法理解</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>请求要求用户的身份认证</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Payment Required</td>
+<td>保留，将来使用</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>服务器理解请求客户端的请求，但是拒绝执行此请求</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置 &quot;您所请求的资源无法找到&quot;  的个性页面</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed</td>
+<td>客户端请求中的方法被禁止</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable</td>
+<td>服务器无法根据客户端请求的内容特性完成请求</td>
+</tr>
+<tr>
+<td>407</td>
+<td>Proxy Authentication Required</td>
+<td>请求要求代理的身份认证，与 401 类似，但请求者应当使用代理进行授权</td>
+</tr>
+<tr>
+<td>408</td>
+<td>Request Time-out</td>
+<td>服务器等待客户端发送的请求时间过长，超时</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict	服务器完成客户端的 PUT</td>
+<td>请求时可能返回此代码，服务器处理请求时发生了冲突</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone</td>
+<td>客户端请求的资源已经不存在。410 不同于 404，如果资源以前有现在被永久删除了可使用 410 代码，网站设计人员可通过 301 代码指定资源的新位置</td>
+</tr>
+<tr>
+<td>411</td>
+<td>Length Required</td>
+<td>服务器无法处理客户端发送的不带 Content-Length 的请求信息</td>
+</tr>
+<tr>
+<td>412</td>
+<td>Precondition Failed</td>
+<td>客户端请求信息的先决条件错误</td>
+</tr>
+<tr>
+<td>413</td>
+<td>Request Entity Too Large</td>
+<td>由于请求的实体过大，服务器无法处理，因此拒绝请求。为防止客户端的连续请求，服务器可能会关闭连接。如果只是服务器暂时无法处理，则会包含一个 Retry-After 的响应信息</td>
+</tr>
+<tr>
+<td>414</td>
+<td>Request-URI Too Large</td>
+<td>请求的 URI 过长（URI 通常为网址），服务器无法处理</td>
+</tr>
+<tr>
+<td>415</td>
+<td>Unsupported Media Type</td>
+<td>服务器无法处理请求附带的媒体格式</td>
+</tr>
+<tr>
+<td>416</td>
+<td>Requested range not satisfiable</td>
+<td>客户端请求的范围无效</td>
+</tr>
+<tr>
+<td>417</td>
+<td>Expectation Failed</td>
+<td>服务器无法满足 Expect 的请求头信息</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>服务器内部错误，无法完成请求</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+<td>服务器不支持请求的功能，无法完成请求</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Bad Gateway</td>
+<td>作为网关或者代理工作的服务器尝试执行请求时，从远程服务器接收到了一个无效的响应</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td>由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的 Retry-After 头信息中</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Time-out</td>
+<td>充当网关或代理的服务器，未及时从远端服务器获取请求</td>
+</tr>
+<tr>
+<td>505</td>
+<td>HTTP Version not supported</td>
+<td>服务器不支持请求的 HTTP 协议的版本，无法完成处理</td>
+</tr>
+</tbody>
+</table>
+<h4 id="restfull"><a class="anchor" href="#restfull">#</a> RESTFULL</h4>
+<figure class="highlight http"><figcaption data-lang="HTTP"></figcaption><table><tr><td data-num="1"></td><td><pre>GET /collection：从服务器查询资源的列表（数组）</pre></td></tr><tr><td data-num="2"></td><td><pre>GET /collection/resource：从服务器查询单个资源</pre></td></tr><tr><td data-num="3"></td><td><pre>POST /collection：在服务器创建新的资源</pre></td></tr><tr><td data-num="4"></td><td><pre>PUT /collection/resource：更新服务器资源</pre></td></tr><tr><td data-num="5"></td><td><pre>DELETE /collection/resource：从服务器删除资源</pre></td></tr></table></figure><p>四个方法除 POST 之外都需要保持幂等性。</p>
+<h3 id="https"><a class="anchor" href="#https">#</a> HTTPS</h3>
+<p><strong>HTTPS</strong>（Hyper Text Transfer Protocol over SecureSocket Layer）是以安全为目标的 HTTP 通道，是 HTTP 的安全版。HTTPS 的安全基础是 SSL。SSL 协议位于 TCP/IP 协议与各种应用层协议之间，为数据通讯提供安全支持。SSL 协议可分为两层：SSL 记录协议（SSL Record Protocol），它建立在可靠的传输协议（如 TCP）之上，为高层协议提供数据封装、压缩、加密等基本功能的支持。SSL 握手协议（SSL Handshake Protocol），它建立在 SSL 记录协议之上，用于在实际的数据传输开始前，通讯双方进行身份认证、协商加密算法、交换加密密钥等。</p>
+<p><img data-src="https://uploadfiles.nowcoder.com/images/20220224/4107856_1645697886891/B7268EF66524898CEF0E068EA5F1BA26" alt="https 示意图" /><br />
+客户端在使用 HTTPS 方式与 Web 服务器通信时有以下几个步骤，如图上图所示：</p>
+<ol>
+<li>客户使用 https 的 URL 访问 Web 服务器，要求与 Web 服务器建立 SSL 连接。</li>
+<li>Web 服务器收到客户端请求后，会将网站的证书信息（证书中包含公钥）传送一份给客户端。</li>
+<li>客户端的浏览器与 Web 服务器开始协商 SSL 连接的安全等级，也就是信息加密的等级。</li>
+<li>客户端的浏览器根据双方同意的安全等级，建立会话密钥，然后利用网站的公钥将会话密钥加密，并传送给网站。</li>
+<li>Web 服务器利用自己的私钥解密出会话密钥。</li>
+<li>Web 服务器利用会话密钥加密与客户端之间的通信。</li>
+</ol>
+<h2 id="其它问题"><a class="anchor" href="#其它问题">#</a> 其它问题</h2>
+<ol>
+<li>
+<p>介绍一下 HTTP 协议中的长连接和短连接。<br />
+HTTP 协议的底层使用 TCP 协议，所以 HTTP 协议的长连接和短连接在本质上是 TCP 层的长连接和短连接。由于 TCP 建立连接、维护连接、释放连接都是要消耗一定的资源，浪费一定的时间。所对于服务器来说，频繁的请求释放连接会浪费大量的时间，长时间维护太多的连接的话又需要消耗资源。所以长连接和短连接并不存在优劣之分，只是适用的场合不同而已。长连接和短连接分别有如下优点和缺点：<br />
+<strong>长连接优点</strong>：可以节省较多的 TCP 连接和释放的操作，节约时间，对于频繁请求资源的用户来说，适合长连接。<br />
+<strong>长连接缺点</strong>：由于有保活功能，当遇到大量的恶意连接时，服务器的压力会越来越大。这时服务器需要采取一些策略，关闭一些长时间没有进行读写事件的的连接。<br />
+<strong>短连接优点</strong>：短连接对服务器来说管理比较简单，只要存在的连接都是有效连接，不需要额外的控制手段，而且不会长时间占用资源 。<br />
+<strong>短连接缺点</strong>：如果客户端请求频繁的话，会在 TCP 的建立和释放上浪费大量的时间。<br />
+从 HTTP/1.1 版本起，默认使用长连接用以保持连接特性。使用长连接的 HTTP 协议，会在响应消息报文段加入：Connection: keep-alive。TCP 中也有 keep alive，但是 TCP 中的 keep alive 只是探测 TCP 连接是否活着，而 HTTP 中的 keep-alive 是让一个 TCP 连接获得更久一点。</p>
+</li>
+<li>
+<p>说一说 HTTPS 的证书认证过程。</p>
+<ol>
+<li>
+<p>浏览器将自己支持的一套加密规则发送给网站。</p>
+</li>
+<li>
+<p>网站从中选出一组加密算法与 HASH 算法，并将自己的身份信息以证书的形式发回给浏览器。证书里面包含了网站地址，加密公钥，以及证书的颁发机构等信息。</p>
+</li>
+<li>
+<p>浏览器获得网站证书之后浏览器要做以下工作：</p>
+</li>
+</ol>
+<ul>
+<li>验证证书的合法性（颁发证书的机构是否合法，证书中包含的网站地址是否与正在访问的地址一致等），如果证书受信任，则浏览器栏里面会显示一个小锁头，否则会给出证书不受信的提示。</li>
+<li>如果证书受信任，或者是用户接受了不受信的证书，浏览器会生成一串随机数的密码，并用证书中提供的公钥加密。</li>
+<li>使用约定好的 HASH 算法计算握手消息，并使用生成的随机数对消息进行加密，最后将之前生成的所有信息发送给网站。</li>
+</ul>
+<ol start="4">
+<li>网站接收浏览器发来的数据之后要做以下的操作：</li>
+</ol>
+<ul>
+<li>使用自己的私钥将信息解密取出密码，使用密码解密浏览器发来的握手消息，并验证 HASH 是否与浏览器发来的一致。</li>
+<li>使用密码加密一段握手消息，发送给浏览器。</li>
+</ul>
+<ol start="5">
+<li>浏览器解密并计算握手消息的 HASH，如果与服务端发来的 HASH 一致，此时握手过程结束，之后所有的通信数据将由之前浏览器生成的随机密码并利用对称加密算法进行加密。</li>
+</ol>
+</li>
+<li>
+<p>打开浏览器从输入网址到网页呈现在大家面前，背后发生了什么？<br />
+DNS 解析：将域名解析成 IP 地址<br />
+ TCP 连接：TCP 三次握手<br />
+发送 HTTP 请求<br />
+服务器处理请求并返回 HTTP 报文<br />
+浏览器解析渲染页面<br />
+断开连接：TCP 四次挥手</p>
+</li>
+</ol>
+
+      <div class="tags">
+          <a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/" rel="tag"><i class="ic i-tag"></i> 八股文</a>
+          <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"><i class="ic i-tag"></i> 计算机网络</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-01-19 16:15:09" itemprop="dateModified" datetime="2025-01-19T16:15:09+08:00">2025-01-19</time>
+  </span>
+  <span id="2023/10/24/2023-10-interview-network/" class="item leancloud_visitors" data-flag-title="面试指北：计算机网络" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>小王学长 <i class="ic i-at"><em>@</em></i>沉思录
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://haust-kevin.github.io/2023/10/24/2023-10-interview-network/" title="面试指北：计算机网络">https://haust-kevin.github.io/2023/10/24/2023-10-interview-network/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/10/17/2023-10-bubble-sort/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646848.jpg" title="冒泡排序、鸡尾酒排序、梳子排序">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 算法基础</span>
+  <h3>冒泡排序、鸡尾酒排序、梳子排序</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/10/25/2023-10-interview-Java-basic/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646846.jpg" title="面试指北：Java 基础">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Java</span>
+  <h3>面试指北：Java 基础</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#osi-%E4%B8%83%E5%B1%82%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text"> OSI 七层网络模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">2.</span> <span class="toc-text"> 三次握手 &amp; 四次挥手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">2.1.</span> <span class="toc-text"> 三次握手</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 三次握手示意图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 三次握手过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 为什么要三次握手</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">2.2.</span> <span class="toc-text"> 四次挥手</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 四次挥手示意图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 四次挥手过程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 四次挥手原因：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%98%E5%8C%85"><span class="toc-number">3.</span> <span class="toc-text"> 粘包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-number">3.1.</span> <span class="toc-text"> 原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text"> 处理方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-udp-%E6%B2%A1%E6%9C%89%E7%B2%98%E5%8C%85"><span class="toc-number">3.3.</span> <span class="toc-text"> 为什么 UDP 没有粘包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-https"><span class="toc-number">4.</span> <span class="toc-text"> HTTP &amp; HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http"><span class="toc-number">4.1.</span> <span class="toc-text"> HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.1.</span> <span class="toc-text"> HTTP 请求方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#http-%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">4.1.2.</span> <span class="toc-text"> HTTP 状态码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#restfull"><span class="toc-number">4.1.3.</span> <span class="toc-text"> RESTFULL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#https"><span class="toc-number">4.2.</span> <span class="toc-text"> HTTPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text"> 其它问题</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/10/24/2023-10-interview-network/" rel="bookmark" title="面试指北：计算机网络">面试指北：计算机网络</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="小王学长"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">小王学长</p>
+  <div class="description" itemprop="description">思考未知，追求卓越</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">16</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">15</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">25</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhdXN0LUtldmlu" title="https:&#x2F;&#x2F;github.com&#x2F;haust-Kevin"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS93YW5nLWRpbmctYmFuZy05Ng==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;wang-ding-bang-96"><i class="ic i-zhihu"></i></span>
+      <a href="/about/about-me" title="&#x2F;about&#x2F;about-me" class="item about"><i class="ic i-address-card"></i></a>
+      <span class="exturl item email" data-url="bWFpbHRvOjMzNjQ5MTc5OTBAcXEuY29t" title="mailto:3364917990@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item bilibili" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vNDgxNzgwMTcw" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;481780170"><i class="ic i-bilibili"></i></span>
+      <span class="exturl item qq" data-url="aHR0cDovL3dwYS5xcS5jb20vbXNncmQ/dj0zJnVpbj0zMzY0OTE3OTkwJnNpdGU9cXEmbWVudT15ZXM=" title="http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;3364917990&amp;site&#x3D;qq&amp;menu&#x3D;yes"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="/links/friends/" rel="section"><i class="ic i-link"></i>链接</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/links/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/links/recommend/" rel="section"><i class="ic i-magic"></i>推荐</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-user"></i>关于</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/about/about-me/" rel="section"><i class="ic i-address-card"></i>博主</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/about/about-site/" rel="section"><i class="ic i-cloud"></i>本站</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/moments/" rel="section"><i class="ic i-pen"></i>说说</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/10/17/2023-10-bubble-sort/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/10/25/2023-10-interview-Java-basic/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/19/2023-08-docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Web/" title="分类于 Web">Web</a>
+</div>
+
+    <span><a href="/2023/11/01/2023-11-interview-web-spring/" title="面试指北：Spring">面试指北：Spring</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="分类于 中间件">中间件</a>
+</div>
+
+    <span><a href="/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">面试指北：消息队列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="分类于 数据结构与算法">数据结构与算法</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 算法基础">算法基础</a>
+</div>
+
+    <span><a href="/2023/10/17/2023-10-bubble-sort/" title="冒泡排序、鸡尾酒排序、梳子排序">冒泡排序、鸡尾酒排序、梳子排序</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-redis/" title="面试指北：Redis 数据库">面试指北：Redis 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="分类于 环境搭建">环境搭建</a>
+</div>
+
+    <span><a href="/2025/01/19/2025-01-rust-init-env/" title="Rust：环境搭建">Rust：环境搭建</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/17/2023-08-brew-replace-download-source/" title="HomeBrew：brew 更换下载源">HomeBrew：brew 更换下载源</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" title="分类于 好文摘抄">好文摘抄</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" title="分类于 小说">小说</a>
+</div>
+
+    <span><a href="/2023/08/20/2023-08-%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/25/2023-10-interview-Java-basic/" title="面试指北：Java 基础">面试指北：Java 基础</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">小王学长 @ Kevin's Blog</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="站点总字数">84k 字</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:16</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/10/24/2023-10-interview-network/',
+    favicon: {
+      show: "要每天开心哦 ^_^",
+      hide: "等你回来呦~"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

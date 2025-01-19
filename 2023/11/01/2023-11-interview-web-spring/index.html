@@ -1,0 +1,856 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="沉思录" href="https://haust-kevin.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="沉思录" href="https://haust-kevin.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="沉思录" href="https://haust-kevin.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=HarmonyOS%20Sans:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="八股文,Spring,Web" />
+
+
+<link rel="canonical" href="https://haust-kevin.github.io/2023/11/01/2023-11-interview-web-spring/">
+
+
+
+  <title>
+面试指北：Spring - Web - 面试指北 |
+Kevin's Blog = 沉思录 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">面试指北：Spring
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-11-01 18:02:28">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-11-01T18:02:28+08:00">2023-11-01</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>19k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>17 分钟</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Kevin's Blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202405112157417.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646845.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646849.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040025.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040036.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202401242041864.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" itemprop="item" rel="index" title="分类于 面试指北"><span itemprop="name">面试指北</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Web/" itemprop="item" rel="index" title="分类于 Web"><span itemprop="name">Web</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://haust-kevin.github.io/2023/11/01/2023-11-interview-web-spring/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="小王学长">
+    <meta itemprop="description" content="古之立大事者，不惟有超世之才，亦必有坚忍不拔之志, 思考未知，追求卓越">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="沉思录">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="framework"><a class="anchor" href="#framework">#</a> Framework</h2>
+<p>Spring 总共大约有 20 个模块， 由 1300 多个不同的文件构成。 而这些组件被分别整合在核心容器（Core Container） 、 AOP（Aspect Oriented Programming）和设备支持（Instrmentation） 、数据访问与集成（Data Access/Integeration） 、 Web、 消息（Messaging） 、 Test 等 6 个模块中。 以下是 Spring 5 的模块结构图：<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311021759403.png" alt="" /></p>
+<ul>
+<li>spring core：提供了框架的基本组成部分，包括控制反转（Inversion of Control，IOC）和依赖注入（Dependency Injection，DI）功能。</li>
+<li>spring beans：提供了 BeanFactory，是工厂模式的一个经典实现，Spring 将管理对象称为 Bean。</li>
+<li>spring context：构建于 core 封装包基础上的 context 封装包，提供了一种框架式的对象访问方法。</li>
+<li>spring jdbc：提供了一个 JDBC 的抽象层，消除了烦琐的 JDBC 编码和数据库厂商特有的错误代码解析， 用于简化 JDBC。</li>
+<li>spring aop：提供了面向切面的编程实现，让你可以自定义拦截器、切点等。</li>
+<li>spring Web：提供了针对 Web 开发的集成特性，例如文件上传，利用 servlet listeners 进行 ioc 容器初始化和针对 Web 的 ApplicationContext。</li>
+<li>spring test：主要为测试提供支持的，支持使用 JUnit 或 TestNG 对 Spring 组件进行单元测试和集成测试。</li>
+</ul>
+<h2 id="aop"><a class="anchor" href="#aop">#</a> AOP</h2>
+<p>AOP：Aspect oriented programming 面向切面编程，AOP 是 OOP（面向对象编程）的一种延续。</p>
+<p>AOP 有两种实现方式：静态代理和动态代理。</p>
+<h3 id="aop-实现方式"><a class="anchor" href="#aop-实现方式">#</a> AOP 实现方式</h3>
+<p><strong>静态代理</strong><br />
+静态代理：代理类在编译阶段生成，在编译阶段将通知织入 Java 字节码中，也称编译时增强。AspectJ 使用的是静态代理。</p>
+<p>缺点：代理对象需要与目标对象实现一样的接口，并且实现接口的方法，会有冗余代码。同时，一旦接口增加方法，目标对象与代理对象都要维护。</p>
+<p><strong>动态代理</strong></p>
+<p>动态代理：代理类在程序运行时创建，AOP 框架不会去修改字节码，而是在内存中临时生成一个代理对象，在运行期间对业务方法进行增强，不会生成新类。</p>
+<h3 id="spring-aop"><a class="anchor" href="#spring-aop">#</a> Spring AOP</h3>
+<p>Spring 的 AOP 实现原理其实很简单，就是通过动态代理实现的。如果我们为 Spring 的某个 bean 配置了切面，那么 Spring 在创建这个 bean 的时候，实际上创建的是这个 bean 的一个代理对象，我们后续对 bean 中方法的调用，实际上调用的是代理类重写的代理方法。而 Spring 的 AOP 使用了两种动态代理，分别是 JDK 的动态代理，以及 CGLib 的动态代理。</p>
+<p>如果目标对象实现了接口，默认情况下会采用 JDK 的动态代理实现 AOP，也可以强制使用 CGLIB 实现 AOP。<br />
+如果目标对象没有实现了接口，必须采用 CGLIB 库。</p>
+<h4 id="jdk-动态代理"><a class="anchor" href="#jdk-动态代理">#</a> JDK 动态代理</h4>
+<p>如果目标类实现了接口，Spring AOP 会选择使用 JDK 动态代理目标类。代理类根据目标类实现的接口动态生成，不需要自己编写，生成的动态代理类和目标类都实现相同的接口。JDK 动态代理的核心是 InvocationHandler 接口和 Proxy 类。<br />
+<strong>缺点</strong>：目标类必须有实现的接口。如果某个类没有实现接口，那么这个类就不能用 JDK 动态代理。</p>
+<h4 id="cglib-动态代理"><a class="anchor" href="#cglib-动态代理">#</a> CGLIB 动态代理</h4>
+<p>通过继承实现。如果目标类没有实现接口，那么 Spring AOP 会选择使用 CGLIB 来动态代理目标类。CGLIB（Code Generation Library）可以在运行时动态生成类的字节码，动态创建目标类的子类对象，在子类对象中增强目标类。</p>
+<p>CGLIB 是通过继承的方式做的动态代理，因此如果某个类被标记为 final，那么它是无法使用 CGLIB 做动态代理的。</p>
+<p><strong>优点</strong>：目标类不需要实现特定的接口，更加灵活。</p>
+<h3 id="spring-aop-相关术语"><a class="anchor" href="#spring-aop-相关术语">#</a> Spring AOP 相关术语</h3>
+<ul>
+<li><strong>切面（Aspect）</strong>：切面是通知和切点的结合。通知和切点共同定义了切面的全部内容。</li>
+<li><strong>连接点（Join point）</strong>：指方法，在 Spring AOP 中，一个连接点总是代表一个方法的执行。连接点是在应用执行过程中能够插入切面的一个点。这个点可以是调用方法时、抛出异常时、甚至修改一个字段时。切面代码可以利用这些点插入到应用的正常流程之中，并添加新的行为。</li>
+<li><strong>通知（Advice）</strong>：在 AOP 术语中，切面的工作被称为通知。</li>
+<li><strong>切入点（Pointcut）</strong>：切点的定义会匹配通知所要织入的一个或多个连接点。我们通常使用明确的类和方法名称，或是利用正则表达式定义所匹配的类和方法名称来指定这些切点。</li>
+<li><strong>引入（Introduction）</strong>：引入允许我们向现有类添加新方法或属性。</li>
+<li><strong>目标对象（Target Object）</strong>： 被一个或者多个切面（aspect）所通知（advise）的对象。它通常是一个代理对象。</li>
+<li><strong>织入（Weaving）</strong>：织入是把切面应用到目标对象并创建新的代理对象的过程。在目标对象的生命周期里有以下时间点可以进行织入：
+<ul>
+<li>编译期：切面在目标类编译时被织入。AspectJ 的织入编译器是以这种方式织入切面的。</li>
+<li>类加载期：切面在目标类加载到 JVM 时被织入。需要特殊的类加载器，它可以在目标类被引入应用之前增强该目标类的字节码。AspectJ5 的加载时织入就支持以这种方式织入切面。</li>
+<li>运行期：切面在应用运行的某个时刻被织入。一般情况下，在织入切面时，AOP 容器会为目标对象动态地创建一个代理对象。SpringAOP 就是以这种方式织入切面。</li>
+</ul>
+</li>
+</ul>
+<h3 id="spring-aop-通知类型"><a class="anchor" href="#spring-aop-通知类型">#</a> Spring AOP 通知类型</h3>
+<ul>
+<li><strong>前置通知（Before）</strong>：在目标方法被调用之前调用通知功能；</li>
+<li><strong>后置通知（After）</strong>：在目标方法完成之后调用通知，此时不会关心方法的输出是什么；</li>
+<li><strong>返回通知（After-returning ）</strong>：在目标方法成功执行之后调用通知；</li>
+<li><strong>异常通知（After-throwing）</strong>：在目标方法抛出异常后调用通知；</li>
+<li><strong>环绕通知（Around）</strong>：通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的逻辑。</li>
+</ul>
+<h2 id="ioc"><a class="anchor" href="#ioc">#</a> IOC</h2>
+<p>IoC（Inversion of Control）是控制反转的意思，这是一种面向对象编程的设计思想。在不采用这种思想的情况下，我们需要自己维护对象与对象之间的依赖关系，很容易造成对象之间的耦合度过高，在一个大型的项目中这十分的不利于代码的维护。IoC 则可以解决这种问题，它可以帮我们维护对象与对象之间的依赖关系，降低对象之间的耦合度。</p>
+<p>说到 IoC 就不得不说 DI（Dependency Injection），DI 是依赖注入的意思，它是 IoC 实现的实现方式，就是说 IoC 是通过 DI 来实现的。由于 IoC 这个词汇比较抽象而 DI 却更直观，所以很多时候我们就用 DI 来代替它，在很多时候我们简单地将 IoC 和 DI 划等号，这是一种习惯。而实现依赖注入的关键是 IoC 容器，它的本质就是一个工厂。</p>
+<p>在具体的实现中，主要由三种注入方式：</p>
+<p><strong>构造方法注入</strong></p>
+<p>就是被注入对象可以在它的构造方法中声明依赖对象的参数列表，让外部知道它需要哪些依赖对象。然后，IoC Service Provider 会检查被注入的对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。构造方法注入方式比较直观，对象被构造完成后，即进入就绪状态，可以马上使用。</p>
+<p><strong>setter 方法注入</strong></p>
+<p>通过 setter 方法，可以更改相应的对象属性。所以，当前对象只要为其依赖对象所对应的属性添加 setter 方法，就可以通过 setter 方法将相应的依赖对象设置到被注入对象中。setter 方法注入虽不像构造方法注入那样，让对象构造完成后即可使用，但相对来说更宽松一些， 可以在对象构造完成后再注入。</p>
+<p><strong>接口注入</strong></p>
+<p>相对于前两种注入方式来说，接口注入没有那么简单明了。被注入对象如果想要 IoC Service Provider 为其注入依赖对象，就必须实现某个接口。这个接口提供一个方法，用来为其注入依赖对象。IoC Service Provider 最终通过这些接口来了解应该为被注入对象注入什么依赖对象。相对于前两种依赖注入方式，接口注入比较死板和烦琐。</p>
+<h3 id="ioc-容器初始化过程"><a class="anchor" href="#ioc-容器初始化过程">#</a> IOC 容器初始化过程</h3>
+<p>ioc 容器初始化过程：BeanDefinition 的资源定位、解析和注册。</p>
+<ul>
+<li>从 XML 中读取配置文件。</li>
+<li>将 bean 标签解析成 BeanDefinition，如解析 property 元素， 并注入到 BeanDefinition 实例中。</li>
+<li>将 BeanDefinition 注册到容器 BeanDefinitionMap 中。</li>
+<li>BeanFactory 根据 BeanDefinition 的定义信息创建实例化和初始化 bean。</li>
+</ul>
+<h3 id="beanfactory-applicationcontext"><a class="anchor" href="#beanfactory-applicationcontext">#</a> BeanFactory &amp; ApplicationContext</h3>
+<p>它们都是 Spring 中的两个接口，用来获取 Spring 容器中的 bean。</p>
+<p><strong>BeanFactory</strong><br />
+spring 容器中具有代表性的容器就是 BeanFactory 接口，这个是 spring 容器的顶层接口，提供了容器最基本的功能。</p>
+<p><strong>ApplicationContext</strong><br />
+ 应用上下文，继承 BeanFactory 接口，它是 Spring 的一各更高级的容器，提供了更多的有用的功能；</p>
+<ul>
+<li>国际化（MessageSource）</li>
+<li>访问资源，如 URL 和文件（ResourceLoader）</li>
+<li>载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的 web 层</li>
+<li>消息发送、响应机制（ApplicationEventPublisher）</li>
+<li>AOP（拦截器）</li>
+</ul>
+<h4 id="装载-bean-的区别"><a class="anchor" href="#装载-bean-的区别">#</a> 装载 bean 的区别</h4>
+<p><strong>BeanFactory</strong><br />
+BeanFactory 在启动的时候不会去实例化 Bean，中有从容器中拿 Bean 的时候才会去实例化；</p>
+<p><strong>ApplicationContext</strong><br />
+ApplicationContext 在启动的时候就把所有的 Bean 全部实例化了。它还提供了更多的功能，如国际化、事件传播、资源加载等。它还可以为 Bean 配置  <code>lazy-init=true</code>  来让 Bean 延迟实例化；</p>
+<h3 id="循环依赖问题"><a class="anchor" href="#循环依赖问题">#</a> 循环依赖问题</h3>
+<p>spring 对循环依赖的处理有三种情况：</p>
+<ul>
+<li>构造器的循环依赖：这种依赖 spring 是处理不了的，直接抛出 BeanCurrentlylnCreationException 异常。</li>
+<li>单例模式下的 setter 循环依赖：通过「三级缓存」处理循环依赖。</li>
+<li>非单例循环依赖：无法处理。</li>
+</ul>
+<p>Spring 在创建 Bean 的过程中分为三步：</p>
+<ol>
+<li>实例化，对应方法：AbstractAutowireCapableBeanFactory 中的 createBeanInstance 方法。</li>
+<li>属性注入，对应方法：AbstractAutowireCapableBeanFactory 的 populateBean 方法。</li>
+<li>初始化，对应方法：AbstractAutowireCapableBeanFactory 的 initializeBean 方法。</li>
+</ol>
+<p>Spring 为了解决单例的循环依赖问题，使用了三级缓存。</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">/** Cache of singleton objects: bean name –> bean instance */</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Map</span> singletonObjects <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcurrentHashMap</span><span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">/** Cache of singleton factories: bean name –> ObjectFactory */</span> </pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token operator">></span> singletonFactories <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">/** Cache of early singleton objects: bean name –> bean instance */</span> </pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Map</span> earlySingletonObjects <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p><strong>三级缓存的作用</strong><br />
+ <code>singletonFactories</code>  ： 进入实例化阶段的单例对象工厂的 cache （三级缓存）。<br />
+ <code>earlySingletonObjects</code>  ：完成实例化但是尚未初始化的，提前暴光的单例对象的 Cache （二级缓存）。<br />
+ <code>singletonObjects</code> ：完成初始化的单例对象的 cache（一级缓存）。</p>
+<p>步骤：</p>
+<ol>
+<li>Spring 首先从一级缓存 singletonObjects 中获取。</li>
+<li>如果获取不到，并且对象正在创建中，就再从二级缓存 earlySingletonObjects 中获取。</li>
+<li>如果还是获取不到且允许 singletonFactories 通过 getObject () 获取，就从三级缓存 singletonFactory.getObject ()（三级缓存）获取。</li>
+<li>如果从三级缓存中获取到就从 singletonFactories 中移除，并放入 earlySingletonObjects 中。其实也就是从三级缓存移动到了二级缓存。</li>
+</ol>
+<p>我们在创建 bean 的时候，会首先从 cache 中获取这个 bean，这个缓存就是 sigletonObjects。主要的调用方法是：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">getSingleton</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token keyword">boolean</span> allowEarlyReference<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token comment">// 1. 先从一级缓存中获取，获取到直接返回</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token class-name">Object</span> singletonObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token comment">// 2. 如果获取不到并且对象正在创建，就到二级缓存中去获取，获取到直接返回</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span>singletonObject <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token function">isSingletonCurrentlyInCreation</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            singletonObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>earlySingletonObjects<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            <span class="token comment">// 3. 如果仍获取不到，且允许 singletonFactories (allowEarlyCurrentlyInCreation ()）通过 getObject () 获取。</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            <span class="token comment">// 就到三级缓存中用 getObject () 获取。</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token comment">// 获取到就从 singletonFactories 中移出，且放进 earlySingletonObjects。</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token comment">//（即从三级缓存移动到二级缓存）</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>singletonObject <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> allowEarlyReference<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>                <span class="token class-name">ObjectFactory</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> singletonFactory <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>singletonFactories<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>                <span class="token keyword">if</span> <span class="token punctuation">(</span>singletonFactory <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>                    singletonObject <span class="token operator">=</span> singletonFactory<span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>                    <span class="token keyword">this</span><span class="token punctuation">.</span>earlySingletonObjects<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> singletonObject<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>                    <span class="token keyword">this</span><span class="token punctuation">.</span>singletonFactories<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>                <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token keyword">return</span> singletonObject<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>从三级缓存的分析来看，Spring 解决循环依赖的诀窍就在于 singletonFactories 这个滴三级 cache。这个 cache 的类型是 ObjectFactory，定义如下：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ObjectFactory</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token class-name">T</span> <span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>该类型在 <code>addSingletonFactory</code>  方法中引用。方法又被 <code>doCreateBean</code>  调用。</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">addSingletonFactory</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token class-name">ObjectFactory</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> singletonFactory<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>     </pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">notNull</span><span class="token punctuation">(</span>singletonFactory<span class="token punctuation">,</span> <span class="token string">"Singleton factory must not be null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     </pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>         </pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>             </pre></td></tr><tr><td data-num="5"></td><td><pre>            <span class="token keyword">this</span><span class="token punctuation">.</span>singletonFactories<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> singletonFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>             </pre></td></tr><tr><td data-num="6"></td><td><pre>            <span class="token keyword">this</span><span class="token punctuation">.</span>earlySingletonObjects<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>            </pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token keyword">this</span><span class="token punctuation">.</span>registeredSingletons<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>         </pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token punctuation">&#125;</span>     </pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#125;</span> </pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p><strong>doCreateBean</strong></p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 保存的是 FactoryBean 的 beanName -> FactoryBean 的 BeanWrapper</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">ConcurrentMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">BeanWrapper</span><span class="token punctuation">></span></span> factoryBeanInstanceCache <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcurrentHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">doCreateBean</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token class-name">RootBeanDefinition</span> mbd<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">throws</span> <span class="token class-name">BeanCreationException</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token comment">// Instantiate the bean.</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token class-name">BeanWrapper</span> instanceWrapper <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span>mbd<span class="token punctuation">.</span><span class="token function">isSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token comment">// 单例情况下清除缓存。这里保存的是 FactoryBean 和 BeanWrapper 的映射关系。 </span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token comment">//factoryBeanInstanceCache 是在创建其他 bean 的时候缓存了一下 FactoryBean 。至于单例模式下移除而不是获取，因为单例只需要创建一次 ？ 尚未理解。</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        instanceWrapper <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>factoryBeanInstanceCache<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token comment">// 如果没有缓存，则重新创建</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span>instanceWrapper <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token comment">// 1. 根据指定的 bean 使用对应的策略创建新的实例。如：工厂方法、构造函数自动注入，简单初始化</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        instanceWrapper <span class="token operator">=</span> <span class="token function">createBeanInstance</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token comment">// 获取 bean 实例</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">final</span> <span class="token class-name">Object</span> bean <span class="token operator">=</span> instanceWrapper<span class="token punctuation">.</span><span class="token function">getWrappedInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token comment">// 获取 bean 类型</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> beanType <span class="token operator">=</span> instanceWrapper<span class="token punctuation">.</span><span class="token function">getWrappedClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token comment">// 将目标类型替换成实际生成的类型。纠正了上面说到类型错误（如果存在）</span></pre></td></tr><tr><td data-num="24"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span>beanType <span class="token operator">!=</span> <span class="token class-name">NullBean</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        mbd<span class="token punctuation">.</span>resolvedTargetType <span class="token operator">=</span> beanType<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="27"></td><td><pre></pre></td></tr><tr><td data-num="28"></td><td><pre>    <span class="token comment">// Allow post-processors to modify the merged bean definition.</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token comment">// 2. 调用  MergedBeanDefinitionPostProcessor 后处理器</span></pre></td></tr><tr><td data-num="30"></td><td><pre>    <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>mbd<span class="token punctuation">.</span>postProcessingLock<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>mbd<span class="token punctuation">.</span>postProcessed<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>                <span class="token comment">// 调用  MergedBeanDefinitionPostProcessor#postProcessMergedBeanDefinition 后处理器的方法。</span></pre></td></tr><tr><td data-num="34"></td><td><pre>                <span class="token function">applyMergedBeanDefinitionPostProcessors</span><span class="token punctuation">(</span>mbd<span class="token punctuation">,</span> beanType<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanCreationException</span><span class="token punctuation">(</span>mbd<span class="token punctuation">.</span><span class="token function">getResourceDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="38"></td><td><pre>                        <span class="token string">"Post-processing of merged bean definition failed"</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="39"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>            mbd<span class="token punctuation">.</span>postProcessed <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="41"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="42"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="43"></td><td><pre></pre></td></tr><tr><td data-num="44"></td><td><pre>    <span class="token comment">// Eagerly cache singletons to be able to resolve circular references</span></pre></td></tr><tr><td data-num="45"></td><td><pre>    <span class="token comment">// even when triggered by lifecycle interfaces like BeanFactoryAware.</span></pre></td></tr><tr><td data-num="46"></td><td><pre>    <span class="token comment">// 3. 判断是否需要提早曝光 ： 单例 &amp; 允许循环依赖 &amp; 当前 bean 已经正在创建中</span></pre></td></tr><tr><td data-num="47"></td><td><pre>    <span class="token comment">// 由于当前 bean 已经在创建中，本次创建必然是循环引用造成的，所以这里判断是否可以需要提前曝光</span></pre></td></tr><tr><td data-num="48"></td><td><pre>    <span class="token keyword">boolean</span> earlySingletonExposure <span class="token operator">=</span> <span class="token punctuation">(</span>mbd<span class="token punctuation">.</span><span class="token function">isSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>allowCircularReferences <span class="token operator">&amp;&amp;</span></pre></td></tr><tr><td data-num="49"></td><td><pre>            <span class="token function">isSingletonCurrentlyInCreation</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="50"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span>earlySingletonExposure<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="51"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="52"></td><td><pre>            logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token string">"Eagerly caching bean '"</span> <span class="token operator">+</span> beanName <span class="token operator">+</span></pre></td></tr><tr><td data-num="53"></td><td><pre>                    <span class="token string">"' to allow for resolving potential circular references"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="54"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="55"></td><td><pre>        <span class="token comment">// 4. 为避免后期循环依赖，在 bean 初始化完成前将创建实例的 ObjectFactory 加入工程  -- 解决循环依赖</span></pre></td></tr><tr><td data-num="56"></td><td><pre>        <span class="token function">addSingletonFactory</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> bean<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="57"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="58"></td><td><pre></pre></td></tr><tr><td data-num="59"></td><td><pre>    <span class="token comment">// Initialize the bean instance.</span></pre></td></tr><tr><td data-num="60"></td><td><pre>    <span class="token class-name">Object</span> exposedObject <span class="token operator">=</span> bean<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="61"></td><td><pre>    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="62"></td><td><pre>        <span class="token comment">//  5. 对 bean 进行属性填充，将各个属性值注入，其中如果存在依赖于其他 bean 的属性，则会递归初始依赖 bean</span></pre></td></tr><tr><td data-num="63"></td><td><pre>        <span class="token function">populateBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> instanceWrapper<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="64"></td><td><pre>        <span class="token comment">// 调用初始化方法，比如 init-method</span></pre></td></tr><tr><td data-num="65"></td><td><pre>        exposedObject <span class="token operator">=</span> <span class="token function">initializeBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> exposedObject<span class="token punctuation">,</span> mbd<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="66"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="67"></td><td><pre>    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="68"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>ex <span class="token keyword">instanceof</span> <span class="token class-name">BeanCreationException</span> <span class="token operator">&amp;&amp;</span> beanName<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">BeanCreationException</span><span class="token punctuation">)</span> ex<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBeanName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="69"></td><td><pre>            <span class="token keyword">throw</span> <span class="token punctuation">(</span><span class="token class-name">BeanCreationException</span><span class="token punctuation">)</span> ex<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="70"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="71"></td><td><pre>        <span class="token keyword">else</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="72"></td><td><pre>            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanCreationException</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="73"></td><td><pre>                    mbd<span class="token punctuation">.</span><span class="token function">getResourceDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> <span class="token string">"Initialization of bean failed"</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="74"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="75"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="76"></td><td><pre>    <span class="token comment">// 6. 进行循环依赖检查</span></pre></td></tr><tr><td data-num="77"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span>earlySingletonExposure<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="78"></td><td><pre>        <span class="token class-name">Object</span> earlySingletonReference <span class="token operator">=</span> <span class="token function">getSingleton</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="79"></td><td><pre>        <span class="token comment">//earlySingletonReference  只有在检测到有循环依赖的情况下才会不为空</span></pre></td></tr><tr><td data-num="80"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>earlySingletonReference <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="81"></td><td><pre>        <span class="token comment">// 如果 exposedObject 没有在初始化方法中被改变，也就是没有被增强</span></pre></td></tr><tr><td data-num="82"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>exposedObject <span class="token operator">==</span> bean<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="83"></td><td><pre>                exposedObject <span class="token operator">=</span> earlySingletonReference<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="84"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="85"></td><td><pre>            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>allowRawInjectionDespiteWrapping <span class="token operator">&amp;&amp;</span> <span class="token function">hasDependentBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="86"></td><td><pre>                <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> dependentBeans <span class="token operator">=</span> <span class="token function">getDependentBeans</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="87"></td><td><pre>                <span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> actualDependentBeans <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>dependentBeans<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="88"></td><td><pre>                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> dependentBean <span class="token operator">:</span> dependentBeans<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="89"></td><td><pre>                    <span class="token comment">// 检测依赖</span></pre></td></tr><tr><td data-num="90"></td><td><pre>                    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">removeSingletonIfCreatedForTypeCheckOnly</span><span class="token punctuation">(</span>dependentBean<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="91"></td><td><pre>                        actualDependentBeans<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>dependentBean<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="92"></td><td><pre>                    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="93"></td><td><pre>                <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="94"></td><td><pre>                <span class="token comment">// 因为 bean 创建后其所依赖的 bean 一定是已经创建了的。actualDependentBeans 不为空说明当前 bean 创建后其依赖的 bena 却没有全部创建完，也就说说存在循环依赖。</span></pre></td></tr><tr><td data-num="95"></td><td><pre>                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>actualDependentBeans<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="96"></td><td><pre>                    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanCurrentlyInCreationException</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="97"></td><td><pre>                            <span class="token string">"Bean with name '"</span> <span class="token operator">+</span> beanName <span class="token operator">+</span> <span class="token string">"' has been injected into other beans ["</span> <span class="token operator">+</span></pre></td></tr><tr><td data-num="98"></td><td><pre>                            <span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">collectionToCommaDelimitedString</span><span class="token punctuation">(</span>actualDependentBeans<span class="token punctuation">)</span> <span class="token operator">+</span></pre></td></tr><tr><td data-num="99"></td><td><pre>                            <span class="token string">"] in its raw version as part of a circular reference, but has eventually been "</span> <span class="token operator">+</span></pre></td></tr><tr><td data-num="100"></td><td><pre>                            <span class="token string">"wrapped. This means that said other beans do not use the final version of the "</span> <span class="token operator">+</span></pre></td></tr><tr><td data-num="101"></td><td><pre>                            <span class="token string">"bean. This is often the result of over-eager type matching - consider using "</span> <span class="token operator">+</span></pre></td></tr><tr><td data-num="102"></td><td><pre>                            <span class="token string">"'getBeanNamesOfType' with the 'allowEagerInit' flag turned off, for example."</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="103"></td><td><pre>                <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="104"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="105"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="106"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="107"></td><td><pre></pre></td></tr><tr><td data-num="108"></td><td><pre>    <span class="token comment">// Register bean as disposable.</span></pre></td></tr><tr><td data-num="109"></td><td><pre>    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="110"></td><td><pre>        <span class="token comment">// 7. 根据 Scopse 注册 bean</span></pre></td></tr><tr><td data-num="111"></td><td><pre>        <span class="token function">registerDisposableBeanIfNecessary</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> bean<span class="token punctuation">,</span> mbd<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="112"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="113"></td><td><pre>    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">BeanDefinitionValidationException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="114"></td><td><pre>        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanCreationException</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="115"></td><td><pre>                mbd<span class="token punctuation">.</span><span class="token function">getResourceDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> <span class="token string">"Invalid destruction signature"</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="116"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="117"></td><td><pre></pre></td></tr><tr><td data-num="118"></td><td><pre>    <span class="token keyword">return</span> exposedObject<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="119"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p><code>doCreateBean</code>  大致逻辑如下：</p>
+<ol>
+<li><code>createBeanInstance(beanName, mbd, args);</code>  ：实例化 bean，将 BeanDefinition 转换为 BeanWrapper</li>
+<li><code>applyMergedBeanDefinitionPostProcessors(mbd, beanType, beanName);</code>  ： MergedBeanDefinitionPostProcessor 后处理器的应用。bean 合并后的处理，比如 @Autowired、@Value 注解正是通过 AutowiredAnnotationBeanPostProcessor#postProcessMergedBeanDefinition 此方法实现的预解析。</li>
+<li><code>addSingletonFactory(beanName, () -&gt; getEarlyBeanReference(beanName, mbd, bean));</code>  ： 关于循环依赖的处理，添加 ObjectFactory 到 singletonFactories 缓存中，同时这里给了用户一个机会通过调用 SmartInstantiationAwareBeanPostProcessor.getEarlyBeanReference 方法来由用户生成暴露的实例</li>
+<li><code>populateBean(beanName, mbd, instanceWrapper);</code>  ：对创建的 bean 内部的一些属性进行填充注入</li>
+<li><code>initializeBean(beanName, exposedObject, mbd);</code>  ： 初始化 bean 的一些属性，如 Aware 接口的实现， init-method 属性等</li>
+<li>循环依赖检查。和第四步不同的是，这里了是判断是否无法解决循环依赖，否则抛出异常。</li>
+<li><code>registerDisposableBeanIfNecessary(beanName, bean, mbd);</code>  ： 注册 DisposableBean</li>
+<li>完成创建并返回。</li>
+</ol>
+<p><strong>addSingletonFactory</strong></p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">addSingletonFactory</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> bean<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>这一部分的逻辑就是为了解决循环依赖的问题，将未创建完成的当前 bean，通过 ObjectFactory 进行一个包装，提前暴露给其他 bean。</p>
+<p><strong>getEarlyBeanReference</strong></p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token class-name">RootBeanDefinition</span> mbd<span class="token punctuation">,</span> <span class="token class-name">Object</span> bean<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token class-name">Object</span> exposedObject <span class="token operator">=</span> bean<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>mbd<span class="token punctuation">.</span><span class="token function">isSynthetic</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">hasInstantiationAwareBeanPostProcessors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">BeanPostProcessor</span> bp <span class="token operator">:</span> <span class="token function">getBeanPostProcessors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>bp <span class="token keyword">instanceof</span> <span class="token class-name">SmartInstantiationAwareBeanPostProcessor</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>                <span class="token class-name">SmartInstantiationAwareBeanPostProcessor</span> ibp <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">SmartInstantiationAwareBeanPostProcessor</span><span class="token punctuation">)</span> bp<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>                exposedObject <span class="token operator">=</span> ibp<span class="token punctuation">.</span><span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span>exposedObject<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token keyword">return</span> exposedObject<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>所有的</p>
+<h2 id="bean"><a class="anchor" href="#bean">#</a> Bean</h2>
+<h3 id="spring-如何管理-bean"><a class="anchor" href="#spring-如何管理-bean">#</a> Spring 如何管理 Bean</h3>
+<p>Spring 通过 IoC 容器来管理 Bean，我们可以通过 XML 配置或者注解配置，来指导 IoC 容器对 Bean 的管理。因为注解配置比 XML 配置方便很多，所以现在大多时候会使用注解配置的方式。</p>
+<p>以下是管理 Bean 时常用的一些注解：</p>
+<p><code>@ComponentScan</code>  用于声明扫描策略，通过它的声明，容器就知道要扫描哪些包下带有声明的类，也可以知道哪些特定的类是被排除在外的。</p>
+<p><code>@Component</code> 、 <code>@Repository</code> 、 <code>@Service</code> 、 <code>@Controller</code>  用于声明 Bean，它们的作用一样，但是语义不同。@Component 用于声明通用的 Bean， <code>@Repository</code>  用于声明 DAO 层的 Bean，@Service 用于声明业务层的 Bean， <code>@Controller</code>  用于声明视图层的控制器 Bean，被这些注解声明的类就可以被容器扫描并创建。</p>
+<p><code>@Autowired</code> 、 <code>@Qualifier</code>  用于注入 Bean，即告诉容器应该为当前属性注入哪个 Bean。其中，@Autowired 是按照 Bean 的类型进行匹配的，如果这个属性的类型具有多个 Bean，就可以通过 @Qualifier 指定 Bean 的名称，以消除歧义。</p>
+<p><code>@Scope</code>  用于声明 Bean 的作用域，默认情况下 Bean 是单例的，即在整个容器中这个类型只有一个实例。可以通过 <code>@Scope</code>  注解指定 prototype 值将其声明为多例的，也可以将 Bean 声明为 session 级作用域、request 级作用域等等，但最常用的还是默认的单例模式。</p>
+<p><code>@PostConstruct</code> 、 <code>@PreDestroy</code>  用于声明 Bean 的生命周期。其中，被 <code>@PostConstruct</code>  修饰的方法将在 Bean 实例化后被调用， <code>@PreDestroy</code>  修饰的方法将在容器销毁前被调用。</p>
+<h3 id="bean-的作用域"><a class="anchor" href="#bean-的作用域">#</a> Bean 的作用域</h3>
+<p>默认情况下，Bean 在 Spring 容器中是单例的，我们可以通过 @Scope 注解修改 Bean 的作用域。该注解有如下 5 个取值，它们代表了 Bean 的 5 种不同类型的作用域：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>singleton</td>
+<td>在 Spring 容器中仅存在一个实例，即 Bean 以单例的形式存在。</td>
+</tr>
+<tr>
+<td>prototype</td>
+<td>每次调用 getBean () 时，都会执行 new 操作，返回一个新的实例。</td>
+</tr>
+<tr>
+<td>request</td>
+<td>每次 HTTP 请求都会创建一个新的 Bean。</td>
+</tr>
+<tr>
+<td>session</td>
+<td>同一个 HTTP</td>
+<td>Session 共享一个 Bean，不同的 HTTP Session 使用不同的 Bean。</td>
+</tr>
+<tr>
+<td>globalSession</td>
+<td>同一个全局的 Session 共享一个 Bean，一般用于 Portlet 环境。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bean-的生命周期"><a class="anchor" href="#bean-的生命周期">#</a> Bean 的生命周期</h3>
+<p><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311011911438.png" alt="" /></p>
+<p>Spring bean 的生命周期只有四个主要阶段，其他都是在这四个主要阶段前后的扩展点，这四个阶段是：</p>
+<ol>
+<li>实例化 Instantiation</li>
+<li>属性赋值 Populate</li>
+<li>初始化 Initialization</li>
+<li>销毁 Destruction</li>
+</ol>
+<h3 id="beanfactory-factorybean"><a class="anchor" href="#beanfactory-factorybean">#</a> BeanFactory &amp; FactoryBean</h3>
+<p><code>BeanFactory</code> ：管理 Bean 的容器，Spring 中生成的 Bean 都是由这个接口的实现来管理的。</p>
+<p><code>FactoryBean</code> ：通常是用来创建比较复杂的 bean，一般的 bean 直接用 xml 配置即可，但如果一个 bean 的创建过程中涉及到很多其他的 bean 和复杂的逻辑，直接用 xml 配置比较麻烦，这时可以考虑用 FactoryBean，可以隐藏实例化复杂 Bean 的细节。<br />
+当配置文件中 bean 标签的 class 属性配置的实现类是 FactoryBean 时，通过 getBean () 方法返回的不是 FactoryBean 本身，而是调用 FactoryBean#getObject () 方法所返回的对象，相当于 FactoryBean#getObject () 代理了 getBean () 方法。如果想得到 FactoryBean 必须使用 '&amp;' + beanName 的方式获取。</p>
+<h3 id="bean-注入容器的方式"><a class="anchor" href="#bean-注入容器的方式">#</a> Bean 注入容器的方式</h3>
+<p>将普通类交给 Spring 容器管理，通常有以下方法：</p>
+<p>1、使用 <code>@Configuration</code>  与 <code>@Bean</code>  注解<br />
+ 2、使用 <code>@Controller</code> 、 <code>@Service</code> 、 <code>@Repository</code> 、 <code>@Component</code>  注解标注该类，然后启用 <code>@ComponentScan</code>  自动扫描<br />
+ 3、使用 <code>@Import</code>  注解把 bean 导入到当前容器中。</p>
+<h2 id="其它问题"><a class="anchor" href="#其它问题">#</a> 其它问题</h2>
+<h3 id="autowired-resource"><a class="anchor" href="#autowired-resource">#</a> @Autowired &amp; @Resource</h3>
+<ul>
+<li>@Autowired 是 Spring 提供的注解，@Resource 是 JDK 提供的注解。</li>
+<li>@Autowired 是只能按类型注入，@Resource 默认按名称注入，也支持按类型注入。</li>
+<li>@Autowired 按类型装配依赖对象，默认情况下它要求依赖对象必须存在，如果允许 null 值，可以设置它 required 属性为 false，如果我们想使用按名称装配，可以结合 @Qualifier 注解一起使用。@Resource 有两个中重要的属性：name 和 type。name 属性指定 byName，如果没有指定 name 属性，当注解标注在字段上，即默认取字段的名称作为 bean 名称寻找依赖对象，当注解标注在属性的 setter 方法上，即默认取属性名作为 bean 名称寻找依赖对象。需要注意的是，@Resource 如果没有指定 name 属性，并且按照默认的名称仍然找不到依赖对象时， @Resource 注解会回退到按类型装配。但一旦指定了 name 属性，就只能按名称装配了。</li>
+</ul>
+<h3 id="spring-中默认提供的单例是线程安全的吗"><a class="anchor" href="#spring-中默认提供的单例是线程安全的吗">#</a> Spring 中默认提供的单例是线程安全的吗</h3>
+<p><strong>不是线程安全的</strong>，Spring 容器本身并没有提供 Bean 的线程安全策略。如果单例的 Bean 是一个无状态的 Bean，即线程中的操作不会对 Bean 的成员执行查询以外的操作，那么这个单例的 Bean 是线程安全的。比如，Controller、Service、DAO 这样的组件，通常都是单例且线程安全的。如果单例的 Bean 是一个有状态的 Bean，则可以采用 ThreadLocal 对状态数据做线程隔离，来保证线程安全。</p>
+<h3 id="spring-如何管理事务"><a class="anchor" href="#spring-如何管理事务">#</a> Spring 如何管理事务？</h3>
+<p>参考答案</p>
+<p>Spring 为事务管理提供了一致的编程模板，在高层次上建立了统一的事务抽象。也就是说，不管是选择 MyBatis、Hibernate、JPA 还是 Spring JDBC，Spring 都可以让用户以统一的编程模型进行事务管理。</p>
+<h3 id="spring-支持两种事务编程模型"><a class="anchor" href="#spring-支持两种事务编程模型">#</a> Spring 支持两种事务编程模型：</h3>
+<p><strong>编程式事务</strong><br />
+ Spring 提供了 TransactionTemplate 模板，利用该模板我们可以通过编程的方式实现事务管理，而无需关注资源获取、复用、释放、事务同步及异常处理等操作。相对于声明式事务来说，这种方式相对麻烦一些，但是好在更为灵活，我们可以将事务管理的范围控制的更为精确。</p>
+<p><strong>声明式事务</strong><br />
+ Spring 事务管理的亮点在于声明式事务管理，它允许我们通过声明的方式，在 IoC 配置中指定事务的边界和事务属性，Spring 会自动在指定的事务边界上应用事务属性。相对于编程式事务来说，这种方式十分的方便，只需要在需要做事务管理的方法上，增加 @Transactional 注解，以声明事务特征即可。</p>
+<h3 id="spring-自动装配的方式有哪些"><a class="anchor" href="#spring-自动装配的方式有哪些">#</a> Spring 自动装配的方式有哪些</h3>
+<p>Spring 的自动装配有三种模式：byType（根据类型），byName（根据名称）、constructor（根据构造函数）。</p>
+<h2 id="spring-boot"><a class="anchor" href="#spring-boot">#</a> Spring Boot</h2>
+<p>从本质上来说，Spring Boot 就是 Spring，它做了那些没有它你自己也会去做的 Spring Bean 配置。Spring Boot 使用 “习惯优于配置” 的理念让你的项目快速地运行起来，使用 Spring Boot 很容易创建一个能独立运行、准生产级别、基于 Spring 框架的项目，使用 Spring Boot 你可以不用或者只需要很少的 Spring 配置。</p>
+<p>简而言之，Spring Boot 本身并不提供 Spring 的核心功能，而是作为 Spring 的脚手架框架，以达到快速构建项目、预置三方配置、开箱即用的目的。Spring Boot 有如下的优点：</p>
+<ul>
+<li>可以快速构建项目；</li>
+<li>可以对主流开发框架的无配置集成；</li>
+<li>项目可独立运行，无需外部依赖 Servlet 容器；</li>
+<li>提供运行时的应用监控；</li>
+<li>可以极大地提高开发、部署效率；</li>
+<li>可以与云计算天然集成。</li>
+</ul>
+<h3 id="核心注解"><a class="anchor" href="#核心注解">#</a> 核心注解</h3>
+<p>核心注解是 @SpringBootApplication，它主要由 @SpringBootConfiguration，@EnableAutoConfiguration 和 @ComponentScan 这三个构成</p>
+<ul>
+<li>
+<p><code>@SpringBootConfiguration</code>  里面就只有一个 @Configuration 主要注解，也就是把该类变成一个配置类所以 @SpringBootConfiguration 就相当于 @Configuration。</p>
+</li>
+<li>
+<p><code>@EnableAutoConfiguration</code>  是由 @AutoConfigurationPackage 和 @Import (EnableAutoConfigurationImportSelector.class) 这两个组成的</p>
+<ul>
+<li>@AutoConfigurationPackage 是自动配置包，包括了一个 @Import 注解，给容器导入了自动配置包的注册器，AutoConfigurationPackages.Registrar.class：将主启动类的所在包及包下面所有子包里面的所有组件扫描到 Spring 容器</li>
+<li>@Import (AutoConfigurationImportSelector.class)：导入自动配置导入选择器组件，AutoConfigurationImportSelector.class：自动配置导入选择器，主要是从类路径下的 META-INF/spring.factories 中获取资源</li>
+</ul>
+</li>
+<li>
+<p><code> @ComponentScan</code> ：扫描包，该注解默认会扫描该类所在的包下所有的配置类</p>
+</li>
+</ul>
+<h3 id="启动流程"><a class="anchor" href="#启动流程">#</a> 启动流程</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token class-name">ConfigurableApplicationContext</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token comment">// 创建 StopWatch，用于统计 Springboot 启动的耗时</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token class-name">StopWatch</span> stopWatch <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StopWatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token comment">// 开始计时</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    stopWatch<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token class-name">DefaultBootstrapContext</span> bootstrapContext <span class="token operator">=</span> <span class="token function">createBootstrapContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token class-name">ConfigurableApplicationContext</span> context <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token function">configureHeadlessProperty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token comment">// 获取运行时监听器</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token class-name">SpringApplicationRunListeners</span> listeners <span class="token operator">=</span> <span class="token function">getRunListeners</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token comment">// 调用运行时监听器的 starting () 方法</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token comment">// 该方法需要在 Springboot 一启动时就调用，用于特别早期的初始化</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    listeners<span class="token punctuation">.</span><span class="token function">starting</span><span class="token punctuation">(</span>bootstrapContext<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>mainApplicationClass<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token comment">// 获取 args 参数对象</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token class-name">ApplicationArguments</span> applicationArguments <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DefaultApplicationArguments</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token comment">// 读取 Springboot 配置文件并创建 Environment 对象</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token comment">// 这里创建的 Environment 对象实际为 ConfigurableEnvironment</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token class-name">ConfigurableEnvironment</span> environment <span class="token operator">=</span> <span class="token function">prepareEnvironment</span><span class="token punctuation">(</span>listeners<span class="token punctuation">,</span> bootstrapContext<span class="token punctuation">,</span> applicationArguments<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token function">configureIgnoreBeanInfo</span><span class="token punctuation">(</span>environment<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token comment">// 打印 Banner 图标</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        <span class="token class-name">Banner</span> printedBanner <span class="token operator">=</span> <span class="token function">printBanner</span><span class="token punctuation">(</span>environment<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token comment">// 创建 ApplicationContext 应用行下文，即创建容器</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        context <span class="token operator">=</span> <span class="token function">createApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        context<span class="token punctuation">.</span><span class="token function">setApplicationStartup</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>applicationStartup<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token comment">// 准备容器</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token function">prepareContext</span><span class="token punctuation">(</span>bootstrapContext<span class="token punctuation">,</span> context<span class="token punctuation">,</span> environment<span class="token punctuation">,</span> listeners<span class="token punctuation">,</span> applicationArguments<span class="token punctuation">,</span> printedBanner<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        <span class="token comment">// 初始化容器</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token function">refreshContext</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token function">afterRefresh</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> applicationArguments<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        <span class="token comment">// 停止计时</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        stopWatch<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>logStartupInfo<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>            <span class="token comment">// 打印启动耗时等信息</span></pre></td></tr><tr><td data-num="35"></td><td><pre>            <span class="token keyword">new</span> <span class="token class-name">StartupInfoLogger</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>mainApplicationClass<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">logStarted</span><span class="token punctuation">(</span><span class="token function">getApplicationLog</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> stopWatch<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>        <span class="token comment">// 调用运行时监听器的 started () 方法</span></pre></td></tr><tr><td data-num="38"></td><td><pre>        <span class="token comment">// 该方法需要在应用程序启动后，CommandLineRunners 和 ApplicationRunners 被调用前执行</span></pre></td></tr><tr><td data-num="39"></td><td><pre>        listeners<span class="token punctuation">.</span><span class="token function">started</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>        <span class="token function">callRunners</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> applicationArguments<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="41"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="42"></td><td><pre>    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="43"></td><td><pre>        <span class="token function">handleRunFailure</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> ex<span class="token punctuation">,</span> listeners<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="44"></td><td><pre>        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="45"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="46"></td><td><pre></pre></td></tr><tr><td data-num="47"></td><td><pre>    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="48"></td><td><pre>        <span class="token comment">// 调用运行时监听器的 running () 方法</span></pre></td></tr><tr><td data-num="49"></td><td><pre>        <span class="token comment">// 该方法需要在 SpringApplication 的 run () 方法执行完之前被调用</span></pre></td></tr><tr><td data-num="50"></td><td><pre>        listeners<span class="token punctuation">.</span><span class="token function">running</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="51"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="52"></td><td><pre>    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="53"></td><td><pre>        <span class="token function">handleRunFailure</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> ex<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="54"></td><td><pre>        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="55"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="56"></td><td><pre>    <span class="token keyword">return</span> context<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="57"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202311021821659.jpg" alt="" /></p>
+<p>SpringApplication 在 run 方法中重点做了以下操作：</p>
+<ul>
+<li>获取监听器和参数配置；</li>
+<li>打印 Banner 信息；</li>
+<li>创建并初始化容器；</li>
+<li>监听器发送通知。</li>
+</ul>
+<h2 id="spring-cloud"><a class="anchor" href="#spring-cloud">#</a> Spring Cloud</h2>
+<p>Spring Cloud 是一整套基于 Spring Boot 的微服务解决方案。它为开发者提供了很多工具，用于快速构建分布式系统的一些通用模式，例如：配置管理、注册中心、服务发现、限流、网关、链路追踪等。</p>
+<h3 id="核心组件"><a class="anchor" href="#核心组件">#</a> 核心组件</h3>
+<ol>
+<li>注册中心组件（服务治理）：Netflix Eureka；</li>
+<li>负载均衡组件：Netflix Ribbon，各个微服务进行分摊，提高性能；</li>
+<li>熔断器组件（断路器）：Netflix Hystrix，Resilience4j ；保护系统，控制故障范围；</li>
+<li>网关服务组件：Zuul，Spring Cloud Gateway；api 网关，路由，负载均衡等多种作用；</li>
+<li>配置中心：Spring Cloud Config，将配置文件组合起来，放在远程仓库，便于管理；</li>
+</ol>
+
+      <div class="tags">
+          <a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/" rel="tag"><i class="ic i-tag"></i> 八股文</a>
+          <a href="/tags/Spring/" rel="tag"><i class="ic i-tag"></i> Spring</a>
+          <a href="/tags/Web/" rel="tag"><i class="ic i-tag"></i> Web</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-01-19 16:15:09" itemprop="dateModified" datetime="2025-01-19T16:15:09+08:00">2025-01-19</time>
+  </span>
+  <span id="2023/11/01/2023-11-interview-web-spring/" class="item leancloud_visitors" data-flag-title="面试指北：Spring" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>小王学长 <i class="ic i-at"><em>@</em></i>沉思录
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://haust-kevin.github.io/2023/11/01/2023-11-interview-web-spring/" title="面试指北：Spring">https://haust-kevin.github.io/2023/11/01/2023-11-interview-web-spring/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/10/28/2023-10-interview-db-redis/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309031653320.jpg" title="面试指北：Redis 数据库">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 数据库</span>
+  <h3>面试指北：Redis 数据库</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/11/03/2023-11-interview-middleware-mq/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309031423777.jpg" title="面试指北：消息队列">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 中间件</span>
+  <h3>面试指北：消息队列</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#framework"><span class="toc-number">1.</span> <span class="toc-text"> Framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aop"><span class="toc-number">2.</span> <span class="toc-text"> AOP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#aop-%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text"> AOP 实现方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-aop"><span class="toc-number">2.2.</span> <span class="toc-text"> Spring AOP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jdk-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">2.2.1.</span> <span class="toc-text"> JDK 动态代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cglib-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">2.2.2.</span> <span class="toc-text"> CGLIB 动态代理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-aop-%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD"><span class="toc-number">2.3.</span> <span class="toc-text"> Spring AOP 相关术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-aop-%E9%80%9A%E7%9F%A5%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.4.</span> <span class="toc-text"> Spring AOP 通知类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ioc"><span class="toc-number">3.</span> <span class="toc-text"> IOC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ioc-%E5%AE%B9%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="toc-number">3.1.</span> <span class="toc-text"> IOC 容器初始化过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#beanfactory-applicationcontext"><span class="toc-number">3.2.</span> <span class="toc-text"> BeanFactory &amp; ApplicationContext</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A3%85%E8%BD%BD-bean-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 装载 bean 的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98"><span class="toc-number">3.3.</span> <span class="toc-text"> 循环依赖问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean"><span class="toc-number">4.</span> <span class="toc-text"> Bean</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86-bean"><span class="toc-number">4.1.</span> <span class="toc-text"> Spring 如何管理 Bean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bean-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">4.2.</span> <span class="toc-text"> Bean 的作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bean-%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">4.3.</span> <span class="toc-text"> Bean 的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#beanfactory-factorybean"><span class="toc-number">4.4.</span> <span class="toc-text"> BeanFactory &amp; FactoryBean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bean-%E6%B3%A8%E5%85%A5%E5%AE%B9%E5%99%A8%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">4.5.</span> <span class="toc-text"> Bean 注入容器的方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text"> 其它问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#autowired-resource"><span class="toc-number">5.1.</span> <span class="toc-text"> @Autowired &amp; @Resource</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-%E4%B8%AD%E9%BB%98%E8%AE%A4%E6%8F%90%E4%BE%9B%E7%9A%84%E5%8D%95%E4%BE%8B%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97"><span class="toc-number">5.2.</span> <span class="toc-text"> Spring 中默认提供的单例是线程安全的吗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E4%BA%8B%E5%8A%A1"><span class="toc-number">5.3.</span> <span class="toc-text"> Spring 如何管理事务？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-%E6%94%AF%E6%8C%81%E4%B8%A4%E7%A7%8D%E4%BA%8B%E5%8A%A1%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">5.4.</span> <span class="toc-text"> Spring 支持两种事务编程模型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-number">5.5.</span> <span class="toc-text"> Spring 自动装配的方式有哪些</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-boot"><span class="toc-number">6.</span> <span class="toc-text"> Spring Boot</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%B3%A8%E8%A7%A3"><span class="toc-number">6.1.</span> <span class="toc-text"> 核心注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="toc-number">6.2.</span> <span class="toc-text"> 启动流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-cloud"><span class="toc-number">7.</span> <span class="toc-text"> Spring Cloud</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><span class="toc-number">7.1.</span> <span class="toc-text"> 核心组件</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/11/01/2023-11-interview-web-spring/" rel="bookmark" title="面试指北：Spring">面试指北：Spring</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="小王学长"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">小王学长</p>
+  <div class="description" itemprop="description">思考未知，追求卓越</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">16</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">15</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">25</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhdXN0LUtldmlu" title="https:&#x2F;&#x2F;github.com&#x2F;haust-Kevin"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS93YW5nLWRpbmctYmFuZy05Ng==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;wang-ding-bang-96"><i class="ic i-zhihu"></i></span>
+      <a href="/about/about-me" title="&#x2F;about&#x2F;about-me" class="item about"><i class="ic i-address-card"></i></a>
+      <span class="exturl item email" data-url="bWFpbHRvOjMzNjQ5MTc5OTBAcXEuY29t" title="mailto:3364917990@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item bilibili" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vNDgxNzgwMTcw" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;481780170"><i class="ic i-bilibili"></i></span>
+      <span class="exturl item qq" data-url="aHR0cDovL3dwYS5xcS5jb20vbXNncmQ/dj0zJnVpbj0zMzY0OTE3OTkwJnNpdGU9cXEmbWVudT15ZXM=" title="http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;3364917990&amp;site&#x3D;qq&amp;menu&#x3D;yes"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="/links/friends/" rel="section"><i class="ic i-link"></i>链接</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/links/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/links/recommend/" rel="section"><i class="ic i-magic"></i>推荐</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-user"></i>关于</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/about/about-me/" rel="section"><i class="ic i-address-card"></i>博主</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/about/about-site/" rel="section"><i class="ic i-cloud"></i>本站</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/moments/" rel="section"><i class="ic i-pen"></i>说说</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/10/28/2023-10-interview-db-redis/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/11/03/2023-11-interview-middleware-mq/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="分类于 数据结构与算法">数据结构与算法</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 算法基础">算法基础</a>
+</div>
+
+    <span><a href="/2023/10/17/2023-10-bubble-sort/" title="冒泡排序、鸡尾酒排序、梳子排序">冒泡排序、鸡尾酒排序、梳子排序</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" title="分类于 好文摘抄">好文摘抄</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" title="分类于 小说">小说</a>
+</div>
+
+    <span><a href="/2023/08/20/2023-08-%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/19/2023-08-docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/04/2023-09-sgs-wallpaper/" title="三国杀官方原画">三国杀官方原画</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/08/15/2023-08-hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" title="分类于 计算机基础">计算机基础</a>
+</div>
+
+    <span><a href="/2023/10/24/2023-10-interview-network/" title="面试指北：计算机网络">面试指北：计算机网络</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
+</div>
+
+    <span><a href="/2023/08/22/2023-08-%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="分类于 中间件">中间件</a>
+</div>
+
+    <span><a href="/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">面试指北：消息队列</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">小王学长 @ Kevin's Blog</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="站点总字数">84k 字</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:16</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/11/01/2023-11-interview-web-spring/',
+    favicon: {
+      show: "要每天开心哦 ^_^",
+      hide: "等你回来呦~"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

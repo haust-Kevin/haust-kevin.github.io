@@ -1,0 +1,731 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="沉思录" href="https://haust-kevin.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="沉思录" href="https://haust-kevin.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="沉思录" href="https://haust-kevin.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=HarmonyOS%20Sans:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="八股文,数据库,MySQL" />
+
+
+<link rel="canonical" href="https://haust-kevin.github.io/2023/10/28/2023-10-interview-db-mysql/">
+
+
+
+  <title>
+面试指北：MySQL 数据库 - 数据库 - 面试指北 |
+Kevin's Blog = 沉思录 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">面试指北：MySQL 数据库
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-10-28 14:47:35">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-10-28T14:47:35+08:00">2023-10-28</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>5.2k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>5 分钟</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Kevin's Blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653323.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040043.png"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653320.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040028.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040035.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423780.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" itemprop="item" rel="index" title="分类于 面试指北"><span itemprop="name">面试指北</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="item" rel="index" title="分类于 数据库"><span itemprop="name">数据库</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://haust-kevin.github.io/2023/10/28/2023-10-interview-db-mysql/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="小王学长">
+    <meta itemprop="description" content="古之立大事者，不惟有超世之才，亦必有坚忍不拔之志, 思考未知，追求卓越">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="沉思录">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="事务"><a class="anchor" href="#事务">#</a> 事务</h2>
+<p>数据库中的事务是指对数据库执行一批操作，在同一个事务当中，这些操作最终要么全部执行成功，要么全部失败，不会存在部分成功的情况。</p>
+<h3 id="acid"><a class="anchor" href="#acid">#</a> ACID</h3>
+<p>事务具有四个特征：原子性（ Atomicity ）、一致性（ Consistency ）、隔离性（ Isolation ）和持久性（ Durability ）。这四个特性简称为 ACID 特性。</p>
+<ul>
+<li><strong>原子性（Atomicity）</strong>：一个事务中的多组操作，要么全部成功，要么全部失败。在事务提交（commit）成功之后，所有的操作都生效，提交失败，所有的操作都会回滚。</li>
+<li><strong>一致性（Consistency）</strong>：一个事务执行之前和执行之后数据库都必须处于一致性状态。在事务执行的过程中，只要事务未提交，就不会改变数据库的状态。提交之后事务已完成，此时数据库状态发生变化。</li>
+<li><strong>隔离性（Isolation）</strong>：事务在执行过程中，是与外界完全隔离的，即使数据库发生了变更，事务中也获取不到。A 事务对数据库做的变更，在事务未提交之间，数据库中也看不到，B 事务中也看不到。</li>
+<li><strong>持久性（Durability）</strong>：事务一旦提交，对数据库的变更就会持久化到磁盘，即使数据库发生异常重启，数据也不会丢失。</li>
+</ul>
+<h3 id="隔离级别"><a class="anchor" href="#隔离级别">#</a> 隔离级别</h3>
+<p>SQL 标准定义了 4 类隔离级别，包括了一些具体规则，用来限定事务内外的哪些改变是可见的，哪些是不可见的。低级别的隔离级一般支持更高的并发处理，并拥有更低的系统开销。</p>
+<ul>
+<li><strong>READ UNCOMMITTED（未提交读）</strong>：事务的修改，即使没有提交，对其他事物也都是可见的。会存在脏读、不可重复读、幻读的问题。</li>
+<li><strong>READ COMMITTED（提交读）</strong>：一个事务从开始直到提交之前，所做的任何修改对其它事物都是不可见的。可以避免脏读问题，但可能存在不可重复读和幻读问题。</li>
+<li><strong>REPEATABLE READ（可重复读）</strong>：同一个事务中多次读取同样记录的结果是一致的。避免了脏读和不可重复读问题，但可能存在幻读问题。Repeatable Read 是 MySQL 默认隔离级别。</li>
+<li><strong>SERIALIZABLE（可串行化）</strong>：最高级别的隔离性，事务串行执行，避免了所有并发问题，可能导致大量的超时现象和锁竞争，通常不会用这个隔离级别。</li>
+</ul>
+<h3 id="并发问题"><a class="anchor" href="#并发问题">#</a> 并发问题</h3>
+<p>如果多个事务要是对缓存里的同一条数据同时进行更新或者查询，此时会涉及到脏写、脏读、不可重复读、幻读等问题。<br />
+<strong>脏写</strong>：一个事务去更新了另外一个还没提交的事务更新过的数据。<br />
+<strong>脏读</strong>：一个事务去查询了另外一个还没提交的事务更新过的数据。<br />
+<strong>不可重复读</strong>：在同一个事务中，对于同一组数据读取到的结果不一致。比如，事务 B 在事务 A 提交前读到的结果，和在事务 A 提交后读到的结果可能不同。<br />
+<strong>幻读</strong>：当某个事物在读取某个范围内的记录时，另外一个事务又在该范围内插入了新的记录，当之前的事务再次读取该范围的记录时，会产生幻行。</p>
+<h3 id="死锁"><a class="anchor" href="#死锁">#</a> 死锁</h3>
+<p>死锁是两个或多个事务在同一资源相互占用，并请求锁定对方占用的资源，从而导致恶性循环的现象。当多个事务试图以不同的顺序锁定资源时，就可能会产生死锁。<br />
+<strong>解决</strong>：为了解决这种问题，数据库系统实现了各种死锁检测和超时机制。一般会在检测到死锁后立即返回一个错误。<br />
+死锁的出现有时候是由于存储引擎导致的，而有的则是业务中真正的数据冲突，而且基本无法避免。死锁发生后只有回滚其中的一个事务才能打破死锁。所以程序设计的时候必须考虑如何处理死锁。</p>
+<h3 id="mvcc"><a class="anchor" href="#mvcc">#</a> MVCC</h3>
+<p>MVCC 只在  <code>READ COMMITTED</code>  和  <code>REPEATABLE READ</code>  两个隔离级别下工作。其他两个隔离级别够和 MVCC 不兼容，因为  <code>READ UNCOMMITTED</code>  总是读取最新的数据行，而不是符合当前事务版本的数据行。而  <code>SERIALIZABLE</code>  则会对所有读取的行都加锁。</p>
+<h4 id="mvcc-下的-sql-操作"><a class="anchor" href="#mvcc-下的-sql-操作">#</a> MVCC 下的 SQL 操作</h4>
+<p>InnoDB 的 MVCC ，是通过在每行纪录后面保存两个隐藏的列来实现的。这两个列，一个保存了行的创建时间，一个保存了行的过期时间（或删除时间），当然存储的并不是实际的时间值，而是系统版本号（可以理解为事务的 ID ）。每开始一个新的事务，系统版本号都会自动递增。事务开始时刻的系统版本号会作为事务的版本号，用来和查询到的每行纪录的版本号进行比较。在  <code>REPEATABLE READ</code>  隔离级别下， MVCC 具体的操作如下：<br />
+<strong>SELECT</strong><br />
+InnoDB 会根据以下两个条件检查每行纪录：</p>
+<ul>
+<li>InnoDB 只查找版本早于当前事务版本的数据行，即，行的系统版本号小于或等于事务的系统版本号，这样可以确保事务读取的行，要么是在事务开始前已经存在的，要么是事务自身插入或者修改过的。</li>
+<li>行的删除版本，要么未定义，要么大于当前事务版本号。这样可以确保事务读取到的行，在事务开始之前未被删除。</li>
+</ul>
+<p>只有符合上述两个条件的纪录，才能作为查询结果返回。</p>
+<p><strong>INSERT</strong><br />
+InnoDB 为插入的每一行保存当前系统版本号作为行版本号。</p>
+<p><strong>DELETE</strong><br />
+InnoDB 为删除的每一行保存当前系统版本号作为行删除标识。</p>
+<p><strong>UPDATE</strong><br />
+InnoDB 为插入一行新纪录，保存当前系统版本号作为行版本号，同时，保存当前系统版本号到原来的行作为行删除标识。</p>
+<h4 id="版本链"><a class="anchor" href="#版本链">#</a> 版本链</h4>
+<p>在 InnoDB 引擎表中，它的聚簇索引记录中有两个必要的隐藏列：</p>
+<ul>
+<li><strong>trx_id</strong>： 这个 id 用来存储的每次对某条聚簇索引记录进行修改的时候的事务 id。</li>
+<li><strong>roll_pointer</strong>：每次对哪条聚簇索引记录有修改的时候，都会把老版本写入 undo log 中。这个 roll_pointer 就是存了一个指针，它指向这条聚簇索引记录的上一个版本的位置，通过它来获得上一个版本的记录信息。（注意插入操作的 undo log 没有这个属性，因为它没有老版本）<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310281653207.png" alt="" /></li>
+</ul>
+<h4 id="readview"><a class="anchor" href="#readview">#</a> ReadView</h4>
+<p>当我们用 select 读取数据时，这一时刻的数据会有很多个版本（例如上图有四个版本），但我们并不知道读取哪个版本，这时就靠 readview 来对我们进行读取版本的限制，通过 readview 我们才知道自己能够读取哪个版本。</p>
+<h5 id="read-view-几个属性"><a class="anchor" href="#read-view-几个属性">#</a> Read View 几个属性</h5>
+<ul>
+<li>trx_ids: 当前系统活跃（未提交）事务版本号集合。</li>
+<li>low_limit_id: 创建当前 read view 时 “当前系统最大事务版本号 + 1”。</li>
+<li>up_limit_id: 创建当前 read view 时 “系统正处于活跃事务最小版本号”</li>
+<li>creator_trx_id: 创建当前 read view 的事务版本号；</li>
+</ul>
+<h5 id="mvcc-如何实现-rc-和-rr-的隔离级别"><a class="anchor" href="#mvcc-如何实现-rc-和-rr-的隔离级别">#</a> mvcc 如何实现 RC 和 RR 的隔离级别</h5>
+<ul>
+<li>RC 的隔离级别下，每个快照读都会生成并获取最新的 readview。</li>
+<li>RR 的隔离级别下，只有在同一个事务的第一个快照读才会创建 readview，之后的每次快照读都使用的同一个 readview，所以每次的查询结果都是一样的。</li>
+</ul>
+<h2 id="索引"><a class="anchor" href="#索引">#</a> 索引</h2>
+<p>索引就是根据表中的一列或若干列按照一定顺序建立的列值与记录行之间的对应关系表，实质上是一张描述索引列的列值与原表中记录行之间一 一对应关系的有序表。</p>
+<p>索引的优点：</p>
+<ul>
+<li>通过创建唯一索引，可以保证数据库表中每一行数据的唯一性。</li>
+<li>可以大大加快数据的查询速度，这也是创建索引的主要原因。</li>
+<li>在实现数据的参考完整性方面，可以加速表和表之间的连接。</li>
+<li>在使用分组和排序子句进行数据查询时，也可以显著减少查询中分组和排序的时间。</li>
+</ul>
+<p>索引的缺点：</p>
+<ul>
+<li>创建索引和维护索引要耗费时间，并且随着数据量的增加所耗费的时间也会增加。</li>
+<li>索引需要占磁盘空间，除了数据表占数据空间之外，每一个索引还要占一定的物理空间，如果有大量的索引，索引文件可能比数据文件更快达到最大文件尺寸。</li>
+<li>当对表中的数据进行增加、删除和修改的时候，索引也要动态地维护，这样就降低了数据的维护速度。</li>
+</ul>
+<p>索引可以提高查询速度，但是会影响插入记录的速度。因为，向有索引的表中插入记录时，数据库系统会按照索引进行排序，这样就降低了插入记录的速度，插入大量记录时的速度影响会更加明显。这种情况下，最好的办法是先删除表中的索引，然后插入数据，插入完成后，再创建索引。</p>
+<h3 id="索引结构"><a class="anchor" href="#索引结构">#</a> 索引结构</h3>
+<h4 id="hash"><a class="anchor" href="#hash">#</a> Hash</h4>
+<p>MySQL 中，只有 Memory 存储引擎支持 Hash 索引，是 Memory 表的默认索引类型。hash 索引把数据的索引以 hash 值形式组织起来，因此检索效率非常高，可以一次定位，不像 B+Tree 索引需要进行从根节点到叶节点的多次 IO 操作。</p>
+<h4 id="btree"><a class="anchor" href="#btree">#</a> B+Tree</h4>
+<p>B+Tree 是 MySQL 使用最频繁的一个索引数据结构，是 Innodb 和 Myisam 存储引擎模式的索引类型。相对 Hash 索引，B+Tree 在查找单条记录的速度比不上 Hash 索引，但是更适合排序等操作。</p>
+<h4 id="b-tree-btree"><a class="anchor" href="#b-tree-btree">#</a> B-Tree &amp; B+Tree</h4>
+<p>B+ 树叶是 m 叉搜索树，在 B 树的基础上，做了一些改进：</p>
+<ul>
+<li>非叶子节点不再存储数据，数据只存储在同一层的叶子节点上；</li>
+<li>叶子之间，增加了链表，获取所有节点，不再需要中序遍历；</li>
+<li>叶子节点存储实际记录行，记录行相对比较紧密的存储，适合大数据量磁盘存储；- 非叶子节点存储记录的主键，用于查询加速，适合内存存储；</li>
+<li>非叶子节点，不存储实际记录，而只存储记录的 KEY 的话，那么在相同内存的情况下，B+ 树能够存储更多索引；</li>
+</ul>
+<h3 id="myisam-索引"><a class="anchor" href="#myisam-索引">#</a> MyISAM 索引</h3>
+<p>MyISAM 引擎使用 B+Tree 作为索引结构，叶节点的 data 域存放的是数据记录的地址，MyISAM 索引的原理图如下。这里假设表一共有三列，假设我们以 Col1 为主键，则上图是一个 MyISAM 表的主索引（Primary key）示意。可以看出 MyISAM 的索引文件仅仅保存数据记录的地址。在 MyISAM 中，主索引和辅助索引（Secondary key）在结构上没有任何区别，只是主索引要求 key 是唯一的，而辅助索引的 key 可以重复。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310281816878.png" alt="" /><br />
+如果我们在 Col2 上建立一个辅助索引，则此索引的结构如下图所示。同样也是一颗 B+Tree ， data 域保存数据记录的地址。因此， MyISAM 中索引检索的算法为首先按照 B+Tree 搜索算法搜索索引，如果指定的 Key 存在，则取出其 data 域的值，然后以 data 域的值为地址，读取相应数据记录。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310281817570.png" alt="" /></p>
+<h3 id="innodb-索引"><a class="anchor" href="#innodb-索引">#</a> InnoDB 索引</h3>
+<p>虽然 InnoDB 也使用 B+Tree 作为索引结构，但具体实现方式却与 MyISAM 截然不同。</p>
+<p>第一个重大区别是 InnoDB 的数据文件本身就是索引文件。从上文知道， MyISAM 索引文件和数据文件是分离的，索引文件仅保存数据记录的地址。而在 InnoDB 中，表数据文件本身就是按 B+Tree 组织的一个索引结构，这棵树的叶节点 data 域保存了完整的数据记录。这个索引的 key 是数据表的主键，因此 InnoDB 表数据文件本身就是主索引。</p>
+<p>下图是 InnoDB 主索引（同时也是数据文件）的示意图，可以看到叶节点包含了完整的数据记录。这种索引叫做<strong>聚集索引</strong>。因为 InnoDB 的数据文件本身要按主键聚集，所以 InnoDB 要求表必须有主键（ MyISAM 可以没有），如果没有显式指定，则 MySQL 系统会自动选择一个可以唯一标识数据记录的列作为主键，如果不存在这种列，则 MySQL 自动为 InnoDB 表生成一个隐含字段作为主键，这个字段长度为 6 个字节，类型为长整形。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310281820436.png" alt="" /><br />
+第二个与 MyISAM 索引的不同是 InnoDB 的辅助索引 data 域存储相应记录主键的值而不是地址。换句话说， InnoDB 的所有辅助索引都引用主键作为 data 域。下图为定义在 Col3 上的一个辅助索引。这里以英文字符的 ASCII 码作为比较准则。聚集索引这种实现方式使得按主键的搜索十分高效，但是辅助索引搜索需要检索两遍索引：首先检索辅助索引获得主键，然后用主键到主索引中检索获得记录。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310281821389.png" alt="" /></p>
+<h3 id="创建索引准则"><a class="anchor" href="#创建索引准则">#</a> 创建索引准则</h3>
+<h4 id="应该创建索引的列"><a class="anchor" href="#应该创建索引的列">#</a> 应该创建索引的列</h4>
+<ul>
+<li>在经常需要搜索的列上，可以加快搜索的速度</li>
+<li>在作为主键的列上，强制该列的唯一性和组织表中数据的排列结构</li>
+<li>在经常用在连接（JOIN）的列上，这些列主要是一外键，可以加快连接的速度</li>
+<li>在经常需要根据范围（&lt;，&lt;=，=，&gt;，&gt;=，BETWEEN，IN）进行搜索的列上创建索引，因为索引已经排序，其指定的范围是连续的</li>
+<li>在经常需要排序（order by）的列上创建索引，因为索引已经排序，这样查询可以利用索引的排序，加快排序查询时间；</li>
+<li>在经常使用在 WHERE 子句中的列上面创建索引，加快条件的判断速度。</li>
+</ul>
+<h4 id="不该创建索引的列"><a class="anchor" href="#不该创建索引的列">#</a> 不该创建索引的列</h4>
+<ul>
+<li>在 WHERE 中使用不到的字段，不要设置索引。</li>
+<li>频繁更新的字段不适合建立索引。</li>
+<li>数据比较少的表不需要建索引。</li>
+<li>数据重复且分布比较均匀的的字段不适合建索引，例如性别、真假值。</li>
+<li>参与列计算的列不适合建索引。</li>
+</ul>
+<h3 id="索引失效"><a class="anchor" href="#索引失效">#</a> 索引失效</h3>
+<ul>
+<li>模糊查询 like 以  <code>%</code>  开头；</li>
+<li>在索引字段字段上使用函数</li>
+<li>在索引字段上进行（+，-，*，/，!, !=, &lt;&gt;）等运算，会导致索引失效。</li>
+<li>数据类型隐式转换。<br />
+MySQL 在遇到字符串和数字比较的时候，会自动把字符串转为数字，然后再进行比较。如果字符串是索引列，而条件语句中的输入参数是数字的话，那么索引列会发生隐式类型转换，由于隐式类型转换是通过 CAST 函数实现的，等同于对索引列使用了函数，所以就会导致索引失效。</li>
+<li>联合索引没有遵循最左匹配原则。</li>
+<li>在 WHERE 子句中， <code>OR</code>  前后没有同时使用索引。</li>
+<li>优化器选错索引</li>
+</ul>
+
+      <div class="tags">
+          <a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/" rel="tag"><i class="ic i-tag"></i> 八股文</a>
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"><i class="ic i-tag"></i> 数据库</a>
+          <a href="/tags/MySQL/" rel="tag"><i class="ic i-tag"></i> MySQL</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-01-19 16:15:09" itemprop="dateModified" datetime="2025-01-19T16:15:09+08:00">2025-01-19</time>
+  </span>
+  <span id="2023/10/28/2023-10-interview-db-mysql/" class="item leancloud_visitors" data-flag-title="面试指北：MySQL 数据库" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>小王学长 <i class="ic i-at"><em>@</em></i>沉思录
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://haust-kevin.github.io/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">https://haust-kevin.github.io/2023/10/28/2023-10-interview-db-mysql/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/10/26/2023-10-interview-jvm/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646852.jpg" title="面试指北：Java 虚拟机">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Java</span>
+  <h3>面试指北：Java 虚拟机</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/10/28/2023-10-interview-db-redis/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309031423790.jpg" title="面试指北：Redis 数据库">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 数据库</span>
+  <h3>面试指北：Redis 数据库</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text"> 事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#acid"><span class="toc-number">1.1.</span> <span class="toc-text"> ACID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text"> 隔离级别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text"> 并发问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81"><span class="toc-number">1.4.</span> <span class="toc-text"> 死锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mvcc"><span class="toc-number">1.5.</span> <span class="toc-text"> MVCC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mvcc-%E4%B8%8B%E7%9A%84-sql-%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.1.</span> <span class="toc-text"> MVCC 下的 SQL 操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E9%93%BE"><span class="toc-number">1.5.2.</span> <span class="toc-text"> 版本链</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#readview"><span class="toc-number">1.5.3.</span> <span class="toc-text"> ReadView</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#read-view-%E5%87%A0%E4%B8%AA%E5%B1%9E%E6%80%A7"><span class="toc-number">1.5.3.1.</span> <span class="toc-text"> Read View 几个属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mvcc-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-rc-%E5%92%8C-rr-%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-number">1.5.3.2.</span> <span class="toc-text"> mvcc 如何实现 RC 和 RR 的隔离级别</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">2.</span> <span class="toc-text"> 索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text"> 索引结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hash"><span class="toc-number">2.1.1.</span> <span class="toc-text"> Hash</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#btree"><span class="toc-number">2.1.2.</span> <span class="toc-text"> B+Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-tree-btree"><span class="toc-number">2.1.3.</span> <span class="toc-text"> B-Tree &amp; B+Tree</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#myisam-%E7%B4%A2%E5%BC%95"><span class="toc-number">2.2.</span> <span class="toc-text"> MyISAM 索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#innodb-%E7%B4%A2%E5%BC%95"><span class="toc-number">2.3.</span> <span class="toc-text"> InnoDB 索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%E5%87%86%E5%88%99"><span class="toc-number">2.4.</span> <span class="toc-text"> 创建索引准则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E8%AF%A5%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%E7%9A%84%E5%88%97"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 应该创建索引的列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E8%AF%A5%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%E7%9A%84%E5%88%97"><span class="toc-number">2.4.2.</span> <span class="toc-text"> 不该创建索引的列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88"><span class="toc-number">2.5.</span> <span class="toc-text"> 索引失效</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/10/28/2023-10-interview-db-mysql/" rel="bookmark" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></li><li><a href="/2023/10/28/2023-10-interview-db-redis/" rel="bookmark" title="面试指北：Redis 数据库">面试指北：Redis 数据库</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="小王学长"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">小王学长</p>
+  <div class="description" itemprop="description">思考未知，追求卓越</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">16</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">15</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">25</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhdXN0LUtldmlu" title="https:&#x2F;&#x2F;github.com&#x2F;haust-Kevin"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS93YW5nLWRpbmctYmFuZy05Ng==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;wang-ding-bang-96"><i class="ic i-zhihu"></i></span>
+      <a href="/about/about-me" title="&#x2F;about&#x2F;about-me" class="item about"><i class="ic i-address-card"></i></a>
+      <span class="exturl item email" data-url="bWFpbHRvOjMzNjQ5MTc5OTBAcXEuY29t" title="mailto:3364917990@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item bilibili" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vNDgxNzgwMTcw" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;481780170"><i class="ic i-bilibili"></i></span>
+      <span class="exturl item qq" data-url="aHR0cDovL3dwYS5xcS5jb20vbXNncmQ/dj0zJnVpbj0zMzY0OTE3OTkwJnNpdGU9cXEmbWVudT15ZXM=" title="http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;3364917990&amp;site&#x3D;qq&amp;menu&#x3D;yes"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="/links/friends/" rel="section"><i class="ic i-link"></i>链接</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/links/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/links/recommend/" rel="section"><i class="ic i-magic"></i>推荐</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-user"></i>关于</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/about/about-me/" rel="section"><i class="ic i-address-card"></i>博主</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/about/about-site/" rel="section"><i class="ic i-cloud"></i>本站</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/moments/" rel="section"><i class="ic i-pen"></i>说说</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/10/26/2023-10-interview-jvm/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/10/28/2023-10-interview-db-redis/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
+</div>
+
+    <span><a href="/2023/08/22/2023-08-%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="分类于 中间件">中间件</a>
+</div>
+
+    <span><a href="/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">面试指北：消息队列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="分类于 数据结构与算法">数据结构与算法</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 算法基础">算法基础</a>
+</div>
+
+    <span><a href="/2023/10/17/2023-10-bubble-sort/" title="冒泡排序、鸡尾酒排序、梳子排序">冒泡排序、鸡尾酒排序、梳子排序</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" title="分类于 好文摘抄">好文摘抄</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" title="分类于 小说">小说</a>
+</div>
+
+    <span><a href="/2023/08/20/2023-08-%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/17/2023-08-brew-replace-download-source/" title="HomeBrew：brew 更换下载源">HomeBrew：brew 更换下载源</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="分类于 环境搭建">环境搭建</a>
+</div>
+
+    <span><a href="/2025/01/19/2025-01-rust-init-env/" title="Rust：环境搭建">Rust：环境搭建</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/08/15/2023-08-hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-redis/" title="面试指北：Redis 数据库">面试指北：Redis 数据库</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">小王学长 @ Kevin's Blog</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="站点总字数">84k 字</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:16</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/10/28/2023-10-interview-db-mysql/',
+    favicon: {
+      show: "要每天开心哦 ^_^",
+      hide: "等你回来呦~"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,942 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="沉思录" href="https://haust-kevin.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="沉思录" href="https://haust-kevin.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="沉思录" href="https://haust-kevin.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=HarmonyOS%20Sans:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="八股文,Java,JVM" />
+
+
+<link rel="canonical" href="https://haust-kevin.github.io/2023/10/26/2023-10-interview-jvm/">
+
+
+
+  <title>
+面试指北：Java 虚拟机 - Java - 面试指北 |
+Kevin's Blog = 沉思录 = 古之立大事者，不惟有超世之才，亦必有坚忍不拔之志</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">面试指北：Java 虚拟机
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-10-26 15:39:09">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-10-26T15:39:09+08:00">2023-10-26</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>11k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>10 分钟</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Kevin's Blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040016.png"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202401242041864.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040033.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040027.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040020.png"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646859.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" itemprop="item" rel="index" title="分类于 面试指北"><span itemprop="name">面试指北</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" itemprop="item" rel="index" title="分类于 Java"><span itemprop="name">Java</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://haust-kevin.github.io/2023/10/26/2023-10-interview-jvm/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="小王学长">
+    <meta itemprop="description" content="古之立大事者，不惟有超世之才，亦必有坚忍不拔之志, 思考未知，追求卓越">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="沉思录">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="内存区域"><a class="anchor" href="#内存区域">#</a> 内存区域</h2>
+<h3 id="java-内存区域划分"><a class="anchor" href="#java-内存区域划分">#</a> Java 内存区域划分</h3>
+<p>Java 虚拟机规范规定的区域分为以下 5 个部分：</p>
+<ul>
+<li><strong>程序计数器（Program Counter Register）</strong>：当前线程所执行的字节码的行号指示器，字节码解析器的工作是通过改变这个计数器的值，来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能，都需要依赖这个计数器来完成；</li>
+<li><strong>Java 虚拟机栈（Java Virtual Machine Stacks）</strong>：用于存储局部变量表、操作数栈、动态链接、方法出口等信息；</li>
+<li><strong>本地方法栈（Native Method Stack）</strong>：与虚拟机栈的作用是一样的，只不过虚拟机栈是服务 Java 方法的，而本地方法栈是为虚拟机调用 Native 方法服务的；</li>
+<li><strong>Java 堆（Java Heap）</strong>：Java 虚拟机中内存最大的一块，是被所有线程共享的，几乎所有的对象实例都在这里分配内存；</li>
+<li><strong>方法区（Methed Area）</strong>：用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译后的代码等数据。<br />
+<img data-src="https://uploadfiles.nowcoder.com/images/20220224/4107856_1645690687338/9602C6323C6B86C4EDA164DB052D8420" alt="" /></li>
+</ul>
+<h4 id="本地内存"><a class="anchor" href="#本地内存">#</a> 本地内存</h4>
+<p>Java 虚拟机在执行的时候会把管理的内存分配成不同的区域，这些区域被称为虚拟机内存，同时，对于虚拟机没有直接管理的物理内存，也有一定的利用，这些被利用却不在虚拟机内存数据区的内存，我们称它为本地内存。<br />
+本地内存不受虚拟机内存参数的限制，只受物理内存容量的限制。<br />
+虽然不受参数的限制，但是如果内存的占用超出物理内存的大小，同样也会报 OOM。</p>
+<p><strong>元空间</strong><br />
+在 Java1.8 中，HotSpot 虚拟机已经将方法区（永久带）移除，取而代之的就是元空间。元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。</p>
+<p><strong>直接内存</strong></p>
+<ul>
+<li>直接内存不是虚拟机运行时数据区的一部分，也不是《Java 虚拟机规范》中定义的内存区域。</li>
+<li>直接内存是在 Java 堆外的、直接向系统申请的内存空间。</li>
+<li>来源于 NIO ，通过存在堆中的 DirectByteBuffer 操作 Native 内存。</li>
+<li>通常，访问直接内存的速度会优于 Java 堆，即读写性能高。因此处于性能考虑，读写频繁的场合可能会考虑使用直接内存。Java 的 NIO 库允许 Java 程序使用直接内存，用于数据缓冲区。</li>
+</ul>
+<h4 id="主内存和本地内存的关系"><a class="anchor" href="#主内存和本地内存的关系">#</a> 主内存和本地内存的关系</h4>
+<p>JMM 规定的主内存和本地内存的关系</p>
+<ul>
+<li>所有的变量都存储在主内存中，同时每个线程也有自己独立的工作内存，工作内存中所有的变量内容都是主内存的拷贝。</li>
+<li>线程不能直接读写主内存中的变量，而是只能操作自己工作内存中的变量，再同步到主内存中。即在修改变量之前，要先执行第一步规定的，把数据拷贝到工作内存中再修改，再同步。</li>
+<li>主内存是多个线程共享的，但线程间不共享工作内存，如果线程间需要通信，必须借助主内存中转来完成。</li>
+</ul>
+<p><strong>总结</strong>：所有的共享变量，是存在于主内存中的，每个线程有自己的本地内存，而且线程读写共享数据也是通过本地内存交换的，正是由于有交换的过程，并且这个交换不是实时的，所以才导致了可见性的问题。<strong>volatile</strong> 变量，用来确保将变量的更新操作通知到其他线程。当把变量声明为 volatile 类型后，编译器与运行时都会注意到这个变量是共享的，因此不会将该变量上的操作与其他内存操作一起重排序。volatile 变量不会被缓存在寄存器或者对其他处理器不可见的地方，因此在读取 volatile 类型的变量时总会返回最新写入的值。</p>
+<h3 id="对象内存布局"><a class="anchor" href="#对象内存布局">#</a> 对象内存布局</h3>
+<p>Java 对象保存在堆中时，由以下三部分组成：</p>
+<ul>
+<li><strong>对象头（object header）</strong>：包括了关于堆对象的布局、类型、GC 状态、同步状态和标识哈希码的基本信息。Java 对象和 vm 内部对象都有一个共同的对象头格式。</li>
+<li><strong>实例数据（Instance Data）</strong>：主要是存放类的数据信息，父类的信息，对象字段属性信息。</li>
+<li><strong>对齐填充（Padding）</strong>：为了字节对齐，填充的数据，不是必须的。</li>
+</ul>
+<p>对象头包括两部分：<strong>Mark Word</strong>, <strong>Klass pointer</strong></p>
+<h4 id="mark-word"><a class="anchor" href="#mark-word">#</a> Mark Word</h4>
+<p>用于存储对象自身的运行时数据，如哈希码（HashCode）、GC 分代年龄、锁状态标志、线程持有的锁、偏向线程 ID、偏向时间戳等等。</p>
+<p>Mark Word 在不同的锁状态下存储的内容不同，在 64 位 JVM 中是这么存的<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310261655824.png" alt="" /></p>
+<p><strong>锁标志位（lock）</strong>：区分锁状态，11 时表示对象待 GC 回收状态，只有最后 2 位锁标识 (11) 有效。<br />
+<strong>是否偏向（biased_lock）</strong>：是否偏向锁，由于无锁和偏向锁的锁标识都是 01，没办法区分，这里引入一位的偏向锁标识位。<br />
+<strong>分代年龄（age）</strong>：表示对象被 GC 的次数，当该次数到达阈值的时候，对象就会转移到老年代。<br />
+<strong>对象的 hashcode（hash）</strong>：运行期间调用 System.identityHashCode () 来计算，延迟计算，并把结果赋值到这里。当对象加锁后，计算的结果 31 位不够表示，在偏向锁，轻量锁，重量锁，hashcode 会被转移到 Monitor 中。<br />
+<strong>偏向锁的线程 ID（JavaThread）</strong>：偏向模式的时候，当某个线程持有对象的时候，对象这里就会被置为该线程的 ID。 在后面的操作中，就无需再进行尝试获取锁的动作。<br />
+<strong>epoch</strong>：偏向锁的时间戳。<br />
+<strong>ptr_to_lock_record</strong>：轻量级锁状态下，指向栈中锁记录的指针。锁记录存储的是所之前锁对象的 Mark Word 的拷贝。<br />
+<strong>ptr_to_heavyweight_monitor</strong>：重量级锁状态下，指向对象监视器 Monitor 的指针。如果两个不同的线程同时在同一个对象上竞争，则必须将轻量级锁定升级到 Monitor 以管理等待的线程。在重量级锁定的情况下，JVM 在对象的 ptr_to_heavyweight_monitor 设置指向 Monitor 的指针。</p>
+<h4 id="数据对齐"><a class="anchor" href="#数据对齐">#</a> 数据对齐</h4>
+<p>字段内存对齐的其中一个原因，是让字段只出现在同一 CPU 的缓存行中。如果字段不是对齐的，那么就有可能出现跨缓存行的字段。也就是说，该字段的读取可能需要替换两个缓存行，而该字段的存储也会同时污染两个缓存行。这两种情况对程序的执行效率而言都是不利的。其实对其填充的最终目的是为了计算机高效寻址。</p>
+<h3 id="偏向锁"><a class="anchor" href="#偏向锁">#</a> 偏向锁</h3>
+<h4 id="锁撤销"><a class="anchor" href="#锁撤销">#</a> 锁撤销</h4>
+<p>撤销偏向锁就是将锁对象 oop 的对象头恢复成无锁状态或者膨胀成轻量级锁状态，执行撤销动作的前提是锁对象 oop 的对象头处于偏向锁状态。<br />
+<strong>锁撤销过程</strong><br />
+尝试获取某个偏向锁，如果该偏向锁被某个线程占用了，但是没有关联的 BasicObjectLock ，即实际占用该偏向锁的方法已经退出了，则会将其恢复成无锁状态，然后膨胀成轻量级锁，但是在撤销一定次数后触发批量重偏向（rebasic）的情形下也可能重新获取该偏向锁。如果该偏向锁正在被某个方法所使用，即存在对应的 BasicObjectLock ，则直接将该偏向锁膨胀成轻量级锁。</p>
+<p>在已偏向后调用 Object.hashCode () 方法时，锁定状态下，锁膨胀为重量级锁；非锁定状态下，锁会恢复为无锁状态。</p>
+<h4 id="批量重偏向"><a class="anchor" href="#批量重偏向">#</a> 批量重偏向</h4>
+<p>避免短时间内大量偏向锁的撤销。例如一个线程创建了大量对象并执行了初始的同步操作，后来另一个线程也来将这些对象作为锁对象进行操作，这样会导致大量的偏向锁撤销操作。当执行批量重偏向后，如果原偏向锁持有者线程不再执行同步块，则锁可以偏向于新线程。<br />
+以 class 为单位，为每个 class 维护一个偏向锁撤销计数器，每一次该 class 的对象发生偏向撤销操作时，该计数器 +1，当这个值达到重偏向阈值（默认 20 ）时， JVM 就认为该 class 的偏向锁有问题，因此会进行批量重偏向。每个 class 对象会有一个对应的 epoch 字段，每个处于偏向锁状态对象的 mark word 中也有该字段，其初始值为创建该对象时，class 中的 epoch 的值。每次发生批量重偏向时，就将该值 +1，同时遍历 JVM 中所有线程的栈，找到该 class 所有正处于加锁状态的偏向锁，将其 epoch 字段改为新值。下次获得锁时，发现当前对象的 epoch 值和 class 的 epoch 不相等，那就算当前已经偏向了其他线程，也不会执行撤销操作，而是直接通过 CAS 操作将其 mark word 的 Thread Id 改成当前线程 Id。</p>
+<h4 id="批量锁撤销"><a class="anchor" href="#批量锁撤销">#</a> 批量锁撤销</h4>
+<p>当一个偏向锁如果撤销次数到达 40 的时候就认为这个对象设计的有问题；那么 JVM 会把这个对象所对应的类所有的对象都撤销偏向锁；并且新实例化的对象也是不可偏向的。</p>
+<h4 id="对象计算过哈希值之后还能进入偏向锁状态吗"><a class="anchor" href="#对象计算过哈希值之后还能进入偏向锁状态吗">#</a> 对象计算过哈希值之后还能进入偏向锁状态吗</h4>
+<ul>
+<li>当一个对象已经计算过 identity hashcode，它就无法进入偏向锁状态；</li>
+<li>当一个对象当前正处于偏向锁状态，并且需要计算其 identity hashcode 的话，则它的偏向锁会被撤销，并且锁会膨胀为重量锁；</li>
+<li>重量锁的实现中，ObjectMonitor 类里有字段可以记录非加锁状态下的 mark word ，其中可以存储 identity hash code 的值。或者简单说就是重量锁可以存下 identity hash code。</li>
+</ul>
+<p>Identity hash code 是未被覆写的 java.lang.Object.hashCode ()</p>
+<h2 id="类文件结构"><a class="anchor" href="#类文件结构">#</a> 类文件结构</h2>
+<p><strong>class 文件格式</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+<th>数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u4</td>
+<td>magic</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>minor_version</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>major_version</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>constant_pool_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>cp_info</td>
+<td>constant_pool</td>
+<td>constant_pool_count  - 1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>access_flags</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>this_class</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>super_class</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>interfaces_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>interfaces</td>
+<td>interfaces_count</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>fields_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>field_info</td>
+<td>fields</td>
+<td>fields_count</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>methods_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>method_info</td>
+<td>methods</td>
+<td>methods_count</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>attribute_count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>attribute_info</td>
+<td>attributes</td>
+<td>attributes_count</td>
+</tr>
+</tbody>
+</table>
+<h2 id="类加载机制"><a class="anchor" href="#类加载机制">#</a> 类加载机制</h2>
+<h3 id="类的生命周期"><a class="anchor" href="#类的生命周期">#</a> 类的生命周期</h3>
+<p>类从被加载到虚拟机内存中开始到卸载出内存为止，它的整个生命周期可以简单概括为 7 个阶段：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）、初始化（Initialization）、使用（Using）和卸载（Unloading）。其中，验证、准备和解析这三个阶段可以统称为连接（Linking）。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310271600947.png" alt="类的生命周期" /></p>
+<h3 id="类加载时期"><a class="anchor" href="#类加载时期">#</a> 类加载时期</h3>
+<p>在什么情况下需要开始类加载过程的第一个阶段「加载」，《Java 虚拟机规范》中并没有进行强制约束，这点可以交给虚拟机的具体实现来自由把握。<br />
+<strong>类初始化时期</strong><br />
+对于初始化阶段，《Java 虚拟机规范》则是严格规定了有且只有六种情况必须立即对类进行「初始化」（而加载、验证、准备自然需要在此之前开始）：</p>
+<ol>
+<li>遇到 new（用 new 实例对象），getStatic（读取一个静态字段），putstatic（设置一个静态字段），invokeStatic（调用一个类的静态方法）这四条指令字节码命令时。</li>
+<li>使用 java.lang.reflect 包的方法对类型进行反射调用的时候，如果类型没有进行过初始化，则需要先触发其初始化。</li>
+<li>当初始化类的时候，如果发现其父类还没有进行过初始化，则需要先触发其父类的初始化。</li>
+<li>当虚拟机启动时，用户需要指定一个要执行的主类（包含 main () 方法的那个类），虚拟机会先初始化这个主类。</li>
+<li>当使用 JDK 7 新加入的动态语言支持时，如果一个 java.lang.invoke.MethodHandle 实例最后的解析结果 为 REF_getStatic、REF_putStatic、REF_invokeStatic、REF_newInvokeSpecial 四种类型的方法句柄，并且这个方法句柄对应的类没有进行过初始化，则需要先触发其初始化。</li>
+<li>当一个接口中定义了 JDK 8 新加入的默认方法（被 default 关键字修饰的接口方法）时，如果有这个接口的实现类发生了初始化，那该接口要在其之前被初始化。</li>
+</ol>
+<p><strong>下面这几种情况就不会触发类初始化：</strong></p>
+<ul>
+<li>通过子类调用父类的静态字段。此时父类符合情况一，而子类不符合任何情况。所以只有父类被初始化。</li>
+<li>通过数组来引用类，不会触发类的初始化。因为 new 的是数组，而不是类。</li>
+<li>调用类的静态常量不会触发类的初始化，因为静态常量在编译阶段就会被存入调用类的常量池中，不会引用到定义常量的类。</li>
+</ul>
+<h3 id="类加载器"><a class="anchor" href="#类加载器">#</a> 类加载器</h3>
+<p>在 JDK1.8 及之前的版本中中，类加载器主要有下面四种：<br />
+BootstrapClassLoader：启动类加载器，使用 C++ 实现；<br />
+ExtClassLoader：扩展类加载器，使用 Java 实现；<br />
+AppClassLoader：应用程序类加载器，加载当前应用的 classpath 的所有类；<br />
+UserDefinedClassLoader：用户自定义类加载器；</p>
+<h3 id="双亲委派"><a class="anchor" href="#双亲委派">#</a> 双亲委派</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> <span class="token function">loadClass</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">,</span> <span class="token keyword">boolean</span> resolve<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">throws</span> <span class="token class-name">ClassNotFoundException</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token comment">// First, check if the class has already been loaded</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> c <span class="token operator">=</span> <span class="token function">findLoadedClass</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>                <span class="token keyword">if</span> <span class="token punctuation">(</span>parent <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>                    c <span class="token operator">=</span> parent<span class="token punctuation">.</span><span class="token function">loadClass</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>                <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>                    c <span class="token operator">=</span> <span class="token function">findBootstrapClassOrNull</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>                <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>                <span class="token comment">// ClassNotFoundException thrown if class not found</span></pre></td></tr><tr><td data-num="15"></td><td><pre>                <span class="token comment">// from the non-null parent class loader</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="17"></td><td><pre></pre></td></tr><tr><td data-num="18"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>                <span class="token comment">// If still not found, then invoke findClass in order</span></pre></td></tr><tr><td data-num="20"></td><td><pre>                <span class="token comment">// to find the class.</span></pre></td></tr><tr><td data-num="21"></td><td><pre>                c <span class="token operator">=</span> <span class="token function">findClass</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token keyword">return</span> c<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h4 id="为什么要双亲委派"><a class="anchor" href="#为什么要双亲委派">#</a> 为什么要双亲委派</h4>
+<ul>
+<li><strong>避免重复加载</strong>：使用双亲委派模型也可以避免一个类被重复加载，当一个类被加载之后，因为使用的双亲委派模型，这样不会出现多个类加载器都将同一个类重复加载的情况了。</li>
+<li><strong>安全</strong>：当使用双亲委派模型时，用户就不能伪造一些不安全的系统类了，比如 jre 里面已经提供了 String 类在启动类加载时加载，那么用户自定义再自定义一个不安全的 String 类时，按照双亲委派模型就不会再加载用户定义的那个不安全的 String 类了，这样就可以避免非安全问题的发生了。</li>
+</ul>
+<h4 id="破坏双亲模型"><a class="anchor" href="#破坏双亲模型">#</a> 破坏双亲模型</h4>
+<p>双亲委派模型并不是一个具有强制性约束的模型，而是 Java 设计者推荐给开发者们的类加载器实现方式。这个委派和加载顺序完全是可以被破坏的。<br />
+如果想自定义类加载器，就需要继承 ClassLoader ，并重写 findClass ，如果想不遵循双亲委派的类加载顺序，还需要重写 loadClass 。<br />
+<strong>JDBC 打破双亲模型</strong><br />
+在双亲委托模型下，类加载器是由下至上的，即下层的类加载器会委托上层进行加载。但是对于 SPI 来说，有些接口是 JAVA 核心库提供的，而 Java 核心库是由启动类加载器来加载的，而这些接口的实现却来自于不同的 jar 包（厂商提供）， Java 的启动类加载器是不会加载其他来源的 jar 包，这样传统的双亲委托模型就无法满足 SPI 的要求。而通过给当前线程设置上下文类加载器，就可以通过设置的上下文类加载器来实现对于接口实现类的加载。<br />
+线程上下文类加载器是从 jdk1.2 开始引入的，类 Thread 中的 getContextClassLoader () 与 setContextClassLoader (ClassLoader c1)，分别用来获取和设置类加载器。</p>
+<h2 id="自动内存管理吗"><a class="anchor" href="#自动内存管理吗">#</a> 自动内存管理吗</h2>
+<h3 id="对象何时死亡"><a class="anchor" href="#对象何时死亡">#</a> 对象何时死亡</h3>
+<h4 id="引用计数算法"><a class="anchor" href="#引用计数算法">#</a> 引用计数算法</h4>
+<p>算法会在每一个对象上记录这个对象被引用的次数，只要有任何一个对象引用了次对象，这个对象的计数器就 +1 ，取消对这个对象的引用时，计数器就 -1 。任何一个时刻，如果该对象的计数器为 0 ，那么这个对象就是可以回收的。<br />
+<strong>缺点</strong>：1. 无法处理循环引用的情况；2. 堆内对象的每一次引用赋值和每一次引用清除，都伴随着加减法的操作，会带来一定的性能开销。</p>
+<h4 id="可达性分析算法"><a class="anchor" href="#可达性分析算法">#</a> 可达性分析算法</h4>
+<p>现代虚拟机基本都是采用可达性分析算法来判断对象是否存活，可达性算法的原理是以一系列叫做  GC Root  的对象为起点出发，引出它们指向的下一个节点，再以下个节点为起点，引出此节点指向的下一个结点。这样通过 GC Root 串成的一条线就叫引用链），直到所有的结点都遍历完毕，如果相关对象不在任意一个以 GC Root 为起点的引用链中，则这些对象会被判断为垃圾对象，会被 GC 回收。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310271720872.png" alt="可达性分析算法" /></p>
+<h4 id="垂死挣扎"><a class="anchor" href="#垂死挣扎">#</a> 垂死挣扎</h4>
+<p><strong>对象可回收，就一定会被回收吗</strong><br />
+对象的 finalize 方法给了对象一次垂死挣扎的机会，当对象不可达（可回收）时，当发生 GC 时，会先判断对象是否执行了 finalize 方法，如果未执行，则会先执行 finalize 方法，我们可以在此方法里将当前对象与 GC Roots 关联，这样执行 finalize 方法之后，GC 会再次判断对象是否可达，如果不可达，则会被回收，如果可达，则不回收！<br />
+finalize 方法只会被执行一次，如果第一次执行 finalize 方法此对象变成了可达确实不会回收，但如果对象再次被 GC，则会忽略 finalize 方法，对象会被回收！这一点切记！</p>
+<h4 id="gc-roots"><a class="anchor" href="#gc-roots">#</a> GC Roots</h4>
+<p><strong>可以作为 GC Roots 的对象</strong></p>
+<ol>
+<li>虚拟机栈（栈帧中的本地变量表）中引用的对象；各个线程调用方法堆栈中使用到的参数、局部变量、临时变量等。</li>
+<li>方法区中类静态属性引用的对象；java 类的引用类型静态变量。</li>
+<li>方法区中常量引用的对象；比如：字符串常量池里的引用。</li>
+<li>本地方法栈中 JNI（即一般说的 Native 方法）引用的对象。</li>
+<li>JVM 的内部引用（class 对象、异常对象 NullPointException、OutofMemoryError，系统类加载器）。（非重点）</li>
+<li>所有被同步锁 (synchronized 关键）持有的对象。（非重点）</li>
+<li>JVM 内部的 JMXBean、JVMTI 中注册的回调、本地代码缓存等。（非重点）</li>
+<li>JVM 实现中的「临时性」对象，跨代引用的对象（在使用分代模型回收只回收部分代的对象）。（非重点）</li>
+</ol>
+<h3 id="垃圾收集算法"><a class="anchor" href="#垃圾收集算法">#</a> 垃圾收集算法</h3>
+<h4 id="分代收集理论"><a class="anchor" href="#分代收集理论">#</a> 分代收集理论</h4>
+<p><strong>弱分代假说</strong>：绝大多数对象，在第一次垃圾收集时就会被回收。<br />
+<strong>强分代假说</strong>：熬过越多次收集过程的对象越难以消亡。<br />
+这两种假说给我们提供了一种设计思想就是将 java 堆划分出不同的区域，别急我们慢慢来说明一下：根据弱分代理论呢，如果有专门一块区域的绝大多数对象都是「脆弱」的，那每次回收时就只关注少量存活就好了，就可以以较少的代价回收到大量空间。那根据强理论呢，如果有专门一块区域的绝大多数对象都是「顽固」的，那虚拟机就可以以较低的频率进行垃圾回收，这就提高了内存的利用率。</p>
+<p><strong>跨代引用假说</strong>：跨代引用相对于同代引用来说仅占极少数。<br />
+该假说认为只会存在很少的跨代引用。因为只要经过一些次数的垃圾收集，即使还存在跨代引用，新生代会变成老年代，跨代引用也就自然消失了，所以跨代引用的数量不会多。在对新生代对象进行收集时，由于可能存在老年代对象引用了该对象，那么，需要找到这些老年代对象。根据跨代引用假说，这些跨代引用的数量不会太多，相比于对老年代进行扫描，在新生代建立一个全局数据结构，记录哪一块老年代内存会存在跨代引用，虽然维护这个数据结构，也需要少量的开销。但仍然显得更加合算。</p>
+<p>基于这个分代假设，一般的垃圾回收器把内存分成三类：Eden (E), Suvivor (S) 和 Old (O), 其中 Eden 和 Survivor 都属于年轻代， Old 属于老年代，新对象始终分配在 Eden 里面，熬过一次垃圾回收的对象就被移动到 Survivor 区了，经过数次垃圾回收之后还活着的对象会被移到 Old 区。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310272158264.png" alt="" /></p>
+<p><strong>收集方式</strong><br />
+ Java 堆分为新生代和老年代，针对收集对象处于哪一代，一共有以下四种收集方式。</p>
+<ul>
+<li>部分收集
+<ul>
+<li>新生代收集 (Minor GC / Young GC)，只收集新生代垃圾对象</li>
+<li>老年代收集 (Major GC / Old GC)，只收集老年代垃圾对象，目前只有 CMS 收集器会单独收集老年代对象。需要注意的是，Major GC，目前这个说法有点混淆，有时候专指老年代收集，有时候指的是整堆收集（Full GC）。</li>
+<li>混合收集 (Mixed GC)，收集来自整个新生代以及部分老年代中的垃圾对象。目前只有 G1 会有这种行为。</li>
+</ul>
+</li>
+<li>整堆收集（Full GC）：收集整个 Java 堆和方法区的垃圾收集。</li>
+</ul>
+<h4 id="标记-清除算法"><a class="anchor" href="#标记-清除算法">#</a> 标记 - 清除算法</h4>
+<p><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310272226947.png" alt="" /><br />
+<strong>原理</strong>：分为标记和清除两个阶段：标记阶段和清除阶段。标记过程中，将活动对象的标记位设置为有效状态，表示这些对象是可达的，不会被回收。将未被标记的对象视为垃圾对象，将其所占用的内存空间释放，以便下次分配给新的对象使用。<br />
+<strong>缺点</strong>：</p>
+<ol>
+<li>会产生大量内存碎片，空间不连续后面有大对象时无法使用，可能会引起一次垃圾回收</li>
+<li>标记和清除两个过程都比较耗时，效率不高</li>
+</ol>
+<h4 id="标记-复制算法"><a class="anchor" href="#标记-复制算法">#</a> 标记 - 复制算法</h4>
+<p><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310272227689.png" alt="" /><br />
+<strong>原理</strong>：将可用内存按容量划分为大小相等的两块，每次只使用其中的一块。当这一块的内存用完了，就将还存活着的对象复制到另外一块上面，然后再把已使用的内存空间一次清理掉，这样一来就不容易出现内存碎片的问题。<br />
+<strong>缺点</strong>：</p>
+<ol>
+<li>解决了标记 - 清除算法中清除慢的问题，但是空间利用率低。</li>
+<li>在对象存活率较高时就要进行较多的复制操作，效率将会变低。更关键的是如果不想浪费 50% 的空间，就需要有额外的空间进行分配担保，以应对被使用的内存中所有对象都有 100% 存活的极端情况。</li>
+</ol>
+<h4 id="标记-整理算法"><a class="anchor" href="#标记-整理算法">#</a> 标记 - 整理算法</h4>
+<p><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310272228578.png" alt="" /><br />
+<strong>原理</strong>：该算法标记阶段和 Mark-Sweep 一样，但是在完成标记之后，它不是直接清理可回收对象，而是将存活对象都向一端移动，然后清理掉端边界以外的内存。<br />
+<strong>缺点</strong>：同标记复制算法，由于整理牵扯到了对象的移动，效率会变得较低。</p>
+<h4 id="并发的可达性分析"><a class="anchor" href="#并发的可达性分析">#</a> 并发的可达性分析</h4>
+<ul>
+<li>白色：
+<ul>
+<li>表示对象尚未被垃圾收集器访问过。</li>
+<li>可达性分析开始前，所有对象都是白色的，如果分析结束后，依然是白色的对象，意味着它是不可达的，将会被回收。</li>
+</ul>
+</li>
+<li>黑色：
+<ul>
+<li>表示对象已经被垃圾收集器访问过，而且对象的引用链已经遍历完成。</li>
+<li>黑色的对象，意味着它是可达的，不会被回收。</li>
+<li>如果被其他对象引用，不需要重新遍历一遍。</li>
+<li>黑色的对象不可能直接（不经过灰色的对象）指向某个白色的对象。</li>
+</ul>
+</li>
+<li>灰色：
+<ul>
+<li>表示对象已经被垃圾回收器访问过，但是对象的引用链没有遍历完成。</li>
+<li>灰色的对象在黑色的对象和白色的对象之间。</li>
+</ul>
+</li>
+</ul>
+<h5 id="浮动垃圾"><a class="anchor" href="#浮动垃圾">#</a> 浮动垃圾</h5>
+<p>并发标记的过程中，若一个已经被标记成黑色或者灰色的对象，突然变成了垃圾，由于不会再对黑色标记过的对象重新扫描，所以不会被发现，那么这个对象不是白色的但是不会被清除，重新标记也不能从 GC Root 中去找到，所以成为了浮动垃圾，浮动垃圾对系统的影响不大，留给下一次 GC 进行处理即可。</p>
+<h5 id="对象丢失"><a class="anchor" href="#对象丢失">#</a> 对象丢失</h5>
+<p><strong>对象消失需要满足的条件</strong>：</p>
+<ul>
+<li>插入一条或多条从黑色对象到白色对象的新引用</li>
+<li>删除全部从灰色对象到该白色对象的直接或间接引用</li>
+</ul>
+<p><strong>对象消失示意图</strong><br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310271901281.png" alt="" /><br />
+<strong>解决方案</strong><br />
+解决并发扫描时的对象消失问题，只需要破化以上两个条件的其中一个即可。因此产生两种解决方案：</p>
+<ul>
+<li><strong>增量更新</strong>：破坏的是第一个条件，当黑色对象插入新的指向白色对象的引用关系时，就将这个新插入的引用记录下来，等并发扫描结束之后，再将这些记录过的引用关系中的黑色对象为根，重新扫描一次。</li>
+<li><strong>原始快照</strong>：破化的是第二个条件，当灰色对象要删除指向白色对象的引用关系时，就将这个要删除的引用记录下来，在并发扫描结束后，再将这些记录过的引用关系中的灰色对象为根，重新扫描一次。</li>
+</ul>
+<p>以上无论是对引用关系记录的插入还是删除，虚拟机的记录操作都是通过写屏障实现的，且以上两种方案在垃圾收集器中都有实际使用如：CMS 是基于增量更新来做并发标记；G1、Shenandoah 则是使用原始快照来实现的。</p>
+<h3 id="经典垃圾收集器"><a class="anchor" href="#经典垃圾收集器">#</a> 经典垃圾收集器</h3>
+<h4 id="cms"><a class="anchor" href="#cms">#</a> CMS</h4>
+<p>Concurrent Mark Sweep，采用标记 - 清除算法，用于老年代，常与 ParNew 协同工作。优点在于并发收集与低停顿。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310272053797.png" alt="" /></p>
+<h5 id="步骤"><a class="anchor" href="#步骤">#</a> 步骤</h5>
+<p><strong>初始标记</strong>：这个过程十分快速，需要 stop the world，遍历所有的对象并且标记初始的 GC Roots。<br />
+<strong>并发标记</strong>：这个过程可以和用户线程一起并发完成，所以对于系统进程的影响较小，主要的工作为在系统线程运行的时候通过 GC Roots 对于对象进行根节点枚举的操作，标记对象是否存活，注意这里的标记也是较为迅速和简单的，因为下一步还需要重新标记。<br />
+<strong>重新标记</strong>：需要 stop the world，用来处理前一个阶段因为引用关系改变导致没有标记到的存活对象（使用增量更新方式），时间短。<br />
+<strong>并发清理</strong>：和用户线程一起并发，清除那些没有标记的对象并且回收空间。<br />
+CMS 使用 增量更新的方式解决「对象消失」的问题。</p>
+<h5 id="缺点"><a class="anchor" href="#缺点">#</a> 缺点</h5>
+<ul>
+<li>对 CPU 资源太敏感，虽然在并发标记阶段用户线程没有暂停，但是由于收集器占用了一部分 CPU 资源，导致程序的响应速度变慢。</li>
+<li>无法处理浮动垃圾。原因在于 CMS 是以获取最短停顿时间为目标的，自然不可能在一次垃圾处理过程中花费太多时间，只好在下一次 GC 的时候处理。有可能出现「Con-current Mode Failure」失败进而导致另一次完全「Stop The World」的 Full GC 的产生。</li>
+<li>由于 CMS 收集器是基于「标记 - 清除」算法的，前面说过这个算法会导致大量的空间碎片的产生，一旦空间碎片过多，大对象就没办法给其分配内存，那么即使内存还有剩余空间容纳这个大对象，但是却没有连续的足够大的空间放下这个对象，所以虚拟机就会触发一次 Full GC。Full GC 会进行一次碎片整理。</li>
+</ul>
+<h4 id="g1-garbage-first"><a class="anchor" href="#g1-garbage-first">#</a> G1 (Garbage First)</h4>
+<p>通过把 Java 堆分成大小相等的多个独立区域，回收时计算出每个区域回收所获得的空间以及所需时间的经验值，根据记录两个值来判断哪个区域最具有回收价值，所以叫 Garbage First（垃圾优先）。G1 收集器与之前的收集器最大的不同就在于堆内存的划分，之前的收集器只区分新生代与老年代，而 G1 收集器则是把堆内存划分成多个独立的 Region 。<br />
+<img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master//images/202310272109199.png" alt="" /></p>
+<h5 id="步骤-2"><a class="anchor" href="#步骤-2">#</a> 步骤</h5>
+<p><strong>初始标记</strong>：这个阶段是 STW (Stop the World) 的，所有应用线程会被暂停，标记出从 GC Root 开始直接可达的对象。</p>
+<p><strong>并发标记</strong>：从 GC Roots 开始，对堆中对象进行可达性分析，找出存活对象，耗时较长。<br />
+<strong>最终标记</strong>：标记那些在并发标记阶段发生变化的对象（使用原始快照方式），将被回收。<br />
+<strong>筛选回收</strong>：首先，对各个 Regin 的回收价值和成本进行排序，根据用户所期待的 GC 停顿时间，来指定回收计划，回收一部分 Region 。</p>
+<p>G1 中提供了 Young GC、Mixed GC 两种垃圾回收模式，这两种垃圾回收模式，都是 Stop The World (STW) 的。</p>
+<h5 id="回收模式"><a class="anchor" href="#回收模式">#</a> 回收模式</h5>
+<p><strong>Young GC</strong><br />
+ 在分配一般对象（非巨型对象）时，当所有 eden region 使用达到最大阀值、并且无法申请足够内存时，会触发一次 YoungGC 。<br />
+每次 young gc 会回收所有 Eden 、以及 Survivor 区，并且将存活对象复制到 Old 区以及另一部分的 Survivor 区。</p>
+<p><strong>Mixed GC</strong><br />
+ 当越来越多的对象晋升到老年代 old region 时，为了避免堆内存被耗尽，虚拟机会触发一个混合的垃圾收集，即 mixed gc ，该算法并不是一个 old gc ，除了回收整个 young region ，还会回收一部分的 old region 。</p>
+<p><strong>巨型对象</strong><br />
+ G1 垃圾收集器还增加了一种新的内存区域，叫做 Humongous 内存区域，主要用于存储大对象，如果超过 1.5 个 region , 就放到 Humongous 区域。</p>
+<h5 id="特点"><a class="anchor" href="#特点">#</a> 特点</h5>
+<p>G1 的一个显著特点他能够让用户设置应用的暂停时间，G1 回收的第 4 步，它是「选择一些内存块」，而不是整代内存来回收，这是 G1 跟其它 GC 非常不同的一点，其它 GC 每次回收都会回收整个 Generation 的内存 (Eden, Old), 而回收内存所需的时间就取决于内存的大小，以及实际垃圾的多少，所以垃圾回收时间是不可控的；而 G1 每次并不会回收整代内存，到底回收多少内存就看用户配置的暂停时间，配置的时间短就少回收点，配置的时间长就多回收点，伸缩自如。</p>
+
+      <div class="tags">
+          <a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/" rel="tag"><i class="ic i-tag"></i> 八股文</a>
+          <a href="/tags/Java/" rel="tag"><i class="ic i-tag"></i> Java</a>
+          <a href="/tags/JVM/" rel="tag"><i class="ic i-tag"></i> JVM</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-01-19 16:15:09" itemprop="dateModified" datetime="2025-01-19T16:15:09+08:00">2025-01-19</time>
+  </span>
+  <span id="2023/10/26/2023-10-interview-jvm/" class="item leancloud_visitors" data-flag-title="面试指北：Java 虚拟机" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>小王学长 <i class="ic i-at"><em>@</em></i>沉思录
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://haust-kevin.github.io/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">https://haust-kevin.github.io/2023/10/26/2023-10-interview-jvm/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/10/25/2023-10-interview-Java-basic/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202308191646859.jpg" title="面试指北：Java 基础">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Java</span>
+  <h3>面试指北：Java 基础</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/10/28/2023-10-interview-db-mysql/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202401242042979.jpg" title="面试指北：MySQL 数据库">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 数据库</span>
+  <h3>面试指北：MySQL 数据库</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F"><span class="toc-number">1.</span> <span class="toc-text"> 内存区域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86"><span class="toc-number">1.1.</span> <span class="toc-text"> Java 内存区域划分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%86%85%E5%AD%98"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 本地内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%86%85%E5%AD%98%E5%92%8C%E6%9C%AC%E5%9C%B0%E5%86%85%E5%AD%98%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 主内存和本地内存的关系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80"><span class="toc-number">1.2.</span> <span class="toc-text"> 对象内存布局</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mark-word"><span class="toc-number">1.2.1.</span> <span class="toc-text"> Mark Word</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 数据对齐</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%8F%E5%90%91%E9%94%81"><span class="toc-number">1.3.</span> <span class="toc-text"> 偏向锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%81%E6%92%A4%E9%94%80"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 锁撤销</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E9%87%8D%E5%81%8F%E5%90%91"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 批量重偏向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E9%94%81%E6%92%A4%E9%94%80"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 批量锁撤销</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E8%AE%A1%E7%AE%97%E8%BF%87%E5%93%88%E5%B8%8C%E5%80%BC%E4%B9%8B%E5%90%8E%E8%BF%98%E8%83%BD%E8%BF%9B%E5%85%A5%E5%81%8F%E5%90%91%E9%94%81%E7%8A%B6%E6%80%81%E5%90%97"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 对象计算过哈希值之后还能进入偏向锁状态吗</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text"> 类文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text"> 类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">3.1.</span> <span class="toc-text"> 类的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%97%B6%E6%9C%9F"><span class="toc-number">3.2.</span> <span class="toc-text"> 类加载时期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text"> 类加载器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE"><span class="toc-number">3.4.</span> <span class="toc-text"> 双亲委派</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE"><span class="toc-number">3.4.1.</span> <span class="toc-text"> 为什么要双亲委派</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A0%B4%E5%9D%8F%E5%8F%8C%E4%BA%B2%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.4.2.</span> <span class="toc-text"> 破坏双亲模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%90%97"><span class="toc-number">4.</span> <span class="toc-text"> 自动内存管理吗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E4%BD%95%E6%97%B6%E6%AD%BB%E4%BA%A1"><span class="toc-number">4.1.</span> <span class="toc-text"> 对象何时死亡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.1.</span> <span class="toc-text"> 引用计数算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text"> 可达性分析算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9E%82%E6%AD%BB%E6%8C%A3%E6%89%8E"><span class="toc-number">4.1.3.</span> <span class="toc-text"> 垂死挣扎</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gc-roots"><span class="toc-number">4.1.4.</span> <span class="toc-text"> GC Roots</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text"> 垃圾收集算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E4%BB%A3%E6%94%B6%E9%9B%86%E7%90%86%E8%AE%BA"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 分代收集理论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 标记 - 清除算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0-%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 标记 - 复制算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="toc-number">4.2.4.</span> <span class="toc-text"> 标记 - 整理算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E7%9A%84%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-number">4.2.5.</span> <span class="toc-text"> 并发的可达性分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8%E5%9E%83%E5%9C%BE"><span class="toc-number">4.2.5.1.</span> <span class="toc-text"> 浮动垃圾</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E4%B8%A2%E5%A4%B1"><span class="toc-number">4.2.5.2.</span> <span class="toc-text"> 对象丢失</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text"> 经典垃圾收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cms"><span class="toc-number">4.3.1.</span> <span class="toc-text"> CMS</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.3.1.1.</span> <span class="toc-text"> 步骤</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">4.3.1.2.</span> <span class="toc-text"> 缺点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#g1-garbage-first"><span class="toc-number">4.3.2.</span> <span class="toc-text"> G1 (Garbage First)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-2"><span class="toc-number">4.3.2.1.</span> <span class="toc-text"> 步骤</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9E%E6%94%B6%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.3.2.2.</span> <span class="toc-text"> 回收模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">4.3.2.3.</span> <span class="toc-text"> 特点</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2023/10/25/2023-10-interview-Java-basic/" rel="bookmark" title="面试指北：Java 基础">面试指北：Java 基础</a></li><li class="active"><a href="/2023/10/26/2023-10-interview-jvm/" rel="bookmark" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="小王学长"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">小王学长</p>
+  <div class="description" itemprop="description">思考未知，追求卓越</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">16</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">15</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">25</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhdXN0LUtldmlu" title="https:&#x2F;&#x2F;github.com&#x2F;haust-Kevin"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS93YW5nLWRpbmctYmFuZy05Ng==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;wang-ding-bang-96"><i class="ic i-zhihu"></i></span>
+      <a href="/about/about-me" title="&#x2F;about&#x2F;about-me" class="item about"><i class="ic i-address-card"></i></a>
+      <span class="exturl item email" data-url="bWFpbHRvOjMzNjQ5MTc5OTBAcXEuY29t" title="mailto:3364917990@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item bilibili" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vNDgxNzgwMTcw" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;481780170"><i class="ic i-bilibili"></i></span>
+      <span class="exturl item qq" data-url="aHR0cDovL3dwYS5xcS5jb20vbXNncmQ/dj0zJnVpbj0zMzY0OTE3OTkwJnNpdGU9cXEmbWVudT15ZXM=" title="http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;3364917990&amp;site&#x3D;qq&amp;menu&#x3D;yes"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="/links/friends/" rel="section"><i class="ic i-link"></i>链接</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/links/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/links/recommend/" rel="section"><i class="ic i-magic"></i>推荐</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-user"></i>关于</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/about/about-me/" rel="section"><i class="ic i-address-card"></i>博主</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/about/about-site/" rel="section"><i class="ic i-cloud"></i>本站</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/moments/" rel="section"><i class="ic i-pen"></i>说说</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/10/25/2023-10-interview-Java-basic/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/10/28/2023-10-interview-db-mysql/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/04/2023-09-sgs-wallpaper/" title="三国杀官方原画">三国杀官方原画</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="分类于 中间件">中间件</a>
+</div>
+
+    <span><a href="/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">面试指北：消息队列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" title="分类于 好文摘抄">好文摘抄</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" title="分类于 小说">小说</a>
+</div>
+
+    <span><a href="/2023/08/20/2023-08-%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/17/2023-08-brew-replace-download-source/" title="HomeBrew：brew 更换下载源">HomeBrew：brew 更换下载源</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
+</div>
+
+    <span><a href="/2023/08/22/2023-08-%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="分类于 数据结构与算法">数据结构与算法</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 算法基础">算法基础</a>
+</div>
+
+    <span><a href="/2023/10/17/2023-10-bubble-sort/" title="冒泡排序、鸡尾酒排序、梳子排序">冒泡排序、鸡尾酒排序、梳子排序</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" title="分类于 计算机基础">计算机基础</a>
+</div>
+
+    <span><a href="/2023/10/24/2023-10-interview-network/" title="面试指北：计算机网络">面试指北：计算机网络</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-redis/" title="面试指北：Redis 数据库">面试指北：Redis 数据库</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">小王学长 @ Kevin's Blog</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="站点总字数">84k 字</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:16</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/10/26/2023-10-interview-jvm/',
+    favicon: {
+      show: "要每天开心哦 ^_^",
+      hide: "等你回来呦~"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

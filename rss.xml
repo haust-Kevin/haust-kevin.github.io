@@ -29,7 +29,7 @@
             <description><![CDATA[ &lt;h2 id=&#34;简介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#简介&#34;&gt;#&lt;/a&gt; 简介&lt;/h2&gt;
 &lt;p&gt;对于 OpenHarmony 的 IPC 框架，每个部件都需要用到。本文将介绍 OpenHarmony 的进程间通信原理，并提供相应的代码示例。&lt;br /&gt;
 IPC 和 RPC 通常采用客户端 - 服务器（Client-Server）模型，在使用时，请求服务的（Client）一端进程可获取提供服务（Server）一端所在进程的代理（Proxy），并通过此代理读写数据来实现进程间的数据通信。&lt;br /&gt;
-&lt;img data-src=&#34;https://s2.51cto.com/images/blog/202310/12151758_65279da634ae115023.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/20250217000734143.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;开发步骤&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#开发步骤&#34;&gt;#&lt;/a&gt; 开发步骤&lt;/h2&gt;
 &lt;h3 id=&#34;iservice&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#iservice&#34;&gt;#&lt;/a&gt; iService&lt;/h3&gt;
 &lt;p&gt;定义 IPC 接口类，表示 IPC 提供的功能。&lt;br /&gt;

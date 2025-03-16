@@ -152,7 +152,7 @@
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
 &lt;p&gt;std::enable_shared_from_this 和 shared_from_this 是现代 C++ 中强大的工具，能够在复杂的异步和多线程环境中安全地管理对象的生命周期。通过实际项目中的应用案例，我们可以看到它们在网络编程、GUI 开发、分布式系统等领域的广泛应用。&lt;/p&gt;
 &lt;p&gt;在实践中，灵活地运用 shared_from_this，结合设计模式和异步编程框架，可以大大提升代码的质量和可维护性。同时，需要遵循最佳实践，避免常见的陷阱，确保程序的健壮性。&lt;/p&gt;
-&lt;p&gt;
+&lt;p&gt;&amp;lt;!-- 
 &lt;h2 style=&#34;color: orange;&#34;&gt;结语&lt;/h2&gt;  
 
 &lt;p style=&#34;color: orange;&#34;&gt;
@@ -162,7 +162,7 @@
 &lt;p style=&#34;color: orange;&#34;&gt;
 这就是为什么当我们遇到错误，我们应该将其视为学习和进步的机会，而不仅仅是困扰。通过理解和解决这些问题，我们不仅可以修复当前的代码，更可以提升我们的编程能力，防止在未来的项目中犯相同的错误。
 &lt;/p&gt;
-&lt;/p&gt;
+ --&amp;gt;&lt;/p&gt;
 </content>
         <category term="编程技巧" scheme="https://haust-kevin.github.io/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" />
         <category term="C++" scheme="https://haust-kevin.github.io/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/C/" />

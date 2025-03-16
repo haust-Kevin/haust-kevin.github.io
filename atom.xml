@@ -14,9 +14,9 @@
     <category term="后端" />
     <category term="Java" />
     <entry>
-        <id>https://haust-kevin.github.io/2025/03/16/2025-03-trap-in-shared-from-this/</id>
+        <id>https://haust-kevin.github.io/2025/03/16/2025-03-understanding-of-shared-from-this/</id>
         <title>C++：深入理解 std::enable_shared_from_this 与 shared_from_this</title>
-        <link rel="alternate" href="https://haust-kevin.github.io/2025/03/16/2025-03-trap-in-shared-from-this/"/>
+        <link rel="alternate" href="https://haust-kevin.github.io/2025/03/16/2025-03-understanding-of-shared-from-this/"/>
         <content type="html">&lt;h1 id=&#34;c深入理解-stdenable_shared_from_this-与-shared_from_this&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#c深入理解-stdenable_shared_from_this-与-shared_from_this&#34;&gt;#&lt;/a&gt; C++：深入理解 std::enable_shared_from_this 与 shared_from_this&lt;/h1&gt;
 &lt;h2 id=&#34;为什么以及何时使用-shared_from_this&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#为什么以及何时使用-shared_from_this&#34;&gt;#&lt;/a&gt; 为什么以及何时使用 shared_from_this&lt;/h2&gt;
 &lt;h3 id=&#34;shared_from_this-的作用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#shared_from_this-的作用&#34;&gt;#&lt;/a&gt; shared_from_this 的作用&lt;/h3&gt;

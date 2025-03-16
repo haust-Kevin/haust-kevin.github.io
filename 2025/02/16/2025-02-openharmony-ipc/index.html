@@ -119,12 +119,12 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040023.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202405112157422.png"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646846.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202401242041864.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646840.jpg"></li>
           <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423777.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040030.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040020.png"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202401242041666.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646861.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423783.jpg"></li>
         </ul>
       </div>
       
@@ -180,7 +180,7 @@ IPC 和 RPC 通常采用客户端 - 服务器（Client-Server）模型，在使�
 <p>定义 IPC 接口类，表示 IPC 提供的功能。<br />
 继承 <code>IRemoteBroker</code> ，且通过 <code>DECLARE_INTERFACE_DESCRIPTOR</code>  定义描述符。<br />
 提供的 IPC 业务函数写成纯虚函数。业务函数在 Proxy 端和 Stub 端都需要实现。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">ITestAbility</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">IRemoteBroker</span></span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token function">DECLARE_INTERFACE_DESCRIPTOR</span><span class="token punctuation">(</span>u<span class="token string">"test.ITestAbility"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">virtual</span> <span class="token keyword">int</span> <span class="token function">TestPingAbility</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>u16string <span class="token operator">&amp;</span>dummy<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 定义业务函数</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h3 id="proxy"><a class="anchor" href="#proxy">#</a> Proxy</h3>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">ITestAbility</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">IRemoteBroker</span></span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token function">DECLARE_INTERFACE_DESCRIPTOR</span><span class="token punctuation">(</span>u<span class="token string">"test.ITestAbility"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">virtual</span> <span class="token keyword">int</span> <span class="token function">TestPingAbility</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>u16string <span class="token operator">&amp;</span>dummy<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 定义业务函数</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h3 id="proxy"><a class="anchor" href="#proxy">#</a> Proxy</h3>
 <p>proxy 是在 Client 侧负责与 Service 侧进行通信的中间类。主要负责将 Client 的数据进行编码发送到 Service 侧的 Stub。<br />
 proxy 需要继承  <code>IRemoteProxy&lt;ITestAbility&gt;</code> ，其中模板参数为我们上一步定义的接口类。<br />
 proxy 需要包含一个 <code>BrokerDelegator&lt;TestAbilityProxy&gt;</code>  的静态成员，自动接管我们的功能，而不需要手动注册。<br />
@@ -208,7 +208,7 @@ Service 会实现 接口类的所有业务函数。</p>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2025-02-17 00:07:39" itemprop="dateModified" datetime="2025-02-17T00:07:39+08:00">2025-02-17</time>
+    <time title="修改时间：2025-03-16 15:10:59" itemprop="dateModified" datetime="2025-03-16T15:10:59+08:00">2025-03-16</time>
   </span>
   <span id="2025/02/16/2025-02-openharmony-ipc/" class="item leancloud_visitors" data-flag-title="OpenHarmony：IPC 通信编程范式" title="阅读次数">
       <span class="icon">
@@ -250,7 +250,7 @@ Service 会实现 接口类的所有业务函数。</p>
     <div class="item left">
       
 
-  <a href="/2025/01/26/2025-01-singleton-in-so/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309022040039.jpg" title="单例模式的陷阱">
+  <a href="/2025/01/26/2025-01-singleton-in-so/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202405112157422.png" title="单例模式的陷阱">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> 技术探索</span>
   <h3>单例模式的陷阱</h3>
@@ -258,6 +258,14 @@ Service 会实现 接口类的所有业务函数。</p>
 
     </div>
     <div class="item right">
+      
+
+  <a href="/2025/03/16/2025-03-trap-in-shared-from-this/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;20250119182810269.png" title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> C++</span>
+  <h3>C++：深入理解 std::enable_shared_from_this 与 shared_from_this</h3>
+  </a>
+
     </div>
 </div>
 
@@ -292,19 +300,19 @@ Service 会实现 接口类的所有业务函数。</p>
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">18</span>
+        <span class="count">19</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">17</span>
+        <span class="count">19</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">31</span>
+        <span class="count">34</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -398,10 +406,12 @@ Service 会实现 接口类的所有业务函数。</p>
 
   <ul id="quick">
     <li class="prev pjax">
+        <a href="/2025/01/26/2025-01-singleton-in-so/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
+        <a href="/2025/03/16/2025-03-trap-in-shared-from-this/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -423,32 +433,12 @@ Service 会实现 接口类的所有业务函数。</p>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/2023/08/19/2023-08-docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/" title="分类于 算法题解">算法题解</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/LeetCode/" title="分类于 LeetCode">LeetCode</a>
 </div>
 
-    <span><a href="/2023/10/25/2023-10-interview-Java-basic/" title="面试指北：Java 基础">面试指北：Java 基础</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
-</div>
-
-    <span><a href="/2023/08/22/2023-08-%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
+    <span><a href="/2024/04/27/2024-04-leetcode-permutation-sequence/" title="LeetCode：60. 排列序列">LeetCode：60. 排列序列</a></span>
   </li>
 
       
@@ -467,57 +457,58 @@ Service 会实现 接口类的所有业务函数。</p>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E7%B4%A2/" title="分类于 技术探索">技术探索</a>
+</div>
+
+    <span><a href="/2025/01/26/2025-01-singleton-in-so/" title="单例模式的陷阱">单例模式的陷阱</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/25/2023-10-interview-Java-basic/" title="面试指北：Java 基础">面试指北：Java 基础</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" title="分类于 计算机基础">计算机基础</a>
+</div>
+
+    <span><a href="/2023/10/24/2023-10-interview-network/" title="面试指北：计算机网络">面试指北：计算机网络</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
 <i class="ic i-angle-right"></i>
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 </div>
 
-    <span><a href="/2023/10/28/2023-10-interview-db-redis/" title="面试指北：Redis 数据库">面试指北：Redis 数据库</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/" title="分类于 算法题解">算法题解</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/LeetCode/" title="分类于 LeetCode">LeetCode</a>
-</div>
-
-    <span><a href="/2024/04/27/2024-04-leetcode-permutation-sequence/" title="LeetCode：60. 排列序列">LeetCode：60. 排列序列</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="分类于 中间件">中间件</a>
-</div>
-
-    <span><a href="/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">面试指北：消息队列</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2023/09/04/2023-09-sgs-wallpaper/" title="三国杀官方原画">三国杀官方原画</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Web/" title="分类于 Web">Web</a>
-</div>
-
-    <span><a href="/2023/11/01/2023-11-interview-web-spring/" title="面试指北：Spring">面试指北：Spring</a></span>
+    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
   </li>
 
       
@@ -528,6 +519,26 @@ Service 会实现 接口类的所有业务函数。</p>
 </div>
 
     <span><a href="/2023/08/17/2023-08-brew-replace-download-source/" title="HomeBrew：brew 更换下载源">HomeBrew：brew 更换下载源</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/19/2023-08-docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/OpenHarmony/" title="分类于 OpenHarmony">OpenHarmony</a>
+</div>
+
+    <span><a href="/2025/02/16/2025-02-openharmony-ipc/" title="OpenHarmony：IPC 通信编程范式">OpenHarmony：IPC 通信编程范式</a></span>
   </li>
 
   </ul>
@@ -552,13 +563,13 @@ Service 会实现 接口类的所有业务函数。</p>
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="站点总字数">90k 字</span>
+    <span title="站点总字数">98k 字</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:22</span>
+    <span title="站点阅读时长">1:29</span>
   </div>
   <div class="powered-by">
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

@@ -119,12 +119,12 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040034.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423786.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653323.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423784.jpg"></li>
           <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040033.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646843.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646855.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040025.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646861.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423778.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423787.jpg"></li>
         </ul>
       </div>
       
@@ -209,7 +209,7 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
 <li>
 <p>防止多重所有权问题<br />
 直接在类内部使用  <code>std::shared_ptr(this)</code>  可能导致多个独立的  <code>shared_ptr</code>  管理同一对象，造成引用计数不一致。 <code>std::enable_shared_from_this</code>  确保了所有的  <code>shared_ptr</code>  共享同一个引用计数。下面写一段出错的代码。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">NetCallback</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">INetCallback</span></span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token function">NetCallback</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>weak_ptr<span class="token operator">&lt;</span>NetClient<span class="token operator">></span> client<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">client_</span><span class="token punctuation">(</span>client<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token operator">~</span><span class="token function">NetCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">NetChanged</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>NetChangedInfo<span class="token operator">></span> info<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">auto</span> client <span class="token operator">=</span> client_<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            client<span class="token operator">-></span><span class="token function">OnNetChanged</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    std<span class="token double-colon punctuation">::</span>weak_ptr<span class="token operator">&lt;</span>NetClient<span class="token operator">></span> client_<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">NetClient</span><span class="token double-colon punctuation">::</span><span class="token function">OnNetChanged</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>NetChangedInfo<span class="token operator">></span> info<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token comment">// do something</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">NetClient</span><span class="token double-colon punctuation">::</span><span class="token function">RegisterCallback</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>INetCallback<span class="token operator">></span> callback<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token keyword">auto</span> proxy <span class="token operator">=</span> <span class="token function">GetProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    proxy<span class="token operator">-></span><span class="token function">RegisterCallback</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">make_shared</span><span class="token generic class-name"><span class="token operator">&lt;</span>NetCallback<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token comment">// 这里 this 应改成 shared_from_this，否则创建的 `std::shared_ptr&lt;NetCallback>` 只是临时对象。</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token comment">// 临时 shared_ptr 会在析构后 delete 外部的 `NetClient` 对象。</span></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">NetCallback</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">INetCallback</span></span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token function">NetCallback</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>weak_ptr<span class="token operator">&lt;</span>NetClient<span class="token operator">></span> client<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">client_</span><span class="token punctuation">(</span>client<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token operator">~</span><span class="token function">NetCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">NetChanged</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>NetChangedInfo<span class="token operator">></span> info<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">auto</span> client <span class="token operator">=</span> client_<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            client<span class="token operator">-></span><span class="token function">OnNetChanged</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    std<span class="token double-colon punctuation">::</span>weak_ptr<span class="token operator">&lt;</span>NetClient<span class="token operator">></span> client_<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">NetClient</span><span class="token double-colon punctuation">::</span><span class="token function">OnNetChanged</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>NetChangedInfo<span class="token operator">></span> info<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token comment">// do something</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="17"></td><td><pre></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">NetClient</span><span class="token double-colon punctuation">::</span><span class="token function">RegisterCallback</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>INetCallback<span class="token operator">></span> callback<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">auto</span> proxy <span class="token operator">=</span> <span class="token function">GetProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    proxy<span class="token operator">-></span><span class="token function">RegisterCallback</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">make_shared</span><span class="token generic class-name"><span class="token operator">&lt;</span>NetCallback<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token comment">// 这里 this 应改成 shared_from_this，否则创建的 `std::shared_ptr&lt;NetCallback>` 只是临时对象。</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token comment">// 临时 shared_ptr 会在析构后 delete 外部的 `NetClient` 对象。</span></pre></td></tr><tr><td data-num="24"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
 </ol>
 <h3 id="示例"><a class="anchor" href="#示例">#</a> 示例</h3>
 <p>以下是一个使用  <code>std::enable_shared_from_this</code>  的典型示例：</p>
@@ -341,7 +341,7 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2025-03-16 22:37:00" itemprop="dateModified" datetime="2025-03-16T22:37:00+08:00">2025-03-16</time>
+    <time title="修改时间：2025-03-16 22:38:37" itemprop="dateModified" datetime="2025-03-16T22:38:37+08:00">2025-03-16</time>
   </span>
   <span id="2025/03/16/2025-03-understanding-of-shared-from-this/" class="item leancloud_visitors" data-flag-title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this" title="阅读次数">
       <span class="icon">
@@ -383,7 +383,7 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
     <div class="item left">
       
 
-  <a href="/2025/02/16/2025-02-openharmony-ipc/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309022040018.jpg" title="OpenHarmony：IPC 通信编程范式">
+  <a href="/2025/02/16/2025-02-openharmony-ipc/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309022040032.jpg" title="OpenHarmony：IPC 通信编程范式">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> OpenHarmony</span>
   <h3>OpenHarmony：IPC 通信编程范式</h3>
@@ -556,6 +556,16 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/08/17/2023-08-brew-replace-download-source/" title="HomeBrew：brew 更换下载源">HomeBrew：brew 更换下载源</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
 <i class="ic i-angle-right"></i>
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
@@ -568,30 +578,72 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E7%B4%A2/" title="分类于 技术探索">技术探索</a>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 </div>
 
-    <span><a href="/2025/01/26/2025-01-singleton-in-so/" title="单例模式的陷阱">单例模式的陷阱</a></span>
+    <span><a href="/2023/10/28/2023-10-interview-db-redis/" title="面试指北：Redis 数据库">面试指北：Redis 数据库</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
 </div>
 
-    <span><a href="/2023/08/17/2023-08-brew-replace-download-source/" title="HomeBrew：brew 更换下载源">HomeBrew：brew 更换下载源</a></span>
+    <span><a href="/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="分类于 环境搭建">环境搭建</a>
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" title="分类于 好文摘抄">好文摘抄</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" title="分类于 小说">小说</a>
 </div>
 
-    <span><a href="/2025/01/19/2025-01-rust-init-env/" title="Rust：环境搭建">Rust：环境搭建</a></span>
+    <span><a href="/2023/08/20/2023-08-%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" title="分类于 编程技巧">编程技巧</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2025/03/16/2025-03-understanding-of-shared-from-this/" title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this">C++：深入理解 std::enable_shared_from_this 与 shared_from_this</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" title="分类于 计算机基础">计算机基础</a>
+</div>
+
+    <span><a href="/2023/10/24/2023-10-interview-network/" title="面试指北：计算机网络">面试指北：计算机网络</a></span>
   </li>
 
       
@@ -611,54 +663,6 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
 </div>
 
     <span><a href="/2023/08/19/2023-08-docker-container-2-image/" title="Docker：容器备份">Docker：容器备份</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" title="分类于 好文摘抄">好文摘抄</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" title="分类于 小说">小说</a>
-</div>
-
-    <span><a href="/2023/08/20/2023-08-%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/" title="分类于 算法题解">算法题解</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/LeetCode/" title="分类于 LeetCode">LeetCode</a>
-</div>
-
-    <span><a href="/2024/04/27/2024-04-leetcode-permutation-sequence/" title="LeetCode：60. 排列序列">LeetCode：60. 排列序列</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="分类于 数据结构与算法">数据结构与算法</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 算法基础">算法基础</a>
-</div>
-
-    <span><a href="/2023/10/17/2023-10-bubble-sort/" title="冒泡排序、鸡尾酒排序、梳子排序">冒泡排序、鸡尾酒排序、梳子排序</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
-</div>
-
-    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
   </li>
 
   </ul>

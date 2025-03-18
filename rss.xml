@@ -18,7 +18,7 @@
         <category term="Java" />
         <item>
             <guid isPermalink="true">https://haust-kevin.github.io/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/</guid>
-            <title>C++ ThreadPool：02 BlockingQueue 的实现</title>
+            <title>C++ ThreadPool：02. BlockingQueue 的实现</title>
             <link>https://haust-kevin.github.io/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/</link>
             <category term="编程技巧" scheme="https://haust-kevin.github.io/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" />
             <category term="C++ ThreadPool" scheme="https://haust-kevin.github.io/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/C-ThreadPool/" />
@@ -48,7 +48,7 @@
         </item>
         <item>
             <guid isPermalink="true">https://haust-kevin.github.io/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/</guid>
-            <title>C++ ThreadPool：01 Java ThreadPoolExecutor 的 C++ 实现</title>
+            <title>C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现</title>
             <link>https://haust-kevin.github.io/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/</link>
             <category term="编程技巧" scheme="https://haust-kevin.github.io/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" />
             <category term="C++ ThreadPool" scheme="https://haust-kevin.github.io/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/C-ThreadPool/" />
@@ -255,9 +255,9 @@
             <link>https://haust-kevin.github.io/2025/02/16/2025-02-openharmony-ipc/</link>
             <category term="OpenHarmony" scheme="https://haust-kevin.github.io/categories/OpenHarmony/" />
             <category term="C++" scheme="https://haust-kevin.github.io/tags/C/" />
-            <category term="IPC" scheme="https://haust-kevin.github.io/tags/IPC/" />
             <category term="OpenHarmony" scheme="https://haust-kevin.github.io/tags/OpenHarmony/" />
             <category term="鸿蒙" scheme="https://haust-kevin.github.io/tags/%E9%B8%BF%E8%92%99/" />
+            <category term="IPC" scheme="https://haust-kevin.github.io/tags/IPC/" />
             <pubDate>Sun, 16 Feb 2025 22:53:14 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;简介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#简介&#34;&gt;#&lt;/a&gt; 简介&lt;/h2&gt;
 &lt;p&gt;对于 OpenHarmony 的 IPC 框架，每个部件都需要用到。本文将介绍 OpenHarmony 的进程间通信原理，并提供相应的代码示例。&lt;br /&gt;

@@ -15,7 +15,7 @@
     <category term="Java" />
     <entry>
         <id>https://haust-kevin.github.io/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/</id>
-        <title>C++ ThreadPool：02 BlockingQueue 的实现</title>
+        <title>C++ ThreadPool：02. BlockingQueue 的实现</title>
         <link rel="alternate" href="https://haust-kevin.github.io/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/"/>
         <content type="html">&lt;div class=&#34;note primary&#34;&gt;
 &lt;p&gt;本章完成 java 四种 BlockingQueue 的 C++ 实现&lt;/p&gt;
@@ -45,7 +45,7 @@
     </entry>
     <entry>
         <id>https://haust-kevin.github.io/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/</id>
-        <title>C++ ThreadPool：01 Java ThreadPoolExecutor 的 C++ 实现</title>
+        <title>C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现</title>
         <link rel="alternate" href="https://haust-kevin.github.io/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/"/>
         <content type="html">&lt;div class=&#34;note primary&#34;&gt;
 &lt;p&gt;本章搭建 java ThreadPoolExecutor 线程池的 C++ 简易实现框架&lt;/p&gt;
@@ -273,9 +273,9 @@ Service 会实现 接口类的所有业务函数。&lt;/p&gt;
 &lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;TestAbility&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token base-clause&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;TestAbilityStub&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;SystemAbility&lt;/span&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;TestPingAbility&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; std&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;u16string &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;dummy&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;override&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;TestAbility&lt;/span&gt;&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;TestPingAbility&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; std&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;u16string &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;dummy&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
         <category term="OpenHarmony" scheme="https://haust-kevin.github.io/categories/OpenHarmony/" />
         <category term="C++" scheme="https://haust-kevin.github.io/tags/C/" />
-        <category term="IPC" scheme="https://haust-kevin.github.io/tags/IPC/" />
         <category term="OpenHarmony" scheme="https://haust-kevin.github.io/tags/OpenHarmony/" />
         <category term="鸿蒙" scheme="https://haust-kevin.github.io/tags/%E9%B8%BF%E8%92%99/" />
+        <category term="IPC" scheme="https://haust-kevin.github.io/tags/IPC/" />
         <updated>2025-02-16T14:53:14.000Z</updated>
     </entry>
     <entry>

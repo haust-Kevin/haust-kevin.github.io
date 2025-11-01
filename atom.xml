@@ -15,7 +15,7 @@
     <category term="Java" />
     <entry>
         <id>https://haust-kevin.github.io/2025/11/02/2025-11-02-design-patterns-in-cpp/</id>
-        <title>design-patterns-in-cpp</title>
+        <title>23种设计模式完整指南 - C++实现详解</title>
         <link rel="alternate" href="https://haust-kevin.github.io/2025/11/02/2025-11-02-design-patterns-in-cpp/"/>
         <content type="html">&lt;div class=&#34;note primary&#34;&gt;
 &lt;p&gt;本章讲解 23 种设计模式并提供 C++ 代码示例。&lt;/p&gt;

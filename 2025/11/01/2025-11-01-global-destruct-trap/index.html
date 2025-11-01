@@ -1,0 +1,679 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="沉思录" href="https://haust-kevin.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="沉思录" href="https://haust-kevin.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="沉思录" href="https://haust-kevin.github.io/feed.json" />
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/artitalk"></script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=HarmonyOS%20Sans:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="单例模式,全局对象,析构顺序,未定义行为,构造析构陷阱,C++ 技巧,初始化洋葱模型,代码安全" />
+
+
+<link rel="canonical" href="https://haust-kevin.github.io/2025/11/01/2025-11-01-global-destruct-trap/">
+
+
+
+  <title>
+全局对象析构陷阱：为什么不能依赖其他全局或单例对象 - C++ - 技术分享 |
+Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">全局对象析构陷阱：为什么不能依赖其他全局或单例对象
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2025-11-01 16:32:58">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-11-01T16:32:58+08:00">2025-11-01</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>5.3k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>5 分钟</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Kevin's Blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309122344117.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653321.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646861.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202401242042979.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646850.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423781.jpg"></li>
+        </ul>
+      </div>
+      
+      <div id="waves">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" />
+            <use xlink:href="#gentle-wave" x="48" y="3" />
+            <use xlink:href="#gentle-wave" x="48" y="5" />
+            <use xlink:href="#gentle-wave" x="48" y="7" />
+          </g>
+        </svg>
+      </div>
+    </header>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" itemprop="item" rel="index" title="分类于 技术分享"><span itemprop="name">技术分享</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" itemprop="item" rel="index" title="分类于 C++"><span itemprop="name">C++</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://haust-kevin.github.io/2025/11/01/2025-11-01-global-destruct-trap/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="小饼干">
+    <meta itemprop="description" content="Talk is cheap. Show me the code., 思考未知，追求卓越">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="沉思录">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <div class="note primary">
+<p>本章讲解 C++ 全局对象析构问题及安全实践框架。</p>
+</div>
+<h1 id="为什么全局对象的析构函数里不能使用其他全局对象或单例对象的方法"><a class="anchor" href="#为什么全局对象的析构函数里不能使用其他全局对象或单例对象的方法">#</a> 为什么全局对象的析构函数里不能使用其他全局对象或单例对象的方法</h1>
+<h2 id="引言"><a class="anchor" href="#引言">#</a> 引言</h2>
+<p>在 C++ 开发中，全局对象和单例模式是常见的技术选择，它们为我们提供了跨模块共享数据和功能的便利方式。然而，当程序终止时，这些全局对象的销毁顺序可能会带来意想不到的问题，甚至导致程序崩溃。</p>
+<p>本文将深入探讨为什么全局对象的析构函数中不应该调用其他全局对象或单例对象的方法，通过实际的代码案例展示这个问题的本质，并提供一些安全的编程实践建议。</p>
+<h2 id="问题的本质静态初始化顺序灾难"><a class="anchor" href="#问题的本质静态初始化顺序灾难">#</a> 问题的本质：静态初始化顺序灾难</h2>
+<p>C++ 中的全局对象（包括单例）面临着著名的 &quot;静态初始化顺序灾难&quot;（Static Initialization Order Fiasco）。这个问题的核心在于：</p>
+<ol>
+<li><strong>初始化顺序不确定</strong>：不同翻译单元（translation unit）中的全局对象初始化顺序是未定义的</li>
+<li><strong>析构顺序与初始化顺序相反</strong>：全局对象的析构顺序是初始化顺序的逆序</li>
+<li><strong>跨对象依赖危险</strong>：当一个全局对象的析构函数依赖于另一个全局对象时，就可能出现问题</li>
+</ol>
+<h3 id="析构顺序规则"><a class="anchor" href="#析构顺序规则">#</a> 析构顺序规则</h3>
+<p>根据 C++ 标准：</p>
+<ul>
+<li>同一翻译单元内的全局对象按照定义顺序初始化，逆序析构</li>
+<li>不同翻译单元间的全局对象初始化顺序未定义，因此析构顺序也未定义</li>
+<li>局部静态对象在首次使用时初始化，在程序结束时析构</li>
+</ul>
+<h2 id="单文件案例分析"><a class="anchor" href="#单文件案例分析">#</a> 单文件案例分析</h2>
+<p>让我们先看一个简单的单文件示例，展示全局对象析构时的潜在问题：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 全局日志管理器单例</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">LogManager</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token function">LogManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> </pre></td></tr><tr><td data-num="8"></td><td><pre>        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"LogManager 构造函数"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    </pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token keyword">static</span> LogManager<span class="token operator">&amp;</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token keyword">static</span> LogManager instance<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token keyword">return</span> instance<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    </pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> message<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> tag <span class="token operator">&lt;&lt;</span> message <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    </pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token operator">~</span><span class="token function">LogManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"LogManager 析构函数"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="24"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    std<span class="token double-colon punctuation">::</span>string tag <span class="token operator">=</span> <span class="token string">"LogManager"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre></pre></td></tr><tr><td data-num="28"></td><td><pre><span class="token comment">// 全局数据库管理器</span></pre></td></tr><tr><td data-num="29"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">DatabaseManager</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token function">DatabaseManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"DatabaseManager 构造函数"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>        <span class="token class-name">LogManager</span><span class="token double-colon punctuation">::</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"数据库管理器初始化"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>    </pre></td></tr><tr><td data-num="36"></td><td><pre>    <span class="token operator">~</span><span class="token function">DatabaseManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>        <span class="token comment">// 危险：在析构函数中调用其他全局对象的方法</span></pre></td></tr><tr><td data-num="38"></td><td><pre>        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"DatabaseManager 析构函数开始"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="39"></td><td><pre>        <span class="token class-name">LogManager</span><span class="token double-colon punctuation">::</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"数据库管理器销毁"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"DatabaseManager 析构函数结束"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="41"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="42"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="43"></td><td><pre></pre></td></tr><tr><td data-num="44"></td><td><pre><span class="token comment">// 全局对象定义</span></pre></td></tr><tr><td data-num="45"></td><td><pre>DatabaseManager g_dbManager<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="46"></td><td><pre></pre></td></tr><tr><td data-num="47"></td><td><pre><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="48"></td><td><pre>    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"=== 程序开始 ==="</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="49"></td><td><pre>    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"=== 程序结束，开始销毁全局对象 ==="</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="50"></td><td><pre>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="51"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>在这个例子中，虽然程序能够正常运行，但隐藏着一个潜在的问题： <code>DatabaseManager</code>  的析构函数调用了 <code>LogManager</code>  的方法。如果 <code>LogManager</code>  在 <code>DatabaseManager</code>  之前被销毁，那么这次调用就会导致未定义行为。</p>
+<h2 id="多文件案例分析"><a class="anchor" href="#多文件案例分析">#</a> 多文件案例分析</h2>
+<p>当全局对象分布在多个文件中时，问题变得更加复杂和危险：</p>
+<p><strong>log_manager.h</strong></p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">LOG_MANAGER_H</span></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">LOG_MANAGER_H</span></span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">LogManager</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token function">LogManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    </pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token keyword">static</span> LogManager<span class="token operator">&amp;</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token operator">~</span><span class="token function">LogManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    </pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token function">LogManager</span><span class="token punctuation">(</span><span class="token keyword">const</span> LogManager<span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    LogManager<span class="token operator">&amp;</span> <span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> LogManager<span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    std<span class="token double-colon punctuation">::</span>string tag <span class="token operator">=</span> <span class="token string">"LogManager"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span></pre></td></tr></table></figure><p><strong>log_manager.cpp</strong></p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"log_manager.h"</span></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token class-name">LogManager</span><span class="token double-colon punctuation">::</span><span class="token function">LogManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> </pre></td></tr><tr><td data-num="5"></td><td><pre>    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"LogManager 构造函数 (来自log_manager.cpp)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>LogManager<span class="token operator">&amp;</span> <span class="token class-name">LogManager</span><span class="token double-colon punctuation">::</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">static</span> LogManager instance<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token keyword">return</span> instance<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">LogManager</span><span class="token double-colon punctuation">::</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> message<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> tag <span class="token operator">&lt;&lt;</span> message <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token class-name">LogManager</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">LogManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"LogManager 析构函数 (来自log_manager.cpp)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p><strong>database_manager.cpp</strong></p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"database_manager.h"</span></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"log_manager.h"</span></span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token class-name">DatabaseManager</span><span class="token double-colon punctuation">::</span><span class="token function">DatabaseManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"DatabaseManager 构造函数 (来自database_manager.cpp)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token class-name">LogManager</span><span class="token double-colon punctuation">::</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"数据库管理器初始化"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token class-name">DatabaseManager</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">DatabaseManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"DatabaseManager 析构函数开始 (来自database_manager.cpp)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token class-name">LogManager</span><span class="token double-colon punctuation">::</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"数据库管理器销毁"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"DatabaseManager 析构函数结束 (来自database_manager.cpp)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>在多文件情况下，链接顺序可能会影响全局对象的初始化顺序，从而改变析构顺序。这使得问题更加难以预测和调试。</p>
+<h2 id="为什么有时调用不会崩溃"><a class="anchor" href="#为什么有时调用不会崩溃">#</a> 为什么有时调用不会崩溃？</h2>
+<p>有趣的是，在某些情况下，即使调用了已经被销毁的对象方法，程序也不会立即崩溃。这主要是因为：</p>
+<h3 id="非虚函数调用的特殊性"><a class="anchor" href="#非虚函数调用的特殊性">#</a> 非虚函数调用的特殊性</h3>
+<p>当调用非虚函数且不访问成员变量时，即使对象已经被销毁，调用也可能成功：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">SafeLogger</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">staticLog</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> message<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"[STATIC LOG] "</span> <span class="token operator">&lt;&lt;</span> message <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    </pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">safeLog</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> message<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"[SAFE LOG] "</span> <span class="token operator">&lt;&lt;</span> message <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    </pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">unsafeLog</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> message<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"[UNSAFE LOG] "</span> <span class="token operator">&lt;&lt;</span> message <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    std<span class="token double-colon punctuation">::</span>string tag <span class="token operator">=</span> <span class="token string">"SafeLogger"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p><strong>安全调用的原因</strong>：</p>
+<ol>
+<li><strong>静态函数</strong>：不依赖于对象实例，可以直接调用</li>
+<li><strong>非虚函数</strong>：不需要通过虚函数表调用，编译时已经确定地址</li>
+<li><strong>不访问成员变量</strong>：不需要使用 <code>this</code>  指针访问对象状态</li>
+</ol>
+<p>当满足这三个条件时，即使对象已经被销毁，函数调用仍然可能成功，因为：</p>
+<ul>
+<li>函数代码在程序内存空间中仍然存在</li>
+<li>调用不依赖于对象的实际状态</li>
+<li>不需要通过虚函数表进行动态分发</li>
+</ul>
+<h3 id="危险的情况"><a class="anchor" href="#危险的情况">#</a> 危险的情况</h3>
+<p>然而，一旦涉及以下任何一种情况，程序就可能崩溃：</p>
+<ol>
+<li><strong>虚函数调用</strong>：需要通过虚函数表，而虚函数表可能已经被销毁</li>
+<li><strong>访问成员变量</strong>：需要使用 <code>this</code>  指针，而对象可能已经被释放</li>
+<li><strong>使用对象的内部状态</strong>：对象状态可能已经被破坏</li>
+</ol>
+<h2 id="解决方案和最佳实践"><a class="anchor" href="#解决方案和最佳实践">#</a> 解决方案和最佳实践</h2>
+<h3 id="1-避免在析构函数中调用其他全局对象"><a class="anchor" href="#1-避免在析构函数中调用其他全局对象">#</a> 1. 避免在析构函数中调用其他全局对象</h3>
+<p>最根本的解决方案是重新设计架构，避免在析构函数中依赖其他全局对象：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">DatabaseManager</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token operator">~</span><span class="token function">DatabaseManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token comment">// 安全：不调用其他全局对象</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token function">cleanupResources</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token function">closeConnections</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h3 id="2-使用依赖注入"><a class="anchor" href="#2-使用依赖注入">#</a> 2. 使用依赖注入</h3>
+<p>通过依赖注入将依赖关系明确化：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">DatabaseManager</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Logger<span class="token operator">></span> logger<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    </pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token function">DatabaseManager</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Logger<span class="token operator">></span> log<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">logger</span><span class="token punctuation">(</span>log<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    </pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token operator">~</span><span class="token function">DatabaseManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            logger<span class="token operator">-></span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"数据库管理器销毁"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h3 id="3-使用销毁管理器"><a class="anchor" href="#3-使用销毁管理器">#</a> 3. 使用销毁管理器</h3>
+<p>实现一个专门的销毁管理器来控制销毁顺序：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">DestructionManager</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">static</span> DestructionManager<span class="token operator">&amp;</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">registerDestructor</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>function<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">></span> destructor<span class="token punctuation">,</span> <span class="token keyword">int</span> phase<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">destroyAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h3 id="4-使用智能指针和raii"><a class="anchor" href="#4-使用智能指针和raii">#</a> 4. 使用智能指针和 RAII</h3>
+<p>利用智能指针和 RAII 机制管理资源生命周期：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">DatabaseManager</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    std<span class="token double-colon punctuation">::</span>unique_ptr<span class="token operator">&lt;</span>Connection<span class="token operator">></span> connection<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    </pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token operator">~</span><span class="token function">DatabaseManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token comment">//connection 会自动释放，不需要手动处理</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h2 id="总结"><a class="anchor" href="#总结">#</a> 总结</h2>
+<p>全局对象析构函数中调用其他全局对象方法的问题是一个复杂但重要的主题。理解这个问题的本质有助于我们：</p>
+<ol>
+<li><strong>避免潜在的程序崩溃</strong>：认识到这个问题的存在，在设计和编码时避免危险的依赖关系</li>
+<li><strong>提高代码的可维护性</strong>：通过合理的架构设计减少对象间的耦合</li>
+<li><strong>增强程序的健壮性</strong>：使用更安全的设计模式和编程实践</li>
+</ol>
+<p>虽然 C<ins> 提供了强大的功能，但也要求开发者对对象生命周期有深入的理解。通过遵循最佳实践，我们可以构建更加健壮和可靠的 C</ins> 应用程序。</p>
+<p>🎯 记住：<strong>在全局对象的析构函数中调用其他全局对象的方法，就像是在拆除建筑物时还在使用电梯一样危险。</strong></p>
+<h2 id="参考资料"><a class="anchor" href="#参考资料">#</a> 参考资料</h2>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9lbi5jcHByZWZlcmVuY2UuY29tL3cvY3BwL2xhbmd1YWdlL3Npb2YuaHRtbA==">Static Initialization Order Fiasco - cppreference.com</span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWNvZGVjYW1wLm9yZy9uZXdzL2NwcC1zdGF0aWMtaW5pdGlhbGl6YXRpb24tb3JkZXItZmlhc2NvLw==">What is the Static Initialization Order Fiasco in C++? - freeCodeCamp</span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9qYWNvYmZpbGlwcC5jb20vRHJEb2Jicy9hcnRpY2xlcy9DVUovMTk5OS85OTEwL2dhYnJpbG92L2dhYnJpbG92Lmh0bQ==">Controlling the Destruction Order of Singleton Objects - Dr. Dobbs</span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2VtYWtpbmcuY29tL2Rlc2lnbl9wYXR0ZXJucy90b19raWxsX2Ffc2luZ2xldG9u">To Kill A Singleton - SourceMaking</span></li>
+</ul>
+<hr />
+<p><em>建议读者在自己的环境中尝试这些例子，深入理解全局对象析构的复杂性。不同编译器下未定义行为处理可能不一致。</em></p>
+
+      <div class="tags">
+          <a href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="ic i-tag"></i> 单例模式</a>
+          <a href="/tags/%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1/" rel="tag"><i class="ic i-tag"></i> 全局对象</a>
+          <a href="/tags/%E6%9E%90%E6%9E%84%E9%A1%BA%E5%BA%8F/" rel="tag"><i class="ic i-tag"></i> 析构顺序</a>
+          <a href="/tags/%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%A1%8C%E4%B8%BA/" rel="tag"><i class="ic i-tag"></i> 未定义行为</a>
+          <a href="/tags/%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E9%99%B7%E9%98%B1/" rel="tag"><i class="ic i-tag"></i> 构造析构陷阱</a>
+          <a href="/tags/C-%E6%8A%80%E5%B7%A7/" rel="tag"><i class="ic i-tag"></i> C++ 技巧</a>
+          <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B4%8B%E8%91%B1%E6%A8%A1%E5%9E%8B/" rel="tag"><i class="ic i-tag"></i> 初始化洋葱模型</a>
+          <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%89%E5%85%A8/" rel="tag"><i class="ic i-tag"></i> 代码安全</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-11-01 17:06:46" itemprop="dateModified" datetime="2025-11-01T17:06:46+08:00">2025-11-01</time>
+  </span>
+  <span id="2025/11/01/2025-11-01-global-destruct-trap/" class="item leancloud_visitors" data-flag-title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>小饼干 <i class="ic i-at"><em>@</em></i>沉思录
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://haust-kevin.github.io/2025/11/01/2025-11-01-global-destruct-trap/" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象">https://haust-kevin.github.io/2025/11/01/2025-11-01-global-destruct-trap/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309031653320.jpg" title="C++ ThreadPool：02. BlockingQueue 的实现">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> C++</span>
+  <h3>C++ ThreadPool：02. BlockingQueue 的实现</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E9%87%8C%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%E6%88%96%E5%8D%95%E4%BE%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text"> 为什么全局对象的析构函数里不能使用其他全局对象或单例对象的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text"> 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E7%9A%84%E6%9C%AC%E8%B4%A8%E9%9D%99%E6%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%BA%E5%BA%8F%E7%81%BE%E9%9A%BE"><span class="toc-number">1.2.</span> <span class="toc-text"> 问题的本质：静态初始化顺序灾难</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%90%E6%9E%84%E9%A1%BA%E5%BA%8F%E8%A7%84%E5%88%99"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 析构顺序规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text"> 单文件案例分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%96%87%E4%BB%B6%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.4.</span> <span class="toc-text"> 多文件案例分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E6%97%B6%E8%B0%83%E7%94%A8%E4%B8%8D%E4%BC%9A%E5%B4%A9%E6%BA%83"><span class="toc-number">1.5.</span> <span class="toc-text"> 为什么有时调用不会崩溃？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%99%9A%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%9A%84%E7%89%B9%E6%AE%8A%E6%80%A7"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 非虚函数调用的特殊性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B1%E9%99%A9%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">1.5.2.</span> <span class="toc-text"> 危险的情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%92%8C%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.6.</span> <span class="toc-text"> 解决方案和最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%81%BF%E5%85%8D%E5%9C%A8%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E4%B8%AD%E8%B0%83%E7%94%A8%E5%85%B6%E4%BB%96%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 1. 避免在析构函数中调用其他全局对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 2. 使用依赖注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8%E9%94%80%E6%AF%81%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 3. 使用销毁管理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BD%BF%E7%94%A8%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%E5%92%8Craii"><span class="toc-number">1.6.4.</span> <span class="toc-text"> 4. 使用智能指针和 RAII</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.7.</span> <span class="toc-text"> 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.8.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2025/01/26/2025-01-singleton-in-so/" rel="bookmark" title="单例模式的陷阱">单例模式的陷阱</a></li><li><a href="/2025/03/16/2025-03-understanding-of-shared-from-this/" rel="bookmark" title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this">C++：深入理解 std::enable_shared_from_this 与 shared_from_this</a></li><li><a href="/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/" rel="bookmark" title="C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现">C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现</a></li><li><a href="/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/" rel="bookmark" title="C++ ThreadPool：02. BlockingQueue 的实现">C++ ThreadPool：02. BlockingQueue 的实现</a></li><li class="active"><a href="/2025/11/01/2025-11-01-global-destruct-trap/" rel="bookmark" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象">全局对象析构陷阱：为什么不能依赖其他全局或单例对象</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="小饼干"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">小饼干</p>
+  <div class="description" itemprop="description">思考未知，追求卓越</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">22</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">18</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">43</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhdXN0LUtldmlu" title="https:&#x2F;&#x2F;github.com&#x2F;haust-Kevin"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS93YW5nLWRpbmctYmFuZy05Ng==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;wang-ding-bang-96"><i class="ic i-zhihu"></i></span>
+      <a href="/about/about-me" title="&#x2F;about&#x2F;about-me" class="item about"><i class="ic i-address-card"></i></a>
+      <span class="exturl item email" data-url="bWFpbHRvOjMzNjQ5MTc5OTBAcXEuY29t" title="mailto:3364917990@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item bilibili" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vNDgxNzgwMTcw" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;481780170"><i class="ic i-bilibili"></i></span>
+      <span class="exturl item qq" data-url="aHR0cDovL3dwYS5xcS5jb20vbXNncmQ/dj0zJnVpbj0zMzY0OTE3OTkwJnNpdGU9cXEmbWVudT15ZXM=" title="http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;3364917990&amp;site&#x3D;qq&amp;menu&#x3D;yes"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="/links/friends/" rel="section"><i class="ic i-link"></i>链接</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/links/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/links/recommend/" rel="section"><i class="ic i-magic"></i>推荐</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-user"></i>关于</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/about/about-me/" rel="section"><i class="ic i-address-card"></i>博主</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/about/about-site/" rel="section"><i class="ic i-cloud"></i>本站</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/moments/" rel="section"><i class="ic i-pen"></i>说说</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" title="分类于 计算机基础">计算机基础</a>
+</div>
+
+    <span><a href="/2023/10/24/2023-10-interview-network/" title="面试指北：计算机网络">面试指北：计算机网络</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2025/03/16/2025-03-understanding-of-shared-from-this/" title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this">C++：深入理解 std::enable_shared_from_this 与 shared_from_this</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/" title="C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现">C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/08/15/2023-08-hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="分类于 中间件">中间件</a>
+</div>
+
+    <span><a href="/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">面试指北：消息队列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/" title="分类于 算法题解">算法题解</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/LeetCode/" title="分类于 LeetCode">LeetCode</a>
+</div>
+
+    <span><a href="/2024/04/27/2024-04-leetcode-permutation-sequence/" title="LeetCode：60. 排列序列">LeetCode：60. 排列序列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/" title="C++ ThreadPool：02. BlockingQueue 的实现">C++ ThreadPool：02. BlockingQueue 的实现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2025/01/26/2025-01-singleton-in-so/" title="单例模式的陷阱">单例模式的陷阱</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/10/25/2023-10-interview-Java-basic/" title="面试指北：Java 基础">面试指北：Java 基础</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">小饼干 @ Kevin's Blog</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="站点总字数">115k 字</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:44</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2025/11/01/2025-11-01-global-destruct-trap/',
+    favicon: {
+      show: "要每天开心哦 ^_^",
+      hide: "等你回来呦~"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

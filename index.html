@@ -91,12 +91,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646842.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646864.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040014.png"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202405112157422.png"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423789.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040028.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646860.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040033.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423783.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040024.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423778.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646846.jpg"></li>
         </ul>
       </div>
       
@@ -124,7 +124,56 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/" itemprop="url" title="C++ ThreadPool：02. BlockingQueue 的实现"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202401242041666.jpg"></a>
+    <a href="/2025/11/01/2025-11-01-global-destruct-trap/" itemprop="url" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040026.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2025-11-01 16:32:58">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-11-01T16:32:58+08:00">2025-11-01</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>5.3k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>5 分钟</span>
+  </span>
+</div>
+
+    <h3><a href="/2025/11/01/2025-11-01-global-destruct-trap/" itemprop="url" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象">全局对象析构陷阱：为什么不能依赖其他全局或单例对象</a></h3>
+    <div class="excerpt">
+        本章讲解 C++ 全局对象析构问题及安全实践框架。
+
+# 为什么全局对象的析构函数里不能使用其他全局对象或单例对象的方法
+# 引言
+在 C++ 开发中，全局对象和单例模式是常见的技术选择，它们为我们提供了跨模块共享数据和功能的便利方式。然而，当程序终止时，这些全局对象的销毁顺序可能会带来意想不到的问题，甚至导致程序崩溃。
+本文将深入探讨为什么全局对象的析构函数中不应该调用其他全局对象或单例对象的方法，通过实际的代码案例展示这个问题的本质，并提供一些安全的编程实践建议。
+# 问题的本质：静态初始化顺序灾难
+C++ 中的全局对象（包括单例）面临着著名的...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
+      </span>
+    </div>
+    <a href="/2025/11/01/2025-11-01-global-destruct-trap/" itemprop="url" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/" itemprop="url" title="C++ ThreadPool：02. BlockingQueue 的实现"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423786.jpg"></a>
   </div>
   <div class="info">
     
@@ -160,7 +209,7 @@ ArrayBlockingQueue ：基于数组的有界阻塞队列。队列按 FIFO 原则�
     </div>
     <div class="meta footer">
       <span>
-        <a href="/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/C-ThreadPool/" itemprop="url" title="C++ ThreadPool"><i class="ic i-flag"></i>C++ ThreadPool</a>
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
       </span>
     </div>
     <a href="/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/" itemprop="url" title="C++ ThreadPool：02. BlockingQueue 的实现" class="btn">more...</a>
@@ -170,7 +219,7 @@ ArrayBlockingQueue ：基于数组的有界阻塞队列。队列按 FIFO 原则�
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/" itemprop="url" title="C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646849.jpg"></a>
+    <a href="/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/" itemprop="url" title="C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040041.jpg"></a>
   </div>
   <div class="info">
     
@@ -208,7 +257,7 @@ public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveT
     </div>
     <div class="meta footer">
       <span>
-        <a href="/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/C-ThreadPool/" itemprop="url" title="C++ ThreadPool"><i class="ic i-flag"></i>C++ ThreadPool</a>
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
       </span>
     </div>
     <a href="/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/" itemprop="url" title="C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现" class="btn">more...</a>
@@ -218,7 +267,7 @@ public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveT
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/03/16/2025-03-understanding-of-shared-from-this/" itemprop="url" title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040022.jpg"></a>
+    <a href="/2025/03/16/2025-03-understanding-of-shared-from-this/" itemprop="url" title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646864.jpg"></a>
   </div>
   <div class="info">
     
@@ -257,7 +306,7 @@ public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveT
     </div>
     <div class="meta footer">
       <span>
-        <a href="/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
       </span>
     </div>
     <a href="/2025/03/16/2025-03-understanding-of-shared-from-this/" itemprop="url" title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this" class="btn">more...</a>
@@ -267,7 +316,7 @@ public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveT
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/16/2025-02-openharmony-ipc/" itemprop="url" title="OpenHarmony：IPC 通信编程范式"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040045.jpg"></a>
+    <a href="/2025/02/16/2025-02-openharmony-ipc/" itemprop="url" title="OpenHarmony：IPC 通信编程范式"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646855.jpg"></a>
   </div>
   <div class="info">
     
@@ -316,7 +365,7 @@ IPC 和 RPC 通常采用客户端 - 服务器（Client-Server）模型，在使�
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/01/26/2025-01-singleton-in-so/" itemprop="url" title="单例模式的陷阱"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202405112157420.jpg"></a>
+    <a href="/2025/01/26/2025-01-singleton-in-so/" itemprop="url" title="单例模式的陷阱"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040042.png"></a>
   </div>
   <div class="info">
     
@@ -361,7 +410,7 @@ makefile
     </div>
     <div class="meta footer">
       <span>
-        <a href="/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E7%B4%A2/" itemprop="url" title="技术探索"><i class="ic i-flag"></i>技术探索</a>
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
       </span>
     </div>
     <a href="/2025/01/26/2025-01-singleton-in-so/" itemprop="url" title="单例模式的陷阱" class="btn">more...</a>
@@ -371,7 +420,7 @@ makefile
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/01/19/2025-01-rust-init-env/" itemprop="url" title="Rust：环境搭建"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202405112157420.jpg"></a>
+    <a href="/2025/01/19/2025-01-rust-init-env/" itemprop="url" title="Rust：环境搭建"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423787.jpg"></a>
   </div>
   <div class="info">
     
@@ -425,7 +474,7 @@ makefile
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/04/27/2024-04-leetcode-permutation-sequence/" itemprop="url" title="LeetCode：60. 排列序列"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/20250119182810269.png"></a>
+    <a href="/2024/04/27/2024-04-leetcode-permutation-sequence/" itemprop="url" title="LeetCode：60. 排列序列"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646855.jpg"></a>
   </div>
   <div class="info">
     
@@ -482,7 +531,7 @@ Examples
         
 <article class="item">
   <div class="cover">
-    <a href="/2023/11/03/2023-11-interview-middleware-mq/" itemprop="url" title="面试指北：消息队列"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040027.jpg"></a>
+    <a href="/2023/11/03/2023-11-interview-middleware-mq/" itemprop="url" title="面试指北：消息队列"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423787.jpg"></a>
   </div>
   <div class="info">
     
@@ -532,7 +581,7 @@ Examples
         
 <article class="item">
   <div class="cover">
-    <a href="/2023/11/01/2023-11-interview-web-spring/" itemprop="url" title="面试指北：Spring"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040032.jpg"></a>
+    <a href="/2023/11/01/2023-11-interview-web-spring/" itemprop="url" title="面试指北：Spring"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040021.png"></a>
   </div>
   <div class="info">
     
@@ -574,53 +623,6 @@ spring core：提供了框架的基本组成部分，包括控制反转（Invers
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2023/10/28/2023-10-interview-db-redis/" itemprop="url" title="面试指北：Redis 数据库"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423789.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2023-10-28 15:01:27">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2023-10-28T15:01:27+08:00">2023-10-28</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>13k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>12 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2023/10/28/2023-10-interview-db-redis/" itemprop="url" title="面试指北：Redis 数据库">面试指北：Redis 数据库</a></h3>
-    <div class="excerpt">
-        # Redis
-Redis，英文全称是 Remote Dictionary Server（远程字典服务），是一个开源的使用 ANSI C 语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value 数据库，并提供多种语言的 API。
-与 MySQL 数据库不同的是， Redis 的数据是存在内存中的。它的读写速度非常快，每秒可以处理超过 10 万次读写操作。因此 redis 被广泛应用于缓存，另外， Redis 也经常用来做分布式锁。除此之外， Redis 支持事务、持久化、LUA 脚本、LRU 驱动事件、多种集群方案。
-# Redis 为何这么快
-
-Redis...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" title="数据库"><i class="ic i-flag"></i>数据库</a>
-      </span>
-    </div>
-    <a href="/2023/10/28/2023-10-interview-db-redis/" itemprop="url" title="面试指北：Redis 数据库" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -647,28 +649,28 @@ Redis...
       </div>
       <div class="overview panel" data-title="站点概览">
         <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="image" itemprop="image" alt="小王学长"
+  <img class="image" itemprop="image" alt="小饼干"
       data-src="/images/avatar.jpg">
-  <p class="name" itemprop="name">小王学长</p>
+  <p class="name" itemprop="name">小饼干</p>
   <div class="description" itemprop="description">思考未知，追求卓越</div>
 </div>
 
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">21</span>
+        <span class="count">22</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">20</span>
+        <span class="count">18</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">36</span>
+        <span class="count">43</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -792,7 +794,7 @@ Redis...
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
 </div>
 
-    <span><a href="/2023/10/25/2023-10-interview-Java-basic/" title="面试指北：Java 基础">面试指北：Java 基础</a></span>
+    <span><a href="/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
   </li>
 
       
@@ -801,10 +803,10 @@ Redis...
 <div class="breadcrumb">
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Web/" title="分类于 Web">Web</a>
 </div>
 
-    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
+    <span><a href="/2023/11/01/2023-11-interview-web-spring/" title="面试指北：Spring">面试指北：Spring</a></span>
   </li>
 
       
@@ -823,24 +825,10 @@ Redis...
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
 </div>
 
-    <span><a href="/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" title="分类于 计算机基础">计算机基础</a>
-</div>
-
-    <span><a href="/2023/10/24/2023-10-interview-network/" title="面试指北：计算机网络">面试指北：计算机网络</a></span>
+    <span><a href="/2023/08/22/2023-08-%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
   </li>
 
       
@@ -859,15 +847,6 @@ Redis...
   <li class="item">
     
 <div class="breadcrumb">
-</div>
-
-    <span><a href="/2023/08/15/2023-08-hello-world/" title="Hello World">Hello World</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/" title="分类于 算法题解">算法题解</a>
 <i class="ic i-angle-right"></i>
 <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/LeetCode/" title="分类于 LeetCode">LeetCode</a>
@@ -880,22 +859,46 @@ Redis...
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="分类于 环境搭建">环境搭建</a>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2025/01/19/2025-01-rust-init-env/" title="Rust：环境搭建">Rust：环境搭建</a></span>
+    <span><a href="/2025/11/01/2025-11-01-global-destruct-trap/" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象">全局对象析构陷阱：为什么不能依赖其他全局或单例对象</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" title="分类于 编程技巧">编程技巧</a>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/C-ThreadPool/" title="分类于 C++ ThreadPool">C++ ThreadPool</a>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/" title="C++ ThreadPool：02. BlockingQueue 的实现">C++ ThreadPool：02. BlockingQueue 的实现</a></span>
+    <span><a href="/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/" title="C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现">C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/OpenHarmony/" title="分类于 OpenHarmony">OpenHarmony</a>
+</div>
+
+    <span><a href="/2025/02/16/2025-02-openharmony-ipc/" title="OpenHarmony：IPC 通信编程范式">OpenHarmony：IPC 通信编程范式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2025/03/16/2025-03-understanding-of-shared-from-this/" title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this">C++：深入理解 std::enable_shared_from_this 与 shared_from_this</a></span>
   </li>
 
   </ul>
@@ -914,19 +917,19 @@ Redis...
     <span class="with-love">
       <i class="ic i-blog"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">小王学长 @ Kevin's Blog</span>
+    <span class="author" itemprop="copyrightHolder">小饼干 @ Kevin's Blog</span>
   </div>
   <div class="count">
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="站点总字数">110k 字</span>
+    <span title="站点总字数">115k 字</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:40</span>
+    <span title="站点阅读时长">1:44</span>
   </div>
   <div class="powered-by">
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

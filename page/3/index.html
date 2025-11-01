@@ -91,12 +91,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040016.png"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309122344117.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040037.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423786.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202401242041048.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040014.png"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646853.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646865.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202405112157421.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653323.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202405112157423.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040038.jpg"></li>
         </ul>
       </div>
       
@@ -120,6 +120,53 @@
           
   <div class="index wrap">
     <div class="segments posts">
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2023/08/19/2023-08-docker-container-2-image/" itemprop="url" title="Docker：容器备份"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646853.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-08-19 14:33:40">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-08-19T14:33:40+08:00">2023-08-19</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>706</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>1 分钟</span>
+  </span>
+</div>
+
+    <h3><a href="/2023/08/19/2023-08-docker-container-2-image/" itemprop="url" title="Docker：容器备份">Docker：容器备份</a></h3>
+    <div class="excerpt">
+        将 docker 容器打包成镜像并在另一台服务器上运行
+
+1️⃣ 将容器打包成镜像
+docker commit &amp;lt;container-name&gt; &amp;lt;image-name&gt;[:tag]# example: docker commit myblog hexo-blog会在本地生成一个新的 docker 镜像，可以通过 docker images 命令查看生成的镜像。
+
+打包时，容器挂的目录 / 文件不会被打包进镜像。解决方案：① 在打包前为挂载的目录生成一份 copy，在另一台机器运行时你需要挂载这份 copy。② 将挂载的目录 copy...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/Linux/" itemprop="url" title="Linux"><i class="ic i-flag"></i>Linux</a>
+      </span>
+    </div>
+    <a href="/2023/08/19/2023-08-docker-container-2-image/" itemprop="url" title="Docker：容器备份" class="btn">more...</a>
+  </div>
+</article>
+
         
 <article class="item">
   <div class="cover">
@@ -168,7 +215,7 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2023/08/15/2023-08-hello-world/" itemprop="url" title="Hello World"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646862.jpg"></a>
+    <a href="/2023/08/15/2023-08-hello-world/" itemprop="url" title="Hello World"><img data-src="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646857.jpg"></a>
   </div>
   <div class="info">
     
@@ -241,7 +288,7 @@
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">22</span>
+        <span class="count">23</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -253,7 +300,7 @@
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">43</span>
+        <span class="count">55</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -372,24 +419,12 @@
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2025/11/01/2025-11-01-global-destruct-trap/" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象">全局对象析构陷阱：为什么不能依赖其他全局或单例对象</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" title="分类于 计算机基础">计算机基础</a>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 </div>
 
-    <span><a href="/2023/10/24/2023-10-interview-network/" title="面试指北：计算机网络">面试指北：计算机网络</a></span>
+    <span><a href="/2023/10/28/2023-10-interview-db-mysql/" title="面试指北：MySQL 数据库">面试指北：MySQL 数据库</a></span>
   </li>
 
       
@@ -408,10 +443,53 @@
 <div class="breadcrumb">
 <a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="分类于 中间件">中间件</a>
 </div>
 
-    <span><a href="/2023/10/25/2023-10-interview-Java-basic/" title="面试指北：Java 基础">面试指北：Java 基础</a></span>
+    <span><a href="/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">面试指北：消息队列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/2023/10/28/2023-10-interview-db-redis/" title="面试指北：Redis 数据库">面试指北：Redis 数据库</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/04/2023-09-sgs-wallpaper/" title="三国杀官方原画">三国杀官方原画</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/OpenHarmony/" title="分类于 OpenHarmony">OpenHarmony</a>
+</div>
+
+    <span><a href="/2025/02/16/2025-02-openharmony-ipc/" title="OpenHarmony：IPC 通信编程范式">OpenHarmony：IPC 通信编程范式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2025/11/02/2025-11-02-design-patterns-in-cpp/" title="design-patterns-in-cpp">design-patterns-in-cpp</a></span>
   </li>
 
       
@@ -430,12 +508,12 @@
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="分类于 数据结构与算法">数据结构与算法</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="分类于 中间件">中间件</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 算法基础">算法基础</a>
 </div>
 
-    <span><a href="/2023/11/03/2023-11-interview-middleware-mq/" title="面试指北：消息队列">面试指北：消息队列</a></span>
+    <span><a href="/2023/10/17/2023-10-bubble-sort/" title="冒泡排序、鸡尾酒排序、梳子排序">冒泡排序、鸡尾酒排序、梳子排序</a></span>
   </li>
 
       
@@ -447,38 +525,7 @@
 <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/" title="C++ ThreadPool：02. BlockingQueue 的实现">C++ ThreadPool：02. BlockingQueue 的实现</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
-</div>
-
-    <span><a href="/2023/08/22/2023-08-%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2025/01/26/2025-01-singleton-in-so/" title="单例模式的陷阱">单例模式的陷阱</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2023/09/04/2023-09-sgs-wallpaper/" title="三国杀官方原画">三国杀官方原画</a></span>
+    <span><a href="/2025/03/16/2025-03-understanding-of-shared-from-this/" title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this">C++：深入理解 std::enable_shared_from_this 与 shared_from_this</a></span>
   </li>
 
   </ul>
@@ -503,13 +550,13 @@
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="站点总字数">115k 字</span>
+    <span title="站点总字数">145k 字</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:44</span>
+    <span title="站点阅读时长">2:12</span>
   </div>
   <div class="powered-by">
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

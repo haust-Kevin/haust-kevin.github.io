@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
-  <meta name="keywords" content="单例模式,C++,观察者模式,设计模式,软件架构,设计原则,创建型模式,结构型模式,行为型模式,最佳实践,现代C++,SOLID原则,工厂模式,建造者模式,策略模式" />
+  <meta name="keywords" content="单例模式,C++,观察者模式,设计模式,软件架构,设计原则,创建型模式,结构型模式,行为型模式,最佳实践,工厂模式,建造者模式,策略模式,现代 C++,SOLID 原则" />
 
 
 <link rel="canonical" href="https://haust-kevin.github.io/2025/11/02/2025-11-02-design-patterns-in-cpp/">
@@ -34,7 +34,7 @@
 
 
   <title>
-23种设计模式完整指南 - C++实现详解 - C++ - 技术分享 |
+23 种设计模式完整指南 - C++实现详解 - C++ - 技术分享 |
 Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -62,7 +62,7 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">23种设计模式完整指南 - C++实现详解
+  <h1 itemprop="name headline">23 种设计模式完整指南 - C++实现详解
   </h1>
   
 <div class="meta">
@@ -119,12 +119,12 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423786.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040024.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202405112157419.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653322.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202405112157423.jpg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031423781.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646860.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646862.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646846.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309031653321.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202309022040034.jpg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/haust-Kevin/static@master/images/common/202308191646841.jpg"></li>
         </ul>
       </div>
       
@@ -177,7 +177,7 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
     <div class="note primary">
 <p>本章讲解 23 种设计模式并提供 C++ 代码示例。</p>
 </div>
-<h1 id="23种设计模式完整指南-c实现详解"><a class="anchor" href="#23种设计模式完整指南-c实现详解">#</a> 23 种设计模式完整指南 - C++ 实现详解</h1>
+<h1 id="23-种设计模式完整指南-c实现详解"><a class="anchor" href="#23-种设计模式完整指南-c实现详解">#</a> 23 种设计模式完整指南 - C++ 实现详解</h1>
 <h2 id="目录"><a class="anchor" href="#目录">#</a> 目录</h2>
 <ol>
 <li><a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%A7%88">设计模式概览</a></li>
@@ -222,7 +222,7 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
 </tbody>
 </table>
 <h3 id="设计原则"><a class="anchor" href="#设计原则">#</a> 设计原则</h3>
-<h4 id="solid原则"><a class="anchor" href="#solid原则">#</a> SOLID 原则</h4>
+<h4 id="solid-原则"><a class="anchor" href="#solid-原则">#</a> SOLID 原则</h4>
 <ul>
 <li><strong>单一职责原则 (SRP)</strong> - 一个类应该只有一个职责</li>
 <li><strong>开放封闭原则 (OCP)</strong> - 对扩展开放，对修改关闭</li>
@@ -949,11 +949,11 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
           <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="ic i-tag"></i> 结构型模式</a>
           <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="ic i-tag"></i> 行为型模式</a>
           <a href="/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" rel="tag"><i class="ic i-tag"></i> 最佳实践</a>
-          <a href="/tags/%E7%8E%B0%E4%BB%A3C/" rel="tag"><i class="ic i-tag"></i> 现代C++</a>
-          <a href="/tags/SOLID%E5%8E%9F%E5%88%99/" rel="tag"><i class="ic i-tag"></i> SOLID原则</a>
           <a href="/tags/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="ic i-tag"></i> 工厂模式</a>
           <a href="/tags/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="ic i-tag"></i> 建造者模式</a>
           <a href="/tags/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="ic i-tag"></i> 策略模式</a>
+          <a href="/tags/%E7%8E%B0%E4%BB%A3-C/" rel="tag"><i class="ic i-tag"></i> 现代 C++</a>
+          <a href="/tags/SOLID-%E5%8E%9F%E5%88%99/" rel="tag"><i class="ic i-tag"></i> SOLID 原则</a>
       </div>
   </div>
 
@@ -965,9 +965,9 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2025-11-01 22:07:56" itemprop="dateModified" datetime="2025-11-01T22:07:56+08:00">2025-11-01</time>
+    <time title="修改时间：2025-11-01 22:23:35" itemprop="dateModified" datetime="2025-11-01T22:23:35+08:00">2025-11-01</time>
   </span>
-  <span id="2025/11/02/2025-11-02-design-patterns-in-cpp/" class="item leancloud_visitors" data-flag-title="23种设计模式完整指南 - C++实现详解" title="阅读次数">
+  <span id="2025/11/02/2025-11-02-design-patterns-in-cpp/" class="item leancloud_visitors" data-flag-title="23 种设计模式完整指南 - C++实现详解" title="阅读次数">
       <span class="icon">
         <i class="ic i-eye"></i>
       </span>
@@ -988,7 +988,7 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="https://haust-kevin.github.io/2025/11/02/2025-11-02-design-patterns-in-cpp/" title="23种设计模式完整指南 - C++实现详解">https://haust-kevin.github.io/2025/11/02/2025-11-02-design-patterns-in-cpp/</a>
+    <a href="https://haust-kevin.github.io/2025/11/02/2025-11-02-design-patterns-in-cpp/" title="23 种设计模式完整指南 - C++实现详解">https://haust-kevin.github.io/2025/11/02/2025-11-02-design-patterns-in-cpp/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -1007,7 +1007,7 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
     <div class="item left">
       
 
-  <a href="/2025/11/01/2025-11-01-global-destruct-trap/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309022040014.png" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象">
+  <a href="/2025/11/01/2025-11-01-global-destruct-trap/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;haust-Kevin&#x2F;static@master&#x2F;images&#x2F;common&#x2F;202309022040026.jpg" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> C++</span>
   <h3>全局对象析构陷阱：为什么不能依赖其他全局或单例对象</h3>
@@ -1031,11 +1031,11 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97-c%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text"> 23 种设计模式完整指南 - C++ 实现详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text"> 目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%A7%88"><span class="toc-number">1.2.</span> <span class="toc-text"> 设计模式概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 设计模式分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 设计原则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#solid%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.2.1.</span> <span class="toc-text"> SOLID 原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%87%8D%E8%A6%81%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.2.2.</span> <span class="toc-text"> 其他重要原则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text"> 创建型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-singleton"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 单例模式 (Singleton)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F-factory-method"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 工厂方法模式 (Factory Method)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-abstract-factory"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. 抽象工厂模式 (Abstract Factory)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-builder"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 建造者模式 (Builder)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-prototype"><span class="toc-number">1.3.5.</span> <span class="toc-text"> 5. 原型模式 (Prototype)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text"> 结构型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F-adapter"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 6. 适配器模式 (Adapter)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-bridge"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 7. 桥接模式 (Bridge)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F-composite"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 8. 组合模式 (Composite)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F-decorator"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 9. 装饰模式 (Decorator)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F-facade"><span class="toc-number">1.4.5.</span> <span class="toc-text"> 10. 外观模式 (Facade)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F-flyweight"><span class="toc-number">1.4.6.</span> <span class="toc-text"> 11. 享元模式 (Flyweight)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F-proxy"><span class="toc-number">1.4.7.</span> <span class="toc-text"> 12. 代理模式 (Proxy)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text"> 行为型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E8%81%8C%E8%B4%A3%E9%93%BE%E6%A8%A1%E5%BC%8F-chain-of-responsibility"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 13. 职责链模式 (Chain of Responsibility)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F-command"><span class="toc-number">1.5.2.</span> <span class="toc-text"> 14. 命令模式 (Command)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F-interpreter"><span class="toc-number">1.5.3.</span> <span class="toc-text"> 15. 解释器模式 (Interpreter)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F-iterator"><span class="toc-number">1.5.4.</span> <span class="toc-text"> 16. 迭代器模式 (Iterator)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F-mediator"><span class="toc-number">1.5.5.</span> <span class="toc-text"> 17. 中介者模式 (Mediator)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F-memento"><span class="toc-number">1.5.6.</span> <span class="toc-text"> 18. 备忘录模式 (Memento)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F-observer"><span class="toc-number">1.5.7.</span> <span class="toc-text"> 19. 观察者模式 (Observer)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F-state"><span class="toc-number">1.5.8.</span> <span class="toc-text"> 20. 状态模式 (State)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F-strategy"><span class="toc-number">1.5.9.</span> <span class="toc-text"> 21. 策略模式 (Strategy)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F-template-method"><span class="toc-number">1.5.10.</span> <span class="toc-text"> 22. 模板方法模式 (Template Method)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F-visitor"><span class="toc-number">1.5.11.</span> <span class="toc-text"> 23. 访问者模式 (Visitor)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8"><span class="toc-number">1.6.</span> <span class="toc-text"> 实践应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 何时使用设计模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9%E6%8C%87%E5%8D%97"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 模式选择指南</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9"><span class="toc-number">1.6.2.1.</span> <span class="toc-text"> 创建型模式选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9"><span class="toc-number">1.6.2.2.</span> <span class="toc-text"> 结构型模式选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9"><span class="toc-number">1.6.2.3.</span> <span class="toc-text"> 行为型模式选择</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 最佳实践</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.7.</span> <span class="toc-text"> 总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E5%88%B0%E7%9A%84%E6%8A%80%E8%83%BD"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 学到的技能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 学习建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="toc-number">1.7.3.</span> <span class="toc-text"> 未来展望</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.8.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#23-%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97-c%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text"> 23 种设计模式完整指南 - C++ 实现详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text"> 目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%A7%88"><span class="toc-number">1.2.</span> <span class="toc-text"> 设计模式概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 设计模式分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 设计原则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#solid-%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.2.1.</span> <span class="toc-text"> SOLID 原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%87%8D%E8%A6%81%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.2.2.</span> <span class="toc-text"> 其他重要原则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text"> 创建型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-singleton"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 单例模式 (Singleton)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F-factory-method"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 工厂方法模式 (Factory Method)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-abstract-factory"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. 抽象工厂模式 (Abstract Factory)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-builder"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 建造者模式 (Builder)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-prototype"><span class="toc-number">1.3.5.</span> <span class="toc-text"> 5. 原型模式 (Prototype)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text"> 结构型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F-adapter"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 6. 适配器模式 (Adapter)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-bridge"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 7. 桥接模式 (Bridge)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F-composite"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 8. 组合模式 (Composite)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F-decorator"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 9. 装饰模式 (Decorator)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F-facade"><span class="toc-number">1.4.5.</span> <span class="toc-text"> 10. 外观模式 (Facade)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F-flyweight"><span class="toc-number">1.4.6.</span> <span class="toc-text"> 11. 享元模式 (Flyweight)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F-proxy"><span class="toc-number">1.4.7.</span> <span class="toc-text"> 12. 代理模式 (Proxy)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text"> 行为型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E8%81%8C%E8%B4%A3%E9%93%BE%E6%A8%A1%E5%BC%8F-chain-of-responsibility"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 13. 职责链模式 (Chain of Responsibility)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F-command"><span class="toc-number">1.5.2.</span> <span class="toc-text"> 14. 命令模式 (Command)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F-interpreter"><span class="toc-number">1.5.3.</span> <span class="toc-text"> 15. 解释器模式 (Interpreter)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F-iterator"><span class="toc-number">1.5.4.</span> <span class="toc-text"> 16. 迭代器模式 (Iterator)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F-mediator"><span class="toc-number">1.5.5.</span> <span class="toc-text"> 17. 中介者模式 (Mediator)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F-memento"><span class="toc-number">1.5.6.</span> <span class="toc-text"> 18. 备忘录模式 (Memento)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F-observer"><span class="toc-number">1.5.7.</span> <span class="toc-text"> 19. 观察者模式 (Observer)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F-state"><span class="toc-number">1.5.8.</span> <span class="toc-text"> 20. 状态模式 (State)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F-strategy"><span class="toc-number">1.5.9.</span> <span class="toc-text"> 21. 策略模式 (Strategy)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F-template-method"><span class="toc-number">1.5.10.</span> <span class="toc-text"> 22. 模板方法模式 (Template Method)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F-visitor"><span class="toc-number">1.5.11.</span> <span class="toc-text"> 23. 访问者模式 (Visitor)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8"><span class="toc-number">1.6.</span> <span class="toc-text"> 实践应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 何时使用设计模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9%E6%8C%87%E5%8D%97"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 模式选择指南</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9"><span class="toc-number">1.6.2.1.</span> <span class="toc-text"> 创建型模式选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9"><span class="toc-number">1.6.2.2.</span> <span class="toc-text"> 结构型模式选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9"><span class="toc-number">1.6.2.3.</span> <span class="toc-text"> 行为型模式选择</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 最佳实践</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.7.</span> <span class="toc-text"> 总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E5%88%B0%E7%9A%84%E6%8A%80%E8%83%BD"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 学到的技能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 学习建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="toc-number">1.7.3.</span> <span class="toc-text"> 未来展望</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.8.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li><a href="/2025/01/26/2025-01-singleton-in-so/" rel="bookmark" title="单例模式的陷阱">单例模式的陷阱</a></li><li><a href="/2025/03/16/2025-03-understanding-of-shared-from-this/" rel="bookmark" title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this">C++：深入理解 std::enable_shared_from_this 与 shared_from_this</a></li><li><a href="/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/" rel="bookmark" title="C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现">C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现</a></li><li><a href="/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/" rel="bookmark" title="C++ ThreadPool：02. BlockingQueue 的实现">C++ ThreadPool：02. BlockingQueue 的实现</a></li><li><a href="/2025/11/01/2025-11-01-global-destruct-trap/" rel="bookmark" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象">全局对象析构陷阱：为什么不能依赖其他全局或单例对象</a></li><li class="active"><a href="/2025/11/02/2025-11-02-design-patterns-in-cpp/" rel="bookmark" title="23种设计模式完整指南 - C++实现详解">23种设计模式完整指南 - C++实现详解</a></li>
+          <li><a href="/2025/01/26/2025-01-singleton-in-so/" rel="bookmark" title="单例模式的陷阱">单例模式的陷阱</a></li><li><a href="/2025/03/16/2025-03-understanding-of-shared-from-this/" rel="bookmark" title="C++：深入理解 std::enable_shared_from_this 与 shared_from_this">C++：深入理解 std::enable_shared_from_this 与 shared_from_this</a></li><li><a href="/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/" rel="bookmark" title="C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现">C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现</a></li><li><a href="/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/" rel="bookmark" title="C++ ThreadPool：02. BlockingQueue 的实现">C++ ThreadPool：02. BlockingQueue 的实现</a></li><li><a href="/2025/11/01/2025-11-01-global-destruct-trap/" rel="bookmark" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象">全局对象析构陷阱：为什么不能依赖其他全局或单例对象</a></li><li class="active"><a href="/2025/11/02/2025-11-02-design-patterns-in-cpp/" rel="bookmark" title="23 种设计模式完整指南 - C++实现详解">23 种设计模式完整指南 - C++实现详解</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -1180,6 +1180,30 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2025/03/18/2025-04-threadpool-by-cpp-02-blockingqueue-md/" title="C++ ThreadPool：02. BlockingQueue 的实现">C++ ThreadPool：02. BlockingQueue 的实现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/" title="分类于 好文摘抄">好文摘抄</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%A5%BD%E6%96%87%E6%91%98%E6%8A%84/%E5%B0%8F%E8%AF%B4/" title="分类于 小说">小说</a>
+</div>
+
+    <span><a href="/2023/08/20/2023-08-%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0/" title="狂人日记">狂人日记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="分类于 环境搭建">环境搭建</a>
 </div>
 
@@ -1195,17 +1219,7 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
 <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2025/01/26/2025-01-singleton-in-so/" title="单例模式的陷阱">单例模式的陷阱</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/2023/08/17/2023-08-brew-replace-download-source/" title="HomeBrew：brew 更换下载源">HomeBrew：brew 更换下载源</a></span>
+    <span><a href="/2025/11/02/2025-11-02-design-patterns-in-cpp/" title="23 种设计模式完整指南 - C++实现详解">23 种设计模式完整指南 - C++实现详解</a></span>
   </li>
 
       
@@ -1224,10 +1238,33 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E4%BA%BA%E6%96%87%E7%A4%BE%E7%A7%91/" title="分类于 人文社科">人文社科</a>
 </div>
 
-    <span><a href="/2023/08/22/2023-08-%E7%BD%97%E7%BF%94%E8%B0%88%E3%80%8A%E9%87%8D%E5%88%91%E4%B8%BB%E4%B9%89%E3%80%8B/" title="罗翔说刑法：重刑主义">罗翔说刑法：重刑主义</a></span>
+    <span><a href="/2023/09/04/2023-09-sgs-wallpaper/" title="三国杀官方原画">三国杀官方原画</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2025/11/01/2025-11-01-global-destruct-trap/" title="全局对象析构陷阱：为什么不能依赖其他全局或单例对象">全局对象析构陷阱：为什么不能依赖其他全局或单例对象</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2025/03/17/2025-04-threadpool-by-cpp-01-fwk/" title="C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现">C++ ThreadPool：01. Java ThreadPoolExecutor 的 C++ 实现</a></span>
   </li>
 
       
@@ -1246,46 +1283,12 @@ Kevin's Blog = 沉思录 = Talk is cheap. Show me the code.</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
+<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/" title="分类于 算法题解">算法题解</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Web/" title="分类于 Web">Web</a>
+<a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/LeetCode/" title="分类于 LeetCode">LeetCode</a>
 </div>
 
-    <span><a href="/2023/11/01/2023-11-interview-web-spring/" title="面试指北：Spring">面试指北：Spring</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" title="分类于 技术分享">技术分享</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2025/11/02/2025-11-02-design-patterns-in-cpp/" title="23种设计模式完整指南 - C++实现详解">23种设计模式完整指南 - C++实现详解</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/" title="分类于 面试指北">面试指北</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8C%97/Java/" title="分类于 Java">Java</a>
-</div>
-
-    <span><a href="/2023/10/26/2023-10-interview-jvm/" title="面试指北：Java 虚拟机">面试指北：Java 虚拟机</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/OpenHarmony/" title="分类于 OpenHarmony">OpenHarmony</a>
-</div>
-
-    <span><a href="/2025/02/16/2025-02-openharmony-ipc/" title="OpenHarmony：IPC 通信编程范式">OpenHarmony：IPC 通信编程范式</a></span>
+    <span><a href="/2024/04/27/2024-04-leetcode-permutation-sequence/" title="LeetCode：60. 排列序列">LeetCode：60. 排列序列</a></span>
   </li>
 
   </ul>
